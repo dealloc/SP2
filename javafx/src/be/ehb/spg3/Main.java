@@ -15,7 +15,7 @@ public class Main extends Application
 	@Override
 	public void start(Stage stage)
 	{
-		stage.setTitle(Dummy.dummy());
+		stage.setTitle("software project - 3");
 		stage.show();
 	}
 }
