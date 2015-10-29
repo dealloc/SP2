@@ -16,7 +16,7 @@ public interface Authenticator
 	 * @param password The password which willl be used to authenticate.
 	 * @return true if the attempt was successfull, false if it was not.
 	 */
-	boolean login(String username, String password); // TODO add callback parameter
+	boolean login(String username, String password);
 
 	/**
 	 * Get the currently authenticated user.
@@ -30,5 +30,5 @@ public interface Authenticator
 	 * Log out the currently authenticated user.
 	 * Does nothing if no user is currently authenticated.
 	 */
-	void logout(); // TODO add callback parameter
+	void logout();
 }
