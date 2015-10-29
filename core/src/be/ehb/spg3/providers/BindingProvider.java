@@ -8,6 +8,7 @@ import com.google.inject.AbstractModule;
 // Created by Wannes Gennar. All rights reserved
 class BindingProvider extends AbstractModule
 {
+	@Override
 	protected void configure()
 	{
 		AuthRepository authenticator = new AuthRepository();
