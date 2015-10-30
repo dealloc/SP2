@@ -1,10 +1,16 @@
 package be.ehb.spg3.models;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.List;
 
-// Created by Wannes Gennar. All rights reserved
+// Created by Wannes Gennar. All rights reserved.
+
+@DatabaseTable(tableName = "quizzes")
 public class Quiz
 {
+	@DatabaseField(id = true)
 	private int id;
 	private String name;
 	private User owner;

@@ -1,8 +1,15 @@
 package be.ehb.spg3.models;
 
 // Created by Wannes Gennar. All rights reserved
+
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+@DatabaseTable(tableName = "results")
 public class Result
 {
+	@DatabaseField(id = true)
+	private int id;
 	private Quiz quiz;
 	private User user;
 

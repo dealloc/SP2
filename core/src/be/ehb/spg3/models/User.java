@@ -2,12 +2,17 @@ package be.ehb.spg3.models;
 
 // Created by Wannes Gennar. All rights reserved
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 /**
  * Represents a (human) user that interacts with the system.
  * This includes authentication data and identification data.
  */
+@DatabaseTable(tableName = "users")
 public class User
 {
+	@DatabaseField(id = true)
 	private int id;
 	private String name;
 	private String surname;
