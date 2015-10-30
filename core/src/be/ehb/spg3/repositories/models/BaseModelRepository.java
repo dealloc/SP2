@@ -1,7 +1,9 @@
 package be.ehb.spg3.repositories.models;
 
 import be.ehb.spg3.contracts.entities.IModelRepository;
+import be.ehb.spg3.exceptions.ConnectivityException;
 import be.ehb.spg3.exceptions.ModelNotFoundException;
+import be.ehb.spg3.exceptions.QueryException;
 
 import java.util.List;
 
@@ -16,12 +18,12 @@ import java.util.List;
 public class BaseModelRepository<T> implements IModelRepository<T>
 {
 	/**
-	 * Save a new model to the database or update an existing one.
+	 * Save a new model to the databases or update an existing one.
 	 *
 	 * @param obj The model instance to persist.
 	 */
 	@Override
-	public void save(T obj)
+	public void save(T obj) throws QueryException, ConnectivityException
 	{
 
 	}
@@ -33,7 +35,7 @@ public class BaseModelRepository<T> implements IModelRepository<T>
 	 * @return An instance of T matching the given ID, or null if none was found.
 	 */
 	@Override
-	public T find(int id)
+	public T find(int id) throws QueryException, ConnectivityException
 	{
 		return null;
 	}
@@ -46,7 +48,7 @@ public class BaseModelRepository<T> implements IModelRepository<T>
 	 * @throws ModelNotFoundException Thrown when no model with given ID was found.
 	 */
 	@Override
-	public T findOrFail(int id) throws ModelNotFoundException
+	public T findOrFail(int id) throws ModelNotFoundException, QueryException, ConnectivityException
 	{
 		return null;
 	}
@@ -59,7 +61,7 @@ public class BaseModelRepository<T> implements IModelRepository<T>
 	 * @return An intance of T matching given query, or null if none was found.
 	 */
 	@Override
-	public T findByField(String field, String value)
+	public T findByField(String field, String value) throws QueryException, ConnectivityException
 	{
 		return null;
 	}
@@ -72,7 +74,7 @@ public class BaseModelRepository<T> implements IModelRepository<T>
 	 * @return An intance of T matching given query, or null if none was found.
 	 */
 	@Override
-	public T findByField(String field, int value)
+	public T findByField(String field, int value) throws QueryException, ConnectivityException
 	{
 		return null;
 	}
@@ -85,19 +87,19 @@ public class BaseModelRepository<T> implements IModelRepository<T>
 	 * @return An intance of T matching given query, or null if none was found.
 	 */
 	@Override
-	public T findByField(String field, boolean value)
+	public T findByField(String field, boolean value) throws QueryException, ConnectivityException
 	{
 		return null;
 	}
 
 	/**
-	 * Return a list with all models currently persisted in the database.
+	 * Return a list with all models currently persisted in the databases.
 	 *
 	 * @return A list of persisted objects.
 	 * @apiNote Warning; this operation might take very long; avoid if possible!
 	 */
 	@Override
-	public List<T> getAll()
+	public List<T> getAll() throws QueryException, ConnectivityException
 	{
 		return null;
 	}
