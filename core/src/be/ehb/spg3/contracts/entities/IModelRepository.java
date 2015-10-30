@@ -44,27 +44,27 @@ public interface IModelRepository<T>
 	 *
 	 * @param field The field to query.
 	 * @param value The value the given field should match.
-	 * @return An intance of T matching given query, or null if none was found.
+	 * @return A list of instances of T matching given query, or an empty list if none were found.
 	 */
-	T findByField(String field, String value) throws QueryException, ConnectivityException;
+	List<T> findByField(String field, String value) throws QueryException, ConnectivityException;
 
 	/**
 	 * Get an instance of T by searching a given field.
 	 *
 	 * @param field The field to query.
 	 * @param value The value the given field should match.
-	 * @return An intance of T matching given query, or null if none was found.
+	 * @return A list of instances of T matching given query, or an empty list if none were found.
 	 */
-	T findByField(String field, int value) throws QueryException, ConnectivityException;
+	List<T> findByField(String field, int value) throws QueryException, ConnectivityException;
 
 	/**
 	 * Get an instance of T by searching a given field.
 	 *
 	 * @param field The field to query.
 	 * @param value The value the given field should match.
-	 * @return An intance of T matching given query, or null if none was found.
+	 * @return A list of instances of T matching given query, or an empty list if none were found.
 	 */
-	T findByField(String field, boolean value) throws QueryException, ConnectivityException;
+	List<T> findByField(String field, boolean value) throws QueryException, ConnectivityException;
 
 	/**
 	 * Return a list with all models currently persisted in the databases.
