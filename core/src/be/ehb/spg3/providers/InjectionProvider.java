@@ -1,5 +1,6 @@
 package be.ehb.spg3.providers;
 
+import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
@@ -13,9 +14,26 @@ public class InjectionProvider
 {
 	private static Injector injector = null;
 
-	private static void initialize()
+	/**
+	 * Initialize the InjectionProviders internal injector.
+	 *
+	 * @apiNote This method is called internally and you'll find you won't have to use it.
+	 */
+	public static void initialize()
 	{
-		InjectionProvider.injector = Guice.createInjector(new BindingProvider());
+		if (injector == null)
+			InjectionProvider.injector = Guice.createInjector(new BindingProvider());
+	}
+
+	/**
+	 * Initialize the InjectionProviders internal injector.
+	 *
+	 * @param module An abstractmodule to configure the bindings of the injector.
+	 */
+	public static void initialize(AbstractModule module)
+	{
+		if (injector == null)
+			InjectionProvider.injector = Guice.createInjector(module);
 	}
 
 	/**
