@@ -6,6 +6,13 @@ import be.ehb.spg3.exceptions.ModelNotFoundException;
 import java.util.List;
 
 // Created by Wannes Gennar. All rights reserved
+
+/**
+ * The BaseModelRepository is a base class for all model specific modelrepositories.
+ * It provides generic handling of CRUD operations and some simple queries.
+ *
+ * @param <T> The model class to use.
+ */
 public class BaseModelRepository<T> implements IModelRepository<T>
 {
 	/**
