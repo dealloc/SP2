@@ -10,9 +10,9 @@ public class CoreThread extends Thread
 {
 	private static UncaughtExceptionHandler handler = null;
 
-	public CoreThread(Runnable task)
+	public CoreThread(String desc, Runnable task)
 	{
-		super(task);
+		super(task, desc);
 	}
 
 	/**

@@ -18,7 +18,13 @@ public class ThreadManager implements ThreadPool
 
 	public ThreadManager()
 	{
-		this.executor = new ThreadPoolExecutor(10, 10, 60L, TimeUnit.SECONDS, new SynchronousQueue<>());
+		this.executor = new ThreadPoolExecutor(10,
+				10,
+				60L,
+				TimeUnit.SECONDS,
+				new SynchronousQueue<>(),
+				task -> new CoreThread("ThreadManager-daemon", task)
+		);
 	}
 
 	/**
