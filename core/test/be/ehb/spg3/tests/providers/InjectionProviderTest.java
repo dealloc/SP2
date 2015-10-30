@@ -1,4 +1,4 @@
-package be.ehb.spg3.tests;
+package be.ehb.spg3.tests.providers;
 
 import org.junit.Test;
 
