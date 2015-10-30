@@ -6,6 +6,13 @@ import be.ehb.spg3.models.Permission;
 import be.ehb.spg3.models.User;
 
 // Created by Wannes Gennar. All rights reserved
+
+/**
+ * The authrepository is the central class managing the authentication and authorization processing in the application.
+ *
+ * @see be.ehb.spg3.contracts.auth.Authenticator
+ * @see be.ehb.spg3.contracts.auth.Authorizator
+ */
 public class AuthRepository implements Authenticator, Authorizator
 {
 	/**
