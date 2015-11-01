@@ -2,8 +2,7 @@ package be.ehb.spg3;
 // Created by Wannes Gennar. All rights reserved
 
 
-import be.ehb.spg3.contracts.threading.ThreadPool;
-import be.ehb.spg3.threading.ThreadManager;
+import be.ehb.spg3.realms.database.CoreRealm;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -17,9 +16,7 @@ public class Main extends Application
 	@Override
 	public void start(Stage stage)
 	{
-		ThreadPool pool = new ThreadManager();
-		pool.submit(() -> System.out.println("hello from threads!"));
-
+		CoreRealm.test();
 		stage.setTitle("software project - 3");
 		stage.show();
 	}

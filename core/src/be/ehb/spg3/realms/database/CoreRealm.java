@@ -1,29 +1,25 @@
-package be.ehb.spg3.realms;
+package be.ehb.spg3.realms.database;
 
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 // Created by Wannes Gennar. All rights reserved
-public class DatabaseRealm extends AuthorizingRealm
+
+/**
+ * A simple Realm that connects to the database and retrieves the required information
+ *
+ * @apiNote heavily inspired by https://github.com/apache/shiro/blob/1.0.x/samples/standalone/src/main/java/MyRealm.java
+ */
+public class CoreRealm extends AuthorizingRealm
 {
-	/**
-	 * Retrieves the AuthorizationInfo for the given principals from the underlying data store.  When returning
-	 * an instance from this method, you might want to consider using an instance of
-	 * {@link SimpleAuthorizationInfo SimpleAuthorizationInfo}, as it is suitable in most cases.
-	 *
-	 * @param principals the primary identifying principals of the AuthorizationInfo that should be retrieved.
-	 * @return the AuthorizationInfo associated with this principals.
-	 * @see SimpleAuthorizationInfo
-	 */
-	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals)
+	private SimpleAccount getAccount(String username)
 	{
-		return null;
+		// TODO get the account details from the database
+		return new SimpleAccount(username, "verylongencryptedpasswordfromthedatabase", getName());
 	}
 
 	/**
@@ -45,6 +41,23 @@ public class DatabaseRealm extends AuthorizingRealm
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException
 	{
-		return null;
+		UsernamePasswordToken credentials = (UsernamePasswordToken) token;
+		return this.getAccount(credentials.getUsername());
+	}
+
+	/**
+	 * Retrieves the AuthorizationInfo for the given principals from the underlying data store.  When returning
+	 * an instance from this method, you might want to consider using an instance of
+	 * {@link SimpleAuthorizationInfo SimpleAuthorizationInfo}, as it is suitable in most cases.
+	 *
+	 * @param principals the primary identifying principals of the AuthorizationInfo that should be retrieved.
+	 * @return the AuthorizationInfo associated with this principals.
+	 * @see SimpleAuthorizationInfo
+	 */
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals)
+	{
+		String username = (String) getAvailablePrincipal(principals);
+		return this.getAccount(username);
 	}
 }
