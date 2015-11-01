@@ -24,5 +24,6 @@
     <orderEntry type="library" name="com.j256.ormlite:ormlite-core:4.45" level="project" />
     <orderEntry type="library" name="com.j256.ormlite:ormlite-jdbc:4.45" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:5.1.37" level="project" />
+    <orderEntry type="library" name="org.apache.shiro:shiro-core:1.2.4" level="project" />
   </component>
 </module>
