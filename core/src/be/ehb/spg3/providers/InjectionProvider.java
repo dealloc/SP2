@@ -32,8 +32,7 @@ public class InjectionProvider
 	 */
 	public static void initialize(AbstractModule module)
 	{
-		if (injector == null)
-			InjectionProvider.injector = Guice.createInjector(module);
+		InjectionProvider.injector = Guice.createInjector(module);
 	}
 
 	/**
