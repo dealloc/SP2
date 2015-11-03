@@ -13,8 +13,7 @@ import java.util.List;
 @DatabaseTable(tableName = "questions")
 public class Question
 {
-	@DatabaseField(id = true)
-	private int id;
-	private List<Question> questions; // TODO a list of questions in a list; whut?
-	private String question;
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private List<Question> questions; // TODO a list of questions in a list; whut?
+	@DatabaseField private String question;
 }

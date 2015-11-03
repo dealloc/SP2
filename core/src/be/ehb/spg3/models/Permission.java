@@ -11,9 +11,8 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "permissions")
 public class Permission
 {
-	@DatabaseField(id = true)
-	private int id;
-	private String name;
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private String name;
 
 	public Permission(String name)
 	{

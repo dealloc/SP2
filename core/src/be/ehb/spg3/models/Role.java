@@ -19,10 +19,9 @@ import java.util.List;
 public class Role
 {
 
-	@DatabaseField(id = true)
-	private int id;
-	private String name;
-	private List<Permission> permissions;
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private String name;
+	@DatabaseField private List<Permission> permissions;
 
 	public Role()
 	{

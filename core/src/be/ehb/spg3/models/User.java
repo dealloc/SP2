@@ -16,17 +16,15 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "users")
 public class User
 {
-	@DatabaseField(id = true)
-	private int id;
-	@DatabaseField
-	private String name;
-	private String surname;
-	private String address;
-	private String phoneNumber;
-	private String email;
-	private String username;
-	private String password;
-	private Role role;
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private String name;
+	@DatabaseField private String surname;
+	@DatabaseField private String address;
+	@DatabaseField private String phoneNumber;
+	@DatabaseField private String email;
+	@DatabaseField private String username;
+	@DatabaseField private String password;
+	@DatabaseField private Role role;
 
 	public User()
 	{

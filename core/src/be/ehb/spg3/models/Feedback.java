@@ -11,10 +11,9 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "feedbacks")
 public class Feedback
 {
-	@DatabaseField(id = true)
-	private int id;
-	private String feedback;
-	private User user;
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private String feedback;
+	@DatabaseField private User user;
 
 	public Feedback()
 	{

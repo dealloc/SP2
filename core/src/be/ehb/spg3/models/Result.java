@@ -11,10 +11,9 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "results")
 public class Result
 {
-	@DatabaseField(id = true)
-	private int id;
-	private Quiz quiz;
-	private User user;
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private Quiz quiz;
+	@DatabaseField private User user;
 
 	public Result()
 	{

@@ -13,13 +13,12 @@ import java.util.List;
 @DatabaseTable(tableName = "quizzes")
 public class Quiz
 {
-	@DatabaseField(id = true)
-	private int id;
-	private String name;
-	private User owner;
-	private List<User> users;
-	private List<Question> questions;
-	private List<Feedback> feedback;
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private String name;
+	@DatabaseField private User owner;
+	@DatabaseField private List<User> users;
+	@DatabaseField private List<Question> questions;
+	@DatabaseField private List<Feedback> feedback;
 
 	public Quiz()
 	{
