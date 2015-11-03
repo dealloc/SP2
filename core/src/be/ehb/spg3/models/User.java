@@ -18,6 +18,7 @@ public class User
 {
 	@DatabaseField(id = true)
 	private int id;
+	@DatabaseField
 	private String name;
 	private String surname;
 	private String address;

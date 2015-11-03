@@ -9,8 +9,7 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="com.google.inject:guice:4.0" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
         <CLASSES>
           <root url="jar://$APPLICATION_HOME_DIR$/lib/junit-4.11.jar!/" />
@@ -21,6 +20,8 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" scope="TEST" name="org.dbunit:dbunit:2.5.1" level="project" />
+    <orderEntry type="library" name="com.google.inject:guice:4.0" level="project" />
     <orderEntry type="library" name="com.j256.ormlite:ormlite-core:4.45" level="project" />
     <orderEntry type="library" name="com.j256.ormlite:ormlite-jdbc:4.45" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:5.1.37" level="project" />
