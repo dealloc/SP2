@@ -6,6 +6,10 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 /**
+ * TODO change to javax.sql annotations to remove coupling!
+ */
+
+/**
  * Represents a (human) user that interacts with the system.
  * This includes authentication data and identification data.
  */

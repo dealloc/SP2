@@ -5,6 +5,9 @@ package be.ehb.spg3.models;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+/**
+ * TODO change to javax.sql annotations to remove coupling!
+ */
 @DatabaseTable(tableName = "feedbacks")
 public class Feedback
 {

@@ -20,6 +20,7 @@ import java.util.List;
  * It provides generic handling of CRUD operations and some simple queries.
  *
  * @param <T> The model class to use.
+ * @todo make BaseModelRepository an abstract class.
  */
 public class BaseModelRepository<T> implements IModelRepository<T>
 {
@@ -27,7 +28,7 @@ public class BaseModelRepository<T> implements IModelRepository<T>
 
 	public BaseModelRepository(Class<T> model) throws SQLException
 	{
-		// initialize connection to localhost on port 3306 to table spg3
+		// initialize connection to localhost on port 3306 to table spg3 TODO refactor!
 		ConnectionSource connection = new JdbcConnectionSource("jdbc:mysql://dt5.ehb.be:3306/SP2_GR3", "SP2_GR3", "3qCxw");
 		this.dao = DaoManager.createDao(connection, model);
 		TableUtils.createTableIfNotExists(connection, model); // TODO refactor to another repository!

@@ -7,6 +7,9 @@ import java.util.List;
 
 // Created by Wannes Gennar. All rights reserved
 
+/**
+ * TODO change to javax.sql annotations to remove coupling!
+ */
 @DatabaseTable(tableName = "questions")
 public class Question
 {

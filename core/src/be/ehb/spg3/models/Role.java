@@ -8,6 +8,10 @@ import com.j256.ormlite.table.DatabaseTable;
 import java.util.List;
 
 /**
+ * TODO change to javax.sql annotations to remove coupling!
+ */
+
+/**
  * A role represents a set of permissions a user can have.
  * It basicly describes the capabilities of a user within the program
  */
