@@ -22,7 +22,7 @@ import java.util.List;
  * @param <T> The model class to use.
  * @todo make BaseModelRepository an abstract class.
  */
-public class BaseModelRepository<T> implements IModelRepository<T>
+public abstract class BaseModelRepository<T> implements IModelRepository<T>
 {
 	private Dao<T, Integer> dao;
 
