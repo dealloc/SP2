@@ -1,9 +1,14 @@
 package be.ehb.spg3;
-// Created by Wannes Gennar. All rights reserved
 
+// Created by Jérémy Thiebaut. All rights reserved
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class Main extends Application
 {
@@ -13,9 +18,13 @@ public class Main extends Application
 	}
 	
 	@Override
-	public void start(Stage stage)
+	public void start(Stage primaryStage) throws IOException
 	{
-		stage.setTitle(Dummy.dummy());
-		stage.show();
+		Parent parent = FXMLLoader.load(getClass().getResource("login.fxml"));
+		Scene scene = new Scene(parent);
+		primaryStage.setTitle("PR Ready -- Login for Quizz Tool");
+		primaryStage.setScene(scene);
+		primaryStage.centerOnScreen();
+		primaryStage.show();
 	}
 }
