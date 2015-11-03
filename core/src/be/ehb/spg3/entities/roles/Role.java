@@ -1,7 +1,8 @@
-package be.ehb.spg3.models;
+package be.ehb.spg3.entities.roles;
 
 // Created by Wannes Gennar. All rights reserved
 
+import be.ehb.spg3.entities.permissions.Permission;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 

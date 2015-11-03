@@ -1,8 +1,8 @@
 package be.ehb.spg3.providers;
 
+import be.ehb.spg3.auth.AuthRepository;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
-import be.ehb.spg3.repositories.auth.AuthRepository;
 import com.google.inject.AbstractModule;
 
 // Created by Wannes Gennar. All rights reserved

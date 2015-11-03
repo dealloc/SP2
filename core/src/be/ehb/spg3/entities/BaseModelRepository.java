@@ -1,4 +1,4 @@
-package be.ehb.spg3.repositories.models;
+package be.ehb.spg3.entities;
 
 import be.ehb.spg3.contracts.entities.IModelRepository;
 import be.ehb.spg3.exceptions.ConnectivityException;

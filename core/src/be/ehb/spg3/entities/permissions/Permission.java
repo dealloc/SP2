@@ -1,4 +1,4 @@
-package be.ehb.spg3.models;
+package be.ehb.spg3.entities.permissions;
 
 // Created by Wannes Gennar. All rights reserved
 

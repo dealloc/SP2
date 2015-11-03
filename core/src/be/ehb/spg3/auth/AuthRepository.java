@@ -1,9 +1,9 @@
-package be.ehb.spg3.repositories.auth;
+package be.ehb.spg3.auth;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
-import be.ehb.spg3.models.Permission;
-import be.ehb.spg3.models.User;
+import be.ehb.spg3.entities.permissions.Permission;
+import be.ehb.spg3.entities.users.User;
 
 // Created by Wannes Gennar. All rights reserved
 

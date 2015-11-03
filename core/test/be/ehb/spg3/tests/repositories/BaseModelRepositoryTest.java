@@ -1,7 +1,7 @@
 package be.ehb.spg3.tests.repositories;
 
+import be.ehb.spg3.entities.BaseModelRepository;
 import be.ehb.spg3.exceptions.ModelNotFoundException;
-import be.ehb.spg3.repositories.models.BaseModelRepository;
 import be.ehb.spg3.tests.mocks.DummyModel;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;

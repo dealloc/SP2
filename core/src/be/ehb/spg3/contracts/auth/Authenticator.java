@@ -1,6 +1,6 @@
 package be.ehb.spg3.contracts.auth;
 
-import be.ehb.spg3.models.User;
+import be.ehb.spg3.entities.users.User;
 
 // Created by Wannes Gennar. All rights reserved
 

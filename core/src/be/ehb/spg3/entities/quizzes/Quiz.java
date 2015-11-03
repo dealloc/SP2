@@ -1,5 +1,8 @@
-package be.ehb.spg3.models;
+package be.ehb.spg3.entities.quizzes;
 
+import be.ehb.spg3.entities.feedbacks.Feedback;
+import be.ehb.spg3.entities.questions.Question;
+import be.ehb.spg3.entities.users.User;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
