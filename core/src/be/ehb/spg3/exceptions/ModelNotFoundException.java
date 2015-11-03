@@ -7,6 +7,11 @@ package be.ehb.spg3.exceptions;
  */
 public class ModelNotFoundException extends Exception
 {
+	/**
+	 * Create a new ModelNotFoundException instance.
+	 *
+	 * @param s A little more information on the exception thrown
+	 */
 	public ModelNotFoundException(String s)
 	{
 		super(s);
