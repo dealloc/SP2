@@ -19,8 +19,18 @@ class BindingProvider extends AbstractModule
 	@Override
 	protected void configure()
 	{
+		initAuth();
+		initConnections();
+	}
+
+	private void initAuth()
+	{
 		AuthRepository authenticator = new AuthRepository();
 		bind(Authenticator.class).toInstance(authenticator);
 		bind(Authorizator.class).toInstance(authenticator);
+	}
+
+	private void initConnections()
+	{
 	}
 }

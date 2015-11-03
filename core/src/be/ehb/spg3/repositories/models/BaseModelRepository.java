@@ -90,7 +90,8 @@ public class BaseModelRepository<T> implements IModelRepository<T>
 	{
 		try
 		{
-			return this.dao.queryForId(id);
+			T result = this.dao.queryForId(id);
+			if (result != null) return result;
 		}
 		catch (SQLException e)
 		{

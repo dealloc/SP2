@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE dataset SYSTEM "schema.dtd">
 <dataset>
-	<USERS name="Wannes Gennar"/>
-	<USERS name="Den Eddi"/>
+	<DUMMY name="Wannes Gennar"
+	       randomNumber="23"
+	       testBool="true"/>
+	<DUMMY name="Den Eddi"
+	       randomNumber="23"
+	       testBool="false"/>
 </dataset>
