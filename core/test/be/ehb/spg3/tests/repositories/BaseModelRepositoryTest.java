@@ -3,6 +3,7 @@ package be.ehb.spg3.tests.repositories;
 import be.ehb.spg3.entities.BaseModelRepository;
 import be.ehb.spg3.exceptions.ModelNotFoundException;
 import be.ehb.spg3.tests.mocks.DummyModel;
+import be.ehb.spg3.tests.mocks.DummyRepository;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
@@ -26,7 +27,7 @@ import java.util.List;
 @RunWith(JUnit4.class)
 public class BaseModelRepositoryTest extends DatabaseTestCase
 {
-	BaseModelRepository<DummyModel> repository = new BaseModelRepository<>(DummyModel.class);
+	BaseModelRepository<DummyModel> repository = new DummyRepository();
 
 	public BaseModelRepositoryTest() throws Exception
 	{
