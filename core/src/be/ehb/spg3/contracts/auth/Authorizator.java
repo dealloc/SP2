@@ -2,8 +2,8 @@ package be.ehb.spg3.contracts.auth;
 
 // Created by Wannes Gennar. All rights reserved
 
-import be.ehb.spg3.models.Permission;
-import be.ehb.spg3.models.User;
+import be.ehb.spg3.entities.permissions.Permission;
+import be.ehb.spg3.entities.users.User;
 
 /**
  * Provides a contract of how an authorization module should behave.

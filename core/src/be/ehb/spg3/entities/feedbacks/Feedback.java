@@ -1,10 +1,20 @@
-package be.ehb.spg3.models;
+package be.ehb.spg3.entities.feedbacks;
 
 // Created by Wannes Gennar. All rights reserved
+
+import be.ehb.spg3.entities.users.User;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+/**
+ * TODO change to javax.sql annotations to remove coupling!
+ */
+@DatabaseTable(tableName = "feedbacks")
 public class Feedback
 {
-	private String feedback;
-	private User user;
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private String feedback;
+	@DatabaseField private User user;
 
 	public Feedback()
 	{

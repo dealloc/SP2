@@ -1,17 +1,28 @@
-package be.ehb.spg3.models;
+package be.ehb.spg3.entities.roles;
 
 // Created by Wannes Gennar. All rights reserved
 
+import be.ehb.spg3.entities.permissions.Permission;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.util.List;
+
+/**
+ * TODO change to javax.sql annotations to remove coupling!
+ */
 
 /**
  * A role represents a set of permissions a user can have.
  * It basicly describes the capabilities of a user within the program
  */
+@DatabaseTable(tableName = "roles")
 public class Role
 {
-	private String name;
-	private List<Permission> permissions;
+
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private String name;
+	@DatabaseField private List<Permission> permissions;
 
 	public Role()
 	{

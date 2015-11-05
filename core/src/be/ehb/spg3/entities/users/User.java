@@ -1,22 +1,31 @@
-package be.ehb.spg3.models;
+package be.ehb.spg3.entities.users;
 
 // Created by Wannes Gennar. All rights reserved
+
+import be.ehb.spg3.entities.roles.Role;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+/**
+ * TODO change to javax.sql annotations to remove coupling!
+ */
 
 /**
  * Represents a (human) user that interacts with the system.
  * This includes authentication data and identification data.
  */
+@DatabaseTable(tableName = "users")
 public class User
 {
-	private int id;
-	private String name;
-	private String surname;
-	private String address;
-	private String phoneNumber;
-	private String email;
-	private String username;
-	private String password;
-	private Role role;
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private String name;
+	@DatabaseField private String surname;
+	@DatabaseField private String address;
+	@DatabaseField private String phoneNumber;
+	@DatabaseField private String email;
+	@DatabaseField private String username;
+	@DatabaseField private String password;
+	@DatabaseField private Role role;
 
 	public User()
 	{

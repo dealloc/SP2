@@ -1,16 +1,27 @@
-package be.ehb.spg3.models;
+package be.ehb.spg3.entities.quizzes;
+
+import be.ehb.spg3.entities.feedbacks.Feedback;
+import be.ehb.spg3.entities.questions.Question;
+import be.ehb.spg3.entities.users.User;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 import java.util.List;
 
-// Created by Wannes Gennar. All rights reserved
+// Created by Wannes Gennar. All rights reserved.
+
+/**
+ * TODO change to javax.sql annotations to remove coupling!
+ */
+@DatabaseTable(tableName = "quizzes")
 public class Quiz
 {
-	private int id;
-	private String name;
-	private User owner;
-	private List<User> users;
-	private List<Question> questions;
-	private List<Feedback> feedback;
+	@DatabaseField(id = true) private int id;
+	@DatabaseField private String name;
+	@DatabaseField private User owner;
+	@DatabaseField private List<User> users;
+	@DatabaseField private List<Question> questions;
+	@DatabaseField private List<Feedback> feedback;
 
 	public Quiz()
 	{
