@@ -4,6 +4,9 @@ import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.users.User;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.Subject;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -25,6 +28,31 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public boolean login(String username, String password)
 	{
+		//We create a token with username and password based on Shiro's AuthenticationToken interface
+		UsernamePasswordToken credentials = new UsernamePasswordToken(username, password);
+		/*
+		* Shiro remembers the user identity if they return to the application at a later date
+		* credentials.setRememberMe(true);
+		*/
+		//It will acquire the currently executing user via the getsubject() method call.
+		Subject currentUser = SecurityUtils.getSubject();
+		//Handling success or failure
+		try {
+			//The credentials are been saved in a token, now we need to submit this token to Shiro
+			currentUser.login(credentials);
+			return true;
+		} catch (UnknownAccountException uae) {
+			System.out.println("Dit account bestaat niet!");
+
+		} catch (IncorrectCredentialsException ice) {
+			System.out.println("Ongeldige gebruikersnaam of wachtwoord!");
+
+		} catch (LockedAccountException lae) {
+			System.out.println("Dit account werd onlangs afgesloten!");
+
+		} catch (ExcessiveAttemptsException eae) {
+			System.out.println("Te veel foutieve aanmeldpogingen!");
+		}
 		return false;
 	}
 
@@ -37,6 +65,13 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public User auth()
 	{
+		//It will acquire the currently executing user via the getsubject() method call.
+		Subject currentUser = SecurityUtils.getSubject();
+		//If the current user is authenticated then show the principals else return null
+		if (currentUser.isAuthenticated()) {
+			System.out.println(currentUser.getPrincipal());
+		}
+		System.out.println("Not authenticated!");
 		return null;
 	}
 
@@ -47,7 +82,9 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public void logout()
 	{
-
+		//It will acquire the currently executing user via the getsubject() method call.
+		Subject currentUser = SecurityUtils.getSubject();
+		currentUser.logout();
 	}
 
 	/**
@@ -59,6 +96,18 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public boolean can(String permission)
 	{
+		//It will acquire the currently executing user via the getsubject() method call.
+		Subject currentUser = SecurityUtils.getSubject();
+		//Check if the current user is authenticated
+		if (currentUser.isAuthenticated()) {
+			System.out.println("The current user is authenticated!");
+			//Check if the user has the given permission
+			if (currentUser.isPermitted(permission)) {
+				System.out.println("The current user has the given permission!");
+				return true;
+			}
+		}
+		System.out.println("The current user isn't authenticated or doesn't have the given permission!");
 		return false;
 	}
 
@@ -72,7 +121,19 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public boolean cannot(String permission)
 	{
-		return false;
+		//It will acquire the currently executing user via the getsubject() method call.
+		Subject currentUser = SecurityUtils.getSubject();
+		//Check if the current user is authenticated
+		if (currentUser.isAuthenticated()) {
+			System.out.println("The current user is authenticated!");
+			//Check if the user doesn't have the given permission
+			if (currentUser.isPermitted(permission)) {
+				System.out.println("The current user has the given permission!");
+				return false;
+			}
+		}
+		System.out.println("The current user isn't authenticated or doesn't have the given permission!");
+		return true;
 	}
 
 	/**
