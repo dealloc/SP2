@@ -1,11 +1,18 @@
 package be.ehb.spg3.realms.database;
 
 
+import be.ehb.spg3.entities.users.User;
+import be.ehb.spg3.entities.users.UserRepository;
+import be.ehb.spg3.exceptions.ConnectivityException;
+import be.ehb.spg3.exceptions.QueryException;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+
+import java.sql.SQLException;
+import java.util.List;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -16,10 +23,35 @@ import org.apache.shiro.subject.PrincipalCollection;
  */
 public class CoreRealm extends AuthorizingRealm
 {
+	private UserRepository repository = null;
+
+	public CoreRealm()
+	{
+		try
+		{
+			this.repository = new UserRepository();
+		}
+		catch (SQLException e)
+		{
+		}
+	}
+
 	private SimpleAccount getAccount(String username)
 	{
 		// TODO get the account details from the database
-		return new SimpleAccount(username, "verylongencryptedpasswordfromthedatabase", getName());
+		try
+		{
+			List<User> users = this.repository.findByField("username", username);
+			if (users.size() > 0)
+			{
+				return new SimpleAccount(username, users.get(0).getPassword(), getName());
+			}
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
