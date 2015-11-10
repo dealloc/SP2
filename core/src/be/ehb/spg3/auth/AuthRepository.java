@@ -70,9 +70,11 @@ public class AuthRepository implements Authenticator, Authorizator
 		//If the current user is authenticated then show the principals else return null
 		if (currentUser.isAuthenticated()) {
 			System.out.println(currentUser.getPrincipal());
+			return (User) currentUser;
+		} else {
+			System.out.println("Not authenticated!");
+			return null;
 		}
-		System.out.println("Not authenticated!");
-		return null;
 	}
 
 	/**
