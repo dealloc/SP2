@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.net.URL;
 
 // Created by Wannes Gennar. All rights reserved
+
+/**
+ * Manages switching between screens, takes care of transitions and lifecycles.
+ */
 public class ScreenController
 {
 	private StackPane stack;
@@ -33,6 +37,7 @@ public class ScreenController
 	 * @param res
 	 * @param anim
 	 * @throws IOException
+	 * @todo implement controller lifecycle callbacks.
 	 */
 	public void show(URL res, TransitionAnimation anim) throws IOException
 	{
