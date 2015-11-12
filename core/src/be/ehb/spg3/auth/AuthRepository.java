@@ -70,7 +70,7 @@ public class AuthRepository implements Authenticator, Authorizator
 		//If the current user is authenticated then show the principals else return null
 		if (currentUser.isAuthenticated()) {
 			System.out.println(currentUser.getPrincipal());
-			return (User) currentUser;
+			return (User) currentUser; //TODO create constructor for user with subject
 		} else {
 			System.out.println("Not authenticated!");
 			return null;
@@ -147,7 +147,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public void grant(User subject, Permission permission)
 	{
-
+		//TODO implement grant function
 	}
 
 	/**
@@ -160,6 +160,6 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public void revoke(User subject, Permission permission)
 	{
-
+		//TODO implement revoke function
 	}
 }
