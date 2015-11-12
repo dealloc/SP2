@@ -8,6 +8,7 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent transparent white transparent;
     -fx-border-width: 3px;
+    -fx-text-fill: white;
     -fx-prompt-text-fill: white;
     -fx-padding: 0 0 10 0;
 }
@@ -17,6 +18,7 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent transparent white transparent;
     -fx-border-width: 3px;
+    -fx-text-fill: white;
     -fx-prompt-text-fill: white;
     -fx-padding: 0 0 10 0;
 }
