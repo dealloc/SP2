@@ -1,7 +1,10 @@
 package be.ehb.spg3.controllers;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
+import javafx.util.Duration;
 
 // Created by Wannes Gennar. All rights reserved.
 
@@ -41,7 +44,16 @@ public abstract class TransitionAnimation
 	{
 		public void transition(Node current, Node next)
 		{
-			// TODO
+			Timeline fadeout = new Timeline(
+					new KeyFrame(Duration.ZERO, new KeyValue(current.opacityProperty(), 1)),
+					new KeyFrame(Duration.seconds(1), new KeyValue(current.opacityProperty(), 0))
+			);
+			Timeline fadein = new Timeline(
+					new KeyFrame(Duration.seconds(1), new KeyValue(next.opacityProperty(), 0)),
+					new KeyFrame(Duration.ZERO, new KeyValue(next.opacityProperty(), 1))
+			);
+			fadeout.play();
+			fadein.play();
 		}
 	}
 }
