@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
@@ -9,13 +10,13 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <SplitPane dividerPositions="0.15914786967418545" layoutY="7.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #3f4852;" styleClass="leftSidePane">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #3f4852;" styleClass="leftSidePane">
                <children>
                   <ButtonBar layoutX="92.0" layoutY="135.0" prefHeight="40.0" prefWidth="70.0" />
                   <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="19.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/profile_picture.jpg" />
+                        <Image url="@images/account.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="26.0" layoutY="119.0" prefHeight="32.0" prefWidth="90.0" text="Simon Pollé" textFill="WHITE">
@@ -28,30 +29,63 @@
                         <Button layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Dashboard" textFill="WHITE" />
                         <Button layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Users" textFill="WHITE" />
                         <Button layoutY="64.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Statistics" textFill="WHITE" />
-                        <Button layoutY="89.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Settings" textFill="WHITE" />
                      </children>
                   </Pane>
-                  <Button layoutX="53.0" layoutY="528.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: transparant;" textFill="WHITE" />
-                  <ImageView fitHeight="48.0" fitWidth="40.0" layoutX="45.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="46.0" layoutY="559.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/logout.png" />
+                        <Image url="@images/exit.png" />
                      </image>
                   </ImageView>
-               </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #dedede;">
+                  <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="46.0" layoutY="527.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/settings.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #dedede;">
                <children>
-                  <Pane layoutX="23.0" layoutY="44.0" prefHeight="156.0" prefWidth="628.0" style="-fx-background-color: #ffffff;" />
-                  <Pane layoutX="21.0" layoutY="229.0" prefHeight="156.0" prefWidth="307.0" style="-fx-background-color: #ffffff;" />
-                  <Pane layoutX="344.0" layoutY="229.0" prefHeight="156.0" prefWidth="307.0" style="-fx-background-color: #ffffff;" />
-                  <Pane layoutX="20.0" layoutY="408.0" prefHeight="156.0" prefWidth="307.0" style="-fx-background-color: #ffffff;" />
-                  <Pane layoutX="347.0" layoutY="408.0" prefHeight="156.0" prefWidth="307.0" style="-fx-background-color: #ffffff;" />
-                  <Label layoutX="14.0" layoutY="6.0" prefHeight="40.0" prefWidth="98.0" text="Dashboard">
+                  <Pane layoutX="26.0" layoutY="42.0" prefHeight="531.0" prefWidth="628.0" style="-fx-background-color: #d4d4d4;">
+                     <children>
+                        <Pane layoutX="14.0" layoutY="14.0" prefHeight="239.0" prefWidth="294.0" style="-fx-background-color: white;">
+                           <children>
+                              <AreaChart alternativeColumnFillVisible="true" horizontalGridLinesVisible="false" layoutX="1.0" prefHeight="239.0" prefWidth="294.0" title="Results of quiz">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </AreaChart>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="320.0" layoutY="14.0" prefHeight="239.0" prefWidth="294.0" style="-fx-background-color: white;" />
+                        <Pane layoutX="14.0" layoutY="266.0" prefHeight="239.0" prefWidth="294.0" style="-fx-background-color: white;" />
+                        <Pane layoutX="320.0" layoutY="266.0" prefHeight="239.0" prefWidth="294.0" style="-fx-background-color: white;" />
+                     </children></Pane>
+                  <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="98.0" text="Dashboard">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-               </children></AnchorPane>
-        </items>
+                  <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="528.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/add.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="565.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/edit.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="600.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/delete.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </items>
       </SplitPane>
    </children>
 </AnchorPane>
