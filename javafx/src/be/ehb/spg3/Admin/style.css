@@ -1,0 +1,33 @@
+.button {
+    -fx-background-color: #8bc34a;
+}
+
+.button:hover {
+    -fx-background-color: #388e3c;
+    -fx-curser-hand;
+}
+
+.button:pressed {
+    -fx-background-color: #39943e;
+    /*-fx-effect: dropshadow(three-pass-box, #727272, 2, 0, 0, 0)*/
+    -fx-effect: innershadow(three-pass-box, #c8e6c9, 3, 0, 0, 0);
+}
+
+#headanchor {
+    -fx-effect: dropshadow(three-pass-box, #727272, 10, 0, 0, 0)
+}
+
+.table-view .column-header {
+    -fx-background-color: #4caf50;
+}
+
+.table-column .column-header-background .nested-column-header .table-view:row-selection {
+    -fx-border-color: #212121 -fx-border-width : 2;
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #4caf50;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
