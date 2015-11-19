@@ -2,8 +2,13 @@ package be.ehb.spg3;
 // Created by Wannes Gennar. All rights reserved
 
 //Branch jeroen test
+
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 
 public class Main extends Application
 {
@@ -13,9 +18,14 @@ public class Main extends Application
 	}
 	
 	@Override
-	public void start(Stage stage)
+	public void start(Stage stage) throws Exception
 	{
-		stage.setTitle("software project - 3");
+		Parent root = FXMLLoader.load(getClass().getResource("Admin/AdminHome.fxml"));
+		Scene myScene = new Scene(root, 1280, 720);
+		myScene.getStylesheets().add("Admin/style.css");
+		stage.setTitle("Software Project 2 - Groep 3");
+		stage.setScene(myScene);
+		stage.setFullScreen(true);
 		stage.show();
 	}
 }
