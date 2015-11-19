@@ -68,21 +68,6 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="528.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/add.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="565.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/edit.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="600.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/delete.png" />
-                     </image>
-                  </ImageView>
                </children>
             </AnchorPane>
          </items>
