@@ -3,10 +3,10 @@ package be.ehb.spg3.entities.roles;
 // Created by Wannes Gennar. All rights reserved
 
 import be.ehb.spg3.entities.permissions.Permission;
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import java.util.List;
 
 /**
  * TODO change to javax.sql annotations to remove coupling!
@@ -20,9 +20,12 @@ import java.util.List;
 public class Role
 {
 
-	@DatabaseField(id = true) private int id;
-	@DatabaseField private String name;
-	@DatabaseField private List<Permission> permissions;
+	@DatabaseField(id = true)
+	private int id;
+	@DatabaseField
+	private String name;
+	@ForeignCollectionField
+	private ForeignCollection<Permission> permissions;
 
 	public Role()
 	{
@@ -34,7 +37,7 @@ public class Role
 	 * @param name        The name of this role.
 	 * @param permissions The permissions for this role.
 	 */
-	public Role(String name, List<Permission> permissions)
+	public Role(String name, ForeignCollection<Permission> permissions)
 	{
 		this.name = name;
 		this.permissions = permissions;
@@ -66,7 +69,7 @@ public class Role
 	 * @return This role's permissions.
 	 * @see Permission
 	 */
-	public List<Permission> getPermissions()
+	public ForeignCollection<Permission> getPermissions()
 	{
 		return permissions;
 	}
@@ -77,7 +80,7 @@ public class Role
 	 * @param permissions The new permissions for this role.
 	 * @see Permission
 	 */
-	public void setPermissions(List<Permission> permissions)
+	public void setPermissions(ForeignCollection<Permission> permissions)
 	{
 		this.permissions = permissions;
 	}

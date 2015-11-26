@@ -7,22 +7,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application
 {
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("design/moderator/dashboard.fxml"));
-		primaryStage.setScene(new Scene(root, 1280, 720));
-		//primaryStage.initStyle(StageStyle.UNDECORATED);
-		//primaryStage.setResizable(false);
-		//primaryStage.centerOnScreen();
-		primaryStage.setMinWidth(800);
-		primaryStage.setMinHeight(600);
-		primaryStage.show();
+	public static void main(String[] args)
+	{
+		launch(args);
 	}
 
-	public static void main(String[] args) {
-		launch(args);
+	@Override
+	public void start(Stage primaryStage) throws Exception
+	{
+		Parent root = FXMLLoader.load(getClass().getResource("auth/login/login.fxml"));
+		primaryStage.initStyle(StageStyle.UNDECORATED);
+		primaryStage.setResizable(false);
+		primaryStage.centerOnScreen();
+		primaryStage.setScene(new Scene(root, 618, 480));
+		primaryStage.show();
 	}
 }
