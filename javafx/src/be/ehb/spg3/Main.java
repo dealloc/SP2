@@ -11,17 +11,19 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application
 {
+	public static void main(String[] args)
+	{
+		launch(args);
+	}
+
 	@Override
-	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("design/login/login.fxml"));
+	public void start(Stage primaryStage) throws Exception
+	{
+		Parent root = FXMLLoader.load(getClass().getResource("auth/login/login.fxml"));
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.setResizable(false);
 		primaryStage.centerOnScreen();
 		primaryStage.setScene(new Scene(root, 618, 480));
 		primaryStage.show();
-	}
-
-	public static void main(String[] args) {
-		launch(args);
 	}
 }
