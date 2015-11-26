@@ -25,10 +25,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Maven: org.apache.shiro:shiro-core:1.2.4" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.6.4" level="project" />
-    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.8.3" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:slf4j-simple:1.6.4" level="project" />
     <orderEntry type="library" name="Maven: com.j256.ormlite:ormlite-jdbc:4.48" level="project" />
     <orderEntry type="library" name="Maven: com.j256.ormlite:ormlite-core:4.48" level="project" />
     <orderEntry type="library" name="Maven: com.google.inject:guice:4.0" level="project" />
@@ -37,6 +33,7 @@
     <orderEntry type="library" name="Maven: com.google.guava:guava:16.0.1" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.37" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.dbunit:dbunit:2.5.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:slf4j-api:1.7.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
