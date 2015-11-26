@@ -11,7 +11,7 @@
         <TextField layoutX="144.0" layoutY="187.0" prefHeight="35.0" prefWidth="330.0" promptText="Username"
                    styleClass="textfield" stylesheets="@stylesheets/style.css">
             <font>
-                <Font size="19.0"/>
+                <Font size="8.0"/>
             </font>
         </TextField>
         <PasswordField layoutX="144.0" layoutY="253.0" prefHeight="35.0" prefWidth="330.0" promptText="Password"

@@ -11,6 +11,7 @@
     -fx-text-fill: white;
     -fx-prompt-text-fill: white;
     -fx-padding: 0 0 10 0;
+    -fx-font: 19px System;
 }
 
 /* --- Styling the password-fields ---*/
@@ -21,12 +22,16 @@
     -fx-text-fill: white;
     -fx-prompt-text-fill: white;
     -fx-padding: 0 0 10 0;
+    -fx-font: 19px System;
 }
 
 /* --- Styling the buttons ---*/
 .button {
     -fx-background-color: #83a2e0;
     -fx-border-radius: 0px;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+    -fx-font: 19px System;
 }
 
 /* --- Styling the image-view ---*/
