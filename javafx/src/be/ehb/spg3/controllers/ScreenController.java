@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
+
 // Created by Wannes Gennar. All rights reserved
 
 /**
@@ -49,7 +51,6 @@ public class ScreenController
 		this.dispatchDetachEvent();
 		Node current = this.stack.getChildren().get(0);
 		Parent next = fxmlLoader.load();
-		// TODO use Guice to initialize injectable members
 		this.dispatchInitializedEvent();
 		this.stack.getChildren().add(next);
 		anim.transition(current, next);
@@ -57,23 +58,32 @@ public class ScreenController
 		this.dispatchAttachEvent();
 	}
 
-	private void dispatchInitializedEvent()
+	private BaseController getController()
 	{
 		BaseController controller = this.fxmlLoader.getController();
+		if (controller != null)
+			resolve(controller);
+
+		return controller;
+	}
+
+	private void dispatchInitializedEvent()
+	{
+		BaseController controller = this.getController();
 		if (controller != null)
 			controller.initialize();
 	}
 
 	private void dispatchAttachEvent()
 	{
-		BaseController controller = this.fxmlLoader.getController();
+		BaseController controller = this.getController();
 		if (controller != null)
 			controller.attach();
 	}
 
 	private void dispatchDetachEvent()
 	{
-		BaseController controller = this.fxmlLoader.getController();
+		BaseController controller = this.getController();
 		if (controller != null)
 			controller.detach();
 	}
