@@ -23,10 +23,9 @@ public class Main extends Application
 	{
 		Parent root = FXMLLoader.load(getClass().getResource("design/Admin/AdminHome.fxml"));
 		Scene myScene = new Scene(root, 1280, 720);
-		//myScene.getStylesheets().add("design/Admin/style.css");
 		stage.setTitle("Software Project 2 - Groep 3");
 		stage.setScene(myScene);
-		stage.setFullScreen(true);
+		//stage.setFullScreen(true);
 		//stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 		stage.setMinWidth(800);
 		stage.setMinHeight(600);
