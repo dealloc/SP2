@@ -1,6 +1,8 @@
 package be.ehb.spg3.tests.mocks;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 // Created by Wannes Gennar. All rights reserved
@@ -12,6 +14,8 @@ public class DummyModel
 	@DatabaseField private String name;
 	@DatabaseField private int randomNumber;
 	@DatabaseField private boolean testBool;
+	@ForeignCollectionField
+	ForeignCollection<DummyModel> models;
 
 	public int getId()
 	{
@@ -51,5 +55,15 @@ public class DummyModel
 	public void setTestBool(boolean testBool)
 	{
 		this.testBool = testBool;
+	}
+
+	public ForeignCollection getModels()
+	{
+		return this.models;
+	}
+
+	public void addModel(DummyModel model)
+	{
+		this.models.add(model);
 	}
 }
