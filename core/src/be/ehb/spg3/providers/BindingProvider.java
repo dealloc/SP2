@@ -3,6 +3,8 @@ package be.ehb.spg3.providers;
 import be.ehb.spg3.auth.AuthRepository;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
+import be.ehb.spg3.contracts.encryption.Encryptor;
+import be.ehb.spg3.encryption.PlainCryptor;
 import com.google.inject.AbstractModule;
 
 // Created by Wannes Gennar. All rights reserved
@@ -28,6 +30,7 @@ class BindingProvider extends AbstractModule
 		AuthRepository authenticator = new AuthRepository();
 		bind(Authenticator.class).toInstance(authenticator);
 		bind(Authorizator.class).toInstance(authenticator);
+		bind(Encryptor.class).to(PlainCryptor.class);
 	}
 
 	private void initConnections()
