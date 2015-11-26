@@ -146,4 +146,9 @@ public class BaseModelRepositoryTest extends DatabaseTestCase
 		assertEquals(true, list.get(0).isTestBool());
 		assertEquals(true, list.get(1).isTestBool());
 	}
+
+	@Test
+	public void testCreateCollections() throws Exception
+	{
+	}
 }
