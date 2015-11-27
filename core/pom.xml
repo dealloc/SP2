@@ -50,5 +50,11 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>net.engio</groupId>
+			<artifactId>mbassador</artifactId>
+			<version>1.2.4</version>
+		</dependency>
+
 	</dependencies>
 </project>

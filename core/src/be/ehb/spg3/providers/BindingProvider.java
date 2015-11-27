@@ -6,6 +6,7 @@ import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.contracts.encryption.Encryptor;
 import be.ehb.spg3.encryption.PlainCryptor;
 import com.google.inject.AbstractModule;
+import net.engio.mbassy.bus.MBassador;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -22,7 +23,7 @@ class BindingProvider extends AbstractModule
 	protected void configure()
 	{
 		initAuth();
-		initConnections();
+		initBusses();
 	}
 
 	private void initAuth()
@@ -33,7 +34,9 @@ class BindingProvider extends AbstractModule
 		bind(Encryptor.class).to(PlainCryptor.class);
 	}
 
-	private void initConnections()
+	private void initBusses()
 	{
+		MBassador bus = new MBassador();
+		bind(MBassador.class).toInstance(bus);
 	}
 }
