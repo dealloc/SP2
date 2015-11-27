@@ -7,7 +7,7 @@ import be.ehb.spg3.exceptions.QueryException;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
@@ -184,13 +184,14 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 	{
 		try
 		{
-			QueryBuilder<T, Integer> builder = this.dao.queryBuilder();
-			for (String[] field : fields)
+			Where<T, Integer> builder = this.dao.queryBuilder().where();
+			for (int i = 0; i < fields.length; i++)
 			{
+				String[] field = fields[i];
 				if (field.length < 2)
 					throw new QueryException("Invalid field specification length");
 
-				builder.where().eq(field[0], field[1]);
+				builder = (i == 0 ? builder : builder.and()).eq(field[0], field[1]);
 			}
 
 			return this.dao.query(builder.prepare());
