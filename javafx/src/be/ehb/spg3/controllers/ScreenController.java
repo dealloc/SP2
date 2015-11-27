@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
+
 // Created by Wannes Gennar. All rights reserved
 
 /**
@@ -18,6 +20,13 @@ import java.net.URL;
 public class ScreenController
 {
 	private StackPane stack;
+	private FXMLLoader fxmlLoader;
+
+	public ScreenController()
+	{
+		this.stack = new StackPane();
+		this.fxmlLoader = new FXMLLoader();
+	}
 
 	/**
 	 * Attach this screencontroller to a Stage.
@@ -33,18 +42,49 @@ public class ScreenController
 	}
 
 	/**
-	 * TODO write documentation for this method
-	 * @param res
-	 * @param anim
-	 * @throws IOException
-	 * @todo implement controller lifecycle callbacks.
+	 * @param res The URL to the FXML file that should be loaded.
+	 * @param anim The animation that should be used to transit between the two screens.
+	 * @throws IOException Thrown when the FXML file couldn't be loaded
 	 */
 	public void show(URL res, TransitionAnimation anim) throws IOException
 	{
+		this.dispatchDetachEvent();
 		Node current = this.stack.getChildren().get(0);
-		Parent next = FXMLLoader.load(res);
+		Parent next = fxmlLoader.load();
+		this.dispatchInitializedEvent();
 		this.stack.getChildren().add(next);
 		anim.transition(current, next);
 		this.stack.getChildren().remove(0);
+		this.dispatchAttachEvent();
+	}
+
+	private BaseController getController()
+	{
+		BaseController controller = this.fxmlLoader.getController();
+		if (controller != null)
+			resolve(controller);
+
+		return controller;
+	}
+
+	private void dispatchInitializedEvent()
+	{
+		BaseController controller = this.getController();
+		if (controller != null)
+			controller.initialize();
+	}
+
+	private void dispatchAttachEvent()
+	{
+		BaseController controller = this.getController();
+		if (controller != null)
+			controller.attach();
+	}
+
+	private void dispatchDetachEvent()
+	{
+		BaseController controller = this.getController();
+		if (controller != null)
+			controller.detach();
 	}
 }

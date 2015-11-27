@@ -3,7 +3,14 @@ package be.ehb.spg3.providers;
 import be.ehb.spg3.auth.AuthRepository;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
+import be.ehb.spg3.contracts.encryption.Encryptor;
+import be.ehb.spg3.encryption.PlainCryptor;
 import com.google.inject.AbstractModule;
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.support.ConnectionSource;
+import net.engio.mbassy.bus.MBassador;
+
+import java.sql.SQLException;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -20,6 +27,7 @@ class BindingProvider extends AbstractModule
 	protected void configure()
 	{
 		initAuth();
+		initBusses();
 		initConnections();
 	}
 
@@ -28,9 +36,26 @@ class BindingProvider extends AbstractModule
 		AuthRepository authenticator = new AuthRepository();
 		bind(Authenticator.class).toInstance(authenticator);
 		bind(Authorizator.class).toInstance(authenticator);
+		bind(Encryptor.class).to(PlainCryptor.class);
+	}
+
+	private void initBusses()
+	{
+		MBassador bus = new MBassador();
+		bind(MBassador.class).toInstance(bus);
 	}
 
 	private void initConnections()
 	{
+		JdbcConnectionSource source = null; // TODO manage lifecycle of the connection to the server
+		try
+		{
+			source = new JdbcConnectionSource("jdbc:mysql://dt5.ehb.be:3306/SP2_GR3", "SP2_GR3", "3qCxw");
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace(); // TODO handle connection
+		}
+		bind(ConnectionSource.class).toInstance(source);
 	}
 }

@@ -25,7 +25,7 @@ public class User
 	@DatabaseField private String email;
 	@DatabaseField private String username;
 	@DatabaseField private String password;
-	@DatabaseField private Role role;
+	/* @DatabaseField */ private Role role;
 
 	public User()
 	{
