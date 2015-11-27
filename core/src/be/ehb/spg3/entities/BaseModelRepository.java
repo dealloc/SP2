@@ -6,13 +6,14 @@ import be.ehb.spg3.exceptions.ModelNotFoundException;
 import be.ehb.spg3.exceptions.QueryException;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
-import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -26,13 +27,14 @@ import java.util.List;
 public abstract class BaseModelRepository<T> implements IModelRepository<T>
 {
 	private Dao<T, Integer> dao;
+	private ConnectionSource connection;
+	private Class<T> model;
 
 	public BaseModelRepository(Class<T> model) throws SQLException
 	{
-		// initialize connection to localhost on port 3306 to table spg3 TODO refactor!
-		ConnectionSource connection = new JdbcConnectionSource("jdbc:mysql://dt5.ehb.be:3306/SP2_GR3", "SP2_GR3", "3qCxw");
+		this.model = model;
+		this.connection = resolve(ConnectionSource.class);
 		this.dao = DaoManager.createDao(connection, model);
-		TableUtils.createTableIfNotExists(connection, model); // TODO refactor to another repository!
 	}
 
 	/**
@@ -180,6 +182,7 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 	 * @throws ConnectivityException When there was an error connecting to the database.
 	 * @todo forward proper exceptions
 	 */
+	@Override
 	public List<T> findByFields(String[]... fields) throws QueryException, ConnectivityException
 	{
 		try
@@ -224,5 +227,25 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 		}
 
 		return null;
+	}
+
+	/**
+	 * Create the associated table if it does not exist yet.
+	 *
+	 * @throws QueryException
+	 * @throws ConnectivityException
+	 * @todo forward proper exceptions
+	 */
+	@Override
+	public void createIfNotExists() throws QueryException, ConnectivityException
+	{
+		try
+		{
+			TableUtils.createTableIfNotExists(this.connection, this.model);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }
