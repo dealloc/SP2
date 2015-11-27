@@ -7,6 +7,7 @@ import be.ehb.spg3.exceptions.QueryException;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
@@ -161,6 +162,38 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 		try
 		{
 			return this.dao.queryForEq(field, value);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	/**
+	 * Get instances of T by searching given fields
+	 *
+	 * @param fields The fields to query
+	 * @return A list of values matching given fields or null if an error was thrown
+	 * @throws QueryException        When an SQL error occured.
+	 * @throws ConnectivityException When there was an error connecting to the database.
+	 * @todo forward proper exceptions
+	 */
+	public List<T> findByFields(String[]... fields) throws QueryException, ConnectivityException
+	{
+		try
+		{
+			QueryBuilder<T, Integer> builder = this.dao.queryBuilder();
+			for (String[] field : fields)
+			{
+				if (field.length < 2)
+					throw new QueryException("Invalid field specification length");
+
+				builder.where().eq(field[0], field[1]);
+			}
+
+			return this.dao.query(builder.prepare());
 		}
 		catch (SQLException e)
 		{
