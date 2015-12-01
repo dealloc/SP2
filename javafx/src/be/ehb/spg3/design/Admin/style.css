@@ -12,11 +12,12 @@
 
 /* --- buttons --- */
 .button {
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 3px;
     -fx-background-insets: 0;
     -fx-background-color: #005dc7;
     -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 2, 2);
 }
 
 .button.success {
@@ -90,9 +91,14 @@
 /* Specific classes */
 .leftSidePane {
     -fx-background-color: #3f4852;
-    -fx-effect: innershadow(three-pass-box, #333, 3, 0, -5, 0);
+    /*-fx-effect: innershadow(three-pass-box,rgba(0,0,0, 0.3), 5, 0, -3, 0);*/
 }
 
-.mainRight {
-    /* -fx-effect: dropshadow(three-pass-box, #727272, 10, 0, 0, 0)*/
+.imgBtn {
+    -fx-opacity: 0.8;
+}
+
+.imgBtn:hover {
+    -fx-opacity: 1;
+    -fx-effect: innershadow(three-pass-box, #fff, 5, 0, 0, 0);
 }

@@ -3,6 +3,7 @@ package be.ehb.spg3;
 
 //Branch jeroen test
 
+import com.guigarage.flatterfx.FlatterFX;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,5 +31,8 @@ public class Main extends Application
 		stage.setMinWidth(800);
 		stage.setMinHeight(600);
 		stage.show();
+
+		FlatterFX.style();
+
 	}
 }
