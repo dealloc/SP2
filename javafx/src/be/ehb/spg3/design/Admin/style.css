@@ -90,4 +90,9 @@
 /* Specific classes */
 .leftSidePane {
     -fx-background-color: #3f4852;
+    -fx-effect: innershadow(three-pass-box, #333, 3, 0, -5, 0);
+}
+
+.mainRight {
+    /* -fx-effect: dropshadow(three-pass-box, #727272, 10, 0, 0, 0)*/
 }
