@@ -1,0 +1,104 @@
+/* --- configuration variables --- */
+/* --- styling text inputs --- */
+.text-field {
+    -fx-background-color: #a9a9a9, #ffffff, #ffffff;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 0 -1;
+}
+
+.text-field:focused {
+    -fx-background-color: #909090, #ffffff, #ffffff;
+    -fx-border-color: 0 0 0 #979797;
+}
+
+/* --- buttons --- */
+.button {
+    -fx-border-radius: 0px;
+    -fx-background-radius: 3px;
+    -fx-background-insets: 0;
+    -fx-background-color: #005dc7;
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 2, 2);
+}
+
+.button.success {
+    -fx-background-color: #16c700;
+}
+
+.button.failure {
+    -fx-background-color: #c7000a;
+}
+
+.button.basic {
+    -fx-border-color: #005dc7;
+    -fx-border-width: 2px;
+    -fx-border-style: double;
+    -fx-background-color: transparent;
+    -fx-text-fill: inherit;
+}
+
+/* --- progressbar --- */
+.progress-bar {
+    -fx-indeterminate-bar-length: 60;
+    -fx-indeterminate-bar-escape: true;
+    -fx-indeterminate-bar-flip: true;
+    -fx-indeterminate-bar-animation-time: 2;
+    -fx-border-color: #b4b6b4;
+    -fx-border-width: 1px;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: #005dc7;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0.75em;
+}
+
+.progress-bar:indeterminate > .bar {
+    -fx-background-color: linear-gradient(to left, transparent, #005dc7);
+}
+
+.progress-bar > .track {
+    -fx-background-color: #ffffff;
+    -fx-background-insets: 0;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+/* --- combobox --- */
+.combo-box {
+    -fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1 0 1 1;
+    -fx-padding: 1 3 1 3;
+    -fx-background-radius: 0;
+    -fx-cursor: hand;
+}
+
+.combo-box:focused {
+    -fx-background-color: -fx-text-box-border, -fx-control-inner-background;
+    -fx-background-insets: 0, 1 0 1 1;
+}
+
+/* --- utility classes --- */
+.transparent {
+    -fx-opacity: 0.7;
+}
+
+.rounded {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* Specific classes */
+.leftSidePane {
+    -fx-background-color: #3f4852;
+    /*-fx-effect: innershadow(three-pass-box,rgba(0,0,0, 0.3), 5, 0, -3, 0);*/
+}
+
+.imgBtn {
+    -fx-opacity: 0.8;
+}
+
+.imgBtn:hover {
+    -fx-opacity: 1;
+    -fx-effect: innershadow(three-pass-box, #fff, 5, 0, 0, 0);
+}

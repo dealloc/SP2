@@ -21,5 +21,7 @@
     <orderEntry type="library" name="Maven: com.google.guava:guava:16.0.1" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.37" level="project" />
     <orderEntry type="library" name="Maven: net.engio:mbassador:1.2.4" level="project" />
+    <orderEntry type="library" name="Maven: org.controlsfx:controlsfx:8.40.10" level="project" />
+    <orderEntry type="library" name="com.guigarage:flatter:0.7" level="project" />
   </component>
 </module>
