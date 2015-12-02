@@ -4,11 +4,12 @@ import be.ehb.spg3.auth.AuthRepository;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.contracts.encryption.Encryptor;
+import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.encryption.PlainCryptor;
+import be.ehb.spg3.events.MBassadorBus;
 import com.google.inject.AbstractModule;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
-import net.engio.mbassy.bus.MBassador;
 
 import java.sql.SQLException;
 
@@ -41,8 +42,7 @@ class BindingProvider extends AbstractModule
 
 	private void initBusses()
 	{
-		MBassador bus = new MBassador();
-		bind(MBassador.class).toInstance(bus);
+		bind(EventBus.class).toInstance(new MBassadorBus());
 	}
 
 	private void initConnections()
