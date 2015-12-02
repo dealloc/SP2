@@ -33,6 +33,5 @@ public class Main extends Application
 		stage.show();
 
 		FlatterFX.style();
-
 	}
 }

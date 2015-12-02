@@ -4,9 +4,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="614.0"
-            prefWidth="831.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="be.ehb.spg3.design.Admin.AdminController">
+<AnchorPane fx:id="apRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0"
+            prefHeight="614.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/8.0.40"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.design.Admin.AdminController">
     <children>
         <AnchorPane maxWidth="300.0" minHeight="0.0" minWidth="150.0" prefHeight="614.0" prefWidth="150.0"
                     styleClass="leftSidePane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
@@ -70,6 +70,7 @@
                     <children>
                         <Button fx:id="myButton" layoutX="144.0" layoutY="85.0" mnemonicParsing="false" onAction="#test"
                                 prefHeight="25.0" prefWidth="150.0" text="Click me!"/>
+                        <Button layoutX="152.0" layoutY="198.0" mnemonicParsing="false" text="Button"/>
                     </children>
                 </AnchorPane>
             </children>
