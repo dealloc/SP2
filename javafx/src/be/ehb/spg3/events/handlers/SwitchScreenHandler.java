@@ -53,6 +53,7 @@ public class SwitchScreenHandler
 		catch (IOException io)
 		{
 			// TODO fire event
+			io.printStackTrace();
 		}
 	}
 
