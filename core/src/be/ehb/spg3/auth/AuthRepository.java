@@ -4,6 +4,11 @@ import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.users.User;
+import be.ehb.spg3.entities.users.UserRepository;
+import be.ehb.spg3.exceptions.ConnectivityException;
+import be.ehb.spg3.exceptions.QueryException;
+
+import java.sql.SQLException;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -25,6 +30,15 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public boolean login(String username, String password)
 	{
+		try
+		{
+			return new UserRepository().findByFields(new String[]{"username", username}, new String[]{"password", password}).size() == 1;
+		}
+		catch (QueryException | ConnectivityException | SQLException e)
+		{
+			e.printStackTrace();
+		}
+
 		return false;
 	}
 
@@ -47,7 +61,6 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public void logout()
 	{
-
 	}
 
 	/**
@@ -72,7 +85,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public boolean cannot(String permission)
 	{
-		return false;
+		return true;
 	}
 
 	/**
@@ -84,7 +97,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public void grant(User subject, Permission permission)
 	{
-
+		//TODO implement grant function
 	}
 
 	/**
@@ -97,6 +110,6 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public void revoke(User subject, Permission permission)
 	{
-
+		//TODO implement revoke function
 	}
 }

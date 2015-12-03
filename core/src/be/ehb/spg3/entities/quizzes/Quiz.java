@@ -3,10 +3,10 @@ package be.ehb.spg3.entities.quizzes;
 import be.ehb.spg3.entities.feedbacks.Feedback;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.users.User;
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-
-import java.util.List;
 
 // Created by Wannes Gennar. All rights reserved.
 
@@ -16,18 +16,24 @@ import java.util.List;
 @DatabaseTable(tableName = "quizzes")
 public class Quiz
 {
-	@DatabaseField(id = true) private int id;
-	@DatabaseField private String name;
-	@DatabaseField private User owner;
-	@DatabaseField private List<User> users;
-	@DatabaseField private List<Question> questions;
-	@DatabaseField private List<Feedback> feedback;
+	@DatabaseField(id = true)
+	private int id;
+	@DatabaseField
+	private String name;
+	@DatabaseField
+	private User owner;
+	@ForeignCollectionField
+	private ForeignCollection<User> users;
+	@ForeignCollectionField
+	private ForeignCollection<Question> questions;
+	@ForeignCollectionField
+	private ForeignCollection<Feedback> feedback;
 
 	public Quiz()
 	{
 	}
 
-	public Quiz(int id, String name, User owner, List<User> users, List<Question> questions, List<Feedback> feedback)
+	public Quiz(int id, String name, User owner, ForeignCollection<User> users, ForeignCollection<Question> questions, ForeignCollection<Feedback> feedback)
 	{
 		this.id = id;
 		this.name = name;
@@ -67,32 +73,32 @@ public class Quiz
 		this.owner = owner;
 	}
 
-	public List<User> getUsers()
+	public ForeignCollection<User> getUsers()
 	{
 		return users;
 	}
 
-	public void setUsers(List<User> users)
+	public void setUsers(ForeignCollection<User> users)
 	{
 		this.users = users;
 	}
 
-	public List<Question> getQuestions()
+	public ForeignCollection<Question> getQuestions()
 	{
 		return questions;
 	}
 
-	public void setQuestions(List<Question> questions)
+	public void setQuestions(ForeignCollection<Question> questions)
 	{
 		this.questions = questions;
 	}
 
-	public List<Feedback> getFeedback()
+	public ForeignCollection<Feedback> getFeedback()
 	{
 		return feedback;
 	}
 
-	public void setFeedback(List<Feedback> feedback)
+	public void setFeedback(ForeignCollection<Feedback> feedback)
 	{
 		this.feedback = feedback;
 	}
