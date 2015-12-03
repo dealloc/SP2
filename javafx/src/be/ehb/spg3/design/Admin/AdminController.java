@@ -28,7 +28,6 @@ public class AdminController implements Initializable {
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert myButton != null : "fx:id=\"myButton\" was not injected: check your FXML file 'AdminHome.fxml'.";
         lblUserName.setText("Jeroen");
-        apRoot.setStyle("-fx-font-size: 14.0px");
     }
 
     public void test() {
