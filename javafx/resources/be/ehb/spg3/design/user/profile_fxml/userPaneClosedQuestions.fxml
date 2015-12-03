@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="88.0" prefWidth="700.0" style="-fx-background-color: #3f4852;">
+         <children>
+            <Button fx:id="btnOpenVragen" layoutX="36.0" layoutY="44.0" mnemonicParsing="false" text="Open vragenlijsten">
+               <styleClass>
+                  <String fx:value="top" />
+                  <String fx:value="button" />
+               </styleClass>
+            </Button>
+            <Button fx:id="btnSluitVragen" layoutX="176.0" layoutY="44.0" mnemonicParsing="false" text="Gesloten vragenlijsten">
+               <styleClass>
+                  <String fx:value="top" />
+                  <String fx:value="clicked" />
+               </styleClass>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutY="88.0" prefHeight="514.0" prefWidth="700.0">
+         <children>
+            <TableView layoutX="36.0" layoutY="57.0" prefHeight="386.0" prefWidth="448.0">
+              <columns>
+                <TableColumn prefWidth="165.0" text="Naam" />
+                <TableColumn prefWidth="167.0" text="Uitgever" />
+                  <TableColumn prefWidth="115.0" text="Afgelegd" />
+              </columns>
+            </TableView>
+            <Button layoutX="536.0" layoutY="237.0" mnemonicParsing="false" text="Bekijk resultaten" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

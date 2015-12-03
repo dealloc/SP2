@@ -1,0 +1,18 @@
+/* --- Styling the buttons ---*/
+.button
+{
+	-fx-background-color: #009688;
+	-fx-border-radius: 5;
+    -fx-text-fill: white;
+    -fx-cursor: pointer;
+}
+.clicked
+{
+    -fx-opacity: 50%;
+}
+.top
+{
+    -fx-border-color: black;
+}
+
+/* --- Styling the table ---*/
