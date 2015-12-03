@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.ProfileController">
+<Pane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.openQuestionsController">
    <children>
       <Pane prefHeight="88.0" prefWidth="700.0" style="-fx-background-color: #3f4852;">
          <children>
@@ -20,11 +20,11 @@
       </Pane>
       <Pane layoutY="88.0" prefHeight="514.0" prefWidth="700.0">
          <children>
-            <TableView layoutX="36.0" layoutY="57.0" prefHeight="386.0" prefWidth="555.0">
+            <TableView fx:id="" layoutX="36.0" layoutY="57.0" prefHeight="386.0" prefWidth="555.0">
               <columns>
-                <TableColumn prefWidth="209.0" text="Naam" />
-                <TableColumn prefWidth="226.0" text="Uitgever" />
-                  <TableColumn prefWidth="119.0" text="Aantal vragen" />
+                <TableColumn fx:id="name" prefWidth="209.0" text="Naam" />
+                <TableColumn fx:id="publisher" prefWidth="226.0" text="Uitgever" />
+                  <TableColumn fx:id="amountQ" prefWidth="119.0" text="Aantal vragen" />
               </columns>
             </TableView>
             <Button fx:id="btnStart" layoutX="624.0" layoutY="237.0" mnemonicParsing="false" onAction="#startQuiz" text="Start" />
