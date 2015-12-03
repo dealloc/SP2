@@ -7,7 +7,6 @@ package be.ehb.spg3.controllers;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.net.URL;
@@ -18,13 +17,10 @@ public class AdminController implements Initializable {
 
     @FXML
     private Label lblUserName;
-    @FXML
-    private Button btnTest;
 
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         lblUserName.setText("Jeroen");
-        btnTest.setText("test");
     }
 
     public void close() {
