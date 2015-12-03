@@ -1,0 +1,36 @@
+/* --- Styling the main panel ---*/
+.mainPanel {
+    -fx-background-image: url("../images/background.png");
+}
+
+/* --- Styling the text-fields ---*/
+.textfield {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent white transparent;
+    -fx-border-width: 3px;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+    -fx-padding: 0 0 10 0;
+}
+
+/* --- Styling the password-fields ---*/
+.passfield {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent white transparent;
+    -fx-border-width: 3px;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+    -fx-padding: 0 0 10 0;
+}
+
+/* --- Styling the buttons ---*/
+.button {
+    -fx-background-color: #83a2e0;
+    -fx-border-radius: 0px;
+}
+
+/* --- Styling the image-view ---*/
+.imageview {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}

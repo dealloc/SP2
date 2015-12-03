@@ -15,7 +15,6 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<!-- or whatever version you use -->
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
@@ -24,19 +23,6 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-core</artifactId>
-			<version>1.2.4</version>
-		</dependency>
-		<!-- Shiro uses SLF4J for logging.  We'll use the 'simple' binding
-			 in this example app.  See http://www.slf4j.org for more info. -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>1.6.4</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>com.j256.ormlite</groupId>
 			<artifactId>ormlite-jdbc</artifactId>
@@ -67,6 +53,12 @@
 			<groupId>com.guigarage</groupId>
 			<artifactId>flatter</artifactId>
 			<version>0.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.engio</groupId>
+			<artifactId>mbassador</artifactId>
+			<version>1.2.4</version>
 		</dependency>
 
 	</dependencies>
