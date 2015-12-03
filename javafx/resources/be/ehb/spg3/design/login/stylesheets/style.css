@@ -1,4 +1,7 @@
 /* --- Styling the main panel ---*/
+.root {
+    -fx-font-size: 16px;
+}
 .mainPanel {
     -fx-background-image: url("../images/background.png");
 }
