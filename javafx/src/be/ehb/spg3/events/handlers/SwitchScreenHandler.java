@@ -43,7 +43,6 @@ public class SwitchScreenHandler
 			}
 
 			Scene myScene = new Scene(root);
-			stage.setTitle("Software Project 2 - Groep 3");
 			if (event.getFullscreen()) this.setFullscreen();
 			else this.setWindowed();
 			stage.setScene(myScene);
@@ -67,6 +66,7 @@ public class SwitchScreenHandler
 
 	private void setWindowed()
 	{
+		stage.setTitle("Software Project 2 - Groep 3");
 		stage.initStyle(StageStyle.UNDECORATED);
 		stage.setResizable(false);
 		stage.centerOnScreen();
