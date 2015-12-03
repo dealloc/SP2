@@ -67,7 +67,7 @@
 						<Font size="18.0"/>
 					</font>
 				</Label>
-				<AnchorPane fx:id="apPage" layoutY="32.0" prefHeight="581.0" prefWidth="684.0"
+				<AnchorPane fx:id="contentRoot" layoutY="32.0" prefHeight="581.0" prefWidth="684.0"
 				            AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
 				            AnchorPane.topAnchor="32.0"/>
 			</children>
