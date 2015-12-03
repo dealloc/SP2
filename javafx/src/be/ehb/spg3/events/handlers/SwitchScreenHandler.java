@@ -28,7 +28,7 @@ public class SwitchScreenHandler
 	public void handle(SwitchScreenEvent event)
 	{
 		this.event = event;
-		Platform.runLater(this::showWindow);
+		Platform.runLater(this::showWindow); // TODO only delegate the UI actions to the UI thread, loading etc should remain async (threadpool?)
 	}
 
 	private void showWindow()
