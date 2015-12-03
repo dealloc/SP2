@@ -6,12 +6,17 @@ package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.events.SwitchPaneEvent;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
 import net.engio.mbassy.listener.Handler;
 
 import java.net.URL;
@@ -33,28 +38,39 @@ public class AdminController implements Initializable
 	{
 		this.lblUserName.setText("Jeroen");
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("design/admin/editProfile.fxml"));
 	}
 
 	public void close()
 	{
+		Platform.exit();
+	}
+
+	public void dashboard()
+	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("design/admin/dashboard.fxml"));
-//		Platform.exit();
 	}
 
 	@Handler
 	public void changePanel(SwitchPaneEvent event)
 	{
-		Parent pane = null; // TODO: very dirty
 		try
 		{
-			pane = FXMLLoader.load(event.getLocation());
+			Parent pane = FXMLLoader.load(event.getLocation());
+			Timeline fadein = new Timeline(
+					new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)),
+					new KeyFrame(Duration.seconds(1), new KeyValue(pane.opacityProperty(), 1))
+			);
+			this.contentRoot.getChildren().clear();
+			this.contentRoot.getChildren().add(pane);
+			AnchorPane.setTopAnchor(pane, 0.0);
+			AnchorPane.setRightAnchor(pane, 0.0);
+			AnchorPane.setLeftAnchor(pane, 0.0);
+			AnchorPane.setBottomAnchor(pane, 0.0);
+			fadein.play();
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-		this.contentRoot.getChildren().clear();
-		this.contentRoot.getChildren().add(pane);
 	}
 }
