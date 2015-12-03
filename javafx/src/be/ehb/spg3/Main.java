@@ -2,6 +2,9 @@ package be.ehb.spg3;
 // Created by Wannes Gennar. All rights reserved
 
 
+import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.events.SwitchScreenEvent;
+import be.ehb.spg3.events.handlers.SwitchScreenHandler;
 import com.guigarage.flatterfx.FlatterFX;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
+
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 
 public class Main extends Application
@@ -27,6 +32,10 @@ public class Main extends Application
 //		stage.centerOnScreen();
 //		stage.setScene(new Scene(root, 618, 480));
 //		stage.show();
+
+		resolve(EventBus.class).subscribe(new SwitchScreenHandler());
+
+		resolve(EventBus.class).fire(new SwitchScreenEvent("design/Admin/AdminHome.fxml", false));
 
 		Parent root = FXMLLoader.load(getClass().getResource("design/Admin/AdminHome.fxml"));
 		Scene myScene = new Scene(root);
