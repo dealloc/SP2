@@ -36,7 +36,7 @@ public class InjectionProvider
 	}
 
 	/**
-	 * Resolve an instance of given type through the IoC container
+	 * Resolve an instance of given type through the IoC container.
 	 *
 	 * @param type The type to resolve.
 	 * @param <T>  The type to resolve.
@@ -44,9 +44,21 @@ public class InjectionProvider
 	 */
 	public static <T> T resolve(Class<? extends T> type)
 	{
-		if (injector == null)
-			InjectionProvider.initialize();
+		InjectionProvider.initialize();
 
 		return InjectionProvider.injector.getInstance(type);
+	}
+
+	/**
+	 * Resolve the members of a given object through the IoC container.
+	 *
+	 * @param obj The object to initialize it's members of.
+	 * @param <T> The type to resolve.
+	 */
+	public static <T> void resolve(T obj)
+	{
+		InjectionProvider.initialize();
+
+		InjectionProvider.injector.injectMembers(obj);
 	}
 }

@@ -2,12 +2,14 @@ package be.ehb.spg3;
 // Created by Wannes Gennar. All rights reserved
 
 
+import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.events.SwitchScreenEvent;
+import be.ehb.spg3.events.handlers.SwitchScreenHandler;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
+
 
 public class Main extends Application
 {
@@ -17,13 +19,11 @@ public class Main extends Application
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws Exception
+	public void start(Stage stage) throws Exception
 	{
-		Parent root = FXMLLoader.load(getClass().getResource("auth/login/login.fxml"));
-		primaryStage.initStyle(StageStyle.UNDECORATED);
-		primaryStage.setResizable(false);
-		primaryStage.centerOnScreen();
-		primaryStage.setScene(new Scene(root, 618, 480));
-		primaryStage.show();
+		resolve(EventBus.class).subscribe(new SwitchScreenHandler(stage));
+
+		resolve(EventBus.class).fire(new SwitchScreenEvent("design/Admin/AdminHome.fxml", true));
+//		resolve(EventBus.class).fire(new SwitchScreenEvent("design/login/login.fxml", false));
 	}
 }
