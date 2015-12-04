@@ -1,7 +1,6 @@
 package be.ehb.spg3.events.handlers;
 
 import be.ehb.spg3.events.SwitchScreenEvent;
-import com.guigarage.flatterfx.FlatterFX;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -47,8 +46,6 @@ public class SwitchScreenHandler
 			else this.setWindowed();
 			stage.setScene(myScene);
 			stage.show();
-
-			FlatterFX.style();
 		}
 		catch (IOException io)
 		{

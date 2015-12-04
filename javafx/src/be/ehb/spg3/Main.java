@@ -23,7 +23,8 @@ public class Main extends Application
 	{
 		resolve(EventBus.class).subscribe(new SwitchScreenHandler(stage));
 
-		resolve(EventBus.class).fire(new SwitchScreenEvent("design/Admin/AdminHome.fxml", true));
-//		resolve(EventBus.class).fire(new SwitchScreenEvent("design/login/login.fxml", false));
+		resolve(EventBus.class).fire(new SwitchScreenEvent("design/admin/AdminHome.fxml", true));
+		//resolve(EventBus.class).fire(new SwitchScreenEvent("design/login/login.fxml", false));
+		//resolve(EventBus.class).fire(new SwitchScreenEvent("design/admin/dashboard.fxml", false));
 	}
 }
