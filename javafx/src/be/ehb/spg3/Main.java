@@ -21,10 +21,11 @@ public class Main extends Application
 	@Override
 	public void start(Stage stage) throws Exception
 	{
-		resolve(EventBus.class).subscribe(new SwitchScreenHandler(stage));
+		SwitchScreenHandler handler = new SwitchScreenHandler(stage);
+		resolve(EventBus.class).subscribe(handler);
 
 		resolve(EventBus.class).fire(new SwitchScreenEvent("design/admin/AdminHome.fxml", true));
-		//resolve(EventBus.class).fire(new SwitchScreenEvent("design/login/login.fxml", false));
-		//resolve(EventBus.class).fire(new SwitchScreenEvent("design/admin/dashboard.fxml", false));
+//		resolve(EventBus.class).fire(new SwitchScreenEvent("design/login/login.fxml", false));
+//		resolve(EventBus.class).fire(new SwitchScreenEvent("design/admin/dashboard.fxml", false));
 	}
 }
