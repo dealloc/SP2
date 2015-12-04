@@ -50,6 +50,11 @@ public class AdminController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
 	}
 
+	public void profiles()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.editProfile.fxml"));
+	}
+
 	@Handler
 	public void changePanel(SwitchPaneEvent event)
 	{
