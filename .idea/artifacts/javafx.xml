@@ -8,12 +8,15 @@
         <option name="htmlParamFile" value="" />
         <option name="paramFile" value="" />
         <option name="title" value="Software Project" />
-        <option name="vendor" value="" />
+        <option name="vendor" value="EHB Software Engineering group 2" />
       </options>
     </properties>
     <root id="root">
       <element id="archive" name="javafx.jar">
         <element id="module-output" name="javafx" />
+        <element id="module-output" name="core" />
+      </element>
+      <element id="directory" name="libs">
         <element id="library" level="project" name="com.guigarage:flatter:0.7" />
         <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
         <element id="library" level="project" name="Maven: com.google.guava:guava:16.0.1" />
@@ -24,7 +27,6 @@
         <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.37" />
         <element id="library" level="project" name="Maven: net.engio:mbassador:1.2.4" />
         <element id="library" level="project" name="Maven: org.controlsfx:controlsfx:8.40.10" />
-        <element id="module-output" name="core" />
       </element>
     </root>
   </artifact>

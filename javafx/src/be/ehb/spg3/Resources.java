@@ -51,6 +51,8 @@ public final class Resources
 
 	private static String transform(String url)
 	{
-		return "design/" + url.replaceAll("\\.", "/");
+		String extension = url.substring(url.lastIndexOf("."));
+		url = url.substring(0, url.lastIndexOf("."));
+		return "design/" + url.replaceAll("\\.", "/") + extension;
 	}
 }

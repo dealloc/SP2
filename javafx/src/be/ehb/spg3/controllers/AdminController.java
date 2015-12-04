@@ -11,7 +11,6 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -22,6 +21,7 @@ import net.engio.mbassy.listener.Handler;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static be.ehb.spg3.Resources.fxml;
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 
@@ -47,30 +47,23 @@ public class AdminController implements Initializable
 
 	public void dashboard()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("design/admin/dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
 	}
 
 	@Handler
 	public void changePanel(SwitchPaneEvent event)
 	{
-		try
-		{
-			Parent pane = FXMLLoader.load(event.getLocation());
-			Timeline fadein = new Timeline(
-					new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)),
-					new KeyFrame(Duration.seconds(1), new KeyValue(pane.opacityProperty(), 1))
-			);
-			this.contentRoot.getChildren().clear();
-			this.contentRoot.getChildren().add(pane);
-			AnchorPane.setTopAnchor(pane, 0.0);
-			AnchorPane.setRightAnchor(pane, 0.0);
-			AnchorPane.setLeftAnchor(pane, 0.0);
-			AnchorPane.setBottomAnchor(pane, 0.0);
-			fadein.play();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
+		Parent pane = fxml(event.getLocation());
+		Timeline fadein = new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)),
+				new KeyFrame(Duration.seconds(1), new KeyValue(pane.opacityProperty(), 1))
+		);
+		this.contentRoot.getChildren().clear();
+		this.contentRoot.getChildren().add(pane);
+		AnchorPane.setTopAnchor(pane, 0.0);
+		AnchorPane.setRightAnchor(pane, 0.0);
+		AnchorPane.setLeftAnchor(pane, 0.0);
+		AnchorPane.setBottomAnchor(pane, 0.0);
+		fadein.play();
 	}
 }
