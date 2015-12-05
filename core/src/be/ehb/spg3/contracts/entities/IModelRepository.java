@@ -32,7 +32,7 @@ public interface IModelRepository<T>
 	 * @throws QueryException        When an SQL error occured.
 	 * @throws ConnectivityException When there was an error connecting to the database.
 	 */
-	T find(int id) throws QueryException, ConnectivityException;
+	T find(long id) throws QueryException, ConnectivityException;
 
 	/**
 	 * Get an instance of T by it's ID.
@@ -43,7 +43,7 @@ public interface IModelRepository<T>
 	 * @throws QueryException         When an SQL error occured.
 	 * @throws ConnectivityException  When there was an error connecting to the database.
 	 */
-	T findOrFail(int id) throws ModelNotFoundException, QueryException, ConnectivityException;
+	T findOrFail(long id) throws ModelNotFoundException, QueryException, ConnectivityException;
 
 	/**
 	 * Get instances of T by searching a given field.

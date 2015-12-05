@@ -26,7 +26,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  */
 public abstract class BaseModelRepository<T> implements IModelRepository<T>
 {
-	private Dao<T, Integer> dao;
+	private Dao<T, Long> dao;
 	private ConnectionSource connection;
 	private Class<T> model;
 
@@ -66,7 +66,7 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 	 * @todo forward proper exceptions
 	 */
 	@Override
-	public T find(int id) throws QueryException, ConnectivityException
+	public T find(long id) throws QueryException, ConnectivityException
 	{
 		try
 		{
@@ -89,7 +89,7 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 	 * @todo forward proper exceptions
 	 */
 	@Override
-	public T findOrFail(int id) throws ModelNotFoundException, QueryException, ConnectivityException
+	public T findOrFail(long id) throws ModelNotFoundException, QueryException, ConnectivityException
 	{
 		try
 		{
@@ -187,7 +187,7 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 	{
 		try
 		{
-			Where<T, Integer> builder = this.dao.queryBuilder().where();
+			Where<T, Long> builder = this.dao.queryBuilder().where();
 			for (int i = 0; i < fields.length; i++)
 			{
 				String[] field = fields[i];
