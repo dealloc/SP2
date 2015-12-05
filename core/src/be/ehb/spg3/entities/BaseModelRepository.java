@@ -34,7 +34,7 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 	{
 		this.model = model;
 		this.connection = resolve(ConnectionSource.class);
-		this.dao = DaoManager.createDao(connection, model);
+		this.dao = DaoManager.createDao(connection, model); // TODO this should somehow be retained in a static way to prevent overhead
 	}
 
 	/**
