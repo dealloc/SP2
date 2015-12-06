@@ -9,7 +9,7 @@ import be.ehb.spg3.entities.users.UserRepository;
 import be.ehb.spg3.exceptions.ConnectivityException;
 import be.ehb.spg3.exceptions.QueryException;
 
-import java.sql.SQLException;
+import java.util.List;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
@@ -23,6 +23,14 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  */
 public class AuthRepository implements Authenticator, Authorizator
 {
+	private final UserRepository repository;
+	private User user = null;
+
+	public AuthRepository()
+	{
+		this.repository = resolve(UserRepository.class);
+	}
+
 	/**
 	 * Attempt to log a user using given credentials.
 	 *
@@ -36,11 +44,16 @@ public class AuthRepository implements Authenticator, Authorizator
 		try
 		{
 			password = resolve(Encryptor.class).encrypt(password);
-			return new UserRepository().findByFields(new String[]{"username", username}, new String[]{"password", password}).size() == 1;
+			List<User> users = this.repository.findByFields(new String[]{"username", username}, new String[]{"password", password});
+			if (!users.isEmpty())
+			{
+				this.user = users.get(0);
+				return true;
+			}
 		}
-		catch (QueryException | ConnectivityException | SQLException e)
+		catch (QueryException | ConnectivityException e)
 		{
-			e.printStackTrace();
+			e.printStackTrace(); // TODO handle exeption
 		}
 
 		return false;
@@ -55,7 +68,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public User auth()
 	{
-		return null;
+		return this.user;
 	}
 
 	/**
@@ -65,6 +78,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public void logout()
 	{
+		this.user = null;
 	}
 
 	/**
