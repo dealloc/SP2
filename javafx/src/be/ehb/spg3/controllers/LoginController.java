@@ -1,6 +1,8 @@
 package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
+import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.events.SwitchScreenEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
@@ -8,7 +10,7 @@ import org.controlsfx.control.Notifications;
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 /**
- * Created by unityx on 12/3/15.
+ * Created by Jérémy Thiebaut on 12/3/15.
  */
 public class LoginController
 {
@@ -20,10 +22,8 @@ public class LoginController
 
 	public void login()
 	{
-		//LOGGED IN!
 		if (!resolve(Authenticator.class).login(lblUsername.getText(), lblPassword.getText()))
 		{
-			//Controlling if username and password are filled in
 			if(lblUsername.getText().isEmpty() && lblPassword.getText().isEmpty())
 			{
 				Notifications.create().darkStyle().text("OUPS ! Username & password are empty...").showError();
@@ -44,6 +44,11 @@ public class LoginController
 		{
 			Notifications.create().darkStyle().text("Welcome ! You are now logged in.").showConfirm();
 		}
+	}
+
+	public void register()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/register/register.fxml", false));
 	}
 
 	public void close()
