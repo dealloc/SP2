@@ -1,8 +1,8 @@
-package be.ehb.spg3.controllers;
-
-/**
- * Created by Jeroen_2 on 2/12/2015.
+/*
+ * Copyright (c) 2015 Jeroen Van den Broeck. All rights reserved.
  */
+
+package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.events.SwitchPaneEvent;
@@ -38,6 +38,7 @@ public class AdminController implements Initializable
 	{
 		this.lblUserName.setText("Jeroen");
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
 	}
 
 	public void close()
@@ -50,9 +51,19 @@ public class AdminController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
 	}
 
+	public void database()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.database.fxml"));
+	}
+
 	public void profiles()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.editProfile.fxml"));
+	}
+
+	public void settings()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.settings.fxml"));
 	}
 
 	@Handler
