@@ -20,7 +20,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class RegisterController
 {
-	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+	private static final String EMAIL_PATTERN = "[a-zA-Z0-9._%-]+@[a-zA-Z0-9._%-]+\\.[a-zA-Z]{2,10}";
 	private Pattern pattern;
 	private Matcher matcher;
 
@@ -75,7 +75,7 @@ public class RegisterController
 					}
 
 					Notifications.create().darkStyle().text("You have successfully registered!").showConfirm();
-//			        resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/login/login.fxml", false));
+					resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", true));
 				}
 			} else
 			{
