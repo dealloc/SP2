@@ -3,6 +3,7 @@ package be.ehb.spg3.controllers;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.events.SwitchScreenEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
@@ -28,6 +29,7 @@ public class LoginController
 		} else
 		{
 			Notifications.create().darkStyle().text("Welcome ! You are now logged in.").showConfirm();
+			resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", false));
 		}
 	}
 
@@ -38,7 +40,7 @@ public class LoginController
 
 	public void close()
 	{
-		System.exit(0);
+		Platform.exit();
 	}
 
 }
