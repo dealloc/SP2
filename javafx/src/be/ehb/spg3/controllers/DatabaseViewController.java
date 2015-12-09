@@ -45,16 +45,6 @@ public class DatabaseViewController implements Initializable
 	private TableView tvTable;
 	@FXML
 	private FlowPane fpAdd;
-	@FXML
-	private Label lblName;
-	@FXML
-	private Label lblLastName;
-	@FXML
-	private Label lblEmail;
-	@FXML
-	private Label lblAdres;
-	@FXML
-	private Label lblTel;
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
@@ -86,7 +76,7 @@ public class DatabaseViewController implements Initializable
 	}
 
 	public void addCommit(){
-			data.add(new User(tvTable.getItems().size() + 1,
+			/*data.add(new User(tvTable.getItems().size() + 1,
 					lblName.getText(),
 					lblLastName.getText(),
 					lblEmail.getText(),
@@ -98,7 +88,7 @@ public class DatabaseViewController implements Initializable
 		lblLastName.setText("");
 		lblEmail.setText("");
 		lblAdres.setText("");
-		lblTel.setText("");
+		lblTel.setText("");*/
 
 		fpAdd.setVisible(false);
 	}
