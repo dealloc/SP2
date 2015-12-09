@@ -7,7 +7,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import java.sql.SQLException;
 
 // Created by Wannes Gennar. All rights reserved
-public class ConnectionProvider implements Provider<ConnectionSource>
+class ConnectionProvider implements Provider<ConnectionSource>
 {
 	private ConnectionSource connection = null;
 
