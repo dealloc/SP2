@@ -7,7 +7,7 @@
 
     /*default font */
     -fx-font-family: 'Helvetica Neue';
-    -fx-font-size: 14.0px;
+    -fx-font-size: 16px;
     -fx-font-weight: 600;
     -fx-disabled-opacity: 0.6;
 
@@ -78,12 +78,16 @@
 .toggle-button:focused,
 .button:focused,
 .button:default:focused {
-    -fx-background-color: derive(-flatter-red, 50.0%);
+    /*-fx-background-color: derive(-flatter-red, 50.0%);*/
+    -fx-border-width: 1;
+    -fx-border-style: solid;
+    -fx-border-color: -flatter-blue;
+    -fx-border-radius: 2;
 }
 
 .toggle-button:focused:selected {
-    -fx-background-color: derive(-flatter-red, 50.0%), derive(-flatter-red, -20.0%);
-    -fx-background-insets: 0.0, 0.2em;
+       -fx-background-color: derive(-flatter-red, 50.0%), derive(-flatter-red, -20.0%);
+       -fx-background-insets: 0.0, 0.2em;
 }
 
 .toggle-button:armed,
@@ -168,9 +172,9 @@
  * ComboBox                                                                    *
  *                                                                             *
  ******************************************************************************/
-.combo-box-base {
+/*.combo-box-base {
     -fx-skin: "com.guigarage.flatterfx.skin.FlatterComboBoxSkin";
-}
+}*/
 
 .popup-overlay {
     -fx-background-color: -flatter-red;
@@ -433,18 +437,6 @@
 .progress-indicator:indeterminate .segment6 {-fx-shape:null;}
 .progress-indicator:indeterminate .segment7 {-fx-shape:null;} */
 
-
-
-/* Edit FlatterFX */
-.root {
-    -fx-font-size: 16px;
-}
-
-.button:focused,
-.button:default:focused {
-    -fx-background-color: #000dff;
-}
-
 /* Specific classes */
 .leftSidePane {
     -fx-background-color: #3f4852;
@@ -460,3 +452,10 @@
     -fx-effect: innershadow(three-pass-box, #fff, 5, 0, 0, 0);
 }
 
+.menuPane:hover {
+    -fx-background-color: derive(-dark, 50.0%);
+}
+
+.lblMenu {
+    -fx-font-weight: bold;
+}

@@ -25,7 +25,7 @@ import static be.ehb.spg3.Resources.fxml;
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 
-public class AdminController implements Initializable
+public class PanelController implements Initializable
 {
 
 	@FXML
