@@ -1,7 +1,4 @@
 /* --- Styling the main panel ---*/
-.root {
-    -fx-font-size: 16px;
-}
 .mainPanel {
     -fx-background-image: url("../images/background.png");
 }
@@ -14,7 +11,6 @@
     -fx-text-fill: white;
     -fx-prompt-text-fill: white;
     -fx-padding: 0 0 10 0;
-    -fx-font: 19px System;
 }
 
 /* --- Styling the password-fields ---*/
@@ -25,7 +21,6 @@
     -fx-text-fill: white;
     -fx-prompt-text-fill: white;
     -fx-padding: 0 0 10 0;
-    -fx-font: 19px System;
 }
 
 /* --- Styling the buttons ---*/
@@ -34,11 +29,7 @@
     -fx-height: 33px;
     -fx-background-color: #83a2e0;
     -fx-border-radius: 0px;
-    -fx-text-fill: white;
-    -fx-prompt-text-fill: white;
-    -fx-font: 19px System;
 }
-
 .button:hover {
     -fx-border-width: 1px;
     -fx-border-color: white white white white;
