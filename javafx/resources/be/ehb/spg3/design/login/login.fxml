@@ -34,7 +34,8 @@
 				<Font size="15.0"/>
 			</font>
 		</Hyperlink>
-		<Hyperlink focusTraversable="false" layoutX="321.0" layoutY="426.0" text="Forgot password?" textFill="WHITE">
+		<Hyperlink focusTraversable="false" layoutX="321.0" layoutY="426.0" text="Forgot password?" textFill="WHITE"
+		           onMouseClicked="#forgotPass">
 			<font>
 				<Font size="15.0"/>
 			</font>
@@ -67,7 +68,8 @@
 				<Font size="15.0"/>
 			</font>
 		</Label>
-		<Hyperlink focusTraversable="false" layoutX="250.0" layoutY="385.0" text="Login as guest" textFill="#83a2e0">
+		<Hyperlink focusTraversable="false" layoutX="250.0" layoutY="385.0" text="Login as guest" textFill="#83a2e0"
+		           onMouseClicked="#loginAsGuest">
 			<font>
 				<Font size="14.0"/>
 			</font>

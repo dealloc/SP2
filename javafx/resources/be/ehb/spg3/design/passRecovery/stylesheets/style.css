@@ -51,3 +51,12 @@
 	-fx-border-radius: 10px;
 	-fx-background-radius: 10px;
 }
+
+/* --- Styling the image-view ---*/
+.lblInfo {
+	-fx-text-fill: white;
+	-fx-prompt-text-fill: white;
+	-fx-font: 18px System;
+}
+
+
