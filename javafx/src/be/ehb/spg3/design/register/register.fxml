@@ -14,20 +14,20 @@
                    promptText="Last name" styleClass="textfield"/>
         <TextField fx:id="tfEmail" layoutX="38.0" layoutY="177.0" prefHeight="40.0" prefWidth="543.0" promptText="Email"
                    styleClass="textfield"/>
+        <TextField fx:id="tfUsername" layoutX="38.0" layoutY="250.0" prefHeight="40.0" prefWidth="543.0"
+                   promptText="Username" styleClass="textfield"/>
         <PasswordField fx:id="tfPassword" layoutX="39.0" layoutY="324.0" prefHeight="38.0" prefWidth="252.0"
                        promptText="Password" styleClass="passfield" stylesheets="@stylesheets/style.css"/>
         <PasswordField fx:id="tfPasswordRepeat" layoutX="327.0" layoutY="324.0" prefHeight="38.0" prefWidth="252.0"
                        promptText="Repeat password" styleClass="passfield" stylesheets="@stylesheets/style.css"/>
-        <Label layoutX="261.0" layoutY="37.0" styleClass="title" text="Sign up"/>
         <Button id="btnContinue" layoutX="197.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#register"
                 prefHeight="40.0" prefWidth="224.0" text="Continue"/>
+        <Label layoutX="261.0" layoutY="37.0" styleClass="title" text="Sign up"/>
         <ImageView id="btnClose" fitHeight="27.0" fitWidth="27.0" layoutX="591.0" layoutY="1.0" onMouseClicked="#close"
                    pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@images/exit_icon.png"/>
             </image>
         </ImageView>
-        <TextField fx:id="tfUsername" layoutX="38.0" layoutY="250.0" prefHeight="40.0" prefWidth="543.0"
-                   promptText="Username" styleClass="textfield"/>
     </children>
 </AnchorPane>
