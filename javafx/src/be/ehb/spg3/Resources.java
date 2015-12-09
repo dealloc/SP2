@@ -45,6 +45,7 @@ public final class Resources
 		}
 		catch (IOException e)
 		{
+			e.printStackTrace(); // TODO handle exception
 			return null;
 		}
 	}

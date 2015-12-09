@@ -17,7 +17,8 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "users")
 public class User
 {
-	@DatabaseField(id = true) private int id;
+	@DatabaseField(generatedId = true)
+	private int id;
 	@DatabaseField private String name;
 	@DatabaseField private String surname;
 	@DatabaseField private String address;
@@ -34,17 +35,17 @@ public class User
 	/**
 	 * Create a new user. (This method will usually only be called by object factories)
 	 *
-	 * @param id          The user identifier.
+	 //	 * @param id          The user identifier.
 	 * @param name        The first name of the user.
 	 * @param surname     The last name of the user.
-	 * @param address     The adress ofthe user.
-	 * @param phoneNumber The phone number of this user.
+	//	 * @param address     The adress ofthe user.
+	//	 * @param phoneNumber The phone number of this user.
 	 * @param email       The email address of this user.
 	 * @param username    The username this user uses to log in.
 	 * @param password    The password this user uses to log in.
-	 * @param role        The role of this user in the system.
+	//	 * @param role        The role of this user in the system.
 	 */
-	public User(int id, String name, String surname, String address, String phoneNumber, String email, String username, String password, Role role)
+	public User(String name, String surname, String email, String username, String password)
 	{
 		this.id = id;
 		this.name = name;

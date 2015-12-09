@@ -4,6 +4,7 @@
 
 package be.ehb.spg3.controllers;
 
+import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.animation.KeyFrame;
@@ -17,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import net.engio.mbassy.listener.Handler;
+import org.controlsfx.control.BreadCrumbBar;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,13 +32,17 @@ public class PanelController implements Initializable
 
 	@FXML
 	public AnchorPane contentRoot;
+	public BreadCrumbBar breadCrumbs;
 	@FXML
 	private Label lblUserName;
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		this.lblUserName.setText("Jeroen");
+		String username = resolve(Authenticator.class).auth().getUsername();
+		this.lblUserName.setText(username);
+		this.breadCrumbs.setOnCrumbAction(event -> {
+		});
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
 	}
@@ -51,9 +57,9 @@ public class PanelController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
 	}
 
-	public void database()
+	public void quizzes()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.database.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user/profile_fxml/userPaneClosedQuestions.fxml"));
 	}
 
 	public void profiles()
@@ -71,7 +77,7 @@ public class PanelController implements Initializable
 	{
 		Parent pane = fxml(event.getLocation());
 		Timeline fadein = new Timeline(
-				new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)),
+				new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)), // TODO might produce nullpointer exception
 				new KeyFrame(Duration.seconds(1), new KeyValue(pane.opacityProperty(), 1))
 		);
 		this.contentRoot.getChildren().clear();
@@ -81,5 +87,6 @@ public class PanelController implements Initializable
 		AnchorPane.setLeftAnchor(pane, 0.0);
 		AnchorPane.setBottomAnchor(pane, 0.0);
 		fadein.play();
+		this.breadCrumbs.setSelectedCrumb(BreadCrumbBar.buildTreeModel("PRready", event.getLocation()));
 	}
 }
