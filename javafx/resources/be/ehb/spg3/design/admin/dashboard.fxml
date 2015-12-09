@@ -30,6 +30,9 @@
 			<yAxis>
 				<NumberAxis side="LEFT" />
 			</yAxis>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
 		</LineChart>
 		<TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
 			<columns>
@@ -37,6 +40,9 @@
 				<TableColumn prefWidth="101.0" text="C2" />
 				<TableColumn prefWidth="96.0" text="Column X" />
 			</columns>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
 		</TableView>
       <FlowPane alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="200.0">
          <children>
