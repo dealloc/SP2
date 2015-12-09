@@ -4,6 +4,7 @@
 
 package be.ehb.spg3.controllers;
 
+import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.animation.KeyFrame;
@@ -36,7 +37,8 @@ public class PanelController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		this.lblUserName.setText("Jeroen");
+		String username = resolve(Authenticator.class).auth().getUsername();
+		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
 	}
@@ -71,7 +73,7 @@ public class PanelController implements Initializable
 	{
 		Parent pane = fxml(event.getLocation());
 		Timeline fadein = new Timeline(
-				new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)),
+				new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)), // TODO might produce nullpointer exception
 				new KeyFrame(Duration.seconds(1), new KeyValue(pane.opacityProperty(), 1))
 		);
 		this.contentRoot.getChildren().clear();
