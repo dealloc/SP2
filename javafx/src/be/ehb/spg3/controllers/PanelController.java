@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import net.engio.mbassy.listener.Handler;
+import org.controlsfx.control.BreadCrumbBar;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,6 +32,7 @@ public class PanelController implements Initializable
 
 	@FXML
 	public AnchorPane contentRoot;
+	public BreadCrumbBar breadCrumbs;
 	@FXML
 	private Label lblUserName;
 
@@ -39,6 +41,8 @@ public class PanelController implements Initializable
 	{
 		String username = resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
+		this.breadCrumbs.setOnCrumbAction(event -> {
+		});
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
 	}
@@ -83,5 +87,6 @@ public class PanelController implements Initializable
 		AnchorPane.setLeftAnchor(pane, 0.0);
 		AnchorPane.setBottomAnchor(pane, 0.0);
 		fadein.play();
+		this.breadCrumbs.setSelectedCrumb(BreadCrumbBar.buildTreeModel("PRready", event.getLocation()));
 	}
 }
