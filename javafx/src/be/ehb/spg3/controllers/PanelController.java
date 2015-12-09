@@ -53,9 +53,9 @@ public class PanelController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
 	}
 
-	public void database()
+	public void quizzes()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.database.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user/profile_fxml/userPaneClosedQuestions.fxml"));
 	}
 
 	public void profiles()

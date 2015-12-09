@@ -4,11 +4,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import java.lang.String?>
 <Pane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.40"
-      fx:controller="be.ehb.spg3.controllers.ClosedQuestionsController">
+      fx:controller="be.ehb.spg3.controllers.ClosedQuestionsController" stylesheets="@../profile_css/stylesheet.css">
    <children>
       <Pane prefHeight="88.0" prefWidth="700.0" style="-fx-background-color: #3f4852;">
          <children>
-            <Button fx:id="btnOpenVragen" layoutX="36.0" layoutY="44.0" mnemonicParsing="false" onAction="#openOpenQuestions" text="Open vragenlijsten">
+            <Button fx:id="btnOpenVragen" layoutX="36.0" layoutY="44.0" mnemonicParsing="false"
+                    onMouseClicked="#openOpenQuestions" text="Open vragenlijsten">
                <styleClass>
                   <String fx:value="top" />
                   <String fx:value="button" />
@@ -31,7 +32,8 @@
                   <TableColumn fx:id="quizDone" prefWidth="115.0" text="Afgelegd" />
               </columns>
             </TableView>
-            <Button fx:id="watchResults" layoutX="536.0" layoutY="237.0" mnemonicParsing="false" onAction="#openResults" text="Bekijk resultaten" />
+            <Button fx:id="watchResults" layoutX="536.0" layoutY="237.0" mnemonicParsing="false"
+                    text="Bekijk resultaten"/>
          </children>
       </Pane>
    </children>
