@@ -16,3 +16,23 @@
 }
 
 /* --- Styling the table ---*/
+
+.table-view {
+    -fx-base:  #3f4852;
+    -fx-control-inner-background:  #3f4852;
+    -fx-background-color:  #3f4852;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+

@@ -21,7 +21,7 @@ public class openQuestionsController implements Initializable
 	@FXML
 	private Button btnSluitVragen;
 	@FXML
-	private TableColumn name;
+	private TableColumn naam;
 	@FXML
 	private TableColumn publisher;
 	@FXML

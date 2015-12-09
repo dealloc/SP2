@@ -19,7 +19,7 @@ public class closedQuestionsController implements Initializable
 	@FXML
 	private Button btnStart;
 	@FXML
-	private TableColumn name;
+	private TableColumn naam;
 	@FXML
 	private TableColumn publisher;
 	@FXML

@@ -22,7 +22,7 @@
          <children>
             <TableView fx:id="" layoutX="36.0" layoutY="57.0" prefHeight="386.0" prefWidth="555.0">
               <columns>
-                <TableColumn fx:id="name" prefWidth="209.0" text="Naam" />
+                <TableColumn fx:id="naam" prefWidth="209.0" text="Naam" />
                 <TableColumn fx:id="publisher" prefWidth="226.0" text="Uitgever" />
                   <TableColumn fx:id="amountQ" prefWidth="119.0" text="Aantal vragen" />
               </columns>
