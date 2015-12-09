@@ -23,12 +23,20 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  */
 public class AuthRepository implements Authenticator, Authorizator
 {
-	private final UserRepository repository;
+	private UserRepository repository;
 	private User user = null;
 
 	public AuthRepository()
 	{
-		this.repository = resolve(UserRepository.class);
+		this.repository = null; // resolve(UserRepository.class);
+	}
+
+	private UserRepository getRepository()
+	{
+		if (this.repository == null)
+			this.repository = resolve(UserRepository.class);
+
+		return this.repository;
 	}
 
 	/**
@@ -44,7 +52,7 @@ public class AuthRepository implements Authenticator, Authorizator
 		try
 		{
 			password = resolve(Encryptor.class).encrypt(password);
-			List<User> users = this.repository.findByFields(new String[]{"username", username}, new String[]{"password", password});
+			List<User> users = this.getRepository().findByFields(new String[]{"username", username}, new String[]{"password", password});
 			if (!users.isEmpty())
 			{
 				this.user = users.get(0);
