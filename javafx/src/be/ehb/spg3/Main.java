@@ -11,6 +11,8 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class Main extends Application
 {
+	SwitchScreenHandler handler;
+
 	public static void main(String[] args)
 	{
 		launch(args);
@@ -19,7 +21,7 @@ public class Main extends Application
 	@Override
 	public void start(Stage stage) throws Exception
 	{
-		SwitchScreenHandler handler = new SwitchScreenHandler(stage);
+		handler = new SwitchScreenHandler(stage);
 		resolve(EventBus.class).subscribe(handler);
 
 		//resolve(EventBus.class).fire(new SwitchScreenEvent("design/Admin/AdminHome.fxml", true));
