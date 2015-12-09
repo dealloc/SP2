@@ -24,7 +24,7 @@ public class Main extends Application
 		SwitchScreenHandler handler = new SwitchScreenHandler(stage);
 		resolve(EventBus.class).subscribe(handler);
 
-		resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", true));
+		resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", false));
 //		resolve(EventBus.class).fire(new SwitchScreenEvent("design/login/login.fxml", false));
 //		resolve(EventBus.class).fire(new SwitchScreenEvent("design/admin/dashboard.fxml", false));
 	}
