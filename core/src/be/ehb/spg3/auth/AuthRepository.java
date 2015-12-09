@@ -67,6 +67,12 @@ public class AuthRepository implements Authenticator, Authorizator
 		return false;
 	}
 
+	@Override
+	public void sudo(User user)
+	{
+		this.user = user;
+	}
+
 	/**
 	 * Get the currently authenticated user.
 	 *
