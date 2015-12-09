@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane maxHeight="420.0" maxWidth="618.0" minHeight="420.0" minWidth="618.0" prefHeight="420.0" prefWidth="618.0"
+            styleClass="mainPanel" stylesheets="@stylesheets/style.css" xmlns="http://javafx.com/javafx/8.0.66"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.PassRecoveryController">
+	<children>
+		<TextField fx:id="tfUsername" layoutX="141.0" layoutY="203.0" prefHeight="41.0" prefWidth="337.0"
+		           styleClass="textfield"/>
+		<Button layoutX="224.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#recoverPass" prefHeight="41.0"
+		        prefWidth="171.0" text="Continue"/>
+		<Label layoutX="194.0" layoutY="35.0" styleClass="title" text="Forgot password?"/>
+		<Label layoutX="205.0" layoutY="168.0" styleClass="lblInfo" text="Please fill in your email"/>
+		<ImageView id="btnClosePassRecovery" fitHeight="27.0" fitWidth="27.0" layoutX="591.0" layoutY="1.0"
+		           onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+			<image>
+				<Image url="@images/exit_icon.png"/>
+			</image>
+		</ImageView>
+	</children>
+</AnchorPane>
