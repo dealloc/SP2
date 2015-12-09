@@ -12,10 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.FlowPane;
@@ -45,6 +42,17 @@ public class DatabaseViewController implements Initializable
 	private TableView tvTable;
 	@FXML
 	private FlowPane fpAdd;
+	@FXML
+	private TextField txtName;
+	@FXML
+	private TextField txtLastName;
+	@FXML
+	private TextField txtEmail;
+	@FXML
+	private TextField txtAddress;
+	@FXML
+	private TextField txtTel;
+
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
@@ -76,19 +84,19 @@ public class DatabaseViewController implements Initializable
 	}
 
 	public void addCommit(){
-			/*data.add(new User(tvTable.getItems().size() + 1,
-					lblName.getText(),
-					lblLastName.getText(),
-					lblEmail.getText(),
-					lblAdres.getText(),
-					lblTel.getText()
+			data.add(new User(tvTable.getItems().size() + 1,
+					txtName.getText(),
+					txtLastName.getText(),
+					txtEmail.getText(),
+					txtAddress.getText(),
+					txtTel.getText()
 			));
 
-		lblName.setText("");
-		lblLastName.setText("");
-		lblEmail.setText("");
-		lblAdres.setText("");
-		lblTel.setText("");*/
+		txtName.setText("");
+		txtLastName.setText("");
+		txtEmail.setText("");
+		txtAddress.setText("");
+		txtTel.setText("");
 
 		fpAdd.setVisible(false);
 	}
