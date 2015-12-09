@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.openQuestionsController">
+   <children>
+      <Pane prefHeight="88.0" prefWidth="700.0" style="-fx-background-color: #3f4852;">
+         <children>
+            <Button fx:id="btnOpenVragen" layoutX="36.0" layoutY="44.0" mnemonicParsing="false" text="Open vragenlijsten">
+               <styleClass>
+                  <String fx:value="top" />
+                  <String fx:value="clicked" />
+               </styleClass>
+            </Button>
+            <Button fx:id="btnSluitVragen" layoutX="176.0" layoutY="44.0" mnemonicParsing="false" onAction="#openClosedQuestions" styleClass="top" text="Gesloten vragenlijsten" />
+         </children>
+      </Pane>
+      <Pane layoutY="88.0" prefHeight="514.0" prefWidth="700.0">
+         <children>
+            <TableView fx:id="" layoutX="36.0" layoutY="57.0" prefHeight="386.0" prefWidth="555.0">
+              <columns>
+                <TableColumn fx:id="naam" prefWidth="209.0" text="Naam" />
+                <TableColumn fx:id="publisher" prefWidth="226.0" text="Uitgever" />
+                  <TableColumn fx:id="amountQ" prefWidth="119.0" text="Aantal vragen" />
+              </columns>
+            </TableView>
+            <Button fx:id="btnStart" layoutX="624.0" layoutY="237.0" mnemonicParsing="false" onAction="#startQuiz" text="Start" />
+         </children>
+      </Pane>
+   </children>
+</Pane>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.15914786967418545" layoutY="7.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #3f4852;" styleClass="leftSidePane">
+               <children>
+                  <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="19.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../SP2/javafx/src/be/ehb/spg3/design/user/images/account.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="11.0" layoutY="124.0" prefHeight="40.0" prefWidth="98.0" text="Steven Weemaels" textFill="WHITE">
+                     <font>
+                        <Font size="12.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="3.0" layoutY="144.0" prefHeight="124.0" prefWidth="124.0" />
+                  <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="46.0" layoutY="559.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../SP2/javafx/src/be/ehb/spg3/design/user/images/exit.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="46.0" layoutY="527.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../SP2/javafx/src/be/ehb/spg3/design/user/images/settings.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #dedede;">
+               <children>
+                  <Pane layoutX="26.0" layoutY="42.0" prefHeight="531.0" prefWidth="628.0" style="-fx-background-color: #3f4852;">
+                     <children>
+                        <Button fx:id="btnOpenVragen" layoutX="14.0" layoutY="49.0" mnemonicParsing="false" text="Open vragenlijsten">
+                           <styleClass>
+                              <String fx:value="top" />
+                              <String fx:value="button" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btnSluitVragen" layoutX="151.0" layoutY="49.0" mnemonicParsing="false" text="Gesloten vragenlijsten">
+                           <styleClass>
+                              <String fx:value="top" />
+                              <String fx:value="clicked" />
+                           </styleClass>
+                        </Button>
+                        <SplitPane dividerPositions="0.07900677200902935" layoutY="86.0" orientation="VERTICAL" prefHeight="445.0" prefWidth="628.0" style="-fx-border-radius: 5;">
+                           <items>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="8.0" prefWidth="626.0">
+                                 <children>
+                                    <Label layoutX="12.0" layoutY="5.0" text="Naam" />
+                                    <Label layoutX="180.0" layoutY="5.0" text="Uitgever" />
+                                    <Label layoutX="485.0" layoutY="5.0" text="Afgelegd" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="257.0" prefWidth="577.0">
+                                 <children>
+                                    <ScrollBar layoutX="595.0" layoutY="11.0" orientation="VERTICAL" prefHeight="364.0" prefWidth="17.0" />
+                                    <AnchorPane layoutX="14.0">
+                                       <children>
+                                          <AnchorPane layoutY="5.0">
+                                             <children>
+                                                <AnchorPane layoutY="25.0" prefHeight="4.0" prefWidth="574.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="iOS vs Android" />
+                                                      <Text layoutX="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PR Ready" />
+                                                      <Text layoutX="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="12-11-2015" />
+                                                      <Button fx:id="btnBekijkResult" layoutX="300.0" layoutY="-19.0" mnemonicParsing="false" text="Bekijk resultaten" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
+                     </children></Pane>
+                  <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="98.0" text="Profile">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
