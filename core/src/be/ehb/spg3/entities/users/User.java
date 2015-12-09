@@ -40,9 +40,9 @@ public class User
 	 * @param surname     The last name of the user.
 	//	 * @param address     The adress ofthe user.
 	//	 * @param phoneNumber The phone number of this user.
-	//	 * @param email       The email address of this user.
-	//	 * @param username    The username this user uses to log in.
-	//	 * @param password    The password this user uses to log in.
+	 * @param email       The email address of this user.
+	 * @param username    The username this user uses to log in.
+	 * @param password    The password this user uses to log in.
 	//	 * @param role        The role of this user in the system.
 	 */
 	public User(String name, String surname, String email, String username, String password)

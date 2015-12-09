@@ -24,22 +24,7 @@ public class LoginController
 	{
 		if (!resolve(Authenticator.class).login(lblUsername.getText(), lblPassword.getText()))
 		{
-			if(lblUsername.getText().isEmpty() && lblPassword.getText().isEmpty())
-			{
-				Notifications.create().darkStyle().text("OUPS ! Username & password are empty...").showError();
-			}else
-			{
-				if(lblUsername.getText().isEmpty())
-				{
-					Notifications.create().darkStyle().text("OUPS ! Username is empty...").showError();
-				}
-				if(lblPassword.getText().isEmpty())
-				{
-					Notifications.create().darkStyle().text("OUPS ! Password is empty...").showError();
-				}
-			}
-			if(!lblUsername.getText().isEmpty() && !lblPassword.getText().isEmpty())
-				Notifications.create().darkStyle().text("OUPS ! Wrong username or password...").showError();
+			Notifications.create().darkStyle().text("OOPS ! Wrong username or password...").showError();
 		} else
 		{
 			Notifications.create().darkStyle().text("Welcome ! You are now logged in.").showConfirm();
