@@ -2,6 +2,7 @@ package be.ehb.spg3.controllers;
 
 // Created by Jérémy Thiebaut. All rights reserved
 
+import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.encryption.Encryptor;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.users.User;
@@ -55,7 +56,7 @@ public class RegisterController
 			{
 				matcher = pattern.matcher(tfEmail.getText());
 
-				if (matcher.matches() == false)
+				if (!matcher.matches())
 				{
 					Notifications.create().darkStyle().text("OOPS ! Bad email address...").showError();
 				} else
@@ -64,12 +65,9 @@ public class RegisterController
 					try
 					{
 						resolve(UserRepository.class).save(user);
+						resolve(Authenticator.class).sudo(user); // set authenticated user
 					}
-					catch (QueryException e)
-					{
-						e.printStackTrace();
-					}
-					catch (ConnectivityException e)
+					catch (QueryException | ConnectivityException e)
 					{
 						e.printStackTrace();
 					}
