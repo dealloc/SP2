@@ -1,13 +1,14 @@
 .root {
-    -fx-text-base-color: rgb(252.0, 240.0, 237.0);
+    -fx-text-base-color: rgb(24.0, 24.0, 24.0);
+    -fx-text-menu-color: rgb(252.0, 240.0, 237.0);
     -fx-text-fill: -fx-text-base-color;
-
-    -dark: rgb(63, 72, 82);
-    -fx-background-color: -dark;
+    -dark: #3f4852;
+    -light: rgb(220, 220, 220);
+    -fx-background-color: -light;
 
     /*default font */
     -fx-font-family: 'Helvetica Neue';
-    -fx-font-size: 14.0px;
+    -fx-font-size: 16px;
     -fx-font-weight: 600;
     -fx-disabled-opacity: 0.6;
 
@@ -75,15 +76,27 @@
     -fx-content-display: LEFT;
 }
 
+.button:hover{
+    -fx-background-color: derive(-flatter-red, -10%);
+}
+
 .toggle-button:focused,
 .button:focused,
 .button:default:focused {
-    -fx-background-color: derive(-flatter-red, 50.0%);
+    -fx-background-color: -flatter-blue, -flatter-red;
+    -fx-background-insets: 0.0, 0.1em;
+    -fx-background-radius: 2.0;
+}
+
+.button:focused:hover{
+        -fx-background-color: -flatter-blue, derive(-flatter-red, -10%);
+    -fx-background-insets: 0.0, 0.1em;
+    -fx-background-radius: 2.0;
 }
 
 .toggle-button:focused:selected {
-    -fx-background-color: derive(-flatter-red, 50.0%), derive(-flatter-red, -20.0%);
-    -fx-background-insets: 0.0, 0.2em;
+       -fx-background-color: derive(-flatter-red, 50.0%), derive(-flatter-red, -20.0%);
+       -fx-background-insets: 0.0, 0.2em;
 }
 
 .toggle-button:armed,
@@ -105,13 +118,13 @@
     -fx-background-radius: 2.0;
     -fx-padding: 0.7em;
     -fx-border-width: 0.0;
-    -fx-prompt-text-fill: derive(-dark, 50.0%);
+    -fx-prompt-text-fill: derive(-light, 50.0%);
     -fx-highlight-fill: rgb(94.0, 203.0, 234.0);
 }
 
 .text-area .text, .text-field > * > .text {
     -fx-effect: null;
-    -fx-fill: -dark;
+    -fx-fill: -light;
 }
 
 .text-area {
@@ -130,7 +143,7 @@
 
 .text-area:focused, .text-field:focused {
     -fx-background-color: -flatter-blue, derive(rgb(94.0, 203.0, 234.0), 80.0%);
-    -fx-background-insets: 0.0, 0.2em;
+    -fx-background-insets: 0.0, 0.05em;
     -fx-background-radius: 2.0;
 }
 
@@ -168,9 +181,9 @@
  * ComboBox                                                                    *
  *                                                                             *
  ******************************************************************************/
-.combo-box-base {
+/*.combo-box-base {
     -fx-skin: "com.guigarage.flatterfx.skin.FlatterComboBoxSkin";
-}
+}*/
 
 .popup-overlay {
     -fx-background-color: -flatter-red;
@@ -197,7 +210,7 @@
 }
 
 .content-area {
-    -fx-background-color: -dark;
+    -fx-background-color: -light;
 }
 
 .content-background {
@@ -248,12 +261,12 @@
 }
 
 .context-menu .label {
-    -fx-text-fill: -dark;
+    -fx-text-fill: -light;
 }
 
 .radio-menu-item:checked > .left-container > .radio,
 .check-menu-item:checked > .left-container > .check {
-    -fx-background-color: -dark;
+    -fx-background-color: -light;
     -fx-shape: "m 269.9,233.66286 c 0.15,-0.12 1.97,1.7 2.54,3.1 2.3,-7.33 4.09,-9.1 6.79,-12.1 1.5,-0.25 2.4,-0.27 4.36,0.11 -7.1,5.8 -8.8,16.7 -9.9,17.8 l -0.75,0.02 c 0,0 -2.36,-5.24 -5.6,-7.38 -0.27,-0.17 0.02,-1.5 -0.2,-1.6 z";
     -fx-padding: 0.68em 0.5em 0.0em 0.0em;
     -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.2), 0.0, 0.0, 0.0, 1.0);
@@ -301,7 +314,7 @@
 
 .check-box:selected > .box > .mark,
 .check-box:indeterminate > .box > .mark {
-    -fx-background-color: -dark;
+    -fx-background-color: -light;
 }
 
 .check-box:indeterminate > .box > .mark {
@@ -338,7 +351,7 @@
 }
 
 .radio-button:selected > .radio > .dot {
-    -fx-background-color: -dark;
+    -fx-background-color: -light;
 }
 
 /*******************************************************************************
@@ -434,21 +447,43 @@
 .progress-indicator:indeterminate .segment7 {-fx-shape:null;} */
 
 
+/*******************************************************************************
+ *                                                                             *
+ * TableView                                                                   *
+ *                                                                             *
+ ******************************************************************************/
 
-/* Edit FlatterFX */
-.root {
-    -fx-font-size: 16px;
+.table-view {
+    -fx-base:  -dark;
+    -fx-control-inner-background:  derive(-light, 50%);
+    -fx-background-color:  -dark, derive(-light, 50%);
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
 }
 
-.button:focused,
-.button:default:focused {
-    -fx-background-color: #000dff;
+.table-view .column-header-background {
+    -fx-background-color: transparent;
 }
 
-/* Specific classes */
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused{
+    -fx-background-insets: 0, 0.05em;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Specific classes                                                            *
+ *                                                                             *
+ ******************************************************************************/
+
 .leftSidePane {
-    -fx-background-color: #3f4852;
-    /*-fx-effect: innershadow(three-pass-box,rgba(0,0,0, 0.3), 5, 0, -3, 0);*/
+    -fx-background-color: -dark;
+   /* -fx-effect: innershadow(three-pass-box,rgba(0,0,0, 0.3), 5, 0, -3, 0);*/
 }
 
 .imgBtn {
@@ -460,3 +495,15 @@
     -fx-effect: innershadow(three-pass-box, #fff, 5, 0, 0, 0);
 }
 
+.menuPane:hover {
+    -fx-background-color: derive(-dark, 50.0%);
+}
+
+.lblMenu {
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-menu-color;
+}
+
+.lblLight {
+    -fx-text-fill: -fx-text-menu-color;
+}
