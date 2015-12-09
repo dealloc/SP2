@@ -9,21 +9,21 @@
 <AnchorPane maxWidth="300.0" minHeight="0.0" minWidth="150.0" prefHeight="614.0" prefWidth="150.0" style="-fx-background-color: #3f4852;" styleClass="leftSidePane" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ButtonBar layoutX="92.0" layoutY="135.0" prefHeight="40.0" prefWidth="70.0" />
-      <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="19.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="30.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/account.png" />
          </image>
       </ImageView>
-      <Label layoutX="26.0" layoutY="119.0" prefHeight="32.0" prefWidth="90.0" text="Simon Pollé" textFill="WHITE">
+      <Label layoutX="37.0" layoutY="119.0" prefHeight="32.0" prefWidth="90.0" text="Simon Pollé" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <Pane layoutX="3.0" layoutY="144.0" prefHeight="124.0" prefWidth="124.0">
          <children>
-            <Button fx:id="dashboard" layoutY="27.0" mnemonicParsing="false" onAction="#startDashboard" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Dashboard" textFill="WHITE" />
-            <Button fx:id="users" layoutY="62.0" mnemonicParsing="false" onAction="#startUsers" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Users" textFill="WHITE" />
-            <Button fx:id="statistics" layoutY="98.0" mnemonicParsing="false" onAction="#startStatistics" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Statistics" textFill="WHITE" />
+            <Button fx:id="dashboard" layoutX="10.0" layoutY="24.0" mnemonicParsing="false" onAction="#startDashboard" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Dashboard" textFill="WHITE" />
+            <Button fx:id="users" layoutX="10.0" layoutY="62.0" mnemonicParsing="false" onAction="#startUsers" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Users" textFill="WHITE" />
+            <Button fx:id="statistics" layoutX="9.0" layoutY="100.0" mnemonicParsing="false" onAction="#startStatistics" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Quiztool" textFill="WHITE" />
          </children>
       </Pane>
       <ImageView fitHeight="25.0" fitWidth="33.0" layoutX="46.0" layoutY="568.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="21.0">
@@ -36,5 +36,6 @@
             <Image url="@images/settings.png" />
          </image>
       </ImageView>
+      <Button fx:id="statistics1" layoutX="12.0" layoutY="282.0" mnemonicParsing="false" onAction="#startStatistics" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: transparant;" text="Statistics" textFill="WHITE" />
    </children>
 </AnchorPane>
