@@ -42,6 +42,6 @@ public class openQuestionsController implements Initializable
 	public void startQuiz()
 	{
 		btnStart.setText("dit is de open controller");
-		name.setText("lol");
+		naam.setText("lol");
 	}
 }
