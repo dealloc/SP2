@@ -89,14 +89,15 @@
 }
 
 .button:focused:hover{
-        -fx-background-color: -flatter-blue, derive(-flatter-red, -10%);
+    -fx-background-color: -flatter-blue, derive(-flatter-red, -10%);
     -fx-background-insets: 0.0, 0.1em;
     -fx-background-radius: 2.0;
 }
 
 .toggle-button:focused:selected {
-       -fx-background-color: derive(-flatter-red, 50.0%), derive(-flatter-red, -20.0%);
-       -fx-background-insets: 0.0, 0.2em;
+    -fx-background-color: -flatter-blue, derive(-flatter-red, -10%);
+    -fx-background-insets: 0.0, 0.1em;
+    -fx-background-radius: 2.0;
 }
 
 .toggle-button:armed,
@@ -149,14 +150,14 @@
 
 .scroll-bar:vertical > .track-background,
 .scroll-bar:horizontal > .track-background {
-    -fx-background-color: derive(rgb(94.0, 203.0, 234.0), 50.0%);
+    -fx-background-color: -dark;
     -fx-background-insets: 0.0;
 }
 
 .scroll-bar:vertical > .thumb,
 .scroll-bar:horizontal > .thumb {
-    -fx-background-color: -flatter-blue;
-    -fx-background-insets: 0.0;
+    -fx-background-color: -dark, -light;
+    -fx-background-insets: 0.0, 0.05em;
     -fx-background-radius: 0.0;
 }
 
@@ -181,9 +182,6 @@
  * ComboBox                                                                    *
  *                                                                             *
  ******************************************************************************/
-/*.combo-box-base {
-    -fx-skin: "com.guigarage.flatterfx.skin.FlatterComboBoxSkin";
-}*/
 
 .popup-overlay {
     -fx-background-color: -flatter-red;
@@ -224,6 +222,7 @@
  * ChoiceBox                                                                   *
  *                                                                             *
  ******************************************************************************/
+
 .combo-box-base,
 .choice-box {
     -fx-background-color: -flatter-red;
@@ -245,7 +244,9 @@
 
 .combo-box-base:focused,
 .choice-box:focused {
-    -fx-background-color: derive(-flatter-red, 50.0%);
+    -fx-background-color: -flatter-blue, -flatter-red;
+    -fx-background-insets: 0.0, 0.1em;
+    -fx-background-radius: 2.0;
 }
 
 .combo-box-base > .arrow-button > .arrow,
@@ -261,7 +262,7 @@
 }
 
 .context-menu .label {
-    -fx-text-fill: -light;
+    -fx-text-fill: -dark;
 }
 
 .radio-menu-item:checked > .left-container > .radio,
