@@ -22,6 +22,6 @@ public class DashboardController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		lblName.setText(resolve(be.ehb.spg3.contracts.auth.Authenticator.class).auth().getName() + " " + resolve(be.ehb.spg3.contracts.auth.Authenticator.class).auth().getSurname());
+		//lblName.setText(resolve(be.ehb.spg3.contracts.auth.Authenticator.class).auth().getName() + " " + resolve(be.ehb.spg3.contracts.auth.Authenticator.class).auth().getSurname());
 	}
 }

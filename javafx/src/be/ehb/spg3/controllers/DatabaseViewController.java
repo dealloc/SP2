@@ -37,8 +37,6 @@ public class DatabaseViewController implements Initializable
 			);
 
 	@FXML
-	private ComboBox cbTables;
-	@FXML
 	private TableView tvTable;
 	@FXML
 	private FlowPane fpAdd;
@@ -57,26 +55,7 @@ public class DatabaseViewController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		ObservableList<String> tables = FXCollections.observableArrayList("Users","Quizzes","Results");
-		cbTables.setItems(tables);
-		cbTables.setValue("Users");
-		setUsers();
-	}
 
-	public void tableChange(){
-		//tvTable.getItems().clear();
-		tvTable.getColumns().clear();
-		if (cbTables.getValue() == "Users"){
-			setUsers();
-		}
-		else if (cbTables.getValue() == "Quizzes"){
-			setQuizzes();
-		}
-		else if (cbTables.getValue() == "Results")
-		{
-			setResults();
-		} else
-			System.out.println("Error at 'cbTables' (values).");
 	}
 
 	public void addRow(){
@@ -145,20 +124,6 @@ public class DatabaseViewController implements Initializable
 				index.set(data.indexOf(newValue));
 			}
 		});
-	}
-	public void setQuizzes(){
-		/* Hardcoded test! */
-		TableColumn idCol = new TableColumn("ID");
-		TableColumn titleCol = new TableColumn("Title");
-		tvTable.getColumns().addAll(idCol, titleCol);
-	}
-	public void setResults(){
-		/* Hardcoded test! */
-		TableColumn idCol = new TableColumn("ID");
-		TableColumn useridCol = new TableColumn("User ID");
-		TableColumn obtCol = new TableColumn("Obtained Score");
-		TableColumn maxCol = new TableColumn("Max Score");
-		tvTable.getColumns().addAll(idCol, useridCol, obtCol, maxCol);
 	}
 
 

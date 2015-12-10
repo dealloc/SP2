@@ -51,7 +51,7 @@
             </FlowPane>
             <FlowPane alignment="CENTER" layoutY="183.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
                <children>
-	               <Label onMouseClicked="#quizzes" prefHeight="32.0" styleClass="lblMenu" text="Database" textFill="WHITE">
+	               <Label onMouseClicked="#quizzes" prefHeight="32.0" styleClass="lblMenu" text="Edit users" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
