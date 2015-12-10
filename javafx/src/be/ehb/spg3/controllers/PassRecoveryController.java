@@ -15,7 +15,7 @@ public class PassRecoveryController
 
 	public void recoverPass()
 	{
-		/*
+/*
 		String to = "abcd@gmail.com";
 
 		// Sender's email ID needs to be mentioned
@@ -55,7 +55,7 @@ public class PassRecoveryController
 		}catch (MessagingException mex) {
 			mex.printStackTrace();
 		}
-		*/
+*/
 	}
 
 	public void close()
