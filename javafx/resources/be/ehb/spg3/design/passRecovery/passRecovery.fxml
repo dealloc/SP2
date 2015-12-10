@@ -11,7 +11,7 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.PassRecoveryController">
 	<children>
 		<TextField fx:id="tfUsername" layoutX="141.0" layoutY="203.0" prefHeight="41.0" prefWidth="337.0"
-		           styleClass="textfield"/>
+		           styleClass="textfield" onAction="#recoverPass"/>
 		<Button layoutX="224.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#recoverPass" prefHeight="41.0"
 		        prefWidth="171.0" text="Continue"/>
 		<Label layoutX="194.0" layoutY="35.0" styleClass="title" text="Forgot password?"/>

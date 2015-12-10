@@ -20,7 +20,8 @@
 		<PasswordField fx:id="tfPassword" layoutX="39.0" layoutY="324.0" prefHeight="38.0" prefWidth="252.0"
 		               promptText="Password" styleClass="passfield" stylesheets="@stylesheets/style.css"/>
 		<PasswordField fx:id="tfPasswordRepeat" layoutX="327.0" layoutY="324.0" prefHeight="38.0" prefWidth="252.0"
-		               promptText="Repeat password" styleClass="passfield" stylesheets="@stylesheets/style.css"/>
+		               promptText="Repeat password" styleClass="passfield" stylesheets="@stylesheets/style.css"
+		               onAction="#register"/>
 		<Button id="btnContinue" layoutX="197.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#register"
 		        prefHeight="40.0" prefWidth="224.0" text="Continue"/>
 		<Label layoutX="261.0" layoutY="37.0" styleClass="title" text="Sign up"/>
