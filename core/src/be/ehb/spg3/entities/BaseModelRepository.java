@@ -260,13 +260,13 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 		T model = resolve(this.model);
 		try
 		{
-			return this.dao.createIfNotExists(model);
+			this.dao.create(model);
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace(); // TODO handle exception
 		}
 
-		return null;
+		return model;
 	}
 }

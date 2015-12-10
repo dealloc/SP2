@@ -20,7 +20,7 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Role
 {
 
-	@DatabaseField(id = true)
+	@DatabaseField(generatedId = true)
 	private int id;
 	@DatabaseField
 	private String name;
