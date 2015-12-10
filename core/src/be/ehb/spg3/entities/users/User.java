@@ -26,7 +26,7 @@ public class User
 	@DatabaseField private String email;
 	@DatabaseField private String username;
 	@DatabaseField private String password;
-	@DatabaseField(foreign = true) private Role role;
+	@DatabaseField(foreign = true, foreignAutoCreate = true) private Role role;
 
 	public User()
 	{

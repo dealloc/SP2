@@ -14,7 +14,7 @@ public class Permission
 {
 	@DatabaseField(id = true) private int id;
 	@DatabaseField private String name;
-	@DatabaseField(foreign = true) private Role role;
+	@DatabaseField(foreign = true, foreignAutoCreate = true) private Role role;
 
 	public Permission() {}
 
