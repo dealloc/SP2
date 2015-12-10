@@ -1,0 +1,62 @@
+/* --- Styling the main panel ---*/
+.mainPanel {
+	-fx-background-image: url("../images/background.png");
+}
+
+/* --- Styling the text-fields ---*/
+.textfield {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent transparent white transparent;
+	-fx-border-width: 3px;
+	-fx-text-fill: white;
+	-fx-prompt-text-fill: white;
+	-fx-padding: 0 0 10 0;
+	-fx-font: 19px System;
+}
+
+/* --- Styling the password-fields ---*/
+.passfield {
+	-fx-background-color: transparent;
+	-fx-border-color: transparent transparent white transparent;
+	-fx-border-width: 3px;
+	-fx-text-fill: white;
+	-fx-prompt-text-fill: white;
+	-fx-padding: 0 0 10 0;
+	-fx-font: 19px System;
+}
+
+/* --- Styling the labels ---*/
+.title {
+	-fx-text-fill: white;
+	-fx-prompt-text-fill: white;
+	-fx-font: 26px System;
+}
+
+/* --- Styling the buttons ---*/
+.button {
+	-fx-background-color: #83a2e0;
+	-fx-border-radius: 0px;
+	-fx-text-fill: white;
+	-fx-prompt-text-fill: white;
+	-fx-font: 19px System;
+}
+
+.button:hover {
+	-fx-border-width: 1px;
+	-fx-border-color: white white white white;
+}
+
+/* --- Styling the image-view ---*/
+.imageview {
+	-fx-border-radius: 10px;
+	-fx-background-radius: 10px;
+}
+
+/* --- Styling the image-view ---*/
+.lblInfo {
+	-fx-text-fill: white;
+	-fx-prompt-text-fill: white;
+	-fx-font: 18px System;
+}
+
+

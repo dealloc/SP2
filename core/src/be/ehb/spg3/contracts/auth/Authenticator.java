@@ -19,6 +19,13 @@ public interface Authenticator
 	boolean login(String username, String password);
 
 	/**
+	 * Log in as given the user.
+	 *
+	 * @param user The user to log in.
+	 */
+	void sudo(User user);
+
+	/**
 	 * Get the currently authenticated user.
 	 *
 	 * @return The authenticated User or null if none is authenticated.

@@ -2,13 +2,16 @@ package be.ehb.spg3.auth;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
+import be.ehb.spg3.contracts.encryption.Encryptor;
 import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
 import be.ehb.spg3.exceptions.ConnectivityException;
 import be.ehb.spg3.exceptions.QueryException;
 
-import java.sql.SQLException;
+import java.util.List;
+
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -20,6 +23,22 @@ import java.sql.SQLException;
  */
 public class AuthRepository implements Authenticator, Authorizator
 {
+	private UserRepository repository;
+	private User user = null;
+
+	public AuthRepository()
+	{
+		this.repository = null; // resolve(UserRepository.class);
+	}
+
+	private UserRepository getRepository()
+	{
+		if (this.repository == null)
+			this.repository = resolve(UserRepository.class);
+
+		return this.repository;
+	}
+
 	/**
 	 * Attempt to log a user using given credentials.
 	 *
@@ -32,14 +51,26 @@ public class AuthRepository implements Authenticator, Authorizator
 	{
 		try
 		{
-			return new UserRepository().findByFields(new String[]{"username", username}, new String[]{"password", password}).size() == 1;
+			password = resolve(Encryptor.class).encrypt(password);
+			List<User> users = this.getRepository().findByFields(new String[]{"username", username}, new String[]{"password", password});
+			if (!users.isEmpty())
+			{
+				this.user = users.get(0);
+				return true;
+			}
 		}
-		catch (QueryException | ConnectivityException | SQLException e)
+		catch (QueryException | ConnectivityException e)
 		{
-			e.printStackTrace();
+			e.printStackTrace(); // TODO handle exeption
 		}
 
 		return false;
+	}
+
+	@Override
+	public void sudo(User user)
+	{
+		this.user = user;
 	}
 
 	/**
@@ -51,7 +82,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public User auth()
 	{
-		return null;
+		return this.user;
 	}
 
 	/**
@@ -61,6 +92,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public void logout()
 	{
+		this.user = null;
 	}
 
 	/**
