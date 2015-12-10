@@ -248,4 +248,25 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * Create an instance of the model and set it's auto incrementing ID etc
+	 * @return An instance of T
+	 * @throws QueryException
+	 */
+	@Override
+	public T create() throws QueryException
+	{
+		T model = resolve(this.model);
+		try
+		{
+			return this.dao.createIfNotExists(model);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace(); // TODO handle exception
+		}
+
+		return null;
+	}
 }

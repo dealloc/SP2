@@ -105,4 +105,11 @@ public interface IModelRepository<T>
 	 * @throws ConnectivityException
 	 */
 	void createIfNotExists() throws QueryException, ConnectivityException;
+
+	/**
+	 * Create an instance of the model and set it's auto incrementing ID etc
+	 * @return An instance of T
+	 * @throws QueryException
+	 */
+	T create() throws QueryException;
 }
