@@ -13,23 +13,20 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <GridPane layoutX="48.0" layoutY="75.0" prefHeight="503.0" prefWidth="591.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="75.0">
+      <GridPane layoutX="48.0" layoutY="65.0" prefHeight="513.0" prefWidth="553.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="65.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.0" minWidth="10.0" prefWidth="258.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.0" minWidth="0.0" prefWidth="264.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.0" minWidth="10.0" prefWidth="99.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.0" minWidth="10.0" prefWidth="302.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.0" minWidth="0.0" prefWidth="251.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="247.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="447.0" minHeight="10.0" prefHeight="447.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField alignment="CENTER" prefHeight="27.0" prefWidth="181.0" promptText="name" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Next " GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <TextField alignment="CENTER" prefHeight="27.0" prefWidth="232.0" promptText="name" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets bottom="-360.0" />
-               </GridPane.margin>
-            </Button>
+                  <Insets top="-400.0" />
+               </GridPane.margin></TextField>
             <Label text="Give in your question" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" top="-300.0" />
@@ -43,13 +40,16 @@
                   <Insets top="-300.0" />
                </GridPane.margin>
             </TextField>
-            <Label prefHeight="25.0" prefWidth="165.0" text="Give the quiz a name">
+            <Label prefHeight="25.0" prefWidth="165.0" text="Give the quiz a name" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
+               <padding>
+                  <Insets top="-400.0" />
+               </padding>
             </Label>
             <Label text="Give in the right answer" GridPane.rowIndex="1">
                <GridPane.margin>
@@ -99,14 +99,14 @@
                   <Insets top="100.0" />
                </GridPane.margin>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Add question" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets bottom="-360.0" left="40.0" />
+                  <Insets bottom="-360.0" left="10.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Back" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Save" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets bottom="-360.0" left="70.0" />
+                  <Insets bottom="-360.0" left="200.0" />
                </GridPane.margin>
             </Button>
          </children>
