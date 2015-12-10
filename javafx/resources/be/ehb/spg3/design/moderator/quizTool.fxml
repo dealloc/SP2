@@ -7,14 +7,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="98.0" text="Quiztool">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <GridPane layoutX="45.0" layoutY="72.0" prefHeight="506.0" prefWidth="594.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="72.0">
+      <GridPane layoutX="23.0" layoutY="73.0" prefHeight="505.0" prefWidth="616.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="73.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="292.0" minWidth="10.0" prefWidth="142.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="479.0" minWidth="10.0" prefWidth="452.0" />
@@ -23,63 +23,62 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Add Quiz">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="117.0" text="Add Quiz">
                <GridPane.margin>
-                  <Insets left="18.0" top="-420.0" />
+                  <Insets left="10.0" top="-460.0" />
                </GridPane.margin>
             </Button>
-            <TableView prefHeight="510.0" prefWidth="476.0" GridPane.columnIndex="1">
+            <TableView prefHeight="535.0" prefWidth="469.0" GridPane.columnIndex="1">
               <columns>
                 <TableColumn prefWidth="107.0" text="Quiz Name" />
                 <TableColumn prefWidth="74.0" text="Users" />
                   <TableColumn prefWidth="70.0" text="Status" />
-                  <TableColumn prefWidth="91.0" text="Start Date" />
-                  <TableColumn prefWidth="109.0" text="Expires" />
+                  <TableColumn prefWidth="116.0" text="Start Date" />
+                  <TableColumn prefWidth="95.0" text="Expires" />
               </columns>
             </TableView>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Edit Quiz">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="116.0" text="Edit Quiz">
                <GridPane.margin>
-                  <Insets left="18.0" top="-320.0" />
+                  <Insets left="10.0" top="-340.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Delete Quiz">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="116.0" text="Delete Quiz">
                <GridPane.margin>
-                  <Insets left="18.0" top="-220.0" />
+                  <Insets left="10.0" top="-220.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Assign Users">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="117.0" text="Assign Users">
                <GridPane.margin>
-                  <Insets left="18.0" top="-120.0" />
+                  <Insets left="10.0" top="-100.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Disable Quiz">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="118.0" text="Disable Quiz">
                <GridPane.margin>
-                  <Insets left="18.0" top="-20.0" />
+                  <Insets left="10.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Enable Quiz">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="119.0" text="Enable Quiz">
                <GridPane.margin>
-                  <Insets left="18.0" top="80.0" />
+                  <Insets left="10.0" top="140.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Results">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="119.0" text="Results">
                <GridPane.margin>
-                  <Insets left="18.0" top="180.0" />
+                  <Insets left="10.0" top="260.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Import Quiz">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="119.0" text="Import Quiz">
                <GridPane.margin>
-                  <Insets left="18.0" top="280.0" />
+                  <Insets left="10.0" top="380.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="95.0" text="Export Quiz">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="120.0" text="Export Quiz">
                <GridPane.margin>
-                  <Insets left="18.0" top="380.0" />
+                  <Insets left="10.0" top="500.0" />
                </GridPane.margin>
             </Button>
          </children>
       </GridPane>
-      <Label layoutX="262.0" layoutY="34.0" text="aantal users (reminder)" />
-      <TextField layoutX="490.0" layoutY="39.0" promptText="Search" />
+      <TextField layoutX="445.0" layoutY="22.0" prefHeight="27.0" prefWidth="194.0" promptText="Search" />
    </children>
 </AnchorPane>
