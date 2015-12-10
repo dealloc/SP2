@@ -31,6 +31,7 @@ public class LoginController
 			Notifications.create().darkStyle().text("Welcome ! You are now logged in.").showConfirm();
 			resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", true));
 		}
+
 	}
 
 	public void register()

@@ -15,7 +15,8 @@
 				<Font size="8.0"/>
 			</font>
 		</TextField>
-		<PasswordField fx:id="lblPassword" layoutX="144.0" layoutY="253.0" prefHeight="35.0" prefWidth="330.0"
+		<PasswordField fx:id="lblPassword" onAction="#login" layoutX="144.0" layoutY="253.0" prefHeight="35.0"
+		               prefWidth="330.0"
 		               promptText="Password" styleClass="passfield">
 			<font>
 				<Font size="19.0"/>
