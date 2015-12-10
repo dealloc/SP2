@@ -28,7 +28,7 @@ public class AuthRepository implements Authenticator, Authorizator
 
 	public AuthRepository()
 	{
-		this.repository = null; // resolve(UserRepository.class);
+		this.repository = null;
 	}
 
 	private UserRepository getRepository()

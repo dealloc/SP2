@@ -2,6 +2,7 @@ package be.ehb.spg3.entities.permissions;
 
 // Created by Wannes Gennar. All rights reserved
 
+import be.ehb.spg3.entities.roles.Role;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -13,6 +14,9 @@ public class Permission
 {
 	@DatabaseField(id = true) private int id;
 	@DatabaseField private String name;
+	@DatabaseField(foreign = true, foreignAutoCreate = true) private Role role;
+
+	public Permission() {}
 
 	public Permission(String name)
 	{
