@@ -2,6 +2,9 @@ package be.ehb.spg3;
 // Created by Wannes Gennar. All rights reserved
 
 import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.entities.permissions.PermissionRepository;
+import be.ehb.spg3.entities.roles.RoleRepository;
+import be.ehb.spg3.entities.users.UserRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
 import be.ehb.spg3.events.handlers.SwitchScreenHandler;
 import javafx.application.Application;
