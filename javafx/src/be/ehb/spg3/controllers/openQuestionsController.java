@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 // Created by Anthony Min. All rights reserved
-public class openQuestionsController implements Initializable
+public class OpenQuestionsController implements Initializable
 {
 	@FXML
 	private Button btnStart;
