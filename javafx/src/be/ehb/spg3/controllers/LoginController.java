@@ -29,7 +29,7 @@ public class LoginController
 		} else
 		{
 			Notifications.create().darkStyle().text("Welcome ! You are now logged in.").showConfirm();
-			resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", true));
+			resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
 		}
 	}
 
@@ -46,7 +46,7 @@ public class LoginController
 		} else
 		{
 			Notifications.create().darkStyle().text("Welcome ! You are now logged in.").showConfirm();
-			resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", true));
+			resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
 		}
 	}
 

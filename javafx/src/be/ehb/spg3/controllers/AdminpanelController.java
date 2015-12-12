@@ -26,7 +26,7 @@ import static be.ehb.spg3.Resources.fxml;
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 
-public class PanelController implements Initializable
+public class AdminpanelController implements Initializable
 {
 
 	@FXML
@@ -47,22 +47,20 @@ public class PanelController implements Initializable
 	{
 		Platform.exit();
 	}
-
-	public void dashboard()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
-	}
-
-	public void quizzes()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.usertable.fxml"));
-	}
-
-	public void profiles()
+	public void dashboard()	{ resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));	}
+	public void editProfile()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.editProfile.fxml"));
 	}
-
+	public void manageUsers()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.usertable.fxml"));
+	}
+	public void manageRoles() { resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.rolestable.fxml")); }
+	public void manageGroups()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.grouptable.fxml"));
+	}
 	public void settings()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.settings.fxml"));
