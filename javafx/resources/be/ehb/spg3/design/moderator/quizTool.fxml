@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.ModeratorController">
    <children>
       <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="98.0" text="Quiztool">
          <font>
@@ -23,7 +23,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="117.0" text="Add Quiz">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="117.0" text="Add Quiz" onMouseClicked="#addQuiz">
                <GridPane.margin>
                   <Insets left="10.0" top="-460.0" />
                </GridPane.margin>
@@ -37,7 +37,7 @@
                   <TableColumn prefWidth="95.0" text="Expires" />
               </columns>
             </TableView>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="116.0" text="Edit Quiz">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="116.0" text="Edit Quiz" onMouseClicked="#editQuiz">
                <GridPane.margin>
                   <Insets left="10.0" top="-340.0" />
                </GridPane.margin>
@@ -47,7 +47,7 @@
                   <Insets left="10.0" top="-220.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="117.0" text="Assign Users">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="117.0" text="Assign Users" onMouseClicked="#assignUsers">
                <GridPane.margin>
                   <Insets left="10.0" top="-100.0" />
                </GridPane.margin>
@@ -62,7 +62,7 @@
                   <Insets left="10.0" top="140.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="119.0" text="Results">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="119.0" text="Results" onMouseClicked="#showResults">
                <GridPane.margin>
                   <Insets left="10.0" top="260.0" />
                </GridPane.margin>

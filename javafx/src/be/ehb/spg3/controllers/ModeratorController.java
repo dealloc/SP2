@@ -1,6 +1,8 @@
 package be.ehb.spg3.controllers;
 // Created by Simon Pollé All rights reserved
 
+import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.events.SwitchScreenEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -8,6 +10,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class ModeratorController implements Initializable
 {
@@ -29,8 +33,49 @@ public class ModeratorController implements Initializable
 
 	}
 
-	public void clickMe(){
-		test.setText("test");
+	public void addQuiz()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/moderator/quizTool_addQuiz.fxml", false));
+	}
+
+	public void editQuiz()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/moderator/quizTool_editQuiz.fxml", false));
+	}
+
+	public void deleteQuiz()
+	{
+
+	}
+
+	public void assignUsers()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/moderator/quizTool_assignUsers.fxml", false));
+	}
+
+	public void disableQuiz()
+	{
+
+	}
+
+	public void enableQuiz()
+	{
+
+	}
+
+	public void showResults()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/moderator/quizTool_results.fxml", false));
+	}
+
+	public void importQuiz()
+	{
+
+	}
+
+	public void exportQuiz()
+	{
+
 	}
 
 	public void startDashboard()

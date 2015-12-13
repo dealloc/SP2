@@ -23,7 +23,7 @@ public class Main extends Application
 	{
 		handler = new SwitchScreenHandler(stage);
 		resolve(EventBus.class).subscribe(handler);
-
-		resolve(EventBus.class).fire(new SwitchScreenEvent("design/login/login.fxml", false));
+		resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", false));
+		//resolve(EventBus.class).fire(new SwitchScreenEvent("design/login/login.fxml", false));
 	}
 }
