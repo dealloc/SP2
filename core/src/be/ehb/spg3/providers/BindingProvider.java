@@ -6,6 +6,7 @@ import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.contracts.encryption.Encryptor;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.contracts.validation.EmailValidator;
+import be.ehb.spg3.contracts.validation.StringValidator;
 import be.ehb.spg3.encryption.DummyCryptor;
 import be.ehb.spg3.events.MBassadorBus;
 import be.ehb.spg3.validation.ValidationRepository;
@@ -54,5 +55,6 @@ class BindingProvider extends AbstractModule
 	private void initValidators()
 	{
 		bind(EmailValidator.class).to(ValidationRepository.class);
+		bind(StringValidator.class).to(ValidationRepository.class);
 	}
 }

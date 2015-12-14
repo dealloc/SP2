@@ -3,11 +3,12 @@ package be.ehb.spg3.validation;
 // Created by Wannes Gennar. All rights reserved
 
 import be.ehb.spg3.contracts.validation.EmailValidator;
+import be.ehb.spg3.contracts.validation.StringValidator;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-public class ValidationRepository implements EmailValidator
+public class ValidationRepository implements EmailValidator, StringValidator
 {
 	private String reason = null;
 
@@ -30,5 +31,16 @@ public class ValidationRepository implements EmailValidator
 	public String getReason()
 	{
 		return this.reason;
+	}
+
+	@Override
+	public boolean validateEmpty(String... str)
+	{
+		for (String string : str)
+		{
+			if (string.isEmpty()) return false;
+		}
+
+		return true;
 	}
 }
