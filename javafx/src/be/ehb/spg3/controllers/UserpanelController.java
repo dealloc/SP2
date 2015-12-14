@@ -64,7 +64,7 @@ public class UserpanelController implements Initializable
 
 	public void challenges()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.challaenges.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.challenges.fxml"));
 	}
 
 	public void settings()
