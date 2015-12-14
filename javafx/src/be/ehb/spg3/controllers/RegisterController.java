@@ -5,6 +5,8 @@ package be.ehb.spg3.controllers;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.encryption.Encryptor;
 import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.contracts.validation.EmailValidator;
+import be.ehb.spg3.contracts.validation.StringValidator;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
@@ -14,17 +16,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class RegisterController
 {
-	private static final String EMAIL_PATTERN = "[a-zA-Z0-9._%-]+@[a-zA-Z0-9._%-]+\\.[a-zA-Z]{2,10}";
-	private Pattern pattern;
-	private Matcher matcher;
-
 	@FXML
 	private TextField tfName;
 
@@ -45,23 +40,29 @@ public class RegisterController
 
 	public void register() throws QueryException, ConnectivityException
 	{
-		pattern = Pattern.compile(EMAIL_PATTERN);
-		User user = null;
-		if (tfName.getText().isEmpty() || tfLastName.getText().isEmpty() || tfEmail.getText().isEmpty() || tfUsername.getText().isEmpty() || tfPassword.getText().isEmpty() || tfPasswordRepeat.getText().isEmpty())
+		StringValidator validator = resolve(StringValidator.class);
+		String fname = this.tfName.getText();
+		String lname = this.tfLastName.getText();
+		String email = this.tfEmail.getText();
+		String username = this.tfUsername.getText();
+		String password = this.tfPassword.getText();
+		String repeat_password = this.tfPasswordRepeat.getText();
+
+		if (!validator.validateEmpty(fname, lname, email, username, password, repeat_password))
 		{
 			Notifications.create().darkStyle().text("OOPS ! All fields are required...").showError();
-		} else
+		}
+		else
 		{
-			if ((tfPassword.getText().equals(tfPasswordRepeat.getText())))
+			if (validator.same(password, repeat_password))
 			{
-				matcher = pattern.matcher(tfEmail.getText());
-
-				if (!matcher.matches())
+				if (!resolve(EmailValidator.class).validateEmail(email))
 				{
 					Notifications.create().darkStyle().text("OOPS ! Bad email address...").showError();
-				} else
+				}
+				else
 				{
-					user = new User(tfName.getText(), tfLastName.getText(), tfEmail.getText(), tfUsername.getText(), resolve(Encryptor.class).encrypt(tfPassword.getText()));
+					User user = new User(fname, lname, email, username, resolve(Encryptor.class).encrypt(password));
 					try
 					{
 						resolve(UserRepository.class).save(user);
@@ -69,13 +70,14 @@ public class RegisterController
 					}
 					catch (QueryException | ConnectivityException e)
 					{
-						e.printStackTrace();
+						e.printStackTrace(); // TODO handle exception
 					}
 
 					Notifications.create().darkStyle().text("You have successfully registered!").showConfirm();
 					resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", true));
 				}
-			} else
+			}
+			else
 			{
 				Notifications.create().darkStyle().text("OOPS ! Password doesn't match confirmation..").showError();
 			}
