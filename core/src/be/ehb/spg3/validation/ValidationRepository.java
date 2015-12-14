@@ -43,4 +43,17 @@ public class ValidationRepository implements EmailValidator, StringValidator
 
 		return true;
 	}
+
+	@Override
+	public boolean same(String... strs)
+	{
+		if (strs.length == 0)
+			return true;
+
+		String previous = strs[0];
+		for (String str : strs)
+			if (!str.equals(previous)) return false;
+
+		return true;
+	}
 }
