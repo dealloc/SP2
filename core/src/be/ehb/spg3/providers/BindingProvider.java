@@ -4,10 +4,11 @@ import be.ehb.spg3.auth.AuthRepository;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.contracts.encryption.Encryptor;
-import be.ehb.spg3.encryption.DummyCryptor;
 import be.ehb.spg3.contracts.events.EventBus;
-import be.ehb.spg3.encryption.PlainCryptor;
+import be.ehb.spg3.contracts.validation.EmailValidator;
+import be.ehb.spg3.encryption.DummyCryptor;
 import be.ehb.spg3.events.MBassadorBus;
+import be.ehb.spg3.validation.ValidationRepository;
 import com.google.inject.AbstractModule;
 import com.j256.ormlite.support.ConnectionSource;
 
@@ -28,6 +29,7 @@ class BindingProvider extends AbstractModule
 		initAuth();
 		initBusses();
 		initConnections();
+		initValidators();
 	}
 
 	private void initAuth()
@@ -47,5 +49,10 @@ class BindingProvider extends AbstractModule
 	private void initConnections()
 	{
 		bind(ConnectionSource.class).toProvider(ConnectionProvider.class);
+	}
+
+	private void initValidators()
+	{
+		bind(EmailValidator.class).to(ValidationRepository.class);
 	}
 }
