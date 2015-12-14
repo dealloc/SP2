@@ -28,7 +28,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  * Created by Jeroen_2 on 2/12/2015.
  */
 
-public class UserTableController implements Initializable
+public class ManageUsersController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
 	private ObservableList<User> data = FXCollections.observableArrayList();
@@ -58,7 +58,7 @@ public class UserTableController implements Initializable
 	@FXML
 	private Label lblError;
 
-	public UserTableController()
+	public ManageUsersController()
 	{
 	}
 
@@ -98,6 +98,11 @@ public class UserTableController implements Initializable
 		btnSave.setDisable(true);
 		btnDelete.setDisable(true);
 		btnReset.setDisable(true);
+		txtFName.setText("");
+		txtLName.setText("");
+		txtEmail.setText("");
+		txtAddress.setText("");
+		txtTel.setText("");
 	}
 
 	public void save(){

@@ -39,7 +39,7 @@ public class UserpanelController implements Initializable
 		String username = "*EDIT*";//resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.dashboard.fxml"));
 	}
 
 	public void close()
@@ -47,24 +47,29 @@ public class UserpanelController implements Initializable
 		Platform.exit();
 	}
 
+	public void editProfile()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editProfile.fxml"));
+	}
+
 	public void dashboard()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.dashboard.fxml"));
 	}
 
 	public void quizzes()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.usertable.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.quizzes.fxml"));
 	}
 
-	public void profiles()
+	public void challenges()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.editProfile.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.challaenges.fxml"));
 	}
 
 	public void settings()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.settings.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("settings.fxml"));
 	}
 
 	@Handler

@@ -28,8 +28,8 @@
       </TableView>
       <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
          <children>
-            <Button mnemonicParsing="false" onAction="#addRow" text="Add user" />
-            <Button mnemonicParsing="false" onAction="#deleteSelected" text="Delete selected user" />
+            <Button mnemonicParsing="false" text="Add user" />
+            <Button mnemonicParsing="false" text="Delete selected user" />
          </children>
       </FlowPane>
    </children>

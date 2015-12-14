@@ -38,6 +38,7 @@ public class AdminpanelController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
+		//TODO resolve username
 		String username = "*EDIT*";//resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
@@ -48,23 +49,29 @@ public class AdminpanelController implements Initializable
 	{
 		Platform.exit();
 	}
-	public void dashboard()	{resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));	}
+
 	public void editProfile()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.editProfile.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editProfile.fxml"));
 	}
+
+	public void dashboard()	{resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));	}
+
 	public void manageUsers()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.usertable.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageUsers.fxml"));
 	}
-	public void manageRoles() { resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.rolestable.fxml")); }
+
+	public void manageRoles() { resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageRoles.fxml")); }
+
 	public void manageGroups()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.grouptable.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageGroups.fxml"));
 	}
+
 	public void settings()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.settings.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("settings.fxml"));
 	}
 
 	@Handler
