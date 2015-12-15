@@ -25,6 +25,6 @@ public class Main extends Application
 		resolve(EventBus.class).subscribe(handler);
 
 		//resolve(EventBus.class).fire(new SwitchScreenEvent("design/login/login.fxml", false));
-		resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", false));
+		resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
 	}
 }
