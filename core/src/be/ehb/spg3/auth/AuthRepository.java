@@ -105,7 +105,6 @@ public class AuthRepository implements Authenticator, Authorizator
 	public boolean can(String permission)
 	{
 		return this.auth() != null && this.auth().getRole().getPermissions().parallelStream().filter(p -> p.getName().equals(permission)).count() != 0;
-
 	}
 
 	/**
