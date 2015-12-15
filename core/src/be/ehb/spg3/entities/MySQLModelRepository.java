@@ -9,13 +9,13 @@ import java.util.List;
 // Created by Wannes Gennar. All rights reserved
 
 /**
- * The BaseModelRepository is a base class for all model specific modelrepositories.
+ * The MySQLModelRepository is a base class for all model specific modelrepositories.
  * It provides generic handling of CRUD operations and some simple queries.
  *
  * @param <T> The model class to use.
- * @todo make BaseModelRepository an abstract class.
+ * @todo make MySQLModelRepository an abstract class.
  */
-public class BaseModelRepository<T> implements IModelRepository<T>
+public class MySQLModelRepository<T> implements IModelRepository<T>
 {
 	/**
 	 * Save a new model to the databases or update an existing one.
