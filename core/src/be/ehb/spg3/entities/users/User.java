@@ -2,6 +2,7 @@ package be.ehb.spg3.entities.users;
 
 // Created by Wannes Gennar. All rights reserved
 
+import be.ehb.spg3.entities.groups.Group;
 import be.ehb.spg3.entities.roles.Role;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
@@ -26,6 +27,8 @@ public class User
 	@DatabaseField private String email;
 	@DatabaseField private String username;
 	@DatabaseField private String password;
+	@DatabaseField(foreign = true, foreignAutoCreate = true)
+	private Group group;
 	@DatabaseField(foreign = true, foreignAutoCreate = true) private Role role;
 
 	public User()
@@ -238,5 +241,15 @@ public class User
 	public void setRole(Role role)
 	{
 		this.role = role;
+	}
+
+	public Group getGroup()
+	{
+		return group;
+	}
+
+	public void setGroup(Group group)
+	{
+		this.group = group;
 	}
 }
