@@ -10,6 +10,7 @@ import be.ehb.spg3.exceptions.ConnectivityException;
 import be.ehb.spg3.exceptions.QueryException;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
@@ -104,7 +105,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public boolean can(String permission)
 	{
-		return this.auth() != null && this.auth().getRole().getPermissions().parallelStream().filter(p -> p.getName().equals(permission)).count() != 0;
+		return this.auth() != null && this.auth().getRole().getPermissions().parallelStream().filter(p -> Pattern.compile(p.getName()).matcher(permission).groupCount() == 0).count() != 0;
 	}
 
 	/**
