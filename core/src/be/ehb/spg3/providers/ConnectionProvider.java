@@ -1,34 +1,36 @@
 package be.ehb.spg3.providers;
 
 import com.google.inject.Provider;
-import com.j256.ormlite.jdbc.JdbcConnectionSource;
-import com.j256.ormlite.support.ConnectionSource;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 // Created by Wannes Gennar. All rights reserved
-class ConnectionProvider implements Provider<ConnectionSource>
+class ConnectionProvider implements Provider<Connection>
 {
-	private ConnectionSource connection = null;
+	private Connection connection = null;
 
 	@Override
-	public ConnectionSource get()
+	public Connection get()
 	{
-		if (this.connection == null || !this.connection.isOpen()) // TODO check if connection is still alive
-			this.openConnection();
+		try
+		{
+			if (this.connection == null || this.connection.isClosed()) // TODO check if connection is still alive
+			{
+				this.openConnection();
+			}
 
-		return this.connection;
+			return this.connection;
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	private void openConnection()
 	{
-		try
-		{
-			this.connection = new JdbcConnectionSource("jdbc:mysql://dt5.ehb.be:3306/SP2_GR3", "SP2_GR3", "3qCxw");
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace(); // TODO handle exceptions
-		}
 	}
 }

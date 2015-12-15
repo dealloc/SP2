@@ -10,8 +10,6 @@ import be.ehb.spg3.contracts.validation.StringValidator;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
-import be.ehb.spg3.exceptions.ConnectivityException;
-import be.ehb.spg3.exceptions.QueryException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;

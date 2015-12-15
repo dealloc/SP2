@@ -1,11 +1,13 @@
 package be.ehb.spg3.entities.groups;
 
-import com.j256.ormlite.field.DatabaseField;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
 // Created by Wannes Gennar. All rights reserved
+@Entity
 public class Group
 {
-	@DatabaseField
+	@Column
 	private String name;
 
 	public String getName()

@@ -3,37 +3,38 @@ package be.ehb.spg3.entities.quizzes;
 import be.ehb.spg3.entities.feedbacks.Feedback;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.users.User;
-import com.j256.ormlite.dao.ForeignCollection;
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
-import com.j256.ormlite.table.DatabaseTable;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 // Created by Wannes Gennar. All rights reserved.
 
-/**
- * TODO change to javax.sql annotations to remove coupling!
- */
-@DatabaseTable(tableName = "quizzes")
+@Entity
 public class Quiz
 {
-	@DatabaseField(id = true)
+	@Column
+	@Id
+	@GeneratedValue
 	private int id;
-	@DatabaseField
+	@Column
 	private String name;
-	@DatabaseField
+	@Column
 	private User owner;
-	@ForeignCollectionField
-	private ForeignCollection<User> users;
-	@ForeignCollectionField
-	private ForeignCollection<Question> questions;
-	@ForeignCollectionField
-	private ForeignCollection<Feedback> feedback;
+	@Column
+	@ManyToMany
+	private Collection<User> users;
+	@Column
+	@ManyToMany
+	private Collection<Question> questions;
+	@Column
+	@ManyToOne
+	private Collection<Feedback> feedback;
 
 	public Quiz()
 	{
 	}
 
-	public Quiz(int id, String name, User owner, ForeignCollection<User> users, ForeignCollection<Question> questions, ForeignCollection<Feedback> feedback)
+	public Quiz(int id, String name, User owner, Collection<User> users, Collection<Question> questions, Collection<Feedback> feedback)
 	{
 		this.id = id;
 		this.name = name;
@@ -73,32 +74,32 @@ public class Quiz
 		this.owner = owner;
 	}
 
-	public ForeignCollection<User> getUsers()
+	public Collection<User> getUsers()
 	{
 		return users;
 	}
 
-	public void setUsers(ForeignCollection<User> users)
+	public void setUsers(Collection<User> users)
 	{
 		this.users = users;
 	}
 
-	public ForeignCollection<Question> getQuestions()
+	public Collection<Question> getQuestions()
 	{
 		return questions;
 	}
 
-	public void setQuestions(ForeignCollection<Question> questions)
+	public void setQuestions(Collection<Question> questions)
 	{
 		this.questions = questions;
 	}
 
-	public ForeignCollection<Feedback> getFeedback()
+	public Collection<Feedback> getFeedback()
 	{
 		return feedback;
 	}
 
-	public void setFeedback(ForeignCollection<Feedback> feedback)
+	public void setFeedback(Collection<Feedback> feedback)
 	{
 		this.feedback = feedback;
 	}

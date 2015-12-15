@@ -1,16 +1,29 @@
 package be.ehb.spg3.entities.questions;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 // Created by Wannes Gennar. All rights reserved
 
-/**
- * TODO change to javax.sql annotations to remove coupling!
- */
-@DatabaseTable(tableName = "questions")
+@Entity
 public class Question
 {
-	@DatabaseField(id = true) private int id;
-	@DatabaseField private String question;
+	@Column
+	@Id
+	@GeneratedValue
+	private int id;
+	@Column
+	private String question;
+
+	public String getQuestion()
+	{
+		return question;
+	}
+
+	public void setQuestion(String question)
+	{
+		this.question = question;
+	}
 }

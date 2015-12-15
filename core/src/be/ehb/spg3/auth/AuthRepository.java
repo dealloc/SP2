@@ -6,8 +6,6 @@ import be.ehb.spg3.contracts.encryption.Encryptor;
 import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
-import be.ehb.spg3.exceptions.ConnectivityException;
-import be.ehb.spg3.exceptions.QueryException;
 
 import java.util.List;
 import java.util.regex.Pattern;
