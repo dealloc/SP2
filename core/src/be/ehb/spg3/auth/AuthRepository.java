@@ -104,7 +104,8 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public boolean can(String permission)
 	{
-		return false;
+		return this.auth() != null && this.auth().getRole().getPermissions().parallelStream().filter(p -> p.getName().equals(permission)).count() != 0;
+
 	}
 
 	/**
@@ -117,7 +118,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public boolean cannot(String permission)
 	{
-		return true;
+		return !this.can(permission);
 	}
 
 	/**
