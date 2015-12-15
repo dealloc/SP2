@@ -4,12 +4,10 @@
 
 package be.ehb.spg3.controllers;
 
+import com.sun.deploy.xml.XMLable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,6 +24,8 @@ public class ManageRolesController implements Initializable
 	private ComboBox cbPermissions;
 	@FXML
 	private TextField txtCreateRoleName;
+	@FXML
+	private Label lblError;
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)

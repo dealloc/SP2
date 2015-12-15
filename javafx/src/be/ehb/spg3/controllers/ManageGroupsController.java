@@ -47,6 +47,8 @@ public class ManageGroupsController implements Initializable
 	private TextField txtCreateGroup;
 	@FXML
 	private Label lblError;
+	@FXML
+	private ComboBox cbRoles;
 
 	public ManageGroupsController()
 	{

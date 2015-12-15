@@ -510,6 +510,6 @@
     -fx-text-fill: -fx-text-menu-color;
 }
 
-.errorLabel {
+.lblError {
     -fx-text-fill: #DF0101;
 }

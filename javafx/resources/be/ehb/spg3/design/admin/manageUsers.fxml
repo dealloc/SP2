@@ -33,6 +33,8 @@
             <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
@@ -50,6 +52,15 @@
             <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                <children>
                   <Label text="Last name:">
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
+                  </Label>
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+               <children>
+                  <Label text="Email:">
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
@@ -74,7 +85,16 @@
                   </Label>
                </children>
             </FlowPane>
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="txtFName" GridPane.columnIndex="1" />
+            <TextField fx:id="txtLName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtAddress" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtTel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Group:" GridPane.rowIndex="5" />
+            <TextField fx:id="txtGroup" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="Set role:" GridPane.rowIndex="6" />
+            <ComboBox fx:id="cbRole" prefHeight="46.0" prefWidth="342.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <children>
                   <Button fx:id="btnSave" disable="true" mnemonicParsing="false" onAction="#save" text="Save">
                      <FlowPane.margin>
@@ -93,21 +113,7 @@
                   </Button>
                </children>
             </FlowPane>
-            <TextField fx:id="txtFName" GridPane.columnIndex="1" />
-            <TextField fx:id="txtLName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="txtAddress" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="txtTel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-               <children>
-                  <Label text="Email:">
-                     <FlowPane.margin>
-                        <Insets />
-                     </FlowPane.margin>
-                  </Label>
-               </children>
-            </FlowPane>
-            <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <children>
                   <Label text="Username:" />
                   <TextField fx:id="txtUsername">
@@ -122,19 +128,12 @@
                   </Button>
                </children>
             </FlowPane>
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
+            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="8">
                <children>
                   <Label text="Add user" />
                </children>
             </FlowPane>
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-               <children>
-                  <Label fx:id="lblError" styleClass="errorLabel">
-                     <FlowPane.margin>
-                        <Insets />
-                     </FlowPane.margin>
-                  </Label>
-               </children></FlowPane>
+            <Label fx:id="lblError" styleClass="lblError" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
          </children>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
