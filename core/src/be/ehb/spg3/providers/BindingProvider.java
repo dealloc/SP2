@@ -6,11 +6,13 @@ import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.contracts.encryption.Encryptor;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.contracts.mailing.Mailer;
+import be.ehb.spg3.contracts.persistence.DatabaseRepository;
 import be.ehb.spg3.contracts.validation.EmailValidator;
 import be.ehb.spg3.contracts.validation.StringValidator;
 import be.ehb.spg3.encryption.DummyCryptor;
 import be.ehb.spg3.events.MBassadorBus;
 import be.ehb.spg3.mailing.GMailer;
+import be.ehb.spg3.persistence.ModelDatabaseRepository;
 import be.ehb.spg3.validation.ValidationRepository;
 import com.google.inject.AbstractModule;
 import com.j256.ormlite.support.ConnectionSource;
@@ -51,6 +53,7 @@ class BindingProvider extends AbstractModule
 
 	private void initConnections()
 	{
+		bind(DatabaseRepository.class).to(ModelDatabaseRepository.class);
 		bind(ConnectionSource.class).toProvider(ConnectionProvider.class);
 	}
 
