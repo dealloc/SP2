@@ -24,7 +24,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  * @param <T> The model class to use.
  * @todo make BaseModelRepository an abstract class.
  */
-public abstract class BaseModelRepository<T> implements IModelRepository<T>
+public class BaseModelRepository<T> implements IModelRepository<T>
 {
 	private Dao<T, Long> dao;
 	private ConnectionSource connection;
@@ -253,9 +253,10 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 	 * Create an instance of the model and set it's auto incrementing ID etc
 	 * @return An instance of T
 	 * @throws QueryException
+	 * @throws ConnectivityException
 	 */
 	@Override
-	public T create() throws QueryException
+	public T create() throws QueryException, ConnectivityException
 	{
 		T model = resolve(this.model);
 		try
@@ -268,5 +269,25 @@ public abstract class BaseModelRepository<T> implements IModelRepository<T>
 		}
 
 		return model;
+	}
+
+	/**
+	 * Remove a subject from the database.
+	 *
+	 * @param subject The subject to remove.
+	 * @throws QueryException        When an SQL error occured.
+	 * @throws ConnectivityException When there was an error connecting to the database.
+	 */
+	@Override
+	public void delete(T subject) throws QueryException, ConnectivityException
+	{
+		try
+		{
+			this.dao.delete(subject);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace(); // TODO handle exceptions
+		}
 	}
 }

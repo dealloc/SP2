@@ -101,15 +101,25 @@ public interface IModelRepository<T>
 	/**
 	 * Create the associated table if it does not exist yet.
 	 *
-	 * @throws QueryException
-	 * @throws ConnectivityException
+	 * @throws QueryException        When an SQL error occured.
+	 * @throws ConnectivityException When there was an error connecting to the database.
 	 */
 	void createIfNotExists() throws QueryException, ConnectivityException;
 
 	/**
 	 * Create an instance of the model and set it's auto incrementing ID etc
+	 *
 	 * @return An instance of T
 	 * @throws QueryException
 	 */
-	T create() throws QueryException;
+	T create() throws QueryException, ConnectivityException;
+
+	/**
+	 * Remove a subject from the database.
+	 *
+	 * @param subject The subject to remove.
+	 * @throws QueryException        When an SQL error occured.
+	 * @throws ConnectivityException When there was an error connecting to the database.
+	 */
+	void delete(T subject) throws QueryException, ConnectivityException;
 }
