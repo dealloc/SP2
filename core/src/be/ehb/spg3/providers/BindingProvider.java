@@ -15,7 +15,8 @@ import be.ehb.spg3.mailing.GMailer;
 import be.ehb.spg3.persistence.ModelDatabaseRepository;
 import be.ehb.spg3.validation.ValidationRepository;
 import com.google.inject.AbstractModule;
-import com.j256.ormlite.support.ConnectionSource;
+
+import java.sql.Connection;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -54,7 +55,7 @@ class BindingProvider extends AbstractModule
 	private void initConnections()
 	{
 		bind(DatabaseRepository.class).to(ModelDatabaseRepository.class);
-		bind(ConnectionSource.class).toProvider(ConnectionProvider.class);
+		bind(Connection.class).toProvider(ConnectionProvider.class);
 	}
 
 	private void initValidators()

@@ -17,6 +17,13 @@ import java.util.List;
  */
 public class MySQLModelRepository<T> implements IModelRepository<T>
 {
+	private final Class<T> model;
+
+	public MySQLModelRepository(Class<T> model)
+	{
+		this.model = model;
+	}
+
 	/**
 	 * Save a new model to the databases or update an existing one.
 	 *

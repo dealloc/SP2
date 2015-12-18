@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
 
 import javax.mail.MessagingException;
+import java.sql.SQLException;
 import java.util.List;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
@@ -20,7 +21,7 @@ public class PassRecoveryController
 	@FXML
 	TextField tfUsername;
 
-	public void recoverPass() throws QueryException, ConnectivityException, MessagingException
+	public void recoverPass() throws SQLException, MessagingException
 	{
 		List<User> users = resolve(UserRepository.class).findByField("username", tfUsername.getText());
 		if (users.isEmpty())

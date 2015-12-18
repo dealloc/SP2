@@ -7,6 +7,7 @@ import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -58,7 +59,7 @@ public class AuthRepository implements Authenticator, Authorizator
 				return true;
 			}
 		}
-		catch (QueryException | ConnectivityException e)
+		catch (SQLException e)
 		{
 			e.printStackTrace(); // TODO handle exeption
 		}

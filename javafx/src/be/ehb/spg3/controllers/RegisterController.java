@@ -14,6 +14,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
 
+import java.sql.SQLException;
+
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class RegisterController
@@ -36,7 +38,7 @@ public class RegisterController
 	@FXML
 	private TextField tfPasswordRepeat;
 
-	public void register() throws QueryException, ConnectivityException
+	public void register() throws SQLException
 	{
 		StringValidator validator = resolve(StringValidator.class);
 		String fname = this.tfName.getText();
@@ -66,7 +68,7 @@ public class RegisterController
 						resolve(UserRepository.class).save(user);
 						resolve(Authenticator.class).sudo(user); // set authenticated user
 					}
-					catch (QueryException | ConnectivityException e)
+					catch (SQLException e)
 					{
 						e.printStackTrace(); // TODO handle exception
 					}
