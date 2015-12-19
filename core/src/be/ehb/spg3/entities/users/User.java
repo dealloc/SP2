@@ -13,6 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "users")
+@Access(AccessType.FIELD)
 public class User
 {
 	@Column
@@ -33,11 +34,9 @@ public class User
 	private String username;
 	@Column
 	private String password;
-	@Column
-	@OneToMany
+	@OneToOne
 	private Group group;
-	@Column
-	@OneToMany
+	@OneToOne
 	private Role role;
 
 	public User()
@@ -68,7 +67,6 @@ public class User
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.role = role;
 	}
 
 	/**

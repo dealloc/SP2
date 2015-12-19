@@ -3,6 +3,8 @@ package be.ehb.spg3.entities;
 import be.ehb.spg3.contracts.entities.IModelRepository;
 import be.ehb.spg3.exceptions.ModelNotFoundException;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -22,6 +24,8 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	public MySQLModelRepository(Class<T> model)
 	{
 		this.model = model;
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("be.ehb.spg3.persistence.HibernateUtil");
+		factory.close();
 	}
 
 	/**

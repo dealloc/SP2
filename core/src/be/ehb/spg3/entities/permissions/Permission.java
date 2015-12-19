@@ -2,8 +2,6 @@ package be.ehb.spg3.entities.permissions;
 
 // Created by Wannes Gennar. All rights reserved
 
-import be.ehb.spg3.entities.roles.Role;
-
 import javax.persistence.*;
 
 @Entity
@@ -16,9 +14,6 @@ public class Permission
 	private int id;
 	@Column
 	private String name;
-	@Column
-	@ManyToMany
-	private Role role;
 
 	public Permission()
 	{
