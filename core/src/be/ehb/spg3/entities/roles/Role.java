@@ -12,6 +12,7 @@ import java.util.Collection;
  * It basicly describes the capabilities of a user within the program
  */
 @Entity
+@Table(name = "roles")
 public class Role
 {
 	@Column

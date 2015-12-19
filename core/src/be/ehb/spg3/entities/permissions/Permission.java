@@ -7,6 +7,7 @@ import be.ehb.spg3.entities.roles.Role;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "permissions")
 public class Permission
 {
 	@Column

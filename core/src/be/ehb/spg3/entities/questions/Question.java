@@ -1,13 +1,11 @@
 package be.ehb.spg3.entities.questions;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 // Created by Wannes Gennar. All rights reserved
 
 @Entity
+@Table(name = "questions")
 public class Question
 {
 	@Column

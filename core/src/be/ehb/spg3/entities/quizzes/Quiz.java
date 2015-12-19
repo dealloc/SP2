@@ -10,6 +10,7 @@ import java.util.Collection;
 // Created by Wannes Gennar. All rights reserved.
 
 @Entity
+@Table(name = "quizzes")
 public class Quiz
 {
 	@Column

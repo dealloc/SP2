@@ -12,6 +12,7 @@ import javax.persistence.*;
  * This includes authentication data and identification data.
  */
 @Entity
+@Table(name = "users")
 public class User
 {
 	@Column

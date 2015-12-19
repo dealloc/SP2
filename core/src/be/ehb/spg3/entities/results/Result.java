@@ -8,6 +8,7 @@ import be.ehb.spg3.entities.users.User;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "results")
 public class Result
 {
 	@Column
