@@ -19,13 +19,13 @@ public class Quiz
 	private int id;
 	@Column
 	private String name;
-	@Column
+	@OneToOne
 	private User owner;
-	@ManyToMany
+	@ManyToMany(targetEntity = User.class)
 	private Collection<User> users;
-	@ManyToMany
+	@ManyToMany(targetEntity = Question.class)
 	private Collection<Question> questions;
-	@ManyToOne
+	@ManyToOne(targetEntity = Feedback.class)
 	private Collection<Feedback> feedback;
 
 	public Quiz()
