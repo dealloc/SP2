@@ -15,11 +15,9 @@ public class Result
 	@Id
 	@GeneratedValue
 	private int id;
-	@Column
-	@OneToMany
+	@OneToOne
 	private Quiz quiz;
-	@Column
-	@OneToMany
+	@OneToOne
 	private User user;
 
 	public Result()

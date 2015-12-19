@@ -21,13 +21,10 @@ public class Quiz
 	private String name;
 	@Column
 	private User owner;
-	@Column
 	@ManyToMany
 	private Collection<User> users;
-	@Column
 	@ManyToMany
 	private Collection<Question> questions;
-	@Column
 	@ManyToOne
 	private Collection<Feedback> feedback;
 

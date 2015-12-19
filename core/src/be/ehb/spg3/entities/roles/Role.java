@@ -21,7 +21,6 @@ public class Role
 	private int id;
 	@Column
 	private String name;
-	@Column
 	@ManyToMany
 	private Collection<Permission> permissions;
 

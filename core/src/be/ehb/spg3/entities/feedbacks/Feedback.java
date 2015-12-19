@@ -16,8 +16,7 @@ public class Feedback
 	private int id;
 	@Column
 	private String feedback;
-	@Column
-	@ManyToOne
+	@OneToOne
 	private User user;
 
 	public Feedback()
