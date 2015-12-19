@@ -5,7 +5,6 @@ import be.ehb.spg3.entities.groups.Group;
 import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.roles.Role;
 import be.ehb.spg3.entities.users.User;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -35,11 +34,6 @@ public class ModelDatabaseRepository implements IDatabaseRepository
 				               .addAnnotatedClass(Role.class)
 				               .addAnnotatedClass(Permission.class)
 				               .buildSessionFactory();
-
-		Session session = factory.openSession();
-		session.beginTransaction();
-		session.persist(new User("wannes", "gennar", "wannes.gennar@gmail.com", "dealloc", "password"));
-		session.getTransaction().commit();
 	}
 
 	@Override

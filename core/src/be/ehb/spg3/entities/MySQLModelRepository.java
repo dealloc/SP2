@@ -3,10 +3,17 @@ package be.ehb.spg3.entities;
 import be.ehb.spg3.contracts.entities.IModelRepository;
 import be.ehb.spg3.exceptions.ModelNotFoundException;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.sql.SQLException;
 import java.util.List;
+
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -20,12 +27,26 @@ import java.util.List;
 public class MySQLModelRepository<T> implements IModelRepository<T>
 {
 	private final Class<T> model;
+	final EntityManager manager;
 
 	public MySQLModelRepository(Class<T> model)
 	{
 		this.model = model;
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("be.ehb.spg3.persistence.HibernateUtil");
-		factory.close();
+		this.manager = factory.createEntityManager();
+	}
+
+	private void begin()
+	{
+		if (!this.manager.getTransaction().isActive())
+		{
+			this.manager.getTransaction().begin();
+		}
+	}
+
+	private void finish()
+	{
+		this.manager.getTransaction().commit();
 	}
 
 	/**
@@ -37,7 +58,11 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public void save(T obj) throws SQLException
 	{
+		this.begin();
 
+		this.manager.persist(obj);
+
+		this.finish();
 	}
 
 	/**
@@ -50,7 +75,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public T find(long id) throws SQLException
 	{
-		return null;
+		return this.manager.find(this.model, id);
 	}
 
 	/**
@@ -64,7 +89,13 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public T findOrFail(long id) throws ModelNotFoundException, SQLException
 	{
-		return null;
+		T result = this.find(id);
+		if (result == null)
+		{
+			throw new ModelNotFoundException("Could not find " + this.model.getName() + " with id " + id);
+		}
+
+		return result;
 	}
 
 	/**
@@ -78,7 +109,15 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public List<T> findByField(String field, String value) throws SQLException
 	{
-		return null;
+		CriteriaBuilder criteriaBuilder = this.manager.getCriteriaBuilder();
+		CriteriaQuery<T> criteria = criteriaBuilder.createQuery(this.model);
+
+		Root<T> root = criteria.from(this.model);
+		criteria.select(root);
+		criteria.where(criteriaBuilder.equal(root.get(field), value));
+
+		TypedQuery<T> query = this.manager.createQuery(criteria);
+		return query.getResultList();
 	}
 
 	/**
@@ -92,7 +131,15 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public List<T> findByField(String field, int value) throws SQLException
 	{
-		return null;
+		CriteriaBuilder criteriaBuilder = this.manager.getCriteriaBuilder();
+		CriteriaQuery<T> criteria = criteriaBuilder.createQuery(this.model);
+
+		Root<T> root = criteria.from(this.model);
+		criteria.select(root);
+		criteria.where(criteriaBuilder.equal(root.get(field), value));
+
+		TypedQuery<T> query = this.manager.createQuery(criteria);
+		return query.getResultList();
 	}
 
 	/**
@@ -106,7 +153,15 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public List<T> findByField(String field, boolean value) throws SQLException
 	{
-		return null;
+		CriteriaBuilder criteriaBuilder = this.manager.getCriteriaBuilder();
+		CriteriaQuery<T> criteria = criteriaBuilder.createQuery(this.model);
+
+		Root<T> root = criteria.from(this.model);
+		criteria.select(root);
+		criteria.where(criteriaBuilder.equal(root.get(field), value));
+
+		TypedQuery<T> query = this.manager.createQuery(criteria);
+		return query.getResultList();
 	}
 
 	/**
@@ -119,7 +174,16 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public List<T> findByFields(String[]... fields) throws SQLException
 	{
-		return null;
+		CriteriaBuilder criteriaBuilder = this.manager.getCriteriaBuilder();
+		CriteriaQuery<T> criteria = criteriaBuilder.createQuery(this.model);
+
+		Root<T> root = criteria.from(this.model);
+		criteria.select(root);
+		for (String[] field : fields)
+			criteria.where(criteriaBuilder.equal(root.get(field[0]), field[1]));
+
+		TypedQuery<T> query = this.manager.createQuery(criteria);
+		return query.getResultList();
 	}
 
 	/**
@@ -132,7 +196,14 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public List<T> getAll() throws SQLException
 	{
-		return null;
+		CriteriaBuilder criteriaBuilder = this.manager.getCriteriaBuilder();
+		CriteriaQuery<T> criteria = criteriaBuilder.createQuery(this.model);
+
+		Root<T> root = criteria.from(this.model);
+		criteria.select(root);
+
+		TypedQuery<T> query = this.manager.createQuery(criteria);
+		return query.getResultList();
 	}
 
 	/**
@@ -143,7 +214,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public void createIfNotExists() throws SQLException
 	{
-
+		// NOTE hibernate does this automaticly on startup for us
 	}
 
 	/**
@@ -155,7 +226,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public T create() throws SQLException
 	{
-		return null;
+		return resolve(this.model);
 	}
 
 	/**
@@ -167,6 +238,6 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public void delete(T subject) throws SQLException
 	{
-
+		this.manager.remove(subject);
 	}
 }
