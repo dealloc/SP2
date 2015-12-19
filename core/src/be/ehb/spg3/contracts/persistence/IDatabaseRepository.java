@@ -2,7 +2,9 @@ package be.ehb.spg3.contracts.persistence;
 
 // Created by Wannes Gennar. All rights reserved
 
-public interface DatabaseRepository
+public interface IDatabaseRepository
 {
 	void initialize();
+
+	void finish();
 }

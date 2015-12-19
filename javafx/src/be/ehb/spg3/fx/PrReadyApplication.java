@@ -1,9 +1,9 @@
 package be.ehb.spg3.fx;
 
 import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.contracts.persistence.IDatabaseRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
 import be.ehb.spg3.events.handlers.SwitchScreenHandler;
-import be.ehb.spg3.persistence.HibernateUtil;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -17,9 +17,7 @@ public class PrReadyApplication extends Application
 	@Override
 	public void init() throws Exception
 	{
-		// TODO heavy lifting
-		HibernateUtil.main();
-		System.out.println("done initializing pr app");
+		resolve(IDatabaseRepository.class).initialize();
 	}
 
 	@Override
