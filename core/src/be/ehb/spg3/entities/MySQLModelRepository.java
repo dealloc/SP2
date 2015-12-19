@@ -1,6 +1,7 @@
 package be.ehb.spg3.entities;
 
 import be.ehb.spg3.contracts.entities.IModelRepository;
+import be.ehb.spg3.contracts.persistence.IDatabaseRepository;
 import be.ehb.spg3.exceptions.ModelNotFoundException;
 
 import javax.persistence.EntityManager;
@@ -60,7 +61,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	{
 		this.begin();
 
-		this.manager.persist(obj);
+		resolve(IDatabaseRepository.class).createOrUpdate(obj);
 
 		this.finish();
 	}

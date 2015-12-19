@@ -7,4 +7,6 @@ public interface IDatabaseRepository
 	void initialize();
 
 	void finish();
+
+	<T> void createOrUpdate(T model);
 }

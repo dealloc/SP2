@@ -41,4 +41,10 @@ public class ModelDatabaseRepository implements IDatabaseRepository
 	{
 		this.factory.close();
 	}
+
+	@Override
+	public <T> void createOrUpdate(T model)
+	{
+		this.factory.getCurrentSession().saveOrUpdate(model);
+	}
 }
