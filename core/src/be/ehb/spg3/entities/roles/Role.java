@@ -3,29 +3,26 @@ package be.ehb.spg3.entities.roles;
 // Created by Wannes Gennar. All rights reserved
 
 import be.ehb.spg3.entities.permissions.Permission;
-import com.j256.ormlite.dao.ForeignCollection;
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
-import com.j256.ormlite.table.DatabaseTable;
 
-/**
- * TODO change to javax.sql annotations to remove coupling!
- */
+import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * A role represents a set of permissions a user can have.
  * It basicly describes the capabilities of a user within the program
  */
-@DatabaseTable(tableName = "roles")
+@Entity
+@Table(name = "roles")
 public class Role
 {
-
-	@DatabaseField(generatedId = true)
+	@Column
+	@Id
+	@GeneratedValue
 	private int id;
-	@DatabaseField
+	@Column
 	private String name;
-	@ForeignCollectionField
-	private ForeignCollection<Permission> permissions;
+	@ManyToMany
+	private Collection<Permission> permissions;
 
 	public Role()
 	{
@@ -37,7 +34,7 @@ public class Role
 	 * @param name        The name of this role.
 	 * @param permissions The permissions for this role.
 	 */
-	public Role(String name, ForeignCollection<Permission> permissions)
+	public Role(String name, Collection<Permission> permissions)
 	{
 		this.name = name;
 		this.permissions = permissions;
@@ -69,7 +66,7 @@ public class Role
 	 * @return This role's permissions.
 	 * @see Permission
 	 */
-	public ForeignCollection<Permission> getPermissions()
+	public Collection<Permission> getPermissions()
 	{
 		return permissions;
 	}
@@ -80,8 +77,18 @@ public class Role
 	 * @param permissions The new permissions for this role.
 	 * @see Permission
 	 */
-	public void setPermissions(ForeignCollection<Permission> permissions)
+	public void setPermissions(Collection<Permission> permissions)
 	{
 		this.permissions = permissions;
+	}
+
+	public int getId()
+	{
+		return id;
+	}
+
+	public void setId(int id)
+	{
+		this.id = id;
 	}
 }

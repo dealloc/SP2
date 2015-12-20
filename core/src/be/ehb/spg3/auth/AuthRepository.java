@@ -6,10 +6,10 @@ import be.ehb.spg3.contracts.encryption.Encryptor;
 import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
-import be.ehb.spg3.exceptions.ConnectivityException;
-import be.ehb.spg3.exceptions.QueryException;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
@@ -59,7 +59,7 @@ public class AuthRepository implements Authenticator, Authorizator
 				return true;
 			}
 		}
-		catch (QueryException | ConnectivityException e)
+		catch (SQLException e)
 		{
 			e.printStackTrace(); // TODO handle exeption
 		}
@@ -104,7 +104,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public boolean can(String permission)
 	{
-		return false;
+		return this.auth() != null && this.auth().getRole().getPermissions().parallelStream().filter(p -> Pattern.compile(p.getName()).matcher(permission).groupCount() == 0).count() != 0;
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public boolean cannot(String permission)
 	{
-		return true;
+		return !this.can(permission);
 	}
 
 	/**
