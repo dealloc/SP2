@@ -1,4 +1,4 @@
-package be.ehb.spg3.controllers;
+package be.ehb.spg3.controllers.auth;
 
 // Created by Jérémy Thiebaut. All rights reserved
 

@@ -1,4 +1,4 @@
-package be.ehb.spg3.controllers;
+package be.ehb.spg3.controllers.quizzes;
 
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.events.SwitchScreenEvent;
@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 
-import javax.swing.text.TableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 

@@ -1,4 +1,4 @@
-package be.ehb.spg3.controllers;
+package be.ehb.spg3.controllers.quizzes;
 
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.events.SwitchPaneEvent;

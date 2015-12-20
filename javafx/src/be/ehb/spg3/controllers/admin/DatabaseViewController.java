@@ -1,7 +1,5 @@
-package be.ehb.spg3.controllers;
+package be.ehb.spg3.controllers.admin;
 
-import be.ehb.spg3.contracts.events.EventBus;
-import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,15 +10,16 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.FlowPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 /**
  * Created by Jeroen_2 on 2/12/2015.

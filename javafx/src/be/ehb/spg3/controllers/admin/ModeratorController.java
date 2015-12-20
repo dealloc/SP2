@@ -1,13 +1,12 @@
-package be.ehb.spg3.controllers;
-// Created by Simon Pollé All rights reserved
+package be.ehb.spg3.controllers.admin;
+// Created by Simon Pollï¿½ All rights reserved
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 public class ModeratorController implements Initializable
 {
