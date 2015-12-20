@@ -15,12 +15,20 @@ import java.util.List;
 public interface IModelRepository<T>
 {
 	/**
-	 * Save a new model to the databases or update an existing one.
+	 * Save a new model to the database.
 	 *
 	 * @param obj The model instance to persist.
 	 * @throws SQLException When an error occurred.
 	 */
 	void save(T obj) throws SQLException;
+
+	/**
+	 * Update an existing model in the database.
+	 *
+	 * @param obj The model to update.
+	 * @throws SQLException When an error occurred.
+	 */
+	void update(T obj) throws SQLException;
 
 	/**
 	 * Get an instance of T by it's ID.
@@ -84,6 +92,7 @@ public interface IModelRepository<T>
 	 * Return a list with all models currently persisted in the databases.
 	 * <br>
 	 * <b>Warning; this operation might take very long; avoid if possible!</b>
+	 *
 	 * @return A list of persisted objects.
 	 * @throws SQLException When an error occurred.
 	 */

@@ -5,8 +5,6 @@ import be.ehb.spg3.contracts.persistence.IDatabaseRepository;
 import be.ehb.spg3.exceptions.ModelNotFoundException;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -32,8 +30,7 @@ public abstract class MySQLModelRepository<T> implements IModelRepository<T>
 	public MySQLModelRepository(Class<T> model)
 	{
 		this.model = model;
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("be.ehb.spg3.persistence.HibernateUtil");
-		this.manager = factory.createEntityManager();
+		this.manager = resolve(IDatabaseRepository.class).getManager();
 	}
 
 	private void begin()
@@ -60,7 +57,23 @@ public abstract class MySQLModelRepository<T> implements IModelRepository<T>
 	{
 		this.begin();
 
-		resolve(IDatabaseRepository.class).createOrUpdate(obj);
+		this.manager.persist(obj);
+
+		this.finish();
+	}
+
+	/**
+	 * Update an existing model in the database.
+	 *
+	 * @param obj The model to update.
+	 * @throws SQLException When an error occurred.
+	 */
+	@Override
+	public void update(T obj) throws SQLException
+	{
+		this.begin();
+
+		this.manager.merge(obj);
 
 		this.finish();
 	}
@@ -190,6 +203,7 @@ public abstract class MySQLModelRepository<T> implements IModelRepository<T>
 	 * Return a list with all models currently persisted in the databases.
 	 * <br>
 	 * <b>Warning; this operation might take very long; avoid if possible!</b>
+	 *
 	 * @return A list of persisted objects.
 	 * @throws SQLException When an error occurred.
 	 */
@@ -226,7 +240,7 @@ public abstract class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public T create() throws SQLException
 	{
-		return resolve(this.model);
+		return resolve(this.model); // let the IoC do the hard work on this one
 	}
 
 	/**

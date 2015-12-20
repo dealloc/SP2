@@ -2,6 +2,8 @@ package be.ehb.spg3.contracts.persistence;
 
 // Created by Wannes Gennar. All rights reserved
 
+import javax.persistence.EntityManager;
+
 /**
  * Specifies a contract for interacting with global database settings.
  */
@@ -17,12 +19,5 @@ public interface IDatabaseRepository
 	 */
 	void finish();
 
-	/**
-	 * Create an object, or update it if it already exists.
-	 * <br>
-	 * <p>This method should not be in this contract, but due to <b>Hibernate limitations</b> There was no other way to do it.</p>
-	 * @param model The model to update or create.
-	 * @param <T> The type of model.
-	 */
-	<T> void createOrUpdate(T model);
+	EntityManager getManager();
 }
