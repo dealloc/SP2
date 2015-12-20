@@ -1,18 +1,18 @@
 package be.ehb.spg3.encryption;
 
 import be.ehb.spg3.contracts.encryption.Hasher;
-import org.jasypt.digest.StandardStringDigester;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 // Created by Wannes Gennar. All rights reserved
 public class Sha1Cryptor implements Hasher
 {
-	private StandardStringDigester digester;
+	private final MessageDigest digester;
 
-	public Sha1Cryptor()
+	public Sha1Cryptor() throws NoSuchAlgorithmException
 	{
-		this.digester = new StandardStringDigester();
-		this.digester.setAlgorithm("SHA-1");   // optionally set the algorithm
-		this.digester.setIterations(50000);  // increase security by performing 50000 hashing iterations
+		this.digester = MessageDigest.getInstance("SHA-1");
 	}
 
 	/**
@@ -20,11 +20,34 @@ public class Sha1Cryptor implements Hasher
 	 *
 	 * @param str The string to hash.
 	 * @return The digest of the hash.
+	 * @apiNote http://www.anyexample.com/programming/java/java_simple_class_to_compute_sha_1_hash.xml
 	 */
 	@Override
 	public String hash(String str)
 	{
-		return digester.digest(str);
+		byte[] bytes = str.getBytes();
+		this.digester.update(bytes);
+		byte[] hash = this.digester.digest();
+
+		StringBuilder buffer = new StringBuilder();
+		for (byte aHash : hash)
+		{
+			int halfbyte = (aHash >>> 4) & 0x0F;
+			int two_halfs = 0;
+			do
+			{
+				if ((0 <= halfbyte) && (halfbyte <= 9))
+				{
+					buffer.append((char) ('0' + halfbyte));
+				}
+				else
+				{
+					buffer.append((char) ('a' + (halfbyte - 10)));
+				}
+				halfbyte = aHash & 0x0F;
+			} while (two_halfs++ < 1);
+		}
+		return buffer.toString();
 	}
 
 	/**
@@ -49,6 +72,6 @@ public class Sha1Cryptor implements Hasher
 	@Override
 	public boolean check(String hash, String plain)
 	{
-		return this.digester.matches(plain, hash);
+		return this.hash(plain).equals(hash);
 	}
 }
