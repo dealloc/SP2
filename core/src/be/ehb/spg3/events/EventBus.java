@@ -10,6 +10,10 @@ import java.util.Arrays;
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 // Created by Wannes Gennar. All rights reserved
+
+/**
+ * A custom implementation of the EventBus contract.
+ */
 public class EventBus implements be.ehb.spg3.contracts.events.EventBus
 {
 	private ArrayList<Object> listeners;

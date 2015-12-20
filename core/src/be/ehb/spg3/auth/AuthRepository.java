@@ -67,6 +67,11 @@ public class AuthRepository implements Authenticator, Authorizator
 		return false;
 	}
 
+	/**
+	 * Log in as given the user.
+	 *
+	 * @param user The user to log in.
+	 */
 	@Override
 	public void sudo(User user)
 	{

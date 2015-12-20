@@ -15,10 +15,17 @@ import org.hibernate.cfg.Configuration;
 import java.util.Properties;
 
 // Created by Wannes Gennar. All rights reserved
+
+/**
+ * Implementation of the IDatabaseRepository contract for Hibernate
+ */
 public class ModelDatabaseRepository implements IDatabaseRepository
 {
 	SessionFactory factory;
 
+	/**
+	 * Initialize the database, it's connections and setup the environment to communicate.
+	 */
 	@Override
 	public void initialize()
 	{
@@ -50,12 +57,22 @@ public class ModelDatabaseRepository implements IDatabaseRepository
 				               .buildSessionFactory();
 	}
 
+	/**
+	 * Clean up all used resources and connections with the database.
+	 */
 	@Override
 	public void finish()
 	{
 		this.factory.close();
 	}
 
+	/**
+	 * Create an object, or update it if it already exists.
+	 * <br>
+	 * <p>This method should not be in this contract, but due to <b>Hibernate limitations</b> There was no other way to do it.</p>
+	 * @param model The model to update or create.
+	 * @param <T> The type of model.
+	 */
 	@Override
 	public <T> void createOrUpdate(T model)
 	{

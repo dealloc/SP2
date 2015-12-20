@@ -23,9 +23,8 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  * It provides generic handling of CRUD operations and some simple queries.
  *
  * @param <T> The model class to use.
- * TODO make MySQLModelRepository an abstract class.
  */
-public class MySQLModelRepository<T> implements IModelRepository<T>
+public abstract class MySQLModelRepository<T> implements IModelRepository<T>
 {
 	private final Class<T> model;
 	final EntityManager manager;

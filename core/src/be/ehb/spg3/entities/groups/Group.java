@@ -3,6 +3,10 @@ package be.ehb.spg3.entities.groups;
 import javax.persistence.*;
 
 // Created by Wannes Gennar. All rights reserved
+
+/**
+ * Each user belongs to a "group" which can be a company or just a logical grouping.
+ */
 @Entity
 @Table(name = "groups")
 public class Group

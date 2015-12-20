@@ -6,6 +6,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 // Created by Wannes Gennar. All rights reserved
+
+/**
+ * An implementation of the be.ehb.spg3.contracts.encryption.Hasher using SHA-1 as hashing algorithm.
+ */
 public class Sha1Cryptor implements Hasher
 {
 	private final MessageDigest digester;

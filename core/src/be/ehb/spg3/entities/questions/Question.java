@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 // Created by Wannes Gennar. All rights reserved
 
+/**
+ * A question of a Quiz
+ */
 @Entity
 @Table(name = "questions")
 public class Question
