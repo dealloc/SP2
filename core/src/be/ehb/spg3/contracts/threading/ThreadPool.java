@@ -39,6 +39,7 @@ public interface ThreadPool
 	 *
 	 * @param task The task to be executed asynchronous.
 	 * @return The result from the task when it exits.
+	 * @param <T> The return type of the task.
 	 */
 	<T> Future<?> submitYielding(Runnable task);
 
