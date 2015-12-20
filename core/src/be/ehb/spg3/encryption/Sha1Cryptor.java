@@ -17,10 +17,10 @@ public class Sha1Cryptor implements Hasher
 
 	/**
 	 * Calculate the hash of a string.
-	 *
+	 * <br>
+	 * <p>See http://www.anyexample.com/programming/java/java_simple_class_to_compute_sha_1_hash.xml</p>
 	 * @param str The string to hash.
 	 * @return The digest of the hash.
-	 * @apiNote http://www.anyexample.com/programming/java/java_simple_class_to_compute_sha_1_hash.xml
 	 */
 	@Override
 	public String hash(String str)

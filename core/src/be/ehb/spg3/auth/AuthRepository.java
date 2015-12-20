@@ -134,10 +134,10 @@ public class AuthRepository implements Authenticator, Authorizator
 
 	/**
 	 * Revoke a permission from a user.
-	 *
+	 * <br>
+	 * <p>This function has no effect if the user doesn't have given permission.</p>
 	 * @param subject    The user to revoke the permission from.
 	 * @param permission The permission to revoke.
-	 * @apiNote This function has no effect if the user doesn't have given permission.
 	 */
 	@Override
 	public void revoke(User subject, Permission permission)
