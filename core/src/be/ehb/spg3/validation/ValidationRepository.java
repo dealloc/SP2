@@ -52,7 +52,13 @@ public class ValidationRepository implements EmailValidator, StringValidator
 
 		String previous = strs[0];
 		for (String str : strs)
-			if (!str.equals(previous)) return false;
+		{
+			if (!str.equals(previous))
+			{
+				this.reason = "'" + previous + "' is not equal to '" + str + "'";
+				return false;
+			}
+		}
 
 		return true;
 	}
