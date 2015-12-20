@@ -30,6 +30,12 @@ public class ModelDatabaseRepository implements IDatabaseRepository
 		prop.setProperty("hibernate.id.new_generator_mappings", "false");
 		prop.setProperty("hibernate.hbm2ddl.auto", "create");
 
+		prop.setProperty("hibernate.c3p0.min_size", "5"); // Minimum number of JDBC connections in the pool. Hibernate default: 1
+		prop.setProperty("hibernate.c3p0.max_size", "20"); // Maximum number of JDBC connections in the pool. Hibernate default: 100
+		prop.setProperty("hibernate.c3p0.timeout", "300"); // When an idle connection is removed from the pool (in second). Hibernate default: 0, never expire.
+		prop.setProperty("hibernate.c3p0.max_statements", "50"); // Number of prepared statements will be cached. Increase performance. Hibernate default: 0 , caching is disable.
+		prop.setProperty("hibernate.c3p0.idle_test_period", "3000"); // idle time in seconds before a connection is automatically validated. Hibernate default: 0
+
 		this.factory = new Configuration()
 				               .addPackage("be.ehb.spg3.entities")
 				               .addProperties(prop)
