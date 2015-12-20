@@ -2,7 +2,7 @@ package be.ehb.spg3.auth;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
-import be.ehb.spg3.contracts.encryption.Encryptor;
+import be.ehb.spg3.contracts.encryption.Hasher;
 import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
@@ -51,7 +51,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	{
 		try
 		{
-			password = resolve(Encryptor.class).encrypt(password);
+			password = resolve(Hasher.class).hash(password);
 			List<User> users = this.getRepository().findByFields(new String[]{"username", username}, new String[]{"password", password});
 			if (!users.isEmpty())
 			{

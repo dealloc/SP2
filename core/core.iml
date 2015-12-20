@@ -53,5 +53,6 @@
     <orderEntry type="library" name="Maven: net.engio:mbassador:1.2.4" level="project" />
     <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
     <orderEntry type="library" name="Maven: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.jasypt:jasypt:lite:1.9.2" level="project" />
   </component>
 </module>

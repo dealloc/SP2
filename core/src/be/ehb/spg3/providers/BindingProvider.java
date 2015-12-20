@@ -3,13 +3,13 @@ package be.ehb.spg3.providers;
 import be.ehb.spg3.auth.AuthRepository;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
-import be.ehb.spg3.contracts.encryption.Encryptor;
+import be.ehb.spg3.contracts.encryption.Hasher;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.contracts.mailing.Mailer;
 import be.ehb.spg3.contracts.persistence.IDatabaseRepository;
 import be.ehb.spg3.contracts.validation.EmailValidator;
 import be.ehb.spg3.contracts.validation.StringValidator;
-import be.ehb.spg3.encryption.DummyCryptor;
+import be.ehb.spg3.encryption.Sha1Cryptor;
 import be.ehb.spg3.events.MBassadorBus;
 import be.ehb.spg3.mailing.GMailer;
 import be.ehb.spg3.persistence.ModelDatabaseRepository;
@@ -41,8 +41,7 @@ class BindingProvider extends AbstractModule
 		AuthRepository authenticator = new AuthRepository();
 		bind(Authenticator.class).toInstance(authenticator);
 		bind(Authorizator.class).toInstance(authenticator);
-		//bind(Encryptor.class).to(PlainCryptor.class);
-		bind(Encryptor.class).to(DummyCryptor.class);
+		bind(Hasher.class).to(Sha1Cryptor.class);
 	}
 
 	private void initBusses()
