@@ -4,7 +4,6 @@
 
 package be.ehb.spg3.controllers;
 
-import be.ehb.spg3.contracts.encryption.Encryptor;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
 import javafx.beans.property.IntegerProperty;
@@ -19,7 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.util.Random;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
@@ -57,20 +56,23 @@ public class ManageGroupsController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		try{
+		try
+		{
 			data.addAll(resolve(UserRepository.class).getAll());
-		} catch (be.ehb.spg3.exceptions.ConnectivityException e){
-			e.printStackTrace();
-		} catch (be.ehb.spg3.exceptions.QueryException e) {
+		}
+		catch (SQLException e)
+		{
 			e.printStackTrace();
 		}
 
 		tcGroups.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
 		tvGroups.setItems(data);
 
-		tvGroups.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+		tvGroups.getSelectionModel().selectedItemProperty().addListener(new ChangeListener()
+		{
 			@Override
-			public void changed(ObservableValue observable, Object oldvalue, Object newValue) {
+			public void changed(ObservableValue observable, Object oldvalue, Object newValue)
+			{
 				User selectedPerson = (User) newValue;
 				index.set(data.indexOf(newValue));
 				btnSave.setDisable(false);
@@ -80,49 +82,58 @@ public class ManageGroupsController implements Initializable
 		});
 	}
 
-	public void tableSort(){
+	public void tableSort()
+	{
 		btnSave.setDisable(true);
 		btnDelete.setDisable(true);
 	}
 
-	public void save(){
+	public void save()
+	{
 		data.get(index.get()).setName(txtGroupName.getText());
 
 		User temp = data.get(index.get());
-		try{
+		try
+		{
 			resolve(UserRepository.class).save(temp);
-		} catch (be.ehb.spg3.exceptions.ConnectivityException e){
-			e.printStackTrace();
-		} catch (be.ehb.spg3.exceptions.QueryException e) {
+		}
+		catch (SQLException e)
+		{
 			e.printStackTrace();
 		}
 	}
 
-	public void deleteSelected(){
+	public void deleteSelected()
+	{
 		//TODO Remove row from database (waiting for model update)
 		data.remove(index.get());
 		tvGroups.getSelectionModel().clearSelection();
 	}
 
-	public void addGroup(){
-		if (txtCreateGroup.getText().length() < 3){
+	public void addGroup()
+	{
+		if (txtCreateGroup.getText().length() < 3)
+		{
 			lblError.setText("Username must be at least 4 characters long!");
 			return;
 		}
 
-		for (User u: data){
-			if (txtCreateGroup.getText().equals(u.getUsername())){
+		for (User u : data)
+		{
+			if (txtCreateGroup.getText().equals(u.getUsername()))
+			{
 				lblError.setText("Username already in use!");
 				return;
 			}
 		}
 		User temp = new User();
 		temp.setUsername(txtCreateGroup.getText());
-		try{
+		try
+		{
 			resolve(UserRepository.class).save(temp);
-		} catch (be.ehb.spg3.exceptions.ConnectivityException e){
-			e.printStackTrace();
-		} catch (be.ehb.spg3.exceptions.QueryException e) {
+		}
+		catch (SQLException e)
+		{
 			e.printStackTrace();
 		}
 		data.add(temp);

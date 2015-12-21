@@ -5,8 +5,7 @@
 package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
-import be.ehb.spg3.contracts.encryption.Encryptor;
-import be.ehb.spg3.entities.users.UserRepository;
+import be.ehb.spg3.contracts.encryption.Hasher;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -50,7 +49,7 @@ public class EditProfileController implements Initializable
 
 	public void save(){
 		lblError.setText("");
-		String enc =resolve(Encryptor.class).encrypt(txtCheck.getText());
+		String enc = resolve(Hasher.class).hash(txtCheck.getText());
 		if (!enc.equals(resolve(Authenticator.class).auth().getPassword())){
 			lblError.setText("Incorrect password!");
 			return;
