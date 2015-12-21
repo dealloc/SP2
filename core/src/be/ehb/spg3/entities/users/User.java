@@ -2,31 +2,42 @@ package be.ehb.spg3.entities.users;
 
 // Created by Wannes Gennar. All rights reserved
 
+import be.ehb.spg3.entities.groups.Group;
 import be.ehb.spg3.entities.roles.Role;
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
 
-/**
- * TODO change to javax.sql annotations to remove coupling!
- */
+import javax.persistence.*;
 
 /**
  * Represents a (human) user that interacts with the system.
  * This includes authentication data and identification data.
  */
-@DatabaseTable(tableName = "users")
+@Entity
+@Table(name = "users")
+@Access(AccessType.FIELD)
 public class User
 {
-	@DatabaseField(generatedId = true)
+	@Column
+	@Id
+	@GeneratedValue
 	private int id;
-	@DatabaseField private String name;
-	@DatabaseField private String surname;
-	@DatabaseField private String address;
-	@DatabaseField private String phoneNumber;
-	@DatabaseField private String email;
-	@DatabaseField private String username;
-	@DatabaseField private String password;
-	/* @DatabaseField */ private Role role;
+	@Column
+	private String name;
+	@Column
+	private String surname;
+	@Column
+	private String address;
+	@Column
+	private String phoneNumber;
+	@Column
+	private String email;
+	@Column
+	private String username;
+	@Column
+	private String password;
+	@OneToOne
+	private Group group;
+	@OneToOne
+	private Role role;
 
 	public User()
 	{
@@ -34,16 +45,17 @@ public class User
 
 	/**
 	 * Create a new user. (This method will usually only be called by object factories)
+	 * <p>
+	 * //	 * @param id          The user identifier.
 	 *
-	 //	 * @param id          The user identifier.
-	 * @param name        The first name of the user.
-	 * @param surname     The last name of the user.
-	//	 * @param address     The adress ofthe user.
-	//	 * @param phoneNumber The phone number of this user.
-	 * @param email       The email address of this user.
-	 * @param username    The username this user uses to log in.
-	 * @param password    The password this user uses to log in.
-	//	 * @param role        The role of this user in the system.
+	 * @param name     The first name of the user.
+	 * @param surname  The last name of the user.
+	 *                 //	 * @param address     The adress ofthe user.
+	 *                 //	 * @param phoneNumber The phone number of this user.
+	 * @param email    The email address of this user.
+	 * @param username The username this user uses to log in.
+	 * @param password The password this user uses to log in.
+	 *                 //	 * @param role        The role of this user in the system.
 	 */
 	public User(String name, String surname, String email, String username, String password)
 	{
@@ -55,7 +67,6 @@ public class User
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.role = role;
 	}
 
 	/**
@@ -238,5 +249,15 @@ public class User
 	public void setRole(Role role)
 	{
 		this.role = role;
+	}
+
+	public Group getGroup()
+	{
+		return group;
+	}
+
+	public void setGroup(Group group)
+	{
+		this.group = group;
 	}
 }

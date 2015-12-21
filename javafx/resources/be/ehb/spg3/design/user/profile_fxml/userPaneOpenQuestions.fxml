@@ -1,55 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.Pane?>
 <?import java.lang.String?>
-
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="614.0" prefWidth="913.0" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<Pane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.40"
+      fx:controller="be.ehb.spg3.controllers.quizzes.openQuestionsController"
+      stylesheets="@../profile_css/stylesheet.css">
    <children>
-      <FlowPane alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="913.0" styleClass="leftSidePane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Pane prefHeight="88.0" prefWidth="700.0" style="-fx-background-color: #3f4852;">
          <children>
-            <Button fx:id="btnOpenVragen" mnemonicParsing="false" text="Open vragenlijsten">
+            <Button fx:id="btnOpenVragen" layoutX="36.0" layoutY="44.0" mnemonicParsing="false" text="Open vragenlijsten">
                <styleClass>
                   <String fx:value="top" />
                   <String fx:value="clicked" />
                </styleClass>
-               <FlowPane.margin>
-                  <Insets left="15.0" />
-               </FlowPane.margin>
             </Button>
-            <Button fx:id="btnSluitVragen" mnemonicParsing="false" onAction="#openClosedQuestions" styleClass="top" text="Gesloten vragenlijsten">
-               <FlowPane.margin>
-                  <Insets left="15.0" />
-               </FlowPane.margin>
-            </Button>
+            <Button fx:id="btnSluitVragen" layoutX="176.0" layoutY="44.0" mnemonicParsing="false" onAction="#openClosedQuestions" styleClass="top" text="Gesloten vragenlijsten" />
          </children>
-      </FlowPane>
-      <GridPane layoutX="17.0" layoutY="81.0" prefHeight="508.0" prefWidth="848.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="81.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
-        </rowConstraints>
+      </Pane>
+      <Pane layoutY="88.0" prefHeight="514.0" prefWidth="700.0">
          <children>
-            <TableView fx:id="" prefHeight="511.0" prefWidth="752.0">
-               <columns>
-                  <TableColumn fx:id="naam" prefWidth="209.0" text="Naam" />
-                  <TableColumn fx:id="publisher" prefWidth="226.0" text="Uitgever" />
+            <TableView fx:id="" layoutX="36.0" layoutY="57.0" prefHeight="386.0" prefWidth="555.0">
+              <columns>
+                <TableColumn fx:id="naam" prefWidth="209.0" text="Naam" />
+                <TableColumn fx:id="publisher" prefWidth="226.0" text="Uitgever" />
                   <TableColumn fx:id="amountQ" prefWidth="119.0" text="Aantal vragen" />
-               </columns>
+              </columns>
             </TableView>
-            <Button fx:id="btnStart" mnemonicParsing="false" onAction="#startQuiz" text="Start" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
-            </Button>
+            <Button fx:id="btnStart" layoutX="624.0" layoutY="237.0" mnemonicParsing="false" onAction="#startQuiz" text="Start" />
          </children>
-      </GridPane>
+      </Pane>
    </children>
-</AnchorPane>
+</Pane>

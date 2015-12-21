@@ -16,8 +16,8 @@ public class InjectionProvider
 
 	/**
 	 * Initialize the InjectionProviders internal injector.
-	 *
-	 * @apiNote This method is called internally and you'll find you won't have to use it.
+	 * <br>
+	 * <p>This method is called internally and you'll find you won't have to use it.</p>
 	 */
 	public static void initialize()
 	{
