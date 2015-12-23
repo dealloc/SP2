@@ -74,7 +74,7 @@ public class RegisterController
 					}
 
 					Notifications.create().darkStyle().text("You have successfully registered!").showConfirm();
-					resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", true));
+					resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
 				}
 			}
 			else
