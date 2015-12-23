@@ -2,7 +2,7 @@ package be.ehb.spg3.auth;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
-import be.ehb.spg3.contracts.encryption.Encryptor;
+import be.ehb.spg3.contracts.encryption.Hasher;
 import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
@@ -51,7 +51,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	{
 		try
 		{
-			password = resolve(Encryptor.class).encrypt(password);
+			password = resolve(Hasher.class).hash(password);
 			List<User> users = this.getRepository().findByFields(new String[]{"username", username}, new String[]{"password", password});
 			if (!users.isEmpty())
 			{
@@ -67,6 +67,11 @@ public class AuthRepository implements Authenticator, Authorizator
 		return false;
 	}
 
+	/**
+	 * Log in as given the user.
+	 *
+	 * @param user The user to log in.
+	 */
 	@Override
 	public void sudo(User user)
 	{
@@ -134,10 +139,10 @@ public class AuthRepository implements Authenticator, Authorizator
 
 	/**
 	 * Revoke a permission from a user.
-	 *
+	 * <br>
+	 * <p>This function has no effect if the user doesn't have given permission.</p>
 	 * @param subject    The user to revoke the permission from.
 	 * @param permission The permission to revoke.
-	 * @apiNote This function has no effect if the user doesn't have given permission.
 	 */
 	@Override
 	public void revoke(User subject, Permission permission)

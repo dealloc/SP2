@@ -6,6 +6,9 @@ import be.ehb.spg3.entities.users.User;
 
 import javax.persistence.*;
 
+/**
+ * Feedback given by the user.
+ */
 @Entity
 @Table(name = "feedbacks")
 public class Feedback

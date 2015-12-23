@@ -4,7 +4,7 @@ package be.ehb.spg3.threading;
 
 /**
  * Provides a thin layer around native Java threads.
- * CoreThreads automaticly install an UncaughtExceptionHandler if available.
+ * CoreThreads automatically install an UncaughtExceptionHandler if available.
  */
 public class CoreThread extends Thread
 {

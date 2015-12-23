@@ -3,7 +3,7 @@ package be.ehb.spg3.controllers.auth;
 // Created by Jérémy Thiebaut. All rights reserved
 
 import be.ehb.spg3.contracts.auth.Authenticator;
-import be.ehb.spg3.contracts.encryption.Encryptor;
+import be.ehb.spg3.contracts.encryption.Hasher;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.contracts.validation.EmailValidator;
 import be.ehb.spg3.contracts.validation.StringValidator;
@@ -62,7 +62,7 @@ public class RegisterController
 				}
 				else
 				{
-					User user = new User(fname, lname, email, username, resolve(Encryptor.class).encrypt(password));
+					User user = new User(fname, lname, email, username, resolve(Hasher.class).hash(password));
 					try
 					{
 						resolve(UserRepository.class).save(user);
@@ -74,7 +74,7 @@ public class RegisterController
 					}
 
 					Notifications.create().darkStyle().text("You have successfully registered!").showConfirm();
-					resolve(EventBus.class).fire(new SwitchScreenEvent("design/panel.fxml", true));
+					resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
 				}
 			}
 			else

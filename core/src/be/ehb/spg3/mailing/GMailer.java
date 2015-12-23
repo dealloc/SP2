@@ -9,6 +9,9 @@ import java.util.Properties;
 
 // Created by Wannes Gennar. All rights reserved
 
+/**
+ * Implementation of the Mailer contract using the Gmail services.
+ */
 public class GMailer implements Mailer
 {
 	Message message;
@@ -33,6 +36,12 @@ public class GMailer implements Mailer
 		this.message = new MimeMessage(session);
 	}
 
+	/**
+	 * Set the sender of the email. (not needed for some implementations)
+	 *
+	 * @param from The sender for this email.
+	 * @return The Mailer itself for chaining.
+	 */
 	@Override
 	public Mailer from(String from)
 	{
@@ -48,6 +57,12 @@ public class GMailer implements Mailer
 		return this;
 	}
 
+	/**
+	 * Set the receiver of the email.
+	 *
+	 * @param to The receiver for this email.
+	 * @return The Mailer itself for chaining.
+	 */
 	@Override
 	public Mailer to(String to)
 	{
@@ -63,6 +78,12 @@ public class GMailer implements Mailer
 		return this;
 	}
 
+	/**
+	 * Set the subject of the email.
+	 *
+	 * @param subject The subject for this email.
+	 * @return The Mailer itself for chaining.
+	 */
 	@Override
 	public Mailer subject(String subject)
 	{
@@ -78,6 +99,12 @@ public class GMailer implements Mailer
 		return this;
 	}
 
+	/**
+	 * Set the content of the email or the template to parse depending on the implementing service.
+	 *
+	 * @param msg The content or template.
+	 * @return The Mailer itself for chaining.
+	 */
 	@Override
 	public Mailer text(String msg)
 	{
@@ -93,6 +120,11 @@ public class GMailer implements Mailer
 		return this;
 	}
 
+	/**
+	 * Send the email.
+	 *
+	 * @throws MessagingException If something goes wrong with sending the email.
+	 */
 	@Override
 	public void send() throws MessagingException
 	{

@@ -19,11 +19,11 @@ public class ThreadManager implements ThreadPool
 	public ThreadManager()
 	{
 		this.executor = new ThreadPoolExecutor(10,
-				10,
-				60L,
-				TimeUnit.SECONDS,
-				new SynchronousQueue<>(),
-				task -> new CoreThread("ThreadManager-daemon", task)
+				                                      10,
+				                                      60L,
+				                                      TimeUnit.SECONDS,
+				                                      new SynchronousQueue<>(),
+				                                      task -> new CoreThread("ThreadManager-daemon", task)
 		);
 	}
 
@@ -51,9 +51,10 @@ public class ThreadManager implements ThreadPool
 
 	/**
 	 * Submit a runnable to be executed in a separate thread.
+	 * <br>
+	 * <p>If all threads are busy, the task may be delayed until a thread becomes available.</p>
 	 *
 	 * @param task The task to be executed asynchronous.
-	 * @apiNote If all threads are busy, the task may be delayed until a thread becomes available.
 	 */
 	@Override
 	public void submit(Runnable task)
@@ -63,10 +64,11 @@ public class ThreadManager implements ThreadPool
 
 	/**
 	 * Submit a runnable to be executed in a separate thread which will yield a result.
+	 * <br>
+	 * <p>If all threads are busy, the task may be delayed until a thread becomes available.</p>
 	 *
 	 * @param task The task to be executed asynchronous.
 	 * @return The result from the task when it exits.
-	 * @apiNote If all threads are busy, the task may be delayed until a thread becomes available.
 	 */
 	@Override
 	public <T> Future<?> submitYielding(Runnable task)

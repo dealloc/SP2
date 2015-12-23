@@ -9,6 +9,9 @@ import java.util.Collection;
 
 // Created by Wannes Gennar. All rights reserved.
 
+/**
+ * A quiz
+ */
 @Entity
 @Table(name = "quizzes")
 public class Quiz

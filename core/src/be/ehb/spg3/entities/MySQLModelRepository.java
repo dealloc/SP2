@@ -5,8 +5,6 @@ import be.ehb.spg3.contracts.persistence.IDatabaseRepository;
 import be.ehb.spg3.exceptions.ModelNotFoundException;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -23,9 +21,8 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  * It provides generic handling of CRUD operations and some simple queries.
  *
  * @param <T> The model class to use.
- * @todo make MySQLModelRepository an abstract class.
  */
-public class MySQLModelRepository<T> implements IModelRepository<T>
+public abstract class MySQLModelRepository<T> implements IModelRepository<T>
 {
 	private final Class<T> model;
 	final EntityManager manager;
@@ -33,8 +30,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	public MySQLModelRepository(Class<T> model)
 	{
 		this.model = model;
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("be.ehb.spg3.persistence.HibernateUtil");
-		this.manager = factory.createEntityManager();
+		this.manager = resolve(IDatabaseRepository.class).getManager();
 	}
 
 	private void begin()
@@ -54,14 +50,30 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	 * Save a new model to the databases or update an existing one.
 	 *
 	 * @param obj The model instance to persist.
-	 * @throws SQLException When an error occured.
+	 * @throws SQLException When an error occurred.
 	 */
 	@Override
 	public void save(T obj) throws SQLException
 	{
 		this.begin();
 
-		resolve(IDatabaseRepository.class).createOrUpdate(obj);
+		this.manager.persist(obj);
+
+		this.finish();
+	}
+
+	/**
+	 * Update an existing model in the database.
+	 *
+	 * @param obj The model to update.
+	 * @throws SQLException When an error occurred.
+	 */
+	@Override
+	public void update(T obj) throws SQLException
+	{
+		this.begin();
+
+		this.manager.merge(obj);
 
 		this.finish();
 	}
@@ -71,7 +83,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	 *
 	 * @param id The model ID.
 	 * @return An instance of T matching the given ID, or null if none was found.
-	 * @throws SQLException When an error occured.
+	 * @throws SQLException When an error occurred.
 	 */
 	@Override
 	public T find(long id) throws SQLException
@@ -85,7 +97,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	 * @param id The model ID.
 	 * @return An instance of T matching the given ID.
 	 * @throws ModelNotFoundException Thrown when no model with given ID was found.
-	 * @throws SQLException           When an SQL error occured.
+	 * @throws SQLException           When an SQL error occurred.
 	 */
 	@Override
 	public T findOrFail(long id) throws ModelNotFoundException, SQLException
@@ -105,7 +117,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	 * @param field The field to query.
 	 * @param value The value the given field should match.
 	 * @return A list of instances of T matching given query, or an empty list if none were found.
-	 * @throws SQLException When an error occured.
+	 * @throws SQLException When an error occurred.
 	 */
 	@Override
 	public List<T> findByField(String field, String value) throws SQLException
@@ -127,7 +139,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	 * @param field The field to query.
 	 * @param value The value the given field should match.
 	 * @return A list of instances of T matching given query, or an empty list if none were found.
-	 * @throws SQLException When an error occured.
+	 * @throws SQLException When an error occurred.
 	 */
 	@Override
 	public List<T> findByField(String field, int value) throws SQLException
@@ -149,7 +161,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	 * @param field The field to query.
 	 * @param value The value the given field should match.
 	 * @return A list of instances of T matching given query, or an empty list if none were found.
-	 * @throws SQLException When an error occured.
+	 * @throws SQLException When an error occurred.
 	 */
 	@Override
 	public List<T> findByField(String field, boolean value) throws SQLException
@@ -170,7 +182,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	 *
 	 * @param fields The fields to query
 	 * @return A list of values matching given fields or null if an error was thrown
-	 * @throws SQLException When an error occured.
+	 * @throws SQLException When an error occurred.
 	 */
 	@Override
 	public List<T> findByFields(String[]... fields) throws SQLException
@@ -189,10 +201,11 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 
 	/**
 	 * Return a list with all models currently persisted in the databases.
+	 * <br>
+	 * <b>Warning; this operation might take very long; avoid if possible!</b>
 	 *
 	 * @return A list of persisted objects.
-	 * @throws SQLException When an error occured.
-	 * @apiNote Warning; this operation might take very long; avoid if possible!
+	 * @throws SQLException When an error occurred.
 	 */
 	@Override
 	public List<T> getAll() throws SQLException
@@ -210,7 +223,7 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	/**
 	 * Create the associated table if it does not exist yet.
 	 *
-	 * @throws SQLException When an error occured.
+	 * @throws SQLException When an error occurred.
 	 */
 	@Override
 	public void createIfNotExists() throws SQLException
@@ -222,19 +235,19 @@ public class MySQLModelRepository<T> implements IModelRepository<T>
 	 * Create an instance of the model and set it's auto incrementing ID etc
 	 *
 	 * @return An instance of T
-	 * @throws SQLException
+	 * @throws SQLException When an error occurred.
 	 */
 	@Override
 	public T create() throws SQLException
 	{
-		return resolve(this.model);
+		return resolve(this.model); // let the IoC do the hard work on this one
 	}
 
 	/**
 	 * Remove a subject from the database.
 	 *
 	 * @param subject The subject to remove.
-	 * @throws SQLException When an error occured.
+	 * @throws SQLException When an error occurred.
 	 */
 	@Override
 	public void delete(T subject) throws SQLException

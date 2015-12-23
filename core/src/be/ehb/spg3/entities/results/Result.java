@@ -7,6 +7,9 @@ import be.ehb.spg3.entities.users.User;
 
 import javax.persistence.*;
 
+/**
+ * The result of a user finishing a quiz.
+ */
 @Entity
 @Table(name = "results")
 public class Result

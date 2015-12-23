@@ -4,7 +4,6 @@
 
 package be.ehb.spg3.controllers;
 
-import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.animation.KeyFrame;
@@ -26,7 +25,7 @@ import static be.ehb.spg3.Resources.fxml;
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 
-public class PanelController implements Initializable
+public class ModeratorpanelController implements Initializable
 {
 
 	@FXML
@@ -37,10 +36,11 @@ public class PanelController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		String username = resolve(Authenticator.class).auth().getUsername();
+		//TODO resolve username
+		String username = "*EDIT*";//resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.dashboard.fxml"));
 	}
 
 	public void close()
@@ -48,24 +48,28 @@ public class PanelController implements Initializable
 		Platform.exit();
 	}
 
+	public void editProfile()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editprofile.fxml"));
+	}
+
 	public void dashboard()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.dashboard.fxml"));
 	}
 
-	public void quizzes()
+	public void createQuiz()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.database.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.createQuiz.fxml"));
 	}
 
-	public void profiles()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.editProfile.fxml"));
-	}
+	public void manageQuizzes()	{ resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageQuizzes.fxml")); }
+
+	public void manageGroup() {	resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageGroup.fxml"));	}
 
 	public void settings()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.settings.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("settings.fxml"));
 	}
 
 	@Handler

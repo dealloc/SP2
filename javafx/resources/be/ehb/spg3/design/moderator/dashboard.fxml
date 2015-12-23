@@ -30,7 +30,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button fx:id="test" mnemonicParsing="false" onAction="#clickMe" text="Button">
+            <Button fx:id="test" mnemonicParsing="false" text="Button">
                <GridPane.margin>
                   <Insets left="75.0" top="150.0" />
                </GridPane.margin>

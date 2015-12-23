@@ -8,10 +8,19 @@ import be.ehb.spg3.contracts.validation.StringValidator;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
+/**
+ * Implements validators for various purposes.
+ */
 public class ValidationRepository implements EmailValidator, StringValidator
 {
 	private String reason = null;
 
+	/**
+	 * Validates given email address.
+	 *
+	 * @param email The address to validate.
+	 * @return True if the address is valid, False if it isn't.
+	 */
 	@Override
 	public boolean validateEmail(String email)
 	{
@@ -27,6 +36,10 @@ public class ValidationRepository implements EmailValidator, StringValidator
 		}
 	}
 
+	/**
+	 * Get the reason why a validation failed.
+	 * @return A string explaining why the validation failed, or null if the validation passed.
+	 */
 	@Override
 	public String getReason()
 	{
@@ -44,6 +57,12 @@ public class ValidationRepository implements EmailValidator, StringValidator
 		return true;
 	}
 
+	/**
+	 * Check if one of the given strings are empty.
+	 *
+	 * @param strs The strings to check if it's empty or not.
+	 * @return true if the string is empty, false if it's not empty.
+	 */
 	@Override
 	public boolean same(String... strs)
 	{

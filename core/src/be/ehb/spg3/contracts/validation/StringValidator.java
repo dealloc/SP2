@@ -5,7 +5,7 @@ package be.ehb.spg3.contracts.validation;
 /**
  * Various functions to validate strings for a set of situations.
  */
-public interface StringValidator
+public interface StringValidator extends Validator
 {
 	/**
 	 * Check if one of the given strings are empty.

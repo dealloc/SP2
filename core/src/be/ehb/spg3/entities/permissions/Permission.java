@@ -4,6 +4,9 @@ package be.ehb.spg3.entities.permissions;
 
 import javax.persistence.*;
 
+/**
+ * A permission indicates access to a resource.
+ */
 @Entity
 @Table(name = "permissions")
 public class Permission
