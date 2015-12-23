@@ -4,18 +4,24 @@ package be.ehb.spg3.entities.results;
 
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.users.User;
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+
+import javax.persistence.*;
 
 /**
- * TODO change to javax.sql annotations to remove coupling!
+ * The result of a user finishing a quiz.
  */
-@DatabaseTable(tableName = "results")
+@Entity
+@Table(name = "results")
 public class Result
 {
-	@DatabaseField(id = true) private int id;
-	@DatabaseField private Quiz quiz;
-	@DatabaseField private User user;
+	@Column
+	@Id
+	@GeneratedValue
+	private int id;
+	@OneToOne
+	private Quiz quiz;
+	@OneToOne
+	private User user;
 
 	public Result()
 	{

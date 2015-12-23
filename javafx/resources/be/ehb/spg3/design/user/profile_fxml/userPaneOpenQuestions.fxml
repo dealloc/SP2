@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import java.lang.String?>
 <Pane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.40"
-      fx:controller="be.ehb.spg3.controllers.openQuestionsController" stylesheets="@../profile_css/stylesheet.css">
+      fx:controller="be.ehb.spg3.controllers.quizzes.openQuestionsController"
+      stylesheets="@../profile_css/stylesheet.css">
    <children>
       <Pane prefHeight="88.0" prefWidth="700.0" style="-fx-background-color: #3f4852;">
          <children>

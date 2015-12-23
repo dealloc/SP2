@@ -25,19 +25,21 @@ public interface ThreadPool
 
 	/**
 	 * Submit a runnable to be executed in a separate thread.
+	 * <br>
+	 * <p>If all threads are busy, the task may be delayed until a thread becomes available.</p>
 	 *
 	 * @param task The task to be executed asynchronous.
-	 * @apiNote If all threads are busy, the task may be delayed until a thread becomes available.
 	 */
 	void submit(Runnable task);
 
 	/**
 	 * Submit a runnable to be executed in a separate thread which will yield a result.
+	 * <br>
+	 * <p>If all threads are busy, the task may be delayed until a thread becomes available.</p>
 	 *
-	 * @param <T>  The type of the result that the task returns.
 	 * @param task The task to be executed asynchronous.
 	 * @return The result from the task when it exits.
-	 * @apiNote If all threads are busy, the task may be delayed until a thread becomes available.
+	 * @param <T> The return type of the task.
 	 */
 	<T> Future<?> submitYielding(Runnable task);
 
