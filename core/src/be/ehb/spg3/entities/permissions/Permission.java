@@ -2,17 +2,25 @@ package be.ehb.spg3.entities.permissions;
 
 // Created by Wannes Gennar. All rights reserved
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+import javax.persistence.*;
 
 /**
- * TODO change to javax.sql annotations to remove coupling!
+ * A permission indicates access to a resource.
  */
-@DatabaseTable(tableName = "permissions")
+@Entity
+@Table(name = "permissions")
 public class Permission
 {
-	@DatabaseField(id = true) private int id;
-	@DatabaseField private String name;
+	@Column
+	@Id
+	@GeneratedValue
+	private int id;
+	@Column
+	private String name;
+
+	public Permission()
+	{
+	}
 
 	public Permission(String name)
 	{
