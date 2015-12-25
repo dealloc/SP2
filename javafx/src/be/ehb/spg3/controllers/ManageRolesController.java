@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -80,9 +81,26 @@ public class ManageRolesController implements Initializable
 		{
 			e.printStackTrace();
 		}
-		//TODO fill combobox
-		cbPermissions.setCellFactory(new PropertyValueFactory<Permission, String>("name"));
+		//TODO add permissions to combobox
 		cbPermissions.setItems(permissions);
+		cbPermissions.getSelectionModel().selectFirst();
+		cbPermissions.setCellFactory(new Callback<ListView<Permission>, ListCell<Permission>>() {
+			@Override
+			public ListCell<Permission> call(ListView<Permission> p) {
+				ListCell cell = new ListCell<Permission>() {
+					@Override
+					protected void updateItem(Permission item, boolean empty) {
+						super.updateItem(item, empty);
+						if (empty) {
+							setText("");
+						} else {
+							setText(item.getName());
+						}
+					}
+				};
+				return cell;
+			}
+		});
 
 		tcRoles.setCellValueFactory(new PropertyValueFactory<Permission, String>("name"));
 

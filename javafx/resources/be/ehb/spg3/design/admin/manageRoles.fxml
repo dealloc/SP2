@@ -112,7 +112,7 @@
             </FlowPane>
             <TableView fx:id="tvPermissions" onSort="#sortPermissions" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
               <columns>
-                <TableColumn prefWidth="499.0" text=" " />
+                <TableColumn fx:id="tcPermissions" prefWidth="499.0" text=" " />
               </columns>
                <GridPane.margin>
                   <Insets bottom="10.0" top="10.0" />
