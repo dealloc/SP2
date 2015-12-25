@@ -38,8 +38,7 @@ public class AdminpanelController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		//TODO resolve username
-		String username = "*EDIT*";//resolve(Authenticator.class).auth().getUsername();
+		String username = resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));

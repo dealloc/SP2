@@ -513,3 +513,7 @@
 .lblError {
     -fx-text-fill: #DF0101;
 }
+
+.lblConfirm{
+    -fx-text-fill: #339933;
+}

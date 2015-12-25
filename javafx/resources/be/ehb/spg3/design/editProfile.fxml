@@ -38,9 +38,9 @@
       <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <TextField fx:id="txtAddress" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <TextField fx:id="txtTel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <TextField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <TextField fx:id="txtRetypePassword" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <TextField fx:id="txtCheck" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <PasswordField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <PasswordField fx:id="txtRetypePassword" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <PasswordField fx:id="txtCheck" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <FlowPane alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
          <children>
             <Button mnemonicParsing="false" onAction="#save" text="Save" />
@@ -52,6 +52,7 @@
             <Insets top="-10.0" />
          </padding>
       </Label>
+      <Label fx:id="lblConfirm" styleClass="lblConfirm" wrapText="true" GridPane.rowIndex="11" />
    </children>
    <padding>
       <Insets left="50.0" right="50.0" />

@@ -54,6 +54,8 @@ public class ManageUsersController implements Initializable
 	private TextField txtUsername;
 	@FXML
 	private Label lblError;
+	@FXML
+	private Label lblConfirm;
 
 	public ManageUsersController()
 	{
@@ -108,6 +110,7 @@ public class ManageUsersController implements Initializable
 
 	public void save()
 	{
+		resetLbl();
 		data.get(index.get()).setName(txtFName.getText());
 		data.get(index.get()).setSurname(txtLName.getText());
 		data.get(index.get()).setEmail(txtEmail.getText());
@@ -118,6 +121,7 @@ public class ManageUsersController implements Initializable
 		try
 		{
 			resolve(UserRepository.class).save(temp);
+			lblConfirm.setText("User changes saved.");
 		}
 		catch (SQLException e)
 		{
@@ -127,13 +131,23 @@ public class ManageUsersController implements Initializable
 
 	public void deleteSelected()
 	{
-		//TODO Remove row from database (waiting for model update)
+		resetLbl();
+		try
+		{
+			resolve(UserRepository.class).delete(data.get(index.get()));
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 		data.remove(index.get());
 		tvTable.getSelectionModel().clearSelection();
+		lblConfirm.setText("User removed.");
 	}
 
 	public void resetPass()
 	{
+		resetLbl();
 		User temp = data.get(index.get());
 		temp.setPassword(resolve(Hasher.class).hash(randomString()));
 		try
@@ -144,6 +158,7 @@ public class ManageUsersController implements Initializable
 		{
 			e.printStackTrace();
 		}
+		lblConfirm.setText("Password has been resetted.");
 	}
 
 	public String randomString()
@@ -163,6 +178,7 @@ public class ManageUsersController implements Initializable
 
 	public void addUser()
 	{
+		resetLbl();
 		if (txtUsername.getText().length() < 4)
 		{
 			lblError.setText("Username must be at least 4 characters long!");
@@ -179,6 +195,7 @@ public class ManageUsersController implements Initializable
 		}
 		User temp = new User();
 		temp.setUsername(txtUsername.getText());
+		temp.setPassword(resolve(Hasher.class).hash("prready"));  //TODO change to random string and add email
 		try
 		{
 			resolve(UserRepository.class).save(temp);
@@ -188,5 +205,11 @@ public class ManageUsersController implements Initializable
 			e.printStackTrace();
 		}
 		data.add(temp);
+		lblConfirm.setText("User added.");
+	}
+
+	public void resetLbl(){
+		lblConfirm.setText("");
+		lblError.setText("");
 	}
 }

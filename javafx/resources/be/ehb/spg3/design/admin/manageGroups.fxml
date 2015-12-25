@@ -84,12 +84,13 @@
             </FlowPane>
             <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label fx:id="lblError" styleClass="errorLabel">
+                  <Label fx:id="lblError" styleClass="lblError">
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Label>
                </children></FlowPane>
+            <Label fx:id="lblConfirm" styleClass="lblConfirm" GridPane.rowIndex="3" />
          </children>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
