@@ -19,7 +19,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
          <columns>
-            <TableColumn fx:id="tcUsers" prefWidth="279.0" text="Roles" />
+            <TableColumn fx:id="tcRoles" prefWidth="279.0" text="Roles" />
          </columns>
       </TableView>
       <GridPane GridPane.columnIndex="1">
@@ -124,6 +124,7 @@
                </children>
             </FlowPane>
             <Label fx:id="lblError" styleClass="lblError" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label fx:id="lblConfirm" styleClass="lblConfirm" GridPane.rowIndex="6" />
          </children>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
