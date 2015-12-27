@@ -81,7 +81,7 @@ public class ManageRolesController implements Initializable
 		{
 			e.printStackTrace();
 		}
-		//TODO add permissions to combobox
+		//TODO add permissions to combobox: Ervoor zorgen dat de observablelist "allpermissions" in de combobox geraakt
 		cbPermissions.setItems(permissions);
 		cbPermissions.getSelectionModel().selectFirst();
 		cbPermissions.setCellFactory(new Callback<ListView<Permission>, ListCell<Permission>>() {

@@ -51,7 +51,7 @@ public class EditProfileController implements Initializable
 		txtAddress.setText(resolve(Authenticator.class).auth().getAddress());
 		txtTel.setText(resolve(Authenticator.class).auth().getPhoneNumber());
 	}
-//TODO Telefoonnummer en paswoord worden niet aangepast?
+
 	public void save(){
 		lblConfirm.setText("");
 		lblError.setText("");
