@@ -24,7 +24,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
 /**
  * Created by Jeroen_2 on 2/12/2015.
  */
-
+//TODO send notification email with the changes
 public class ManageUsersController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();

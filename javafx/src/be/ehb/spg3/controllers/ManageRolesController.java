@@ -11,12 +11,14 @@ import be.ehb.spg3.entities.permissions.PermissionRepository;
 import be.ehb.spg3.entities.roles.Role;
 import be.ehb.spg3.entities.roles.RoleRepository;
 import com.sun.deploy.xml.XMLable;
+import com.sun.javafx.property.adapter.PropertyDescriptor;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -26,6 +28,7 @@ import javafx.util.Callback;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
@@ -33,8 +36,10 @@ public class ManageRolesController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
 	private ObservableList<Role> roles = FXCollections.observableArrayList();
-	private IntegerProperty indexPermissions = new SimpleIntegerProperty();
-	private ObservableList<Permission> permissions = FXCollections.observableArrayList();
+	private IntegerProperty indexAddPermission = new SimpleIntegerProperty();
+	private ObservableList<Permission> addPermission = FXCollections.observableArrayList();
+	private IntegerProperty indexHasPermission = new SimpleIntegerProperty();
+	private ObservableList<Permission> hasPermission = FXCollections.observableArrayList();
 	private ObservableList<Permission> allPermissions = FXCollections.observableArrayList();
 
 	@FXML
@@ -42,11 +47,15 @@ public class ManageRolesController implements Initializable
 	@FXML
 	private TableColumn tcRoles;
 	@FXML
+	private TableView tvHasPermission;
+	@FXML
+	private TableColumn tcHasPermission;
+	@FXML
+	private TableView tvAddPermission;
+	@FXML
+	private TableColumn tcAddPermission;
+	@FXML
 	private TextField txtRoleName;
-	@FXML
-	private TableView tvPermissions;
-	@FXML
-	private ComboBox cbPermissions;
 	@FXML
 	private TextField txtCreateRoleName;
 	@FXML
@@ -64,46 +73,16 @@ public class ManageRolesController implements Initializable
 		try
 		{
 			roles.addAll(resolve(RoleRepository.class).getAll());
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-
-		tcRoles.setCellValueFactory(new PropertyValueFactory<Group, String>("name"));
-		tvRoles.setItems(roles);
-
-		try
-		{
 			allPermissions.addAll(resolve(PermissionRepository.class).getAll());
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
-		//TODO add permissions to combobox: Ervoor zorgen dat de observablelist "allpermissions" in de combobox geraakt
-		cbPermissions.setItems(permissions);
-		cbPermissions.getSelectionModel().selectFirst();
-		cbPermissions.setCellFactory(new Callback<ListView<Permission>, ListCell<Permission>>() {
-			@Override
-			public ListCell<Permission> call(ListView<Permission> p) {
-				ListCell cell = new ListCell<Permission>() {
-					@Override
-					protected void updateItem(Permission item, boolean empty) {
-						super.updateItem(item, empty);
-						if (empty) {
-							setText("");
-						} else {
-							setText(item.getName());
-						}
-					}
-				};
-				return cell;
-			}
-		});
 
-		tcRoles.setCellValueFactory(new PropertyValueFactory<Permission, String>("name"));
-
+		//Fills "role" table with objects from database and overrides change method
+		tvRoles.setItems(roles);
+		tcRoles.setCellValueFactory(new PropertyValueFactory<Role, String>("name"));
 		tvRoles.getSelectionModel().selectedItemProperty().addListener(new ChangeListener()
 		{
 			@Override
@@ -113,26 +92,89 @@ public class ManageRolesController implements Initializable
 				btnSave.setDisable(false);
 				btnDelete.setDisable(false);
 				txtRoleName.setText(roles.get(index.get()).getName());
-				permissions.addAll(roles.get(index.get()).getPermissions());
-				tvPermissions.setItems(permissions);
+				addPermission.clear();
+				indexAddPermission.set(0);
+				indexHasPermission.set(0);
+				System.out.println(roles.get(index.get()).getName());
+				for (Permission p : roles.get(index.get()).getPermissions()){
+					System.out.println(p.getName());
+				}//TODO Fix observablelist voor permissions
+				hasPermission.setAll(roles.get(index.get()).getPermissions());
+				for (Permission p : allPermissions){
+					boolean has = false;
+					for (Permission p2 : hasPermission){
+						if (p.equals(p2))
+							has = true;
+					}
+					if (!has)
+						addPermission.add(p);
+				}
+			}
+		});
+
+		//Fills "add a permission" table with objects from database and overrides change method
+		tvAddPermission.setItems(addPermission);
+		tcAddPermission.setCellValueFactory(new PropertyValueFactory<Permission, String>("name"));
+		tvAddPermission.getSelectionModel().selectedItemProperty().addListener(new ChangeListener()
+		{
+			@Override
+			public void changed(ObservableValue observable, Object oldvalue, Object newValue)
+			{
+				indexAddPermission.set(addPermission.indexOf(newValue));
+			}
+		});
+
+		//Fills "has permission" table with objects from database and overrides change method
+		tvHasPermission.setItems(hasPermission);
+		tcHasPermission.setCellValueFactory(new PropertyValueFactory<Role, String>("name"));
+		tvHasPermission.getSelectionModel().selectedItemProperty().addListener(new ChangeListener()
+		{
+			@Override
+			public void changed(ObservableValue observable, Object oldvalue, Object newValue)
+			{
+				indexHasPermission.set(hasPermission.indexOf(newValue));
 			}
 		});
 	}
 
 	public void removePermission(){
-
+		addPermission.add(hasPermission.get(indexHasPermission.get()));
+		hasPermission.remove(indexHasPermission.get());
 	}
 
 	public void addPermission(){
-
+		hasPermission.add(addPermission.get(indexAddPermission.get()));
+		addPermission.remove(indexAddPermission.get());
 	}
 
 	public void saveRole(){
+		resetLbl();
+		roles.get(index.get()).setName(txtRoleName.getText());
+		roles.get(index.get()).setPermissions(hasPermission);
 
+		try
+		{
+			resolve(RoleRepository.class).save(roles.get(index.get()));
+			lblConfirm.setText("Role changes saved.");
+			roles.setAll(resolve(RoleRepository.class).getAll());
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
-	public void deleteSelectedRow(){
-
+	public void deleteSelectedRole(){
+		resetLbl();
+		try
+		{
+			resolve(RoleRepository.class).delete(roles.get(index.get()));
+			lblConfirm.setText("Role removed.");
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	public void addRole(){
