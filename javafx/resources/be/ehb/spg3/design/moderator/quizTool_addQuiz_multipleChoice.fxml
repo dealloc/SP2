@@ -26,7 +26,8 @@
             <TextField alignment="CENTER" prefHeight="27.0" prefWidth="232.0" promptText="name" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets top="-400.0" />
-               </GridPane.margin></TextField>
+               </GridPane.margin>
+            </TextField>
             <Label text="Give in your question" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" top="-300.0" />
