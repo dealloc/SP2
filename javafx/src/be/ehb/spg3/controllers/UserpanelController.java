@@ -4,6 +4,7 @@
 
 package be.ehb.spg3.controllers;
 
+import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.animation.KeyFrame;
@@ -36,7 +37,7 @@ public class UserpanelController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		String username = "*EDIT*";//resolve(Authenticator.class).auth().getUsername();
+		String username = resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.dashboard.fxml"));
@@ -57,15 +58,14 @@ public class UserpanelController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.dashboard.fxml"));
 	}
 
-	public void quizzes()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.quizzes.fxml"));
-	}
+	public void quizzes() { resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.quizzes.fxml"));	}
 
 	public void challenges()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.challenges.fxml"));
 	}
+
+	public void results() {	resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.results.fxml"));  }
 
 	public void settings()
 	{

@@ -12,7 +12,7 @@
     -fx-font-weight: 600;
     -fx-disabled-opacity: 0.6;
 
-    -flatter-red: rgb(237.0, 68.0, 37.0);
+    -flatter-red: rgb(51, 102, 204);/*rgb(237.0, 68.0, 37.0);*/
     -flatter-blue: rgb(0.0, 184.0, 222.0);
 }
 
@@ -363,13 +363,13 @@
 
 .progress-bar > .track {
     -fx-background-color: -fx-text-base-color;
-    -fx-background-radius: 2.0;
+    -fx-background-radius: 0;
     -fx-padding: 0.0;
 }
 
 .progress-bar > .bar {
     -fx-background-color: -flatter-blue;
-    -fx-background-radius: 2.0;
+    -fx-background-radius: 0;
     -fx-background-insets: 0.0;
     -fx-border-width: 0.0;
     -fx-effect: null;
@@ -377,7 +377,7 @@
 
 .progress-bar:indeterminate > .bar {
     -fx-background-color: derive(-flatter-blue, 50.0%);
-    -fx-background-radius: 2.0;
+    -fx-background-radius: 0;
     -fx-background-insets: 0.0;
     -fx-border-width: 0.0;
     -fx-effect: null;
