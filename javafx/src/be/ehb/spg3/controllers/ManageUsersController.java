@@ -158,7 +158,7 @@ public class ManageUsersController implements Initializable
 		{
 			e.printStackTrace();
 		}
-		lblConfirm.setText("Password has been resetted.");
+		lblConfirm.setText("Password has been reset.");
 	}
 
 	public String randomString()
@@ -171,8 +171,7 @@ public class ManageUsersController implements Initializable
 			char c = chars[random.nextInt(chars.length)];
 			sb.append(c);
 		}
-		//Tijdelijk syso voor testing!
-		System.out.println("New pass: " + sb.toString());
+
 		return sb.toString();
 	}
 
@@ -185,14 +184,12 @@ public class ManageUsersController implements Initializable
 			return;
 		}
 
-		for (User u : data)
+		if (data.parallelStream().filter(user -> txtUsername.getText().equals(user.getUsername())).count() == 0)
 		{
-			if (txtUsername.getText().equals(u.getUsername()))
-			{
-				lblError.setText("Username already in use!");
-				return;
-			}
+			lblError.setText("Username already in use!");
+			return;
 		}
+
 		User temp = new User();
 		temp.setUsername(txtUsername.getText());
 		temp.setPassword(resolve(Hasher.class).hash("prready"));  //TODO change to random string and add email

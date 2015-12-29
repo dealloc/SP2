@@ -4,31 +4,24 @@
 
 package be.ehb.spg3.controllers;
 
-import be.ehb.spg3.entities.groups.Group;
-import be.ehb.spg3.entities.groups.GroupRepository;
 import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.permissions.PermissionRepository;
 import be.ehb.spg3.entities.roles.Role;
 import be.ehb.spg3.entities.roles.RoleRepository;
-import com.sun.deploy.xml.XMLable;
-import com.sun.javafx.property.adapter.PropertyDescriptor;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
@@ -96,18 +89,25 @@ public class ManageRolesController implements Initializable
 				indexAddPermission.set(0);
 				indexHasPermission.set(0);
 				System.out.println(roles.get(index.get()).getName());
-				for (Permission p : roles.get(index.get()).getPermissions()){
+				for (Permission p : roles.get(index.get()).getPermissions())
+				{
 					System.out.println(p.getName());
 				}//TODO Fix observablelist voor permissions
 				hasPermission.setAll(roles.get(index.get()).getPermissions());
-				for (Permission p : allPermissions){
+				for (Permission p : allPermissions)
+				{
 					boolean has = false;
-					for (Permission p2 : hasPermission){
+					for (Permission p2 : hasPermission)
+					{
 						if (p.equals(p2))
+						{
 							has = true;
+						}
 					}
 					if (!has)
+					{
 						addPermission.add(p);
+					}
 				}
 			}
 		});
@@ -137,17 +137,20 @@ public class ManageRolesController implements Initializable
 		});
 	}
 
-	public void removePermission(){
+	public void removePermission()
+	{
 		addPermission.add(hasPermission.get(indexHasPermission.get()));
 		hasPermission.remove(indexHasPermission.get());
 	}
 
-	public void addPermission(){
+	public void addPermission()
+	{
 		hasPermission.add(addPermission.get(indexAddPermission.get()));
 		addPermission.remove(indexAddPermission.get());
 	}
 
-	public void saveRole(){
+	public void saveRole()
+	{
 		resetLbl();
 		roles.get(index.get()).setName(txtRoleName.getText());
 		roles.get(index.get()).setPermissions(hasPermission);
@@ -164,7 +167,8 @@ public class ManageRolesController implements Initializable
 		}
 	}
 
-	public void deleteSelectedRole(){
+	public void deleteSelectedRole()
+	{
 		resetLbl();
 		try
 		{
@@ -177,7 +181,8 @@ public class ManageRolesController implements Initializable
 		}
 	}
 
-	public void addRole(){
+	public void addRole()
+	{
 		resetLbl();
 		if (txtCreateRoleName.getText().length() < 3)
 		{
@@ -207,16 +212,19 @@ public class ManageRolesController implements Initializable
 		lblConfirm.setText("Role added.");
 	}
 
-	public void sortRoles(){
+	public void sortRoles()
+	{
 		btnSave.setDisable(true);
 		btnDelete.setDisable(true);
 	}
 
-	public void sortPermissions(){
+	public void sortPermissions()
+	{
 
 	}
 
-	public void resetLbl(){
+	public void resetLbl()
+	{
 		lblConfirm.setText("");
 		lblError.setText("");
 	}

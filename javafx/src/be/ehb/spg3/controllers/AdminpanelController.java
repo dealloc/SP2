@@ -15,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import net.engio.mbassy.listener.Handler;
@@ -54,14 +53,20 @@ public class AdminpanelController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editProfile.fxml"));
 	}
 
-	public void dashboard()	{resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));	}
+	public void dashboard()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
+	}
 
 	public void manageUsers()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageUsers.fxml"));
 	}
 
-	public void manageRoles() { resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageRoles.fxml")); }
+	public void manageRoles()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageRoles.fxml"));
+	}
 
 	public void manageGroups()
 	{
@@ -77,16 +82,19 @@ public class AdminpanelController implements Initializable
 	public void changePanel(SwitchPaneEvent event)
 	{
 		Parent pane = fxml(event.getLocation());
-		Timeline fadein = new Timeline(
-				new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)), // TODO might produce nullpointer exception
-				new KeyFrame(Duration.seconds(1), new KeyValue(pane.opacityProperty(), 1))
-		);
-		this.contentRoot.getChildren().clear();
-		this.contentRoot.getChildren().add(pane);
-		AnchorPane.setTopAnchor(pane, 0.0);
-		AnchorPane.setRightAnchor(pane, 0.0);
-		AnchorPane.setLeftAnchor(pane, 0.0);
-		AnchorPane.setBottomAnchor(pane, 0.0);
-		fadein.play();
+		if (pane != null)
+		{
+			Timeline fadein = new Timeline(
+					                              new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)),
+					                              new KeyFrame(Duration.seconds(1), new KeyValue(pane.opacityProperty(), 1))
+			);
+			this.contentRoot.getChildren().clear();
+			this.contentRoot.getChildren().add(pane);
+			AnchorPane.setTopAnchor(pane, 0.0);
+			AnchorPane.setRightAnchor(pane, 0.0);
+			AnchorPane.setLeftAnchor(pane, 0.0);
+			AnchorPane.setBottomAnchor(pane, 0.0);
+			fadein.play();
+		}
 	}
 }
