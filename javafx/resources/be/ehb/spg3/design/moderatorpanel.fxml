@@ -69,7 +69,7 @@
             </FlowPane>
       				<AnchorPane layoutX="143.0" opacity="0.25" prefHeight="614.0" prefWidth="8.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Separator layoutX="2.0" layoutY="182.0" prefHeight="6.0" prefWidth="136.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="9.0" />
-            <FlowPane alignment="CENTER" layoutY="252.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+            <FlowPane alignment="CENTER" layoutY="252.0" onMouseClicked="#editQuiz" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
                <children>
                   <Label onMouseClicked="#manageQuizzes" prefHeight="32.0" styleClass="lblMenu" text="Manage quizzes" textFill="WHITE">
                      <font>

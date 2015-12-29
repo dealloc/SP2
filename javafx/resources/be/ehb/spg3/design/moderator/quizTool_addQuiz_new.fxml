@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.ModeratorpanelController">
    <children>
       <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="187.0" text="Quiztool - Add Quiz">
          <font>
@@ -23,12 +23,12 @@
             <RowConstraints maxHeight="513.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="New Question" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#newQuestion" onMouseClicked="#newQuestion" prefHeight="49.0" prefWidth="126.0" text="New Question" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" top="-860.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="Save" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" onAction="#save" onMouseClicked="#save" prefHeight="49.0" prefWidth="126.0" text="Save" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" top="-630.0" />
                </GridPane.margin>
@@ -52,7 +52,7 @@
                   <Insets left="250.0" right="100.0" top="-460.0" />
                </GridPane.margin>
             </TextField>
-            <ComboBox prefHeight="46.0" prefWidth="128.0" promptText="QS-Type" GridPane.rowIndex="1">
+            <ComboBox onAction="#questionType" prefHeight="46.0" prefWidth="128.0" promptText="QS-Type" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="10.0" top="-230.0" />
                </GridPane.margin>

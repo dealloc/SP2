@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 
-<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.ModeratorController">
+<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.ModeratorpanelController">
    <children>
       <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="98.0" text="Quiztool">
          <font>
@@ -23,7 +23,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#addQuiz" onMouseClicked="#addQuiz" prefHeight="49.0" prefWidth="117.0" text="Add Quiz">
+            <Button mnemonicParsing="false" onMouseClicked="#addQuiz" prefHeight="49.0" prefWidth="117.0" text="Add Quiz">
                <GridPane.margin>
                   <Insets left="10.0" top="-460.0" />
                </GridPane.margin>
@@ -42,22 +42,22 @@
                   <Insets left="10.0" top="-340.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="116.0" text="Delete Quiz">
+            <Button mnemonicParsing="false" onMouseClicked="#deleteQuiz" prefHeight="49.0" prefWidth="116.0" text="Delete Quiz">
                <GridPane.margin>
                   <Insets left="10.0" top="-220.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#assignUsers" prefHeight="49.0" prefWidth="117.0" text="Assign Users">
+            <Button mnemonicParsing="false" onAction="#assignUsers" onMouseClicked="#assignUsers" prefHeight="49.0" prefWidth="117.0" text="Assign Users">
                <GridPane.margin>
                   <Insets left="10.0" top="-100.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="118.0" text="Disable Quiz">
+            <Button mnemonicParsing="false" onAction="#disableQuiz" onMouseClicked="#disableQuiz" prefHeight="49.0" prefWidth="118.0" text="Disable Quiz">
                <GridPane.margin>
                   <Insets left="10.0" top="20.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="119.0" text="Enable Quiz">
+            <Button mnemonicParsing="false" onAction="#enableQuiz" onMouseClicked="#enableQuiz" prefHeight="49.0" prefWidth="119.0" text="Enable Quiz">
                <GridPane.margin>
                   <Insets left="10.0" top="140.0" />
                </GridPane.margin>
@@ -67,12 +67,12 @@
                   <Insets left="10.0" top="260.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="119.0" text="Import Quiz">
+            <Button mnemonicParsing="false" onMouseClicked="#importQuiz" prefHeight="49.0" prefWidth="119.0" text="Import Quiz">
                <GridPane.margin>
                   <Insets left="10.0" top="380.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="120.0" text="Export Quiz">
+            <Button mnemonicParsing="false" onMouseClicked="#exportQuiz" prefHeight="49.0" prefWidth="120.0" text="Export Quiz">
                <GridPane.margin>
                   <Insets left="10.0" top="500.0" />
                </GridPane.margin>

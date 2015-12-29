@@ -22,7 +22,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="117.0" text="Add User">
+            <Button mnemonicParsing="false" onAction="#adduser" onMouseClicked="#adduser" prefHeight="49.0" prefWidth="117.0" text="Add User">
                <GridPane.margin>
                   <Insets left="10.0" top="-460.0" />
                </GridPane.margin>
@@ -36,7 +36,7 @@
                   <TableColumn prefWidth="125.0" text="Phone number" />
                </columns>
             </TableView>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="116.0" text="Delete User">
+            <Button mnemonicParsing="false" onAction="#deleteUser" onMouseClicked="#deleteUser" prefHeight="49.0" prefWidth="116.0" text="Delete User">
                <GridPane.margin>
                   <Insets left="10.0" top="-340.0" />
                </GridPane.margin>

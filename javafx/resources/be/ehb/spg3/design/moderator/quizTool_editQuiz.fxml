@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.ModeratorpanelController">
    <children>
       <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="187.0" text="Quiztool - Edit Quiz">
          <font>
@@ -16,93 +16,55 @@
       <GridPane layoutX="48.0" layoutY="65.0" prefHeight="513.0" prefWidth="553.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="65.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.0" minWidth="10.0" prefWidth="302.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.0" minWidth="0.0" prefWidth="251.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="247.0" minHeight="10.0" prefHeight="56.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="447.0" minHeight="10.0" prefHeight="447.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="247.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="513.0" minHeight="0.0" prefHeight="513.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="513.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Edit your question" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#editQuestion" onMouseClicked="#editQuestion" prefHeight="49.0" prefWidth="126.0" text="Edit Question" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="20.0" top="-400.0" />
-               </GridPane.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="181.0" promptText="question" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets top="-400.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label text="Change the right answer" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="20.0" top="-300.0" />
-               </GridPane.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="181.0" promptText="answer" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets top="-300.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label text="Change false answer (1)" GridPane.rowIndex="1">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="20.0" top="-200.0" />
-               </GridPane.margin>
-            </Label>
-            <Label text="Change false answer (2)" GridPane.rowIndex="1">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="20.0" top="-100.0" />
-               </GridPane.margin>
-            </Label>
-            <Label text="Change false answer (3)" GridPane.rowIndex="1">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
-            </Label>
-            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="181.0" promptText="answer" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets top="-200.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="181.0" promptText="answer" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets top="-100.0" />
-               </GridPane.margin></TextField>
-            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="181.0" promptText="answer" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </TextField>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="Next question" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets bottom="-360.0" left="10.0" />
+                  <Insets left="10.0" top="-860.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" text="Save" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#addQuestion" onMouseClicked="#addQuestion" prefHeight="49.0" prefWidth="126.0" text="Add Question" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets bottom="-360.0" left="200.0" />
+                  <Insets left="10.0" top="-630.0" />
                </GridPane.margin>
             </Button>
-            <Label text="Quiz (naam komt hier)">
-               <font>
-                  <Font size="16.0" />
-               </font>
+            <TableView prefHeight="447.0" prefWidth="317.0" GridPane.rowIndex="1">
+               <columns>
+                  <TableColumn prefWidth="208.0" text="Question" />
+                  <TableColumn minWidth="0.0" prefWidth="188.0" text="Type" />
+               </columns>
                <GridPane.margin>
-                  <Insets left="20.0" />
+                  <Insets left="150.0" top="60.0" />
+               </GridPane.margin>
+            </TableView>
+            <Label text="Quiz name:" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="150.0" top="-460.0" />
+               </GridPane.margin>
+            </Label>
+            <ComboBox onAction="#questionType" onMouseClicked="#questionType" prefHeight="46.0" prefWidth="128.0" promptText="QS-Type" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="-230.0" />
+               </GridPane.margin>
+            </ComboBox>
+            <Button mnemonicParsing="false" onAction="#deleteQuestion" onMouseClicked="#deleteQuestion" prefHeight="49.0" prefWidth="126.0" text="Delete">
+               <GridPane.margin>
+                  <Insets left="10.0" top="510.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#save" onMouseClicked="#save" prefHeight="49.0" prefWidth="126.0" text="Save">
+               <GridPane.margin>
+                  <Insets left="10.0" top="625.0" />
+               </GridPane.margin>
+            </Button>
+            <Label text="Naam van de quiz" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="250.0" top="-460.0" />
                </GridPane.margin>
             </Label>
          </children>
