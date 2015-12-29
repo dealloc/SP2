@@ -60,14 +60,25 @@ public class ModeratorpanelController implements Initializable
 
 	public void createQuiz()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.createQuiz.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_new.fxml"));
 	}
 
-	public void manageQuizzes()	{ resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageQuizzes.fxml")); }
+	public void manageQuizzes()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_editQuiz.fxml"));
+	}
 
-	public void manageGroup() {	resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageGroup.fxml"));	}
+	public void manageGroup()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageGroup.fxml"	));
+	}
 
 	public void settings()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("settings.fxml"));
+	}
+
+	public void editQuiz()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("settings.fxml"));
 	}

@@ -23,14 +23,14 @@
             <RowConstraints maxHeight="513.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="Add question" GridPane.rowIndex="2">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="New Question" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="10.0" top="-860.0" />
                </GridPane.margin>
             </Button>
             <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="Save" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="10.0" top="-750.0" />
+                  <Insets left="10.0" top="-630.0" />
                </GridPane.margin>
             </Button>
             <TableView prefHeight="447.0" prefWidth="317.0" GridPane.rowIndex="1">
@@ -52,6 +52,11 @@
                   <Insets left="250.0" right="100.0" top="-460.0" />
                </GridPane.margin>
             </TextField>
+            <ComboBox prefHeight="46.0" prefWidth="128.0" promptText="QS-Type" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="-230.0" />
+               </GridPane.margin>
+            </ComboBox>
          </children>
       </GridPane>
    </children>

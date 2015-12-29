@@ -23,7 +23,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="117.0" text="Add Quiz" onMouseClicked="#addQuiz">
+            <Button mnemonicParsing="false" onAction="#addQuiz" onMouseClicked="#addQuiz" prefHeight="49.0" prefWidth="117.0" text="Add Quiz">
                <GridPane.margin>
                   <Insets left="10.0" top="-460.0" />
                </GridPane.margin>
@@ -37,7 +37,7 @@
                   <TableColumn prefWidth="95.0" text="Expires" />
               </columns>
             </TableView>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="116.0" text="Edit Quiz" onMouseClicked="#editQuiz">
+            <Button mnemonicParsing="false" onMouseClicked="#editQuiz" prefHeight="49.0" prefWidth="116.0" text="Edit Quiz">
                <GridPane.margin>
                   <Insets left="10.0" top="-340.0" />
                </GridPane.margin>
@@ -47,7 +47,7 @@
                   <Insets left="10.0" top="-220.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="117.0" text="Assign Users" onMouseClicked="#assignUsers">
+            <Button mnemonicParsing="false" onMouseClicked="#assignUsers" prefHeight="49.0" prefWidth="117.0" text="Assign Users">
                <GridPane.margin>
                   <Insets left="10.0" top="-100.0" />
                </GridPane.margin>
@@ -62,7 +62,7 @@
                   <Insets left="10.0" top="140.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="119.0" text="Results" onMouseClicked="#showResults">
+            <Button mnemonicParsing="false" onMouseClicked="#showResults" prefHeight="49.0" prefWidth="119.0" text="Results">
                <GridPane.margin>
                   <Insets left="10.0" top="260.0" />
                </GridPane.margin>

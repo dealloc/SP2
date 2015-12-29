@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="382.0" text="Quiztool - Add Multiple Choice Question">
+      <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="468.0" text="Quiztool - Add Media Multiple Choice Question">
          <font>
             <Font size="20.0" />
          </font>
@@ -23,7 +23,7 @@
             <RowConstraints maxHeight="447.0" minHeight="10.0" prefHeight="447.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label text="Give in your question" GridPane.rowIndex="1">
+            <Label text="Select your media question" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" top="-400.0" />
                </GridPane.margin>
@@ -31,12 +31,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="181.0" promptText="question" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets top="-400.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label text="Give in the right answer" GridPane.rowIndex="1">
+            <Label text="Select right media answer" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" top="-300.0" />
                </GridPane.margin>
@@ -44,12 +39,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="181.0" promptText="answer" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets top="-300.0" />
-               </GridPane.margin>
-            </TextField>
-            <Label text="Give in a false answer (1)" GridPane.rowIndex="1">
+            <Label text="Give in a false media answer (1)" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
@@ -57,7 +47,7 @@
                   <Insets left="20.0" top="-200.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Give in a false answer (2)" GridPane.rowIndex="1">
+            <Label text="Give in a false media answer (2)" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
@@ -65,7 +55,7 @@
                   <Insets left="20.0" top="-100.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Give in a false answer (3)" GridPane.rowIndex="1">
+            <Label text="Give in a false media answer (3)" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
@@ -73,20 +63,6 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="181.0" promptText="answer" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets top="-200.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="181.0" promptText="answer" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets top="-100.0" />
-               </GridPane.margin></TextField>
-            <TextField alignment="CENTER" prefHeight="26.0" prefWidth="181.0" promptText="answer" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </TextField>
             <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="Add question" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="-360.0" left="170.0" />
@@ -102,6 +78,27 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="83.0" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets top="-400.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="83.0" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets top="-300.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="83.0" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets top="-200.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="83.0" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets top="-100.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="83.0" text="Browse" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>
