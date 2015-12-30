@@ -1,8 +1,11 @@
 package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.contracts.encryption.Hasher;
+import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.contracts.mailing.Mailer;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
+import be.ehb.spg3.events.errors.ErrorEvent;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -14,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.mail.MessagingException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Random;
@@ -24,7 +28,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
 /**
  * Created by Jeroen_2 on 2/12/2015.
  */
-//TODO send notification email with the changes
+
 public class ManageUsersController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
@@ -121,11 +125,15 @@ public class ManageUsersController implements Initializable
 		try
 		{
 			resolve(UserRepository.class).save(temp);
-			lblConfirm.setText("User changes saved.");
+			lblConfirm.setText("User saved.");
+			resolve(Mailer.class).subject("Your account has been updated")
+					.to(txtEmail.getText())
+					.text("Your account has been updated!")
+					.send();
 		}
-		catch (SQLException e)
+		catch (SQLException | MessagingException e)
 		{
-			e.printStackTrace();
+			resolve(EventBus.class).fire(new ErrorEvent(e));
 		}
 	}
 

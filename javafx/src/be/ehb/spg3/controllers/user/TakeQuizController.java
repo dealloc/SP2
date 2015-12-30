@@ -55,16 +55,19 @@ public class TakeQuizController implements Initializable
 	public void changePanel(SwitchPaneEvent event)
 	{
 		Parent pane = fxml(event.getLocation());
-		Timeline fadein = new Timeline(
-				new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)), // TODO might produce nullpointer exception
-				new KeyFrame(Duration.seconds(1), new KeyValue(pane.opacityProperty(), 1))
-		);
-		this.contentRoot.getChildren().clear();
-		this.contentRoot.getChildren().add(pane);
-		AnchorPane.setTopAnchor(pane, 0.0);
-		AnchorPane.setRightAnchor(pane, 0.0);
-		AnchorPane.setLeftAnchor(pane, 0.0);
-		AnchorPane.setBottomAnchor(pane, 0.0);
-		fadein.play();
+		if (pane != null)
+		{
+			Timeline fadein = new Timeline(
+					                              new KeyFrame(Duration.ZERO, new KeyValue(pane.opacityProperty(), 0)),
+					                              new KeyFrame(Duration.seconds(1), new KeyValue(pane.opacityProperty(), 1))
+			);
+			this.contentRoot.getChildren().clear();
+			this.contentRoot.getChildren().add(pane);
+			AnchorPane.setTopAnchor(pane, 0.0);
+			AnchorPane.setRightAnchor(pane, 0.0);
+			AnchorPane.setLeftAnchor(pane, 0.0);
+			AnchorPane.setBottomAnchor(pane, 0.0);
+			fadein.play();
+		}
 	}
 }

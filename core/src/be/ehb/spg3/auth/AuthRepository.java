@@ -136,7 +136,7 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public void grant(User subject, Permission permission)
 	{
-		//TODO implement grant function
+		//TODO figure out how to implement since we're using role based permissions
 	}
 
 	/**
@@ -149,6 +149,6 @@ public class AuthRepository implements Authenticator, Authorizator
 	@Override
 	public void revoke(User subject, Permission permission)
 	{
-		//TODO implement revoke function
+		//TODO figure out how to implement since we're using role based permissions
 	}
 }
