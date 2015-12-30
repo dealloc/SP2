@@ -1,11 +1,15 @@
 package be.ehb.spg3.mailing;
 
+import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.contracts.mailing.Mailer;
+import be.ehb.spg3.events.errors.ErrorEvent;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -51,7 +55,7 @@ public class GMailer implements Mailer
 		}
 		catch (MessagingException e)
 		{
-			e.printStackTrace(); // TODO handle exception
+			resolve(EventBus.class).fire(new ErrorEvent(e));
 		}
 
 		return this;
@@ -72,7 +76,7 @@ public class GMailer implements Mailer
 		}
 		catch (MessagingException e)
 		{
-			e.printStackTrace(); // TODO handle exception
+			resolve(EventBus.class).fire(new ErrorEvent(e));
 		}
 
 		return this;
@@ -93,7 +97,7 @@ public class GMailer implements Mailer
 		}
 		catch (MessagingException e)
 		{
-			e.printStackTrace(); // TODO handle exception
+			resolve(EventBus.class).fire(new ErrorEvent(e));
 		}
 
 		return this;
@@ -114,7 +118,7 @@ public class GMailer implements Mailer
 		}
 		catch (MessagingException e)
 		{
-			e.printStackTrace(); // TODO handle exception
+			resolve(EventBus.class).fire(new ErrorEvent(e));
 		}
 
 		return this;

@@ -10,6 +10,7 @@ import be.ehb.spg3.contracts.validation.StringValidator;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
+import be.ehb.spg3.events.errors.ErrorEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
@@ -70,7 +71,7 @@ public class RegisterController
 					}
 					catch (SQLException e)
 					{
-						e.printStackTrace(); // TODO handle exception
+						resolve(EventBus.class).fire(new ErrorEvent(e));
 					}
 
 					Notifications.create().darkStyle().text("You have successfully registered!").showConfirm();

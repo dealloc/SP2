@@ -1,6 +1,8 @@
 package be.ehb.spg3.events.handlers;
 
+import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.events.SwitchScreenEvent;
+import be.ehb.spg3.events.errors.ErrorEvent;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +13,8 @@ import javafx.stage.StageStyle;
 import net.engio.mbassy.listener.Handler;
 
 import java.io.IOException;
+
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 // Created by Wannes Gennar. All rights reserved
 public class SwitchScreenHandler
@@ -49,8 +53,7 @@ public class SwitchScreenHandler
 		}
 		catch (IOException io)
 		{
-			// TODO fire event
-			io.printStackTrace();
+			resolve(EventBus.class).fire(new ErrorEvent(io));
 		}
 	}
 

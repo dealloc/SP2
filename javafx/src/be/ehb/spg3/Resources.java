@@ -2,10 +2,14 @@ package be.ehb.spg3;
 
 // Created by Wannes Gennar. All rights reserved
 
+import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.events.errors.ErrorEvent;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 import java.net.URL;
+
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 /**
  * Provides simplified access to resources such as FXML, CSS, images and other media.
@@ -45,7 +49,7 @@ public final class Resources
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace(); // TODO handle exception
+			resolve(EventBus.class).fire(new ErrorEvent(e));
 			return null;
 		}
 	}

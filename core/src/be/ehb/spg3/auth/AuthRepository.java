@@ -3,9 +3,11 @@ package be.ehb.spg3.auth;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.contracts.encryption.Hasher;
+import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.permissions.Permission;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
+import be.ehb.spg3.events.errors.ErrorEvent;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -61,7 +63,7 @@ public class AuthRepository implements Authenticator, Authorizator
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace(); // TODO handle exeption
+			resolve(EventBus.class).fire(new ErrorEvent(e));
 		}
 
 		return false;
