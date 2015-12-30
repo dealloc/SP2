@@ -107,6 +107,11 @@ public class ManageRolesController implements Initializable
 		{
 			Role role = (Role) this.tblRoles.getSelectionModel().getSelectedItem();
 			resolve(RoleRepository.class).delete(role);
+			this.tblRoles.getItems().remove(this.tblRoles.getSelectionModel().getSelectedItem());
+			Notifications.create()
+					.text("Role deleted!")
+					.darkStyle()
+					.showConfirm();
 		}
 		catch (SQLException ex)
 		{

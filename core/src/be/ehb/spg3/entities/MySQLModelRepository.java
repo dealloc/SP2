@@ -252,6 +252,10 @@ public abstract class MySQLModelRepository<T> implements IModelRepository<T>
 	@Override
 	public void delete(T subject) throws SQLException
 	{
+		this.begin();
+
 		this.manager.remove(subject);
+
+		this.finish();
 	}
 }
