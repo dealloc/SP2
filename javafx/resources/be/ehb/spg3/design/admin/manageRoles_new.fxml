@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css"
+            xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="be.ehb.spg3.controllers.ModeratorpanelController">
+	<children>
+		<Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="187.0" text="Manage Roles">
+			<font>
+				<Font size="20.0"/>
+			</font>
+		</Label>
+		<GridPane layoutX="48.0" layoutY="65.0" prefHeight="513.0" prefWidth="553.0" AnchorPane.bottomAnchor="36.0"
+		          AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="65.0">
+			<columnConstraints>
+				<ColumnConstraints hgrow="SOMETIMES" maxWidth="594.0" minWidth="10.0" prefWidth="302.0"/>
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints maxHeight="247.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+				<RowConstraints maxHeight="513.0" minHeight="0.0" prefHeight="513.0" vgrow="SOMETIMES"/>
+				<RowConstraints maxHeight="513.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES"/>
+			</rowConstraints>
+			<children>
+				<Button mnemonicParsing="false" onAction="#newQuestion" onMouseClicked="#newQuestion" prefHeight="49.0"
+				        prefWidth="126.0" text="Add Roles" GridPane.rowIndex="2">
+					<GridPane.margin>
+						<Insets left="10.0" top="-860.0"/>
+					</GridPane.margin>
+				</Button>
+				<Button mnemonicParsing="false" onAction="#save" onMouseClicked="#save" prefHeight="49.0"
+				        prefWidth="126.0" text="Save" GridPane.rowIndex="2">
+					<GridPane.margin>
+						<Insets left="10.0" top="-630.0"/>
+					</GridPane.margin>
+				</Button>
+				<TableView prefHeight="413.0" prefWidth="403.0" GridPane.rowIndex="1">
+					<columns>
+						<TableColumn minWidth="2.0" prefWidth="402.0"
+						             text="                                      Roles"/>
+					</columns>
+					<GridPane.margin>
+						<Insets left="150.0" top="60.0"/>
+					</GridPane.margin>
+				</TableView>
+				<Label text="Role name:" GridPane.rowIndex="1">
+					<GridPane.margin>
+						<Insets left="150.0" top="-460.0"/>
+					</GridPane.margin>
+				</Label>
+				<TextField prefHeight="49.0" prefWidth="375.0" promptText="name" GridPane.rowIndex="1">
+					<GridPane.margin>
+						<Insets left="250.0" right="100.0" top="-460.0"/>
+					</GridPane.margin>
+				</TextField>
+				<Button mnemonicParsing="false" onAction="#save" onMouseClicked="#save" prefHeight="49.0"
+				        prefWidth="126.0" text="Delete">
+					<GridPane.margin>
+						<Insets left="10.0" top="280.0"/>
+					</GridPane.margin>
+				</Button>
+				<ChoiceBox prefHeight="49.0" prefWidth="135.0" GridPane.rowIndex="1">
+					<GridPane.margin>
+						<Insets bottom="-200.0" left="5.0"/>
+					</GridPane.margin>
+				</ChoiceBox>
+				<Button mnemonicParsing="false" onAction="#newQuestion" onMouseClicked="#newQuestion" prefHeight="49.0"
+				        prefWidth="136.0" text="Add Permission">
+					<GridPane.margin>
+						<Insets bottom="-600.0" left="5.0"/>
+					</GridPane.margin>
+				</Button>
+			</children>
+		</GridPane>
+	</children>
+</AnchorPane>
