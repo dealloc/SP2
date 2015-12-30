@@ -1,10 +1,13 @@
 package be.ehb.spg3.persistence;
 
 import be.ehb.spg3.contracts.persistence.IDatabaseRepository;
+import com.mchange.v2.log.MLevel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -21,6 +24,9 @@ public class ModelDatabaseRepository implements IDatabaseRepository
 	@Override
 	public void initialize()
 	{
+		Logger.getLogger("org.hibernate").setLevel(Level.SEVERE); // set hibernate logging
+		com.mchange.v2.log.MLog.getLogger().setLevel(MLevel.SEVERE);
+
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("PRunit");
 		this.manager = entityManagerFactory.createEntityManager();
 	}
