@@ -10,6 +10,7 @@ import be.ehb.spg3.entities.permissions.PermissionRepository;
 import be.ehb.spg3.entities.roles.Role;
 import be.ehb.spg3.entities.roles.RoleRepository;
 import be.ehb.spg3.entities.users.User;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -58,10 +59,13 @@ public class ManageRolesController implements Initializable
 				Role role = (Role) newValue;
 				this.permissions.parallelStream().forEach(permission ->
 				{
-					if (role.getPermissions().contains(permission))
-						this.lsvPermissions.getTargetItems().add(permission.getName());
-					else
-						this.lsvPermissions.getSourceItems().add(permission.getName());
+					Platform.runLater(() ->
+					{
+						if (role.getPermissions().contains(permission))
+							this.lsvPermissions.getTargetItems().add(permission.getName());
+						else
+							this.lsvPermissions.getSourceItems().add(permission.getName());
+					});
 				});
 			});
 		}
@@ -80,7 +84,8 @@ public class ManageRolesController implements Initializable
 		{
 			Role role = (Role) this.tblRoles.getSelectionModel().getSelectedItem();
 			role.getPermissions().clear();
-			this.lsvPermissions.getTargetItems().parallelStream().forEach(o -> role.getPermissions().add((Permission) o));
+			this.permissions.parallelStream().filter(permission -> this.lsvPermissions.getTargetItems().contains(permission.getName()))
+					.forEach(p -> { role.getPermissions().add(p); });
 			resolve(RoleRepository.class).save(role);
 			Notifications.create()
 					.text("Permissions saved!")
@@ -98,6 +103,17 @@ public class ManageRolesController implements Initializable
 
 	public void delete()
 	{
-
+		try
+		{
+			Role role = (Role) this.tblRoles.getSelectionModel().getSelectedItem();
+			resolve(RoleRepository.class).delete(role);
+		}
+		catch (SQLException ex)
+		{
+			Notifications.create()
+					.text("There was an error deleting this role!")
+					.darkStyle()
+					.showConfirm();
+		}
 	}
 }
