@@ -40,7 +40,7 @@ public class ModeratorpanelController implements Initializable
 		String username = resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.dashboard.fxml"));
+		this.dashboard();
 	}
 
 	public void close()
@@ -51,19 +51,19 @@ public class ModeratorpanelController implements Initializable
 	//All methods for moderatorpanel.fxml
 	public void editProfile()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editprofile.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editProfile.fxml"));
 		//TODO add functionality
 	}
 
 	public void dashboard()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator/dashboard.fxml"));
 		//TODO add functionality
 	}
 
 	public void createQuiz()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_new.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator/addquiz.fxml"));
 		//TODO add functionality
 	}
 
@@ -88,7 +88,7 @@ public class ModeratorpanelController implements Initializable
 	//All methods for moderator.quizTool.fxml
 	public void addQuiz()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_new.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addquiz.fxml"));
 		//TODO add functionality
 	}
 
@@ -135,7 +135,7 @@ public class ModeratorpanelController implements Initializable
 		//TODO add functionality
 	}
 
-	//All methods for moderator.quizTool_addQuiz_new.fxml
+	//All methods for moderator.addquiz.fxml
 	public void questionType()
 	{
 		//TODO add functionality
@@ -146,7 +146,7 @@ public class ModeratorpanelController implements Initializable
 		//open juiste scherm naargelang welke vraag er wordt geselecteerd in de combobox (if tests)
 
 		//open vraag
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuestion.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addquestion.fxml"));
 
 		//multiple choice vraag
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_multipleChoice.fxml"));
@@ -169,7 +169,7 @@ public class ModeratorpanelController implements Initializable
 		//open juiste scherm naargelang welke vraag er wordt geselecteerd in de tableview (if tests)
 
 		//open vraag
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuestion.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addquestion.fxml"));
 
 		//multiple choice vraag
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_multipleChoice.fxml"));
@@ -189,7 +189,7 @@ public class ModeratorpanelController implements Initializable
 		//open juiste scherm naargelang welke vraag er wordt geselecteerd in de combobox (if tests)
 
 		//open vraag
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuestion.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addquestion.fxml"));
 
 		//multiple choice vraag
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_multipleChoice.fxml"));
@@ -220,7 +220,6 @@ public class ModeratorpanelController implements Initializable
 	}
 
 	//save functie
-
 
 	@Handler
 	public void changePanel(SwitchPaneEvent event)

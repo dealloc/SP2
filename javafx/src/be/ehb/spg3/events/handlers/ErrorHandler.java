@@ -10,6 +10,7 @@ public class ErrorHandler
 	@Handler
 	public void handle(ErrorEvent event)
 	{
+		event.getException().printStackTrace();
 		Notifications.create()
 				.title("An internal error occured")
 				.text(event.getException().getLocalizedMessage())
