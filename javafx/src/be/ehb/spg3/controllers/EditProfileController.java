@@ -69,12 +69,9 @@ public class EditProfileController implements Initializable
 		resolve(Authenticator.class).auth().setAddress(txtAddress.getText());
 		resolve(Authenticator.class).auth().setPhoneNumber(txtTel.getText());
 
-		if (txtPassword.getText().isEmpty())
-			return;
-
-		if (!txtPassword.getText().equals(txtRetypePassword.getText())){
+		if ((!txtPassword.getText().equals(txtRetypePassword.getText()))){
 			lblError.setText("New password does not match!");
-		} else {
+		} else if (!txtPassword.getText().isEmpty()) {
 			resolve(Authenticator.class).auth().setPassword(resolve(Hasher.class).hash(txtPassword.getText()));
 		}
 
@@ -88,5 +85,6 @@ public class EditProfileController implements Initializable
 		{
 			e.printStackTrace();
 		}
+		txtCheck.setText("");
 	}
 }
