@@ -2,6 +2,7 @@ package be.ehb.spg3.entities.users;
 
 // Created by Wannes Gennar. All rights reserved
 
+import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.groups.Group;
 import be.ehb.spg3.entities.roles.Role;
 
@@ -14,12 +15,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "users")
 @Access(AccessType.FIELD)
-public class User
+public class User extends BaseEntity
 {
 	@Column
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	@Column
 	private String name;
 	@Column
@@ -67,16 +68,6 @@ public class User
 		this.email = email;
 		this.username = username;
 		this.password = password;
-	}
-
-	/**
-	 * Get the identifier of this user.
-	 *
-	 * @return this.This users' identifier.
-	 */
-	public int getId()
-	{
-		return this.id;
 	}
 
 	/**

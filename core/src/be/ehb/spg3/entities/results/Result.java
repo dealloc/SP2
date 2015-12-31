@@ -2,6 +2,7 @@ package be.ehb.spg3.entities.results;
 
 // Created by Wannes Gennar. All rights reserved
 
+import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.users.User;
 
@@ -12,12 +13,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "results")
-public class Result
+public class Result extends BaseEntity
 {
 	@Column
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	@OneToOne
 	private Quiz quiz;
 	@OneToOne

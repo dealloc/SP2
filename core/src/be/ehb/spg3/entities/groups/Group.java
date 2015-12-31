@@ -1,5 +1,7 @@
 package be.ehb.spg3.entities.groups;
 
+import be.ehb.spg3.entities.BaseEntity;
+
 import javax.persistence.*;
 
 // Created by Wannes Gennar. All rights reserved
@@ -9,12 +11,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "groups")
-public class Group
+public class Group extends BaseEntity
 {
 	@Column
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 
 	@Column
 	private String name;
@@ -27,15 +29,5 @@ public class Group
 	public void setName(String name)
 	{
 		this.name = name;
-	}
-
-	public int getId()
-	{
-		return id;
-	}
-
-	public void setId(int id)
-	{
-		this.id = id;
 	}
 }

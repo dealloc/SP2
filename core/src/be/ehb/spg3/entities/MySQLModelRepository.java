@@ -22,7 +22,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  *
  * @param <T> The model class to use.
  */
-public abstract class MySQLModelRepository<T> implements IModelRepository<T>
+public abstract class MySQLModelRepository<T extends BaseEntity> implements IModelRepository<T>
 {
 	private final Class<T> model;
 	final EntityManager manager;
@@ -229,6 +229,28 @@ public abstract class MySQLModelRepository<T> implements IModelRepository<T>
 	public void createIfNotExists() throws SQLException
 	{
 		// NOTE hibernate does this automaticly on startup for us
+	}
+
+	/**
+	 * Check if the object exists in the database.
+	 *
+	 * @param subject The object to check.
+	 * @return true if the object exists in the database, false if it doesn't.
+	 * @throws SQLException When an error occurred.
+	 */
+	@Override
+	public boolean exists(T subject) throws SQLException
+	{
+		final CriteriaBuilder cb = this.manager.getCriteriaBuilder();
+
+		final CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+		final Root<T> from = cq.from(this.model);
+
+		cq.select(cb.count(from));
+		cq.where(cb.equal(from.get("id"), subject.getId()));
+
+		final TypedQuery<Long> tq = this.manager.createQuery(cq);
+		return tq.getSingleResult() > 0;
 	}
 
 	/**

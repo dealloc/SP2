@@ -2,6 +2,7 @@ package be.ehb.spg3.entities.feedbacks;
 
 // Created by Wannes Gennar. All rights reserved
 
+import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.users.User;
 
 import javax.persistence.*;
@@ -11,12 +12,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "feedbacks")
-public class Feedback
+public class Feedback extends BaseEntity
 {
 	@Column
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	@Column
 	private String feedback;
 	@OneToOne
