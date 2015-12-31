@@ -157,7 +157,7 @@ public class ManageUsersController implements Initializable
 	{
 		resetLbl();
 		User temp = data.get(index.get());
-		temp.setPassword(resolve(Hasher.class).hash(randomString()));
+		temp.setPassword(resolve(Hasher.class).hash("prready"));//randomString()));
 		try
 		{
 			resolve(UserRepository.class).save(temp);
