@@ -6,6 +6,8 @@ package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.encryption.Hasher;
+import be.ehb.spg3.controllers.admin.DatabaseViewController;
+import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -67,8 +69,6 @@ public class EditProfileController implements Initializable
 		resolve(Authenticator.class).auth().setAddress(txtAddress.getText());
 		resolve(Authenticator.class).auth().setPhoneNumber(txtTel.getText());
 
-		lblConfirm.setText("Saved changes\n(Password not changed)");
-
 		if (txtPassword.getText().isEmpty())
 			return;
 
@@ -76,8 +76,9 @@ public class EditProfileController implements Initializable
 			lblError.setText("New password does not match!");
 		} else {
 			resolve(Authenticator.class).auth().setPassword(resolve(Hasher.class).hash(txtPassword.getText()));
-			lblConfirm.setText("Saved changes\nPassword updated");
 		}
+
+		lblConfirm.setText("Saved changes\n");
 
 		try
 		{

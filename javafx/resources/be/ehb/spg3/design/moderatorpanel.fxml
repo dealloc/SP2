@@ -40,18 +40,18 @@
       				</Label>
                </children>
             </FlowPane>
-            <FlowPane alignment="CENTER" layoutY="188.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+            <FlowPane alignment="CENTER" layoutY="188.0" onMouseClicked="#dashboard" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
                <children>
-      				<Label onMouseClicked="#dashboard" prefHeight="32.0" styleClass="lblMenu" text="Dashboard" textFill="WHITE">
+      				<Label prefHeight="32.0" styleClass="lblMenu" text="Dashboard" textFill="WHITE">
       					<font>
       						<Font size="15.0" />
       					</font>
       				</Label>
                </children>
             </FlowPane>
-            <FlowPane alignment="CENTER" layoutY="220.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+            <FlowPane alignment="CENTER" layoutY="220.0" onMouseClicked="#createQuiz" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
                <children>
-	               <Label onMouseClicked="#createQuiz" prefHeight="32.0" styleClass="lblMenu" text="Create quiz" textFill="WHITE">
+	               <Label prefHeight="32.0" styleClass="lblMenu" text="Create quiz" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -69,18 +69,18 @@
             </FlowPane>
       				<AnchorPane layoutX="143.0" opacity="0.25" prefHeight="614.0" prefWidth="8.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Separator layoutX="2.0" layoutY="182.0" prefHeight="6.0" prefWidth="136.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="9.0" />
-            <FlowPane alignment="CENTER" layoutY="252.0" onMouseClicked="#editQuiz" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+            <FlowPane alignment="CENTER" layoutY="252.0" onMouseClicked="#manageQuizzes" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
                <children>
-                  <Label onMouseClicked="#manageQuizzes" prefHeight="32.0" styleClass="lblMenu" text="Manage quizzes" textFill="WHITE">
+                  <Label prefHeight="32.0" styleClass="lblMenu" text="Manage quizzes" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                </children>
             </FlowPane>
-            <FlowPane alignment="CENTER" layoutX="1.0" layoutY="284.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+            <FlowPane alignment="CENTER" layoutX="1.0" layoutY="284.0" onMouseClicked="#manageGroup" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
                <children>
-                  <Label onMouseClicked="#manageGroup" prefHeight="32.0" styleClass="lblMenu" text="Manage group" textFill="WHITE">
+                  <Label prefHeight="32.0" styleClass="lblMenu" text="Manage group" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
