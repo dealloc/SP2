@@ -78,6 +78,15 @@
                   </Label>
                </children>
             </FlowPane>
+            <FlowPane alignment="CENTER" layoutX="1.0" layoutY="284.0" onMouseClicked="#results" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane">
+               <children>
+                  <Label onMouseClicked="#quizzes" prefHeight="32.0" styleClass="lblMenu" text="Results" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </FlowPane>
 			</children>
 		</AnchorPane>
 		<AnchorPane layoutX="150.0" prefHeight="614.0" prefWidth="684.0" styleClass="mainRight" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="0.0">

@@ -106,6 +106,14 @@ public interface IModelRepository<T>
 	void createIfNotExists() throws SQLException;
 
 	/**
+	 * Check if the object exists in the database.
+	 * @param subject The object to check.
+	 * @return true if the object exists in the database, false if it doesn't.
+	 * @throws SQLException When an error occurred.
+	 */
+	boolean exists(T subject) throws SQLException;
+
+	/**
 	 * Create an instance of the model and set it's auto incrementing ID etc
 	 *
 	 * @return An instance of T

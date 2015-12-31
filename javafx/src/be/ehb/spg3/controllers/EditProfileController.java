@@ -6,12 +6,15 @@ package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.encryption.Hasher;
+import be.ehb.spg3.entities.users.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
@@ -29,13 +32,15 @@ public class EditProfileController implements Initializable
 	@FXML
 	private TextField txtTel;
 	@FXML
-	private TextField txtPassword;
+	private PasswordField txtPassword;
 	@FXML
-	private TextField txtRetypePassword;
+	private PasswordField txtRetypePassword;
 	@FXML
-	private TextField txtCheck;
+	private PasswordField txtCheck;
 	@FXML
 	private Label lblError;
+	@FXML
+	private Label lblConfirm;
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
@@ -48,6 +53,7 @@ public class EditProfileController implements Initializable
 	}
 
 	public void save(){
+		lblConfirm.setText("");
 		lblError.setText("");
 		String enc = resolve(Hasher.class).hash(txtCheck.getText());
 		if (!enc.equals(resolve(Authenticator.class).auth().getPassword())){
@@ -61,14 +67,25 @@ public class EditProfileController implements Initializable
 		resolve(Authenticator.class).auth().setAddress(txtAddress.getText());
 		resolve(Authenticator.class).auth().setPhoneNumber(txtTel.getText());
 
+		lblConfirm.setText("Saved changes\n(Password not changed)");
+
 		if (txtPassword.getText().isEmpty())
 			return;
 
 		if (!txtPassword.getText().equals(txtRetypePassword.getText())){
 			lblError.setText("New password does not match!");
 		} else {
-			resolve(Authenticator.class).auth().setPassword(txtPassword.getText());
+			resolve(Authenticator.class).auth().setPassword(resolve(Hasher.class).hash(txtPassword.getText()));
+			lblConfirm.setText("Saved changes\nPassword updated");
 		}
 
+		try
+		{
+			resolve(UserRepository.class).save(resolve(Authenticator.class).auth());
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

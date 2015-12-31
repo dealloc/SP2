@@ -1,5 +1,6 @@
 package be.ehb.spg3.entities.quizzes;
 
+import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.feedbacks.Feedback;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.users.User;
@@ -14,12 +15,12 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "quizzes")
-public class Quiz
+public class Quiz extends BaseEntity
 {
 	@Column
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	@Column
 	private String name;
 	@OneToOne
@@ -43,16 +44,6 @@ public class Quiz
 		this.users = users;
 		this.questions = questions;
 		this.feedback = feedback;
-	}
-
-	public int getId()
-	{
-		return id;
-	}
-
-	public void setId(int id)
-	{
-		this.id = id;
 	}
 
 	public String getName()

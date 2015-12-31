@@ -23,6 +23,7 @@ public class PrReadyApplication extends Application
 	@Override
 	public void start(Stage stage) throws Exception
 	{
+		stage.setOpacity(0);
 		stage.show();
 		handler = new SwitchScreenHandler(stage);
 		resolve(EventBus.class).subscribe(handler);

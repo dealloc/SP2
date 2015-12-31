@@ -2,6 +2,7 @@ package be.ehb.spg3.entities.roles;
 
 // Created by Wannes Gennar. All rights reserved
 
+import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.permissions.Permission;
 
 import javax.persistence.*;
@@ -13,12 +14,12 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "roles")
-public class Role
+public class Role extends BaseEntity
 {
 	@Column
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	@Column
 	private String name;
 	@ManyToMany
@@ -80,15 +81,5 @@ public class Role
 	public void setPermissions(Collection<Permission> permissions)
 	{
 		this.permissions = permissions;
-	}
-
-	public int getId()
-	{
-		return id;
-	}
-
-	public void setId(int id)
-	{
-		this.id = id;
 	}
 }

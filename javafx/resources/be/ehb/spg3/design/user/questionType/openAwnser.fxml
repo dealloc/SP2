@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="572.0" prefWidth="797.0" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.questionTypes.OpenAwnserController">
+   <children>
+      <Label fx:id="lblQuestion" text="QUESTION" wrapText="true">
+         <FlowPane.margin>
+            <Insets bottom="10.0" />
+         </FlowPane.margin>
+      </Label>
+      <TextArea fx:id="taAwnser" prefHeight="342.0" prefWidth="596.0" wrapText="true">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextArea>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</FlowPane>

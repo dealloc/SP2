@@ -1,8 +1,11 @@
 package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.contracts.encryption.Hasher;
+import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.contracts.mailing.Mailer;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
+import be.ehb.spg3.events.errors.ErrorEvent;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -14,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javax.mail.MessagingException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Random;
@@ -54,6 +58,8 @@ public class ManageUsersController implements Initializable
 	private TextField txtUsername;
 	@FXML
 	private Label lblError;
+	@FXML
+	private Label lblConfirm;
 
 	public ManageUsersController()
 	{
@@ -108,6 +114,7 @@ public class ManageUsersController implements Initializable
 
 	public void save()
 	{
+		resetLbl();
 		data.get(index.get()).setName(txtFName.getText());
 		data.get(index.get()).setSurname(txtLName.getText());
 		data.get(index.get()).setEmail(txtEmail.getText());
@@ -118,22 +125,37 @@ public class ManageUsersController implements Initializable
 		try
 		{
 			resolve(UserRepository.class).save(temp);
+			lblConfirm.setText("User saved.");
+			resolve(Mailer.class).subject("Your account has been updated")
+					.to(txtEmail.getText())
+					.text("Your account has been updated!")
+					.send();
 		}
-		catch (SQLException e)
+		catch (SQLException | MessagingException e)
 		{
-			e.printStackTrace();
+			resolve(EventBus.class).fire(new ErrorEvent(e));
 		}
 	}
 
 	public void deleteSelected()
 	{
-		//TODO Remove row from database (waiting for model update)
+		resetLbl();
+		try
+		{
+			resolve(UserRepository.class).delete(data.get(index.get()));
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 		data.remove(index.get());
 		tvTable.getSelectionModel().clearSelection();
+		lblConfirm.setText("User removed.");
 	}
 
 	public void resetPass()
 	{
+		resetLbl();
 		User temp = data.get(index.get());
 		temp.setPassword(resolve(Hasher.class).hash(randomString()));
 		try
@@ -144,6 +166,7 @@ public class ManageUsersController implements Initializable
 		{
 			e.printStackTrace();
 		}
+		lblConfirm.setText("Password has been reset.");
 	}
 
 	public String randomString()
@@ -156,29 +179,28 @@ public class ManageUsersController implements Initializable
 			char c = chars[random.nextInt(chars.length)];
 			sb.append(c);
 		}
-		//Tijdelijk syso voor testing!
-		System.out.println("New pass: " + sb.toString());
+
 		return sb.toString();
 	}
 
 	public void addUser()
 	{
+		resetLbl();
 		if (txtUsername.getText().length() < 4)
 		{
 			lblError.setText("Username must be at least 4 characters long!");
 			return;
 		}
 
-		for (User u : data)
+		if (data.parallelStream().filter(user -> txtUsername.getText().equals(user.getUsername())).count() == 0)
 		{
-			if (txtUsername.getText().equals(u.getUsername()))
-			{
-				lblError.setText("Username already in use!");
-				return;
-			}
+			lblError.setText("Username already in use!");
+			return;
 		}
+
 		User temp = new User();
 		temp.setUsername(txtUsername.getText());
+		temp.setPassword(resolve(Hasher.class).hash("prready"));  //TODO change to random string and add email
 		try
 		{
 			resolve(UserRepository.class).save(temp);
@@ -188,5 +210,11 @@ public class ManageUsersController implements Initializable
 			e.printStackTrace();
 		}
 		data.add(temp);
+		lblConfirm.setText("User added.");
+	}
+
+	public void resetLbl(){
+		lblConfirm.setText("");
+		lblError.setText("");
 	}
 }

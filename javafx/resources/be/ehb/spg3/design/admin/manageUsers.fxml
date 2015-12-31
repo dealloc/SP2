@@ -134,6 +134,8 @@
                </children>
             </FlowPane>
             <Label fx:id="lblError" styleClass="lblError" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="lblError" styleClass="lblError" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="lblConfirm" styleClass="lblConfirm" GridPane.rowIndex="9" />
          </children>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

@@ -4,6 +4,8 @@
 
 package be.ehb.spg3.controllers;
 
+import be.ehb.spg3.entities.groups.Group;
+import be.ehb.spg3.entities.groups.GroupRepository;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
 import javafx.beans.property.IntegerProperty;
@@ -30,7 +32,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
 public class ManageGroupsController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
-	private ObservableList<User> data = FXCollections.observableArrayList();
+	private ObservableList<Group> data = FXCollections.observableArrayList();
 
 	@FXML
 	private TableView tvGroups;
@@ -47,7 +49,7 @@ public class ManageGroupsController implements Initializable
 	@FXML
 	private Label lblError;
 	@FXML
-	private ComboBox cbRoles;
+	private Label lblConfirm;
 
 	public ManageGroupsController()
 	{
@@ -58,14 +60,14 @@ public class ManageGroupsController implements Initializable
 	{
 		try
 		{
-			data.addAll(resolve(UserRepository.class).getAll());
+			data.addAll(resolve(GroupRepository.class).getAll());
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 
-		tcGroups.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
+		tcGroups.setCellValueFactory(new PropertyValueFactory<Group, String>("name"));
 		tvGroups.setItems(data);
 
 		tvGroups.getSelectionModel().selectedItemProperty().addListener(new ChangeListener()
@@ -73,7 +75,6 @@ public class ManageGroupsController implements Initializable
 			@Override
 			public void changed(ObservableValue observable, Object oldvalue, Object newValue)
 			{
-				User selectedPerson = (User) newValue;
 				index.set(data.indexOf(newValue));
 				btnSave.setDisable(false);
 				btnDelete.setDisable(false);
@@ -91,51 +92,66 @@ public class ManageGroupsController implements Initializable
 	public void save()
 	{
 		data.get(index.get()).setName(txtGroupName.getText());
-
-		User temp = data.get(index.get());
 		try
 		{
-			resolve(UserRepository.class).save(temp);
+			resolve(GroupRepository.class).save(data.get(index.get()));
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
+		lblConfirm.setText("Group saved.");
 	}
 
 	public void deleteSelected()
 	{
-		//TODO Remove row from database (waiting for model update)
+		resetLbl();
+		try
+		{
+			resolve(GroupRepository.class).delete(data.get(index.get()));
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 		data.remove(index.get());
 		tvGroups.getSelectionModel().clearSelection();
+		lblConfirm.setText("Group removed.");
 	}
 
 	public void addGroup()
 	{
+		resetLbl();
 		if (txtCreateGroup.getText().length() < 3)
 		{
-			lblError.setText("Username must be at least 4 characters long!");
+			lblError.setText("Groupname must be at least 3 characters long!");
 			return;
 		}
 
-		for (User u : data)
+		for (Group g : data)
 		{
-			if (txtCreateGroup.getText().equals(u.getUsername()))
+			if (txtCreateGroup.getText().equals(g.getName()))
 			{
-				lblError.setText("Username already in use!");
+				lblError.setText("Groupname already in use!");
 				return;
 			}
 		}
-		User temp = new User();
-		temp.setUsername(txtCreateGroup.getText());
+		Group temp = new Group();
+		temp.setName(txtCreateGroup.getText());
 		try
 		{
-			resolve(UserRepository.class).save(temp);
+			resolve(GroupRepository.class).save(temp);
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 		data.add(temp);
+		lblConfirm.setText("Group added.");
+	}
+
+	public void resetLbl(){
+		lblConfirm.setText("");
+		lblError.setText("");
 	}
 }

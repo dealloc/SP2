@@ -22,6 +22,7 @@ public class PrReadyPreloader extends Preloader
 		stage.initStyle(StageStyle.UNDECORATED);
 		stage.setResizable(false);
 		stage.centerOnScreen();
+		stage.setAlwaysOnTop(true);
 		stage.show();
 	}
 
