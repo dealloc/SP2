@@ -132,6 +132,12 @@ public class GMailer implements Mailer
 	@Override
 	public void send() throws MessagingException
 	{
-		Transport.send(this.message);
+		try
+		{
+			Transport.send(this.message);
+		} catch (MessagingException e){
+			resolve(EventBus.class).fire(new ErrorEvent(e));
+		}
+
 	}
 }
