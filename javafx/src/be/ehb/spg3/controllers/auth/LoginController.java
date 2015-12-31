@@ -1,6 +1,7 @@
 package be.ehb.spg3.controllers.auth;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
+import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.events.SwitchScreenEvent;
@@ -26,11 +27,18 @@ public class LoginController
 	{
 		if (!resolve(Authenticator.class).login(lblUsername.getText(), lblPassword.getText()))
 		{
-			Notifications.create().darkStyle().text("OOPS ! Wrong username or password...").showError();
+			Notifications.create().darkStyle().text("OOPS! Wrong username or password...").showError();
 		} else
 		{
-			Notifications.create().darkStyle().text("Welcome ! You are now logged in.").showConfirm();
-			resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
+			Notifications.create().darkStyle().text("Welcome! You are now logged in.").showConfirm();
+			if (resolve(Authorizator.class).can("*.manage"))
+			{
+				resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
+			}
+			else
+			{
+				resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
+			}
 		}
 
 	}
