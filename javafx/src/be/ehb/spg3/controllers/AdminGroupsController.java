@@ -6,8 +6,6 @@ package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.entities.groups.Group;
 import be.ehb.spg3.entities.groups.GroupRepository;
-import be.ehb.spg3.entities.users.User;
-import be.ehb.spg3.entities.users.UserRepository;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -29,7 +27,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  * Created by Jeroen_2 on 2/12/2015.
  */
 //TODO The use of object User -> Group (waiting for entity)
-public class ManageGroupsController implements Initializable
+public class AdminGroupsController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
 	private ObservableList<Group> data = FXCollections.observableArrayList();
@@ -51,7 +49,7 @@ public class ManageGroupsController implements Initializable
 	@FXML
 	private Label lblConfirm;
 
-	public ManageGroupsController()
+	public AdminGroupsController()
 	{
 	}
 
