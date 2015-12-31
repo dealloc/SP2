@@ -33,7 +33,7 @@ public class LoginController
 			Notifications.create().darkStyle().text("Welcome! You are now logged in.").showConfirm();
 			if (resolve(Authorizator.class).can("*.manage"))
 			{
-				resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
+				resolve(EventBus.class).fire(new SwitchScreenEvent("design/moderatorpanel.fxml", true));
 			}
 			else
 			{

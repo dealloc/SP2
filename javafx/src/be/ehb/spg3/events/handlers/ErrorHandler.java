@@ -2,7 +2,7 @@ package be.ehb.spg3.events.handlers;
 
 import be.ehb.spg3.events.errors.ErrorEvent;
 import net.engio.mbassy.listener.Handler;
-import org.controlsfx.control.Notifications;
+import org.controlsfx.dialog.ExceptionDialog;
 
 // Created by Wannes Gennar. All rights reserved
 public class ErrorHandler
@@ -10,10 +10,8 @@ public class ErrorHandler
 	@Handler
 	public void handle(ErrorEvent event)
 	{
-		Notifications.create()
-				.title("An internal error occured")
-				.text(event.getException().getLocalizedMessage())
-				.darkStyle()
-				.showError();
+		event.getException().printStackTrace();
+
+		new ExceptionDialog(event.getException()).show();
 	}
 }
