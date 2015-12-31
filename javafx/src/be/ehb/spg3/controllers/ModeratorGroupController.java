@@ -1,16 +1,23 @@
 package be.ehb.spg3.controllers;
 
+import be.ehb.spg3.contracts.auth.Authenticator;
+import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.groups.Group;
 import be.ehb.spg3.entities.groups.GroupRepository;
 import be.ehb.spg3.entities.roles.Role;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
+import be.ehb.spg3.events.errors.ErrorEvent;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.ListSelectionView;
+import org.controlsfx.control.Notifications;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,9 +29,12 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
 // Created by Wannes Gennar. All rights reserved
 public class ModeratorGroupController implements Initializable
 {
-	public TableView tblGroups;
-	public TableColumn tcGroups;
-	public ListSelectionView lsvPermissions;
+	@FXML
+	private Label lblGroupname;
+	@FXML
+	private ListSelectionView lsvUsers;
+	@FXML
+	private Button btnSave;
 
 	private List<User> users;
 
@@ -33,31 +43,27 @@ public class ModeratorGroupController implements Initializable
 	{
 		try
 		{
-			List<Group> groups = resolve(GroupRepository.class).getAll();
+			Group group = resolve(Authenticator.class).auth().getGroup();
+			if (group == null){
+				lblGroupname.setText("You are not in a group! (Contact an admin)");
+				btnSave.setDisable(true);
+				return;
+			}
+
 			this.users = resolve(UserRepository.class).getAll();
-
-			this.tblGroups.getItems().addAll(groups);
-			this.tcGroups.setCellValueFactory(new PropertyValueFactory<Role, String>("name"));
-
-			this.tblGroups.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+			lblGroupname.setText(group.getName());
+			this.users.parallelStream().forEach(user ->
 			{
-				this.lsvPermissions.getSourceItems().clear();
-				this.lsvPermissions.getTargetItems().clear();
-
-				Group group = (Group) newValue;
-				this.users.parallelStream().forEach(user ->
+				Platform.runLater(() ->
 				{
-					Platform.runLater(() ->
+					if (user.getGroup() != null && user.getGroup().getName().equals(group.getName()))
 					{
-						if (user.getGroup() != null && user.getGroup().getName().equals(group.getName()))
-						{
-							this.lsvPermissions.getTargetItems().add(user.getName());
-						}
-						else
-						{
-							this.lsvPermissions.getSourceItems().add(user.getName());
-						}
-					});
+						this.lsvUsers.getTargetItems().add(user.getName());
+					}
+					else if (user.getGroup() == null)
+					{
+						this.lsvUsers.getSourceItems().add(user.getName());
+					}
 				});
 			});
 		}
@@ -69,7 +75,26 @@ public class ModeratorGroupController implements Initializable
 
 	public void save()
 	{
-
+		Group group = resolve(Authenticator.class).auth().getGroup();
+		this.users.stream().forEach(user -> {
+			if (this.lsvUsers.getTargetItems().contains(user.getName()))
+				user.setGroup(group);
+			else if (this.lsvUsers.getSourceItems().contains(user.getName()))
+				user.setGroup(null);
+			
+			try
+			{
+				resolve(UserRepository.class).update(user);
+			}
+			catch (SQLException e)
+			{
+				resolve(EventBus.class).fire(new ErrorEvent(e));
+			}
+		});
+		Notifications.create()
+				.text("Group saved!")
+				.darkStyle()
+				.showConfirm();
 	}
 	
 	public void delete()
