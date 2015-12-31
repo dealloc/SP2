@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css"
-            xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="187.0" text="Quiztool - Edit Quiz">
          <font>
@@ -22,16 +24,6 @@
             <RowConstraints maxHeight="513.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#editQuestion" onMouseClicked="#editQuestion" prefHeight="49.0" prefWidth="126.0" text="Edit Question" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="10.0" top="-860.0" />
-               </GridPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#addQuestion" onMouseClicked="#addQuestion" prefHeight="49.0" prefWidth="126.0" text="Add Question" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="10.0" top="-630.0" />
-               </GridPane.margin>
-            </Button>
             <TableView prefHeight="447.0" prefWidth="317.0" GridPane.rowIndex="1">
                <columns>
                   <TableColumn prefWidth="208.0" text="Question" />
@@ -46,26 +38,36 @@
                   <Insets left="150.0" top="-460.0" />
                </GridPane.margin>
             </Label>
-            <ComboBox onAction="#questionType" onMouseClicked="#questionType" prefHeight="46.0" prefWidth="128.0" promptText="QS-Type" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="10.0" top="-230.0" />
-               </GridPane.margin>
-            </ComboBox>
-            <Button mnemonicParsing="false" onAction="#deleteQuestion" onMouseClicked="#deleteQuestion" prefHeight="49.0" prefWidth="126.0" text="Delete">
-               <GridPane.margin>
-                  <Insets left="10.0" top="510.0" />
-               </GridPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#save" onMouseClicked="#save" prefHeight="49.0" prefWidth="126.0" text="Save">
-               <GridPane.margin>
-                  <Insets left="10.0" top="625.0" />
-               </GridPane.margin>
-            </Button>
             <Label text="Naam van de quiz" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="250.0" top="-460.0" />
                </GridPane.margin>
             </Label>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="Edit Question" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="-340.0" />
+               </GridPane.margin>
+            </Button>
+            <ComboBox prefHeight="46.0" prefWidth="127.0" promptText="QS-Type" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="-230.0" />
+               </GridPane.margin>
+            </ComboBox>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="Add Question" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="-120.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="Delete" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="-9.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="126.0" text="Save" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="105.0" />
+               </GridPane.margin>
+            </Button>
          </children>
       </GridPane>
    </children>
