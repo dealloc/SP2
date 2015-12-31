@@ -36,6 +36,11 @@ public class PassRecoveryController
 					.subject("Vergeten wachtwoord")
 					.text("Hello world")
 					.send();
+
+			Notifications.create()
+					.text("We send you an email!")
+					.darkStyle()
+					.showInformation();
 		}
 	}
 
