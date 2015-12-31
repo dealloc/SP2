@@ -1,6 +1,7 @@
 package be.ehb.spg3.events.handlers;
 
 import be.ehb.spg3.events.errors.ErrorEvent;
+import javafx.application.Platform;
 import net.engio.mbassy.listener.Handler;
 import org.controlsfx.dialog.ExceptionDialog;
 
@@ -12,6 +13,6 @@ public class ErrorHandler
 	{
 		event.getException().printStackTrace();
 
-		new ExceptionDialog(event.getException()).show();
+		Platform.runLater(() -> new ExceptionDialog(event.getException()).show());
 	}
 }
