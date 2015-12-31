@@ -17,6 +17,7 @@ import javax.persistence.*;
 @Access(AccessType.FIELD)
 public class User extends BaseEntity
 {
+	public static final User GUEST = new User("guest", "guest", "foo@bar.com", "guest_user", "");
 	@Column
 	@Id
 	@GeneratedValue

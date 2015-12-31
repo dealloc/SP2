@@ -2,6 +2,7 @@ package be.ehb.spg3.controllers.auth;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.events.SwitchScreenEvent;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -41,14 +42,9 @@ public class LoginController
 
 	public void loginAsGuest()
 	{
-		if (!resolve(Authenticator.class).login("Guest", "guest"))
-		{
-			Notifications.create().darkStyle().text("OOPS ! Wrong username or password...").showError();
-		} else
-		{
-			Notifications.create().darkStyle().text("Welcome ! You are now logged in.").showConfirm();
-			resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
-		}
+		resolve(Authenticator.class).sudo(User.GUEST);
+		Notifications.create().darkStyle().text("Welcome! You are now logged in.").showConfirm();
+		resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
 	}
 
 	public void forgotPass()
