@@ -48,29 +48,179 @@ public class ModeratorpanelController implements Initializable
 		Platform.exit();
 	}
 
+	//All methods for moderatorpanel.fxml
 	public void editProfile()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editprofile.fxml"));
+		//TODO add functionality
 	}
 
 	public void dashboard()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.dashboard.fxml"));
+		//TODO add functionality
 	}
 
 	public void createQuiz()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.createQuiz.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_new.fxml"));
+		//TODO add functionality
 	}
 
-	public void manageQuizzes()	{ resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageQuizzes.fxml")); }
+	public void manageQuizzes()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_editQuiz.fxml"));
+		//TODO add functionality
+	}
 
-	public void manageGroup() {	resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageGroup.fxml"));	}
+	public void manageGroup()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageGroup.fxml"));
+		//TODO add functionality
+	}
 
 	public void settings()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("settings.fxml"));
+		//TODO add functionality
 	}
+
+	//All methods for moderator.quizTool.fxml
+	public void addQuiz()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_new.fxml"));
+		//TODO add functionality
+	}
+
+	public void editQuiz()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_editQuiz.fxml"));
+		//TODO add functionality
+	}
+
+	public void deleteQuiz()
+	{
+		//TODO add functionality
+	}
+
+	public void assignUsers()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_assignUsers.fxml"));
+		//TODO add functionality
+	}
+
+	public void disableQuiz()
+	{
+		//TODO add functionality
+	}
+
+	public void enableQuiz()
+	{
+		//TODO add functionality
+	}
+
+	public void showResults()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_results.fxml"));
+		//TODO add functionalitys
+	}
+
+	public void importQuiz()
+	{
+		//TODO add functionality
+	}
+
+	public void exportQuiz()
+	{
+		//TODO add functionality
+	}
+
+	//All methods for moderator.quizTool_addQuiz_new.fxml
+	public void questionType()
+	{
+		//TODO add functionality
+	}
+
+	public void newQuestion()
+	{
+		//open juiste scherm naargelang welke vraag er wordt geselecteerd in de combobox (if tests)
+
+		//open vraag
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuestion.fxml"));
+
+		//multiple choice vraag
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_multipleChoice.fxml"));
+
+		//multimedia vraag met multiple choice (text)antwoord
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_mediaQuestion.fxml"));
+
+		//multimedia vraag met multiple choice (media)antwoord
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_mediaQuestion(2).fxml"));
+	}
+
+	public void save()
+	{
+		//TODO add functionality
+	}
+
+	//All methods for moderator.quizTool_editQuiz.fxml
+	public void editQuestion()
+	{
+		//open juiste scherm naargelang welke vraag er wordt geselecteerd in de tableview (if tests)
+
+		//open vraag
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuestion.fxml"));
+
+		//multiple choice vraag
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_multipleChoice.fxml"));
+
+		//multimedia vraag met multiple choice (text)antwoord
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_mediaQuestion.fxml"));
+
+		//multimedia vraag met multiple choice (media)antwoord
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_mediaQuestion(2).fxml"));
+		//TODO add functionality
+	}
+
+	//public void questionType(){zelfde als vorige functie (alle question types toevoegen)}
+
+	public void addQuestion()
+	{
+		//open juiste scherm naargelang welke vraag er wordt geselecteerd in de combobox (if tests)
+
+		//open vraag
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuestion.fxml"));
+
+		//multiple choice vraag
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_multipleChoice.fxml"));
+
+		//multimedia vraag met multiple choice (text)antwoord
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_mediaQuestion.fxml"));
+
+		//multimedia vraag met multiple choice (media)antwoord
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.quizTool_addQuiz_mediaQuestion(2).fxml"));
+	}
+
+	public void deleteQuestion()
+	{
+		//TODO add functionality
+	}
+
+	//save functie
+
+	//All methods for moderator.quizTool_assignUsers.fxml
+	public void adduser()
+	{
+		//TODO add functionality
+	}
+
+	public void deleteUser()
+	{
+		//TODO add functionality
+	}
+
+	//save functie
+
 
 	@Handler
 	public void changePanel(SwitchPaneEvent event)
