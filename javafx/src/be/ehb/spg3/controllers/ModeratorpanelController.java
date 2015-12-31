@@ -75,7 +75,7 @@ public class ModeratorpanelController implements Initializable
 
 	public void manageGroup()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageGroup.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageGroups.fxml"));
 		//TODO add functionality
 	}
 
