@@ -1,12 +1,11 @@
 package be.ehb.spg3.controllers.moderator;
 
 import be.ehb.spg3.controllers.ModeratorpanelController;
-import be.ehb.spg3.controllers.admin.ModeratorController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,27 +29,33 @@ public class AddQuizController implements Initializable
 		//TODO tableview management
 	}
 
-	public void addMultipleChoiceQuestion () {
+	public void addMultipleChoiceQuestion()
+	{
 		new ModeratorpanelController().addMultipleChoice();
 	}
 
-	public void addImageQuestion(){
+	public void addImageQuestion()
+	{
 		new ModeratorpanelController().addImage();
 	}
 
-	public void addAudioQuestion(){
+	public void addAudioQuestion()
+	{
 		new ModeratorpanelController().addAudio();
 	}
 
-	public void addVideoQuestion(){
+	public void addVideoQuestion()
+	{
 		new ModeratorpanelController().addVideo();
 	}
 
-	public void removeQuestion(){
+	public void removeQuestion()
+	{
 		//TODO remove the selected question
 	}
 
-	public void create(){
+	public void create()
+	{
 		//TODO save quiz with its questions
 	}
 }
