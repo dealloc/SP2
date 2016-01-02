@@ -7,58 +7,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.moderator.AddQuizController">
+<AnchorPane prefHeight="637.0" prefWidth="686.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.moderator.AddQuizController">
    <children>
-      <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="187.0" text="Quiztool - Add Quiz">
+      <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="187.0" text="Create Quiz">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <GridPane layoutX="48.0" layoutY="65.0" prefHeight="513.0" prefWidth="553.0" AnchorPane.bottomAnchor="36.0" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="65.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="594.0" minWidth="10.0" prefWidth="302.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="247.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="513.0" minHeight="0.0" prefHeight="513.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="513.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Button mnemonicParsing="false" onAction="#newQuestion" onMouseClicked="#newQuestion" prefHeight="49.0" prefWidth="126.0" text="New Question" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="10.0" top="-860.0" />
-               </GridPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#save" onMouseClicked="#save" prefHeight="49.0" prefWidth="126.0" text="Save" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets left="10.0" top="-630.0" />
-               </GridPane.margin>
-            </Button>
-            <TableView prefHeight="447.0" prefWidth="317.0" GridPane.rowIndex="1">
-               <columns>
-                  <TableColumn prefWidth="208.0" text="Question" />
-                  <TableColumn minWidth="0.0" prefWidth="188.0" text="Type" />
-               </columns>
-               <GridPane.margin>
-                  <Insets left="150.0" top="60.0" />
-               </GridPane.margin>
-            </TableView>
-            <Label text="Quiz name:" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="150.0" top="-460.0" />
-               </GridPane.margin>
-            </Label>
-            <TextField prefHeight="49.0" prefWidth="375.0" promptText="name" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="250.0" right="100.0" top="-460.0" />
-               </GridPane.margin>
-            </TextField>
-            <ComboBox onAction="#questionType" prefHeight="46.0" prefWidth="128.0" promptText="QS-Type" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="10.0" top="-230.0" />
-               </GridPane.margin>
-            </ComboBox>
-         </children>
-      </GridPane>
+      <Button layoutX="83.0" layoutY="193.0" mnemonicParsing="false" onAction="#newQuestion" onMouseClicked="#newQuestion" prefHeight="49.0" prefWidth="126.0" text="New Question" />
+      <Button layoutX="83.0" layoutY="533.0" mnemonicParsing="false" onAction="#save" onMouseClicked="#save" prefHeight="49.0" prefWidth="126.0" text="Create" />
+      <Label layoutX="106.0" layoutY="74.0" text="Quiz name:" />
+      <TextField layoutX="268.0" layoutY="62.0" prefHeight="49.0" prefWidth="317.0" promptText="name" />
+      <ComboBox layoutX="82.0" layoutY="135.0" onAction="#questionType" prefHeight="46.0" prefWidth="128.0" promptText="QS-Type" />
+      <TableView layoutX="268.0" layoutY="135.0" maxHeight="500.0" maxWidth="500.0" prefHeight="448.0" prefWidth="317.0">
+         <columns>
+            <TableColumn prefWidth="216.0" text="Questions" />
+            <TableColumn minWidth="0.0" prefWidth="478.0" text="Type" />
+         </columns>
+      </TableView>
    </children>
 </AnchorPane>
