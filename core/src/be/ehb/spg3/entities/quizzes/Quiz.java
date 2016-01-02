@@ -26,7 +26,7 @@ public class Quiz extends BaseEntity
 	private String name;
 	@OneToOne
 	private User owner;
-	@Column
+	@OneToOne
 	private Group group;
 	@ManyToMany(targetEntity = Question.class)
 	private Collection<Question> questions;

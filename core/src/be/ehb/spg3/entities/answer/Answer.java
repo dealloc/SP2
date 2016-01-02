@@ -4,10 +4,10 @@ package be.ehb.spg3.entities.answer;
 
 import be.ehb.spg3.entities.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "answers")
 public class Answer extends BaseEntity
 {
 	@Column
