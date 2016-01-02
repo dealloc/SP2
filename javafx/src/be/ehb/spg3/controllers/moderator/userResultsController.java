@@ -26,7 +26,7 @@ import java.util.*;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
-public class userResultsController implements Initializable
+public class UserResultsController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
 	private ObservableList<Result> data = FXCollections.observableArrayList();

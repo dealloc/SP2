@@ -150,10 +150,10 @@ public class ManageUsersController implements Initializable
 		}
 
 		if (!resolve(EmailValidator.class).validateEmail(txtEmail.getText()))
-		{
-			Notifications.create().darkStyle().text("Email is invalid!").showError();
-			return;
-		}
+	{
+		Notifications.create().darkStyle().text("Email is invalid!").showError();
+		return;
+	}
 
 
 		Role tempRole = new Role();

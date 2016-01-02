@@ -4,6 +4,7 @@ import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
+import be.ehb.spg3.entities.users.UserRepository;
 import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -18,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
+import org.controlsfx.control.Notifications;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -26,7 +28,7 @@ import java.util.ResourceBundle;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
-public class ManageQuizzes implements Initializable
+public class ManageQuizzesController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
 	private ObservableList<Quiz> data = FXCollections.observableArrayList();
@@ -85,6 +87,16 @@ public class ManageQuizzes implements Initializable
 
 	public void yes()
 	{
-
+		try
+		{
+			resolve(QuizRepository.class).delete(data.get(index.get()));
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		data.remove(index.get());
+		tvQuizzes.getSelectionModel().clearSelection();
+		Notifications.create().text("Quiz removed").darkStyle().showConfirm();
 	}
 }
