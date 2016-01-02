@@ -20,6 +20,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import net.engio.mbassy.listener.Handler;
+import org.controlsfx.control.Notifications;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -77,6 +78,7 @@ public class TakeQuizController implements Initializable
 		else
 		{
 			// that was the last question
+			Notifications.create().text("That's all folks").showConfirm();
 		}
 
 		this.pbQuestions.setProgress(this.index);
