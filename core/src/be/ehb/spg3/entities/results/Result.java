@@ -3,10 +3,12 @@ package be.ehb.spg3.entities.results;
 // Created by Wannes Gennar. All rights reserved
 
 import be.ehb.spg3.entities.BaseEntity;
+import be.ehb.spg3.entities.answer.Answer;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.users.User;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * The result of a user finishing a quiz.
@@ -23,6 +25,8 @@ public class Result extends BaseEntity
 	private Quiz quiz;
 	@OneToOne
 	private User user;
+	@ManyToMany
+	private Collection<Answer> answers;
 
 	public Result()
 	{

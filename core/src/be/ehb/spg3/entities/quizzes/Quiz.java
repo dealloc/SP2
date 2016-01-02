@@ -2,6 +2,7 @@ package be.ehb.spg3.entities.quizzes;
 
 import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.feedbacks.Feedback;
+import be.ehb.spg3.entities.groups.Group;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.users.User;
 
@@ -25,8 +26,8 @@ public class Quiz extends BaseEntity
 	private String name;
 	@OneToOne
 	private User owner;
-	@ManyToMany(targetEntity = User.class)
-	private Collection<User> users;
+	@Column
+	private Group group;
 	@ManyToMany(targetEntity = Question.class)
 	private Collection<Question> questions;
 	@ManyToOne(targetEntity = Feedback.class)
@@ -36,12 +37,12 @@ public class Quiz extends BaseEntity
 	{
 	}
 
-	public Quiz(int id, String name, User owner, Collection<User> users, Collection<Question> questions, Collection<Feedback> feedback)
+	public Quiz(int id, String name, User owner, Group group, Collection<Question> questions, Collection<Feedback> feedback)
 	{
 		this.id = id;
 		this.name = name;
 		this.owner = owner;
-		this.users = users;
+		this.group = group;
 		this.questions = questions;
 		this.feedback = feedback;
 	}
@@ -66,16 +67,6 @@ public class Quiz extends BaseEntity
 		this.owner = owner;
 	}
 
-	public Collection<User> getUsers()
-	{
-		return users;
-	}
-
-	public void setUsers(Collection<User> users)
-	{
-		this.users = users;
-	}
-
 	public Collection<Question> getQuestions()
 	{
 		return questions;
@@ -94,5 +85,15 @@ public class Quiz extends BaseEntity
 	public void setFeedback(Collection<Feedback> feedback)
 	{
 		this.feedback = feedback;
+	}
+
+	public Group getGroup()
+	{
+		return group;
+	}
+
+	public void setGroup(Group group)
+	{
+		this.group = group;
 	}
 }
