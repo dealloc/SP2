@@ -40,7 +40,7 @@ public class AdminpanelController implements Initializable
 		String username = resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.home.fxml"));
 	}
 
 	public void close()
@@ -53,9 +53,9 @@ public class AdminpanelController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editProfile.fxml"));
 	}
 
-	public void dashboard()
+	public void home()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.home.fxml"));
 	}
 
 	public void manageUsers()
@@ -71,11 +71,6 @@ public class AdminpanelController implements Initializable
 	public void manageGroups()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageGroups.fxml"));
-	}
-
-	public void settings()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("settings.fxml"));
 	}
 
 	@Handler

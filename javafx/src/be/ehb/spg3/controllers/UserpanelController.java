@@ -40,7 +40,7 @@ public class UserpanelController implements Initializable
 		String username = resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.home.fxml"));
 	}
 
 	public void close()
@@ -55,7 +55,7 @@ public class UserpanelController implements Initializable
 
 	public void dashboard()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.home.fxml"));
 	}
 
 	public void quizzes() { resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.quizzes.fxml"));	}

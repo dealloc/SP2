@@ -22,7 +22,6 @@ public class LoginController
 
 	@FXML
 	TextField lblPassword;
-
 	public void login()
 	{
 		if (!resolve(Authenticator.class).login(lblUsername.getText(), lblPassword.getText()))
@@ -30,10 +29,16 @@ public class LoginController
 			Notifications.create().darkStyle().text("OOPS! Wrong username or password...").showError();
 		} else
 		{
+			System.out.println(resolve(Authenticator.class).auth().getRole().getName());
+			//TODO check for role (hardcoded ATM)
 			Notifications.create().darkStyle().text("Welcome! You are now logged in.").showConfirm();
-			if (resolve(Authorizator.class).can("*.manage"))
+			if (resolve(Authenticator.class).auth().getRole().getName().equals("admin"))
 			{
 				resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
+			}
+			else if (resolve(Authenticator.class).auth().getRole().getName().equals("moderator"))
+			{
+				resolve(EventBus.class).fire(new SwitchScreenEvent("design/moderatorpanel.fxml", true));
 			}
 			else
 			{
