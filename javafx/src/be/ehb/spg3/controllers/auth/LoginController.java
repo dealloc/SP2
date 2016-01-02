@@ -1,8 +1,8 @@
 package be.ehb.spg3.controllers.auth;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
-import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.entities.roles.Role;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.events.SwitchScreenEvent;
 import javafx.application.Platform;
@@ -22,6 +22,7 @@ public class LoginController
 
 	@FXML
 	TextField lblPassword;
+
 	public void login()
 	{
 		if (!resolve(Authenticator.class).login(lblUsername.getText(), lblPassword.getText()))
@@ -29,21 +30,17 @@ public class LoginController
 			Notifications.create().darkStyle().text("OOPS! Wrong username or password...").showError();
 		} else
 		{
-			System.out.println(resolve(Authenticator.class).auth().getRole().getName());
-			//TODO check for role (hardcoded ATM)
 			Notifications.create().darkStyle().text("Welcome! You are now logged in.").showConfirm();
-			if (resolve(Authenticator.class).auth().getRole().getName().equals("admin"))
-			{
+
+			Role role = resolve(Authenticator.class).auth().getRole();
+			if (role != null && role.getName().equals("admin"))
 				resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
-			}
-			else if (resolve(Authenticator.class).auth().getRole().getName().equals("moderator"))
+			else if (role != null && role.getName().equals("moderator"))
 			{
 				resolve(EventBus.class).fire(new SwitchScreenEvent("design/moderatorpanel.fxml", true));
 			}
 			else
-			{
 				resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
-			}
 		}
 
 	}
