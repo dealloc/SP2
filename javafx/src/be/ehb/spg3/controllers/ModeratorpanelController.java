@@ -43,6 +43,11 @@ public class ModeratorpanelController implements Initializable
 		this.manageQuizzes();
 	}
 
+	public void addFile()
+	{
+
+	}
+
 	public void close()
 	{
 		Platform.exit();

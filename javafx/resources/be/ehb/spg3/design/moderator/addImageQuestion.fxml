@@ -16,11 +16,11 @@
             <Insets bottom="20.0" />
          </FlowPane.margin>
       </Label>
-      <Button mnemonicParsing="false" onAction="#selectImage" prefWidth="200.0" text="Select image...">
+      <TextField fx:id="txtQuestion1" prefHeight="49.0" prefWidth="511.0" promptText="Image URL">
          <FlowPane.margin>
             <Insets bottom="10.0" />
          </FlowPane.margin>
-      </Button>
+      </TextField>
       <TextField fx:id="txtQuestion" prefHeight="49.0" prefWidth="511.0" promptText="Question">
          <FlowPane.margin>
             <Insets bottom="10.0" />
