@@ -63,11 +63,6 @@ public class AdminpanelController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageUsers.fxml"));
 	}
 
-	public void manageRoles()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageRoles.fxml"));
-	}
-
 	public void manageGroups()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageGroups.fxml"));
