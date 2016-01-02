@@ -64,7 +64,7 @@ public class ModeratorController implements Initializable
 
 	public void showResults()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/moderator/quizTool_results.fxml", false));
+		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/moderator/userResults.fxml", false));
 	}
 
 	public void importQuiz()

@@ -52,37 +52,47 @@ public class ModeratorpanelController implements Initializable
 	public void editProfile()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editProfile.fxml"));
-		//TODO add functionality
 	}
 
 	public void dashboard()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator/dashboard.fxml"));
-		//TODO add functionality
 	}
 
 	public void createQuiz()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator/addquiz.fxml"));
-		//TODO add functionality
 	}
 
-	public void manageQuizzes()
+	public void userResults()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.editQuizzes.fxml"));
-		//TODO add functionality
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.userResults.fxml"));
 	}
 
 	public void manageGroup()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageGroups.fxml"));
-		//TODO add functionality
 	}
 
 	public void settings()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("settings.fxml"));
-		//TODO add functionality
+	}
+
+	public void addMultipleChoice (){
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addMultipleChoice.fxml"));
+	}
+
+	public void addImage (){
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addImageQuestion.fxml"));
+	}
+
+	public void addVideo(){
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addVideoQuestion.fxml"));
+	}
+
+	public void addAudio(){
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addAudioQuestion.fxml"));
 	}
 
 	@Handler

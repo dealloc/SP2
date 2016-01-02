@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -7,23 +8,65 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="637.0" prefWidth="686.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.moderator.AddQuizController">
+
+<FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="777.0" prefWidth="1004.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.moderator.AddQuizController">
    <children>
-      <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="187.0" text="Create Quiz">
+      <Label alignment="CENTER" prefHeight="40.0" prefWidth="187.0" text="Create Quiz">
          <font>
             <Font size="20.0" />
          </font>
+         <padding>
+            <Insets bottom="100.0" />
+         </padding>
       </Label>
-      <Button layoutX="83.0" layoutY="193.0" mnemonicParsing="false" onAction="#newQuestion" onMouseClicked="#newQuestion" prefHeight="49.0" prefWidth="126.0" text="New Question" />
-      <Button layoutX="83.0" layoutY="533.0" mnemonicParsing="false" onAction="#save" onMouseClicked="#save" prefHeight="49.0" prefWidth="126.0" text="Create" />
-      <Label layoutX="106.0" layoutY="74.0" text="Quiz name:" />
-      <TextField layoutX="268.0" layoutY="62.0" prefHeight="49.0" prefWidth="317.0" promptText="name" />
-      <ComboBox layoutX="82.0" layoutY="135.0" onAction="#questionType" prefHeight="46.0" prefWidth="128.0" promptText="QS-Type" />
-      <TableView layoutX="268.0" layoutY="135.0" maxHeight="500.0" maxWidth="500.0" prefHeight="448.0" prefWidth="317.0">
-         <columns>
-            <TableColumn prefWidth="216.0" text="Questions" />
-            <TableColumn minWidth="0.0" prefWidth="478.0" text="Type" />
-         </columns>
-      </TableView>
+      <TextField fx:id="txtQuizName" maxWidth="300.0" prefHeight="49.0" prefWidth="150.0" promptText="Quiz name">
+         <FlowPane.margin>
+            <Insets bottom="10.0" />
+         </FlowPane.margin>
+      </TextField>
+      <FlowPane prefHeight="464.0" prefWidth="888.0">
+         <children>
+            <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#addMultipleChoiceQuestion" prefHeight="49.0" prefWidth="240.0" text="Add multiple choice question">
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#addImageQuestion" prefHeight="49.0" prefWidth="240.0" text="Add image question">
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#addAudioQuestion" prefHeight="49.0" prefWidth="240.0" text="Add audio question">
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#addVideoQuestion" prefHeight="49.0" prefWidth="240.0" text="Add video quesiton">
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" />
+                     </FlowPane.margin>
+                  </Button>
+                  <Separator prefWidth="200.0">
+                     <FlowPane.margin>
+                        <Insets bottom="10.0" />
+                     </FlowPane.margin>
+                  </Separator>
+                  <Button mnemonicParsing="false" onAction="#removeQuestion" prefHeight="49.0" prefWidth="240.0" text="Remove question" />
+               </children>
+               <FlowPane.margin>
+                  <Insets right="10.0" />
+               </FlowPane.margin>
+            </FlowPane>
+            <TableView fx:id="tvQuestions" maxHeight="500.0" maxWidth="500.0" prefHeight="448.0" prefWidth="498.0">
+               <columns>
+                  <TableColumn fx:id="tcName" prefWidth="342.0" text="Question" />
+                  <TableColumn fx:id="tcType" maxWidth="500.0" minWidth="0.0" prefWidth="155.0" text="Type" />
+               </columns>
+            </TableView>
+         </children>
+      </FlowPane>
+      <Button mnemonicParsing="false" onAction="#create" prefHeight="49.0" prefWidth="175.0" text="Create" />
    </children>
-</AnchorPane>
+</FlowPane>
