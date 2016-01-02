@@ -77,6 +77,16 @@ public interface IModelRepository<T>
 	 * @return A list of instances of T matching given query, or an empty list if none were found.
 	 * @throws SQLException When an error occurred.
 	 */
+	List<T> findByField(String field, long value) throws SQLException;
+
+	/**
+	 * Get instances of T by searching a given field.
+	 *
+	 * @param field The field to query.
+	 * @param value The value the given field should match.
+	 * @return A list of instances of T matching given query, or an empty list if none were found.
+	 * @throws SQLException When an error occurred.
+	 */
 	List<T> findByField(String field, boolean value) throws SQLException;
 
 	/**
