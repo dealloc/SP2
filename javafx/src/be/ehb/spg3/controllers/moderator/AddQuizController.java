@@ -1,10 +1,14 @@
 package be.ehb.spg3.controllers.moderator;
 
+import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.questions.QuestionRepository;
+import be.ehb.spg3.entities.quizzes.Quiz;
+import be.ehb.spg3.entities.quizzes.QuizRepository;
 import be.ehb.spg3.events.QuestionAddedEvent;
 import be.ehb.spg3.events.SwitchPaneEvent;
+import be.ehb.spg3.events.errors.ErrorEvent;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -18,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import net.engio.mbassy.listener.Handler;
+import org.controlsfx.control.Notifications;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -28,7 +33,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
 public class AddQuizController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
-	ObservableList<Question> questions =  FXCollections.observableArrayList();
+	static ObservableList<Question> questions =  FXCollections.observableArrayList();
 
 	@FXML
 	private TextField txtQuizName;
@@ -97,11 +102,32 @@ public class AddQuizController implements Initializable
 
 	public void removeQuestion()
 	{
-		//TODO remove the selected question
+		questions.remove(index.get());
 	}
 
 	public void create()
 	{
-		//TODO save quiz with its questions
+		if (questions.isEmpty()){
+			Notifications.create().text("You need at least 1 question!").darkStyle().showError();
+			return;
+		}
+
+		if (txtQuizName.getText().isEmpty()){
+			Notifications.create().text("Fill in your quiz name!").darkStyle().showError();
+			return;
+		}
+
+		Quiz newQuiz = new Quiz();
+		newQuiz.setName(txtQuizName.getText());
+		newQuiz.setGroup(resolve(Authenticator.class).auth().getGroup());
+		newQuiz.setOwner(resolve(Authenticator.class).auth());
+		try
+		{
+			resolve(QuizRepository.class).save(newQuiz);
+		}
+		catch (SQLException e)
+		{
+			resolve(EventBus.class).fire(new ErrorEvent(e));
+		}
 	}
 }
