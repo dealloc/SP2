@@ -66,22 +66,6 @@ public class ModeratorpanelController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageGroups.fxml"));
 	}
 
-	public void addMultipleChoice (){
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addMultipleChoice.fxml"));
-	}
-
-	public void addImage (){
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addImageQuestion.fxml"));
-	}
-
-	public void addVideo(){
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addVideoQuestion.fxml"));
-	}
-
-	public void addAudio(){
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addAudioQuestion.fxml"));
-	}
-
 	@Handler
 	public void changePanel(SwitchPaneEvent event)
 	{
