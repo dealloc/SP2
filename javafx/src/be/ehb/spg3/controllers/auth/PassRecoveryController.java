@@ -32,9 +32,9 @@ public class PassRecoveryController
 		{
 			User user = users.get(0);
 			resolve(Mailer.class).from("info@prready.com")
-					.to(user.getEmail())
+					.to("gr3.pr.ready@gmail.com")
 					.subject("Vergeten wachtwoord")
-					.text("Hello world")
+					.text("User " + user.getName() + " (" + user.getEmail() + ") is zijn wachtwoord vergeten en heeft een reset aangevraagd")
 					.send();
 
 			Notifications.create()
