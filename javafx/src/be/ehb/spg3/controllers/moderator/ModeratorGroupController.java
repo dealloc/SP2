@@ -58,11 +58,11 @@ public class ModeratorGroupController implements Initializable
 				{
 					if (user.getGroup() != null && user.getGroup().getName().equals(group.getName()))
 					{
-						this.lsvUsers.getTargetItems().add(user.getName());
+						this.lsvUsers.getTargetItems().add(user.getUsername());
 					}
 					else if (user.getGroup() == null)
 					{
-						this.lsvUsers.getSourceItems().add(user.getName());
+						this.lsvUsers.getSourceItems().add(user.getUsername());
 					}
 				});
 			});
@@ -77,9 +77,9 @@ public class ModeratorGroupController implements Initializable
 	{
 		Group group = resolve(Authenticator.class).auth().getGroup();
 		this.users.stream().forEach(user -> {
-			if (this.lsvUsers.getTargetItems().contains(user.getName()))
+			if (this.lsvUsers.getTargetItems().contains(user.getUsername()))
 				user.setGroup(group);
-			else if (this.lsvUsers.getSourceItems().contains(user.getName()))
+			else if (this.lsvUsers.getSourceItems().contains(user.getUsername()))
 				user.setGroup(null);
 			
 			try
