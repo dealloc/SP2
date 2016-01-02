@@ -2,7 +2,7 @@
  * Copyright (c) 2015 Jeroen Van den Broeck. All rights reserved.
  */
 
-package be.ehb.spg3.controllers;
+package be.ehb.spg3.controllers.admin;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.entities.permissions.Permission;

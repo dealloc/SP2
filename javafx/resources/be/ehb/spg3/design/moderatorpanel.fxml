@@ -26,23 +26,9 @@
 						<Image url="@images/exit.png" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="25.0" fitWidth="150.0" layoutX="46.0" layoutY="527.0" onMouseClicked="#settings" opacity="0.5" pickOnBounds="true" preserveRatio="true" styleClass="imgBtn" AnchorPane.bottomAnchor="62.0">
-					<image>
-						<Image url="@images/settings.png" />
-					</image>
-				</ImageView>
             <FlowPane alignment="CENTER" layoutX="4.0" layoutY="119.0" prefHeight="32.0" prefWidth="140.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
                <children>
       				<Label fx:id="lblUserName" prefHeight="32.0" styleClass="lblLight" text="Username" textFill="WHITE">
-      					<font>
-      						<Font size="15.0" />
-      					</font>
-      				</Label>
-               </children>
-            </FlowPane>
-            <FlowPane alignment="CENTER" layoutY="188.0" onMouseClicked="#dashboard" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
-               <children>
-      				<Label prefHeight="32.0" styleClass="lblMenu" text="Dashboard" textFill="WHITE">
       					<font>
       						<Font size="15.0" />
       					</font>
@@ -69,16 +55,16 @@
             </FlowPane>
       				<AnchorPane layoutX="143.0" opacity="0.25" prefHeight="614.0" prefWidth="8.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Separator layoutX="2.0" layoutY="182.0" prefHeight="6.0" prefWidth="136.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="9.0" />
-            <FlowPane alignment="CENTER" layoutY="252.0" onMouseClicked="#userResults" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+            <FlowPane alignment="CENTER" layoutX="4.0" layoutY="188.0" onMouseClicked="#manageQuizzes" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="7.0">
                <children>
-                  <Label prefHeight="32.0" styleClass="lblMenu" text="User results" textFill="WHITE">
+                  <Label prefHeight="32.0" styleClass="lblMenu" text="Manage quizzes" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
                </children>
             </FlowPane>
-            <FlowPane alignment="CENTER" layoutX="1.0" layoutY="284.0" onMouseClicked="#manageGroup" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+            <FlowPane alignment="CENTER" layoutX="1.0" layoutY="252.0" onMouseClicked="#manageGroup" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="7.0">
                <children>
                   <Label prefHeight="32.0" styleClass="lblMenu" text="Manage group" textFill="WHITE">
                      <font>

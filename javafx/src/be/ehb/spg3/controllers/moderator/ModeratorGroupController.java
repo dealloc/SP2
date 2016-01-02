@@ -1,4 +1,4 @@
-package be.ehb.spg3.controllers;
+package be.ehb.spg3.controllers.moderator;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;

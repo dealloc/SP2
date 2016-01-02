@@ -21,14 +21,9 @@
 						<Image url="@images/avatar.png" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="25.0" fitWidth="33.0" layoutX="46.0" layoutY="568.0" onMouseClicked="#close" opacity="0.5" pickOnBounds="true" preserveRatio="true" styleClass="imgBtn" AnchorPane.bottomAnchor="21.0">
+				<ImageView fitHeight="25.0" fitWidth="33.0" layoutX="60.0" layoutY="568.0" onMouseClicked="#close" opacity="0.5" pickOnBounds="true" preserveRatio="true" styleClass="imgBtn" AnchorPane.bottomAnchor="21.0">
 					<image>
 						<Image url="@images/exit.png" />
-					</image>
-				</ImageView>
-				<ImageView fitHeight="25.0" fitWidth="150.0" layoutX="46.0" layoutY="527.0" onMouseClicked="#settings" opacity="0.5" pickOnBounds="true" preserveRatio="true" styleClass="imgBtn" AnchorPane.bottomAnchor="62.0">
-					<image>
-						<Image url="@images/settings.png" />
 					</image>
 				</ImageView>
             <FlowPane alignment="CENTER" layoutX="4.0" layoutY="119.0" prefHeight="32.0" prefWidth="140.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
@@ -40,16 +35,7 @@
       				</Label>
                </children>
             </FlowPane>
-            <FlowPane alignment="CENTER" layoutY="188.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
-               <children>
-      				<Label onMouseClicked="#dashboard" prefHeight="32.0" styleClass="lblMenu" text="Dashboard" textFill="WHITE">
-      					<font>
-      						<Font size="15.0" />
-      					</font>
-      				</Label>
-               </children>
-            </FlowPane>
-            <FlowPane alignment="CENTER" layoutY="220.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+            <FlowPane alignment="CENTER" layoutX="1.0" layoutY="220.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="7.0">
                <children>
 	               <Label onMouseClicked="#manageUsers" prefHeight="32.0" styleClass="lblMenu" text="Manage Users" textFill="WHITE">
                      <font>
@@ -69,7 +55,7 @@
             </FlowPane>
       				<AnchorPane layoutX="143.0" opacity="0.25" prefHeight="614.0" prefWidth="8.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Separator layoutX="2.0" layoutY="182.0" prefHeight="6.0" prefWidth="136.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="9.0" />
-            <FlowPane alignment="CENTER" layoutY="252.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+            <FlowPane alignment="CENTER" layoutX="1.0" layoutY="252.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="7.0">
                <children>
                   <Label onMouseClicked="#manageRoles" prefHeight="32.0" styleClass="lblMenu" text="Manage Roles" textFill="WHITE">
                      <font>
@@ -78,9 +64,18 @@
                   </Label>
                </children>
             </FlowPane>
-            <FlowPane alignment="CENTER" layoutX="1.0" layoutY="284.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0">
+            <FlowPane alignment="CENTER" layoutX="1.0" layoutY="284.0" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="7.0">
                <children>
                   <Label onMouseClicked="#manageGroups" prefHeight="32.0" styleClass="lblMenu" text="Manage Groups" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER" layoutX="1.0" layoutY="188.0" onMouseClicked="#home" prefHeight="32.0" prefWidth="140.0" styleClass="menuPane" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="7.0">
+               <children>
+                  <Label onMouseClicked="#manageUsers" prefHeight="32.0" styleClass="lblMenu" text="Home" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>

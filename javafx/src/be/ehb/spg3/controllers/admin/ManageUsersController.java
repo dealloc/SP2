@@ -1,4 +1,4 @@
-package be.ehb.spg3.controllers;
+package be.ehb.spg3.controllers.admin;
 
 import be.ehb.spg3.contracts.encryption.Hasher;
 import be.ehb.spg3.contracts.events.EventBus;

@@ -40,7 +40,7 @@ public class ModeratorpanelController implements Initializable
 		String username = resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
-		this.dashboard();
+		this.manageQuizzes();
 	}
 
 	public void close()
@@ -54,29 +54,16 @@ public class ModeratorpanelController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editProfile.fxml"));
 	}
 
-	public void dashboard()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator/dashboard.fxml"));
-	}
-
 	public void createQuiz()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator/addquiz.fxml"));
 	}
 
-	public void userResults()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.userResults.fxml"));
-	}
+	public void manageQuizzes()	{resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.userResults.fxml"));}
 
 	public void manageGroup()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.manageGroups.fxml"));
-	}
-
-	public void settings()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("settings.fxml"));
 	}
 
 	public void addMultipleChoice (){
