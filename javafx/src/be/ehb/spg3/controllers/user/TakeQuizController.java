@@ -1,7 +1,7 @@
 package be.ehb.spg3.controllers.user;
 
 import be.ehb.spg3.contracts.events.EventBus;
-import be.ehb.spg3.controllers.questionTypes.RadiobuttonController;
+import be.ehb.spg3.controllers.questionTypes.BaseAnswerController;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.questions.QuestionRepository;
 import be.ehb.spg3.entities.questions.QuestionType;
@@ -68,11 +68,11 @@ public class TakeQuizController implements Initializable
 		if (++this.index < this.questions.size())
 		{
 			Question question = this.questions.get(this.index);
+
 			if (question.getType() == QuestionType.MultipleChoice)
-			{
 				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.radioButtons.fxml"));
-				((RadiobuttonController) controller()).setQuestion(question);
-			}
+
+			((BaseAnswerController) controller()).setQuestion(question);
 		}
 		else
 		{
