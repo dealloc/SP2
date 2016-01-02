@@ -32,6 +32,7 @@ public class LoginController
 			System.out.println(resolve(Authenticator.class).auth().getRole().getName());
 			//TODO check for role (hardcoded ATM)
 			Notifications.create().darkStyle().text("Welcome! You are now logged in.").showConfirm();
+			if (resolve(Authenticator.class).auth().getRole() == null)
 			if (resolve(Authenticator.class).auth().getRole().getName().equals("admin"))
 			{
 				resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
