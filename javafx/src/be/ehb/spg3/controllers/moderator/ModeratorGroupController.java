@@ -56,7 +56,7 @@ public class ModeratorGroupController implements Initializable
 			{
 				Platform.runLater(() ->
 				{
-					if (user.getGroup() != null && user.getGroup().getName().equals(group.getName()))
+					if (user.getGroup() != null && user.getGroup().getName().equals(group.getName()) && !user.equals(resolve(Authenticator.class).auth()))
 					{
 						this.lsvUsers.getTargetItems().add(user.getUsername());
 					}
