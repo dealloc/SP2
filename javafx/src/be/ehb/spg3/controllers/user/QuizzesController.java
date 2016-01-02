@@ -4,6 +4,7 @@ import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
+import be.ehb.spg3.events.TakeQuizControllerLoadedEvent;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -12,10 +13,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import net.engio.mbassy.listener.Handler;
+import org.omg.CORBA.SetOverrideType;
 
+import javax.swing.plaf.basic.BasicButtonUI;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -30,10 +35,13 @@ public class QuizzesController implements Initializable
 	private TableColumn tcQuiz;
 	@FXML
 	private TableView tvQuiz;
+	@FXML
+	private Button btnTake;
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
+		resolve(EventBus.class).subscribe(this);
 		try
 		{
 			data.addAll(resolve(QuizRepository.class).getAll()); //TODO only get quizzes from his group
@@ -52,13 +60,19 @@ public class QuizzesController implements Initializable
 			public void changed(ObservableValue observable, Object oldvalue, Object newValue)
 			{
 				index.set(data.indexOf(newValue));
+				btnTake.setDisable(false);
 			}
 		});
 	}
 
-	public void takeQuiz(){
-		//TODO start the quiz the user selected. Maybe fullscreen (without a menu on the left)?
-		resolve(EventBus.class).fire(new SwitchScreenEvent("design/user/takeQuiz.fxml", true));
+	public void takeQuiz()
+	{
+		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/takeQuiz.fxml", true));
+	}
 
+	@Handler
+	public void takeQuizLoaded(TakeQuizControllerLoadedEvent event)
+	{
+		TakeQuizController.getInstance().setQuiz(data.get(index.get()));
 	}
 }
