@@ -24,8 +24,8 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  */
 public abstract class MySQLModelRepository<T extends BaseEntity> implements IModelRepository<T>
 {
-	private final Class<T> model;
-	final EntityManager manager;
+	protected final Class<T> model;
+	protected final EntityManager manager;
 
 	public MySQLModelRepository(Class<T> model)
 	{
@@ -143,6 +143,28 @@ public abstract class MySQLModelRepository<T extends BaseEntity> implements IMod
 	 */
 	@Override
 	public List<T> findByField(String field, int value) throws SQLException
+	{
+		CriteriaBuilder criteriaBuilder = this.manager.getCriteriaBuilder();
+		CriteriaQuery<T> criteria = criteriaBuilder.createQuery(this.model);
+
+		Root<T> root = criteria.from(this.model);
+		criteria.select(root);
+		criteria.where(criteriaBuilder.equal(root.get(field), value));
+
+		TypedQuery<T> query = this.manager.createQuery(criteria);
+		return query.getResultList();
+	}
+
+	/**
+	 * Get instances of T by searching a given field.
+	 *
+	 * @param field The field to query.
+	 * @param value The value the given field should match.
+	 * @return A list of instances of T matching given query, or an empty list if none were found.
+	 * @throws SQLException When an error occurred.
+	 */
+	@Override
+	public List<T> findByField(String field, long value) throws SQLException
 	{
 		CriteriaBuilder criteriaBuilder = this.manager.getCriteriaBuilder();
 		CriteriaQuery<T> criteria = criteriaBuilder.createQuery(this.model);

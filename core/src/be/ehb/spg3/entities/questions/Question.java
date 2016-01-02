@@ -2,6 +2,7 @@ package be.ehb.spg3.entities.questions;
 
 import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.answer.Answer;
+import be.ehb.spg3.entities.quizzes.Quiz;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -21,6 +22,10 @@ public class Question extends BaseEntity
 	private long id;
 	@Column
 	private String question;
+	@OneToOne
+	private Quiz quiz;
+	@Column
+	private String mediaUrl;
 	@Column
 	@Enumerated(EnumType.STRING)
 	private QuestionType type = QuestionType.MultipleChoice;
@@ -60,5 +65,25 @@ public class Question extends BaseEntity
 	public void addAnswer(Answer answer)
 	{
 		this.answers.add(answer);
+	}
+
+	public Quiz getQuiz()
+	{
+		return quiz;
+	}
+
+	public void setQuiz(Quiz quiz)
+	{
+		this.quiz = quiz;
+	}
+
+	public String getMediaUrl()
+	{
+		return mediaUrl;
+	}
+
+	public void setMediaUrl(String mediaUrl)
+	{
+		this.mediaUrl = mediaUrl;
 	}
 }

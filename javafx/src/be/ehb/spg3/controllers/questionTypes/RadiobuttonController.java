@@ -1,24 +1,42 @@
 package be.ehb.spg3.controllers.questionTypes;
 
+import be.ehb.spg3.entities.answer.Answer;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.AnchorPane;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.Collection;
 
-public class RadiobuttonController implements Initializable
+public class RadiobuttonController extends BaseAnswerController
 {
 	@FXML
-	private FlowPane awnserPane;
+	private AnchorPane answerPane;
 	@FXML
 	private Label lblQuestion;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources)
+	public Answer getAnswer()
 	{
-		//TODO add a radiobutton for each awnser (make sure you know which awnser is the correct one)
-		//TODO save awnser and know if it's correct or not
+		return null;
+	}
+
+	@Override
+	public void init()
+	{
+		this.lblQuestion.setText(question.getQuestion());
+		Collection<Answer> answers = question.getAnswers();
+		int index = 1;
+
+		ToggleGroup group = new ToggleGroup();
+		for (Answer answer : answers)
+		{
+			RadioButton button = new RadioButton(answer.getText());
+			button.setLayoutX(20);
+			button.setLayoutY(index++ * 25);
+			button.setToggleGroup(group);
+			this.answerPane.getChildren().add(button);
+		}
 	}
 }

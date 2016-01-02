@@ -3,6 +3,7 @@ package be.ehb.spg3.fx;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.contracts.persistence.IDatabaseRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
+import be.ehb.spg3.events.errors.ErrorEvent;
 import be.ehb.spg3.events.handlers.SwitchScreenHandler;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -23,6 +24,7 @@ public class PrReadyApplication extends Application
 	@Override
 	public void start(Stage stage) throws Exception
 	{
+		Thread.setDefaultUncaughtExceptionHandler((t, e) -> resolve(EventBus.class).fire(new ErrorEvent((Exception) e)));
 		stage.setOpacity(0);
 		stage.show();
 		handler = new SwitchScreenHandler(stage);
