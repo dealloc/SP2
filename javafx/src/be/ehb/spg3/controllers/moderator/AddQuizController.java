@@ -1,6 +1,7 @@
 package be.ehb.spg3.controllers.moderator;
 
-import be.ehb.spg3.controllers.ModeratorpanelController;
+import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -9,6 +10,8 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class AddQuizController implements Initializable
 {
@@ -31,22 +34,22 @@ public class AddQuizController implements Initializable
 
 	public void addMultipleChoiceQuestion()
 	{
-		new ModeratorpanelController().addMultipleChoice();
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addMultipleChoice.fxml"));
 	}
 
 	public void addImageQuestion()
 	{
-		new ModeratorpanelController().addImage();
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addImageQuestion.fxml"));
 	}
 
 	public void addAudioQuestion()
 	{
-		new ModeratorpanelController().addAudio();
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addAudioQuestion.fxml"));
 	}
 
 	public void addVideoQuestion()
 	{
-		new ModeratorpanelController().addVideo();
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addVideoQuestion.fxml"));
 	}
 
 	public void removeQuestion()
