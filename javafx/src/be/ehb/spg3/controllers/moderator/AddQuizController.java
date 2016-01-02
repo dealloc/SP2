@@ -53,11 +53,6 @@ public class AddQuizController implements Initializable
 		tcType.setCellValueFactory(new PropertyValueFactory<Question, String>("type"));
 		tvQuestions.setItems(questions);
 
-		System.out.println("\nObservalbe list 'questions' at initialization of addquiz: ");
-		for (Question q : questions){
-			System.out.println(q.getQuestion());
-		}
-
 		tvQuestions.getSelectionModel().selectedItemProperty().addListener(new ChangeListener()
 		{
 			@Override
@@ -73,11 +68,6 @@ public class AddQuizController implements Initializable
 	{
 		// some controller created a question, add it to the quiz
 		questions.add(event.getQuestion());
-		System.out.println("\nYou added: " + event.getQuestion().getQuestion());
-		System.out.println("\nObservalbe list 'questions': ");
-		for (Question q : questions){
-			System.out.println(q.getQuestion());
-		}
 	}
 
 	public void addMultipleChoiceQuestion()
