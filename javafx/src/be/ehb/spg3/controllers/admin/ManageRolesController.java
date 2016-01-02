@@ -17,7 +17,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import org.controlsfx.control.ListSelectionView;
 import org.controlsfx.control.Notifications;
 
@@ -36,6 +38,8 @@ public class ManageRolesController implements Initializable
 	public TableView tblRoles;
 	@FXML
 	public TableColumn tcRoles;
+	@FXML
+	public TextField txtRoleName;
 
 	private List<Permission> permissions;
 
@@ -57,6 +61,7 @@ public class ManageRolesController implements Initializable
 				this.lsvPermissions.getTargetItems().clear();
 
 				Role role = (Role) newValue;
+				txtRoleName.setText(role.getName());
 				this.permissions.parallelStream().forEach(permission ->
 				{
 					Platform.runLater(() ->
@@ -88,14 +93,14 @@ public class ManageRolesController implements Initializable
 					.forEach(p -> { role.getPermissions().add(p); });
 			resolve(RoleRepository.class).save(role);
 			Notifications.create()
-					.text("Permissions saved!")
+					.text("Role saved!")
 					.darkStyle()
 					.showConfirm();
 		}
 		catch (SQLException ex)
 		{
 			Notifications.create()
-					.text("There was an error saving the permissions!")
+					.text("There was an error saving the role!")
 					.darkStyle()
 					.showConfirm();
 		}

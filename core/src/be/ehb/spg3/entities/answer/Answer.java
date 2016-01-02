@@ -18,7 +18,12 @@ public class Answer extends BaseEntity
 	private String text;
 	@Column
 	private boolean correct;
+	
+	public Answer(String text, boolean selected)
+	{
 
+	}
+	
 	public String getText()
 	{
 		return text;
