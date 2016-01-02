@@ -91,10 +91,7 @@ public class ModeratorGroupController implements Initializable
 				resolve(EventBus.class).fire(new ErrorEvent(e));
 			}
 		});
-		Notifications.create()
-				.text("Group saved!")
-				.darkStyle()
-				.showConfirm();
+		Notifications.create().text("Group saved!").darkStyle().showConfirm();
 	}
 	
 	public void delete()

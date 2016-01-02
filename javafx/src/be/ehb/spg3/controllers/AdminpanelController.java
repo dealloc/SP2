@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import net.engio.mbassy.listener.Handler;
+import org.controlsfx.control.ListSelectionView;
 
 import java.net.URL;
 import java.util.ResourceBundle;

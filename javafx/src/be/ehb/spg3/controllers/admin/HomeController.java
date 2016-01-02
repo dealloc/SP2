@@ -1,7 +1,9 @@
 package be.ehb.spg3.controllers.admin;
 
 import be.ehb.spg3.auth.AuthRepository;
+import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.controllers.AdminpanelController;
+import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -24,14 +26,10 @@ public class HomeController implements Initializable
 	}
 
 	public void manageUsers(){
-		new AdminpanelController().manageUsers();
-	}
-
-	public void manageRoles(){
-		new AdminpanelController().manageRoles();
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageUsers.fxml"));
 	}
 
 	public void manageGroups(){
-		new AdminpanelController().manageGroups();
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageGroups.fxml"));
 	}
 }

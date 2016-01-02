@@ -3,6 +3,7 @@ package be.ehb.spg3.controllers.admin;
 import be.ehb.spg3.contracts.encryption.Hasher;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.contracts.mailing.Mailer;
+import be.ehb.spg3.contracts.validation.EmailValidator;
 import be.ehb.spg3.entities.roles.Role;
 import be.ehb.spg3.entities.roles.RoleRepository;
 import be.ehb.spg3.entities.users.User;
@@ -21,6 +22,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.controlsfx.control.Notifications;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -145,6 +148,13 @@ public class ManageUsersController implements Initializable
 			Notifications.create().text("Email is required!").darkStyle().showError();
 			return;
 		}
+
+		if (!resolve(EmailValidator.class).validateEmail(txtEmail.getText()))
+		{
+			Notifications.create().darkStyle().text("Email is invalid!").showError();
+			return;
+		}
+
 
 		Role tempRole = new Role();
 		for (Role r : roles){
