@@ -1,8 +1,8 @@
 package be.ehb.spg3.controllers.auth;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
-import be.ehb.spg3.contracts.auth.Authorizator;
 import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.entities.roles.Role;
 import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.events.SwitchScreenEvent;
 import javafx.application.Platform;
@@ -31,14 +31,16 @@ public class LoginController
 		} else
 		{
 			Notifications.create().darkStyle().text("Welcome! You are now logged in.").showConfirm();
-			if (resolve(Authorizator.class).can("*.manage"))
-			{
+
+			Role role = resolve(Authenticator.class).auth().getRole();
+			if (role != null && role.getName().equals("admin"))
 				resolve(EventBus.class).fire(new SwitchScreenEvent("design/adminpanel.fxml", true));
+			else if (role != null && role.getName().equals("moderator"))
+			{
+				resolve(EventBus.class).fire(new SwitchScreenEvent("design/moderatorpanel.fxml", true));
 			}
 			else
-			{
 				resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
-			}
 		}
 
 	}
