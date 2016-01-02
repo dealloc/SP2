@@ -32,7 +32,6 @@
             <RowConstraints maxHeight="59.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="59.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="59.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="59.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="59.0" minHeight="50.0" prefHeight="59.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="100.0" vgrow="SOMETIMES" />
@@ -44,9 +43,8 @@
             <TextField fx:id="txtEmail" promptText="Email" GridPane.rowIndex="2" />
             <TextField fx:id="txtAddress" promptText="Address" GridPane.rowIndex="3" />
             <TextField fx:id="txtTel" promptText="Phone number" GridPane.rowIndex="4" />
-            <TextField fx:id="txtGroup" promptText="Group" GridPane.rowIndex="5" />
-            <ComboBox fx:id="cbRole" prefHeight="46.0" prefWidth="532.0" promptText="Set role" GridPane.rowIndex="6" />
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="7">
+            <ComboBox fx:id="cbRole" prefHeight="46.0" prefWidth="532.0" promptText="Set role" GridPane.rowIndex="5" />
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6">
                <children>
                   <Button fx:id="btnSave" disable="true" mnemonicParsing="false" onAction="#save" text="Save">
                      <FlowPane.margin>
@@ -65,7 +63,7 @@
                   </Button>
                </children>
             </FlowPane>
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="8">
+            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="7">
                <children>
                   <Label text="Create user" />
                   <TextField fx:id="txtUsername" promptText="Username">
@@ -80,9 +78,7 @@
                   </Button>
                </children>
             </FlowPane>
-            <Label fx:id="lblError" styleClass="lblError" wrapText="true" GridPane.rowIndex="9" />
-            <Label fx:id="lblError" styleClass="lblError" GridPane.rowIndex="9" />
-            <Label fx:id="lblConfirm" styleClass="lblConfirm" GridPane.rowIndex="9" />
+            <Label fx:id="lblError" styleClass="lblError" wrapText="true" GridPane.rowIndex="8" />
          </children>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
