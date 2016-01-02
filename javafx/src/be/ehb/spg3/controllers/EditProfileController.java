@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.Notifications;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -39,10 +40,7 @@ public class EditProfileController implements Initializable
 	private PasswordField txtRetypePassword;
 	@FXML
 	private PasswordField txtCheck;
-	@FXML
-	private Label lblError;
-	@FXML
-	private Label lblConfirm;
+
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
@@ -55,11 +53,10 @@ public class EditProfileController implements Initializable
 	}
 
 	public void save(){
-		lblConfirm.setText("");
-		lblError.setText("");
+
 		String enc = resolve(Hasher.class).hash(txtCheck.getText());
 		if (!enc.equals(resolve(Authenticator.class).auth().getPassword())){
-			lblError.setText("Incorrect password!");
+			Notifications.create().text("Incorrect password!").darkStyle().showError();
 			return;
 		}
 
@@ -70,12 +67,12 @@ public class EditProfileController implements Initializable
 		resolve(Authenticator.class).auth().setPhoneNumber(txtTel.getText());
 
 		if ((!txtPassword.getText().equals(txtRetypePassword.getText()))){
-			lblError.setText("New password does not match!");
+			Notifications.create().text("New password does not match!").darkStyle().showError();
 		} else if (!txtPassword.getText().isEmpty()) {
 			resolve(Authenticator.class).auth().setPassword(resolve(Hasher.class).hash(txtPassword.getText()));
 		}
 
-		lblConfirm.setText("Saved changes\n");
+		Notifications.create().text("Changes saved!").darkStyle().showConfirm();
 
 		try
 		{

@@ -27,10 +27,6 @@ public class HomeController implements Initializable
 		new AdminpanelController().manageUsers();
 	}
 
-	public void manageRoles(){
-		new AdminpanelController().manageRoles();
-	}
-
 	public void manageGroups(){
 		new AdminpanelController().manageGroups();
 	}
