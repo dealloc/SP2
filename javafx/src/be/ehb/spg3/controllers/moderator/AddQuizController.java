@@ -1,12 +1,14 @@
 package be.ehb.spg3.controllers.moderator;
 
 import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.events.QuestionAddedEvent;
 import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import net.engio.mbassy.listener.Handler;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +31,13 @@ public class AddQuizController implements Initializable
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
-		//TODO tableview management
+		resolve(EventBus.class).subscribe(this);
+	}
+
+	@Handler
+	public void addQuestion(QuestionAddedEvent event)
+	{
+		// some controller created a question, add it to the quiz
 	}
 
 	public void addMultipleChoiceQuestion()
