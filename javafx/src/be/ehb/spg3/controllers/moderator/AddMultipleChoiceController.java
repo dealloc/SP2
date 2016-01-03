@@ -1,20 +1,17 @@
 package be.ehb.spg3.controllers.moderator;
 
 import be.ehb.spg3.contracts.events.EventBus;
-import be.ehb.spg3.controllers.ModeratorpanelController;
 import be.ehb.spg3.entities.answer.Answer;
-import be.ehb.spg3.entities.answer.AnswerRepository;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.questions.QuestionType;
+import be.ehb.spg3.events.PopupEvent;
 import be.ehb.spg3.events.QuestionAddedEvent;
-import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
 
-import javax.management.Notification;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -47,13 +44,16 @@ public class AddMultipleChoiceController implements Initializable
 
 	}
 
-	public void addQuestion(){
-		if (txtQuestion.getText().isEmpty()){
+	public void addQuestion()
+	{
+		if (txtQuestion.getText().isEmpty())
+		{
 			Notifications.create().text("Fill in your question").darkStyle().showError();
 			return;
 		}
 
-		if (txtAnswer1.getText().isEmpty() || txtAnswer2.getText().isEmpty()){
+		if (txtAnswer1.getText().isEmpty() || txtAnswer2.getText().isEmpty())
+		{
 			Notifications.create().text("Answer 1 and 2 are required").darkStyle().showError();
 			return;
 		}
@@ -65,7 +65,8 @@ public class AddMultipleChoiceController implements Initializable
 		q.addAnswer(a1);
 		Answer a2 = new Answer(txtAnswer2.getText(), cbCorrect2.isSelected());
 		q.addAnswer(a2);
-		if (!txtAnswer3.getText().isEmpty()){
+		if (!txtAnswer3.getText().isEmpty())
+		{
 			Answer a3 = new Answer(txtAnswer3.getText(), cbCorrect3.isSelected());
 			q.addAnswer(a3);
 		}
@@ -76,8 +77,10 @@ public class AddMultipleChoiceController implements Initializable
 		}
 
 		resolve(EventBus.class).fire(new QuestionAddedEvent(q));
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addquiz.fxml"));
 	}
 
-	public void cancel(){   resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addquiz.fxml"));	}
+	public void cancel()
+	{
+		resolve(EventBus.class).fire(new PopupEvent.ClosePopupEvent());
+	}
 }

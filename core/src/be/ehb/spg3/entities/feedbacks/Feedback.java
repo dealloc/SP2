@@ -4,6 +4,7 @@ package be.ehb.spg3.entities.feedbacks;
 
 import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.users.User;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -21,6 +22,7 @@ public class Feedback extends BaseEntity
 	@Column
 	private String feedback;
 	@OneToOne
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private User user;
 
 	public Feedback()

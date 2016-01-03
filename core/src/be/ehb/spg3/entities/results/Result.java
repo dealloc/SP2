@@ -6,6 +6,7 @@ import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.answer.Answer;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.users.User;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -22,10 +23,13 @@ public class Result extends BaseEntity
 	@GeneratedValue
 	private long id;
 	@OneToOne
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private Quiz quiz;
 	@OneToOne
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private User user;
 	@ManyToMany
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private Collection<Answer> answers;
 
 	public Result()
