@@ -36,6 +36,14 @@ public class TakeQuizController implements Initializable
 	private static TakeQuizController instance;
 	private Quiz quiz;
 
+	@FXML
+	private ProgressBar pbQuestions;
+	@FXML
+	private AnchorPane contentRoot;
+
+	private List<Question> questions;
+	private int index = -1;
+
 	public static TakeQuizController getInstance()
 	{
 		return instance;
@@ -54,14 +62,6 @@ public class TakeQuizController implements Initializable
 			resolve(EventBus.class).fire(new ErrorEvent(e));
 		}
 	}
-
-	@FXML
-	private ProgressBar pbQuestions;
-	@FXML
-	private AnchorPane contentRoot;
-
-	private List<Question> questions;
-	private int index = -1;
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
@@ -82,9 +82,14 @@ public class TakeQuizController implements Initializable
 		if (++this.index < this.questions.size())
 		{
 			Question question = this.questions.get(this.index);
-
 			if (question.getType() == QuestionType.MultipleChoice)
 				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.radioButtons.fxml"));
+			if (question.getType() == QuestionType.Image)
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.imageQuestion.fxml"));
+			if (question.getType() == QuestionType.Video)
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.videoQuestion.fxml"));
+			if (question.getType() == QuestionType.Audio)
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.audioQuestion.fxml"));
 
 			((BaseAnswerController) controller()).setQuestion(question);
 		} else

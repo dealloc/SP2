@@ -1,29 +1,54 @@
 package be.ehb.spg3.controllers.questionTypes;
 
+import be.ehb.spg3.entities.answer.Answer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.web.WebView;
 
 import java.net.URL;
+import java.util.Collection;
 import java.util.ResourceBundle;
 
-public class AudioQuestionController implements Initializable
+public class AudioQuestionController extends BaseAnswerController
 {
 	@FXML
 	private Label lblQuestion;
 	@FXML
 	private FlowPane answerPane;
 	@FXML
-	private ImageView imgView;
+	private WebView audio;
+
+	private Answer answer;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources)
+	public Answer getAnswer()
 	{
-		//TODO update "lblQuestion" and add the needed media to "mediaPane"
-		Image img = new Image("http://www.addletters.com/pictures/bart-simpson-generator/bart-simpson-generator.php?line=I+will+tell+all+of+my+friends+about+addletters.com+today!");
-		imgView.setImage(img);
+		return this.answer;
+	}
+
+	@Override
+	public void init()
+	{
+		this.lblQuestion.setText(question.getQuestion());
+		audio.getEngine().load(question.getMediaUrl());
+		Collection<Answer> answers = question.getAnswers();
+		int index = 1;
+
+		ToggleGroup group = new ToggleGroup();
+		for (Answer answer : answers)
+		{
+			RadioButton button = new RadioButton(answer.getText());
+			button.setLayoutX(20);
+			button.setLayoutY(index++ * 25);
+			button.setToggleGroup(group);
+			button.setOnAction(event -> this.answer = answer);
+			this.answerPane.getChildren().add(button);
+		}
 	}
 }

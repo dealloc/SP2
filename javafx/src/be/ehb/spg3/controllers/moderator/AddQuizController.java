@@ -121,6 +121,8 @@ public class AddQuizController implements Initializable
 		newQuiz.setGroup(resolve(Authenticator.class).auth().getGroup());
 		newQuiz.setOwner(resolve(Authenticator.class).auth());
 		newQuiz.setQuestions(questions);
+		//TODO the question quiz_id is not saved?
+		//TODO answers are not saved correctly, only 1 answer per question without text
 
 		try
 		{
@@ -129,6 +131,7 @@ public class AddQuizController implements Initializable
 
 			resolve(QuizRepository.class).save(newQuiz);
 			questions.clear();
+			Notifications.create().text("Quiz created").darkStyle().showConfirm();
 		}
 		catch (SQLException e)
 		{
