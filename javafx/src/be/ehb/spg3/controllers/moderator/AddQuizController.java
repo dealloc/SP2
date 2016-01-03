@@ -124,7 +124,11 @@ public class AddQuizController implements Initializable
 
 		try
 		{
+//			for (Question question : newQuiz.getQuestions())
+//				resolve(QuestionRepository.class).save(question);
+
 			resolve(QuizRepository.class).save(newQuiz);
+			questions.clear();
 		}
 		catch (SQLException e)
 		{

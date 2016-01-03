@@ -39,10 +39,10 @@ public class User extends BaseEntity
 	@Column
 	private String password;
 	@OneToOne
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Cascade({org.hibernate.annotations.CascadeType.ALL})
 	private Group group;
 	@OneToOne
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Cascade({org.hibernate.annotations.CascadeType.ALL})
 	private Role role;
 
 	public User()

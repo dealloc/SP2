@@ -24,7 +24,7 @@ public class Role extends BaseEntity
 	@Column
 	private String name;
 	@ManyToMany
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Cascade({org.hibernate.annotations.CascadeType.ALL})
 	private Collection<Permission> permissions;
 
 	public Role()
