@@ -1,7 +1,10 @@
 package be.ehb.spg3.events;
 
 import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.events.errors.ErrorEvent;
 import net.engio.mbassy.bus.MBassador;
+import net.engio.mbassy.bus.config.BusConfiguration;
+import net.engio.mbassy.bus.config.Feature;
 
 // Created by Wannes Gennar. All rights reserved
 
@@ -14,7 +17,12 @@ public class MBassadorBus implements EventBus
 
 	public MBassadorBus()
 	{
-		this.eventbus = new MBassador(); // TODO error handler
+		this.eventbus = new MBassador(new BusConfiguration()
+				                              .addFeature(Feature.SyncPubSub.Default())
+				                              .addFeature(Feature.AsynchronousHandlerInvocation.Default())
+				                              .addFeature(Feature.AsynchronousMessageDispatch.Default())
+				                              .addPublicationErrorHandler(error -> this.fire(new ErrorEvent((Exception) error.getCause())))
+		); // TODO error handler
 	}
 
 	/**
