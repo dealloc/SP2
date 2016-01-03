@@ -1,8 +1,12 @@
 package be.ehb.spg3.controllers.user;
 
+import be.ehb.spg3.auth.AuthRepository;
+import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
+import be.ehb.spg3.entities.results.Result;
+import be.ehb.spg3.entities.results.ResultRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
 import be.ehb.spg3.events.TakeQuizControllerLoadedEvent;
 import javafx.beans.property.IntegerProperty;
@@ -18,11 +22,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import net.engio.mbassy.listener.Handler;
-import org.omg.CORBA.SetOverrideType;
 
-import javax.swing.plaf.basic.BasicButtonUI;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
@@ -31,6 +34,7 @@ public class QuizzesController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
 	private ObservableList<Quiz> data = FXCollections.observableArrayList();
+	private ObservableList<String> dataFromAuthenticatedUser = FXCollections.observableArrayList();
 	@FXML
 	private TableColumn tcQuiz;
 	@FXML
@@ -44,7 +48,20 @@ public class QuizzesController implements Initializable
 		resolve(EventBus.class).subscribe(this);
 		try
 		{
-			data.addAll(resolve(QuizRepository.class).getAll()); //TODO only get quizzes from his group
+			List<Quiz> quizzes = resolve(QuizRepository.class).findByUser(resolve(Authenticator.class).auth());
+			quizzes.parallelStream()
+					.filter(q -> q.getGroup().getId() == resolve(Authenticator.class).auth().getGroup().getId())
+					.forEach(quiz ->
+					{
+						Result result = resolve(ResultRepository.class).getResult(quiz, resolve(Authenticator.class).auth());
+						if (result != null)
+						{
+							dataFromAuthenticatedUser.add(quiz.getName() + ": afgelegd");
+						} else
+						{
+							dataFromAuthenticatedUser.add(quiz.getName() + ": nog niet afgelegd");
+						}
+					});
 		}
 		catch (SQLException e)
 		{
@@ -67,6 +84,9 @@ public class QuizzesController implements Initializable
 
 	public void takeQuiz()
 	{
+		Result result = new Result();
+		result.setQuiz(data.get(index.get()));
+		result.setUser(resolve(AuthRepository.class).auth());
 		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/takeQuiz.fxml", true));
 	}
 
