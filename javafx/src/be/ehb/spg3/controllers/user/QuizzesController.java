@@ -67,7 +67,7 @@ public class QuizzesController implements Initializable
 
 	public void takeQuiz()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/takeQuiz.fxml", true));
+		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/questionType/imageQuestion.fxml", true));
 	}
 
 	@Handler
