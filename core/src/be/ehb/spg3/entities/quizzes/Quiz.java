@@ -5,6 +5,7 @@ import be.ehb.spg3.entities.feedbacks.Feedback;
 import be.ehb.spg3.entities.groups.Group;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.users.User;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -25,12 +26,16 @@ public class Quiz extends BaseEntity
 	@Column
 	private String name;
 	@OneToOne
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private User owner;
 	@OneToOne
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private Group group;
 	@ManyToMany(targetEntity = Question.class)
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private Collection<Question> questions;
 	@ManyToOne(targetEntity = Feedback.class)
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private Collection<Feedback> feedback;
 
 	public Quiz()

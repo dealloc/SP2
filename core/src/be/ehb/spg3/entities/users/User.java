@@ -5,6 +5,7 @@ package be.ehb.spg3.entities.users;
 import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.groups.Group;
 import be.ehb.spg3.entities.roles.Role;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -38,8 +39,10 @@ public class User extends BaseEntity
 	@Column
 	private String password;
 	@OneToOne
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private Group group;
 	@OneToOne
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private Role role;
 
 	public User()

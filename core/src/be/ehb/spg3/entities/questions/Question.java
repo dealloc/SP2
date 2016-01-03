@@ -3,6 +3,7 @@ package be.ehb.spg3.entities.questions;
 import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.answer.Answer;
 import be.ehb.spg3.entities.quizzes.Quiz;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,8 +30,10 @@ public class Question extends BaseEntity
 	private String mediaUrl;
 	@Column
 	@Enumerated(EnumType.STRING)
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private QuestionType type = QuestionType.MultipleChoice;
 	@ManyToMany
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private Collection<Answer> answers;
 
 	public String getQuestion()

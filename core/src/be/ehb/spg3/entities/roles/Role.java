@@ -4,6 +4,7 @@ package be.ehb.spg3.entities.roles;
 
 import be.ehb.spg3.entities.BaseEntity;
 import be.ehb.spg3.entities.permissions.Permission;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -23,6 +24,7 @@ public class Role extends BaseEntity
 	@Column
 	private String name;
 	@ManyToMany
+	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	private Collection<Permission> permissions;
 
 	public Role()
