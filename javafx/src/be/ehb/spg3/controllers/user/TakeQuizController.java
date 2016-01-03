@@ -4,7 +4,6 @@ import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.controllers.questionTypes.BaseAnswerController;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.questions.QuestionRepository;
-import be.ehb.spg3.entities.questions.QuestionType;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.events.SwitchPaneEvent;
 import be.ehb.spg3.events.SwitchScreenEvent;
@@ -23,6 +22,7 @@ import net.engio.mbassy.listener.Handler;
 import org.controlsfx.control.Notifications;
 
 import java.net.URL;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -34,27 +34,14 @@ public class TakeQuizController implements Initializable
 {
 	private Quiz quiz;
 
-	public void setQuiz(Quiz quiz)
-	{
-		this.quiz = quiz;
-		try
-		{
-			this.questions = resolve(QuestionRepository.class).findByQuiz(quiz);
-			Platform.runLater(this::nextQuestion);
-		}
-		catch (Exception e)
-		{
-			resolve(EventBus.class).fire(new ErrorEvent(e));
-		}
-	}
-
 	@FXML
 	private ProgressBar pbQuestions;
 	@FXML
 	private AnchorPane contentRoot;
 
 	private List<Question> questions;
-	private int index = -1;
+	Iterator<Question> iterator;
+	int progress = 0;
 
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
@@ -66,26 +53,45 @@ public class TakeQuizController implements Initializable
 
 	public void previousQuestion()
 	{
-		this.pbQuestions.setProgress(this.index);
+		if (progress != 0)
+		{
+			this.progress--;
+			this.iterator = this.questions.iterator();
+			for (int i = 0; i <= this.progress && this.iterator.hasNext(); i++)
+				this.iterator.next();
+		}
 	}
 
 	public void nextQuestion()
 	{
-		if (++this.index < this.questions.size())
+		if (this.iterator.hasNext())
 		{
-			Question question = this.questions.get(this.index);
+			this.progress++;
+			Question question = this.iterator.next();
 
-			if (question.getType() == QuestionType.MultipleChoice)
-				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.radioButtons.fxml"));
+			String page = "user.questionType.radioButtons.fxml";
+			switch (question.getType())
+			{
+				case MultipleChoice:
+					page = "user.questionType.radioButtons.fxml";
+					break;
+				case Image:
+					break;
+				case Video:
+					break;
+				case Audio:
+					break;
+			}
 
+			resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent(page));
 			((BaseAnswerController) controller()).setQuestion(question);
-		} else
+		}
+		else
 		{
-			// that was the last question
 			Notifications.create().text("That's all folks").showConfirm();
 		}
 
-		this.pbQuestions.setProgress(this.index);
+		this.pbQuestions.setProgress((1 / this.questions.size()) * this.progress);
 	}
 
 	public void stopQuiz()
@@ -110,6 +116,21 @@ public class TakeQuizController implements Initializable
 			AnchorPane.setLeftAnchor(pane, 0.0);
 			AnchorPane.setBottomAnchor(pane, 0.0);
 			fadein.play();
+		}
+	}
+
+	public void setQuiz(Quiz quiz)
+	{
+		this.quiz = quiz;
+		try
+		{
+			this.questions = resolve(QuestionRepository.class).findByQuiz(quiz);
+			this.iterator = this.questions.iterator();
+			Platform.runLater(this::nextQuestion);
+		}
+		catch (Exception e)
+		{
+			resolve(EventBus.class).fire(new ErrorEvent(e));
 		}
 	}
 }
