@@ -86,7 +86,7 @@ public class QuizzesController implements Initializable
 	{
 		Result result = new Result();
 		result.setQuiz(data.get(index.get()));
-		result.setUser(resolve(AuthRepository.class).auth());
+		result.setUser(resolve(AuthRepository.class).auth()); //TODO wordt opgeslagen maar altijd als null (enkel de user)
 		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/takeQuiz.fxml", true));
 	}
 
