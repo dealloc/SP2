@@ -8,7 +8,6 @@ import be.ehb.spg3.entities.questions.QuestionType;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.events.SwitchPaneEvent;
 import be.ehb.spg3.events.SwitchScreenEvent;
-import be.ehb.spg3.events.TakeQuizControllerLoadedEvent;
 import be.ehb.spg3.events.errors.ErrorEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -33,13 +32,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class TakeQuizController implements Initializable
 {
-	private static TakeQuizController instance;
 	private Quiz quiz;
-
-	public static TakeQuizController getInstance()
-	{
-		return instance;
-	}
 
 	public void setQuiz(Quiz quiz)
 	{
@@ -66,10 +59,9 @@ public class TakeQuizController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		instance = this;
 		this.pbQuestions.setProgress(-1);
 		resolve(EventBus.class).subscribe(this);
-		resolve(EventBus.class).fire(new TakeQuizControllerLoadedEvent());
+		this.setQuiz(QuizzesController.SELECTED_QUIZ);
 	}
 
 	public void previousQuestion()
