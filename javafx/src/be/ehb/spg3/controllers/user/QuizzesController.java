@@ -1,10 +1,12 @@
 package be.ehb.spg3.controllers.user;
 
+import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
 import be.ehb.spg3.events.TakeQuizControllerLoadedEvent;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -23,6 +25,7 @@ import org.omg.CORBA.SetOverrideType;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
@@ -31,6 +34,7 @@ public class QuizzesController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
 	private ObservableList<Quiz> data = FXCollections.observableArrayList();
+	List<Quiz> quizzes;
 	@FXML
 	private TableColumn tcQuiz;
 	@FXML
@@ -44,7 +48,17 @@ public class QuizzesController implements Initializable
 		resolve(EventBus.class).subscribe(this);
 		try
 		{
-			data.addAll(resolve(QuizRepository.class).getAll()); //TODO only get quizzes from his group
+			this.quizzes = resolve(QuizRepository.class).getAll();
+			this.quizzes.parallelStream().forEach(quiz ->
+			{
+				Platform.runLater(() ->
+				{
+					if (quiz.getGroup() != null && quiz.getGroup().equals(resolve(Authenticator.class).auth().getGroup()))
+					{
+						data.add(quiz);
+					}
+				});
+			});
 		}
 		catch (SQLException e)
 		{
@@ -67,7 +81,7 @@ public class QuizzesController implements Initializable
 
 	public void takeQuiz()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/questionType/imageQuestion.fxml", true));
+		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/takeQuiz.fxml", true));
 	}
 
 	@Handler
