@@ -137,14 +137,14 @@ public class AddQuizController implements Initializable
 	{
 		Platform.runLater(() ->
 		{
-//			if (stage != null && stage.isShowing())
-//			{
-//				this.stage.setAlwaysOnTop(true);
-//				this.stage.setAlwaysOnTop(false);
-//				return;
-//			}
+			if (stage != null && stage.isShowing())
+			{
+				this.stage.setAlwaysOnTop(true);
+				this.stage.setAlwaysOnTop(false);
+				return;
+			}
 			Parent parent = fxml(event.getUrl());
-			stage = new Stage(StageStyle.UNIFIED);
+			stage = new Stage(StageStyle.TRANSPARENT);
 			stage.setAlwaysOnTop(true);
 			stage.centerOnScreen();
 			stage.setScene(new Scene(parent));
