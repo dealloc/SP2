@@ -57,4 +57,14 @@ public class Result extends BaseEntity
 	{
 		this.user = user;
 	}
+
+	public Collection<Answer> getAnswers()
+	{
+		return answers;
+	}
+
+	public void setAnswers(Collection<Answer> answers)
+	{
+		this.answers = answers;
+	}
 }
