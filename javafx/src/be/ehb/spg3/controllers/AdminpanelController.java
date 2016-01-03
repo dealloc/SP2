@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import net.engio.mbassy.listener.Handler;
+import org.controlsfx.control.ListSelectionView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +41,7 @@ public class AdminpanelController implements Initializable
 		String username = resolve(Authenticator.class).auth().getUsername();
 		this.lblUserName.setText(username);
 		resolve(EventBus.class).subscribe(this); // register ourselves as an event listener
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.home.fxml"));
 	}
 
 	public void close()
@@ -53,9 +54,9 @@ public class AdminpanelController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("editProfile.fxml"));
 	}
 
-	public void dashboard()
+	public void home()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.dashboard.fxml"));
+		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.home.fxml"));
 	}
 
 	public void manageUsers()
@@ -63,19 +64,9 @@ public class AdminpanelController implements Initializable
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageUsers.fxml"));
 	}
 
-	public void manageRoles()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageRoles.fxml"));
-	}
-
 	public void manageGroups()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageGroups.fxml"));
-	}
-
-	public void settings()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("settings.fxml"));
 	}
 
 	@Handler

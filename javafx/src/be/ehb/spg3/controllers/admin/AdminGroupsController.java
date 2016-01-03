@@ -2,10 +2,16 @@
  * Copyright (c) 2015 Jeroen Van den Broeck. All rights reserved.
  */
 
-package be.ehb.spg3.controllers;
+package be.ehb.spg3.controllers.admin;
 
+import be.ehb.spg3.contracts.auth.Authenticator;
+import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.groups.Group;
 import be.ehb.spg3.entities.groups.GroupRepository;
+import be.ehb.spg3.entities.users.User;
+import be.ehb.spg3.entities.users.UserRepository;
+import be.ehb.spg3.events.errors.ErrorEvent;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -16,9 +22,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.controlsfx.control.ListSelectionView;
+import org.controlsfx.control.Notifications;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
@@ -31,6 +40,7 @@ public class AdminGroupsController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
 	private ObservableList<Group> data = FXCollections.observableArrayList();
+	private List<User> users;
 
 	@FXML
 	private TableView tvGroups;
@@ -45,9 +55,7 @@ public class AdminGroupsController implements Initializable
 	@FXML
 	private TextField txtCreateGroup;
 	@FXML
-	private Label lblError;
-	@FXML
-	private Label lblConfirm;
+	private ListSelectionView lsvUsers;
 
 	public AdminGroupsController()
 	{
@@ -77,6 +85,7 @@ public class AdminGroupsController implements Initializable
 				btnSave.setDisable(false);
 				btnDelete.setDisable(false);
 				txtGroupName.setText(data.get(index.get()).getName());
+				loadUsers(data.get(index.get()));
 			}
 		});
 	}
@@ -89,21 +98,39 @@ public class AdminGroupsController implements Initializable
 
 	public void save()
 	{
+		if (txtGroupName.getText().length() < 3){
+			Notifications.create().text("Group name must be at least 3 characters long!").darkStyle().showError();
+			return;
+		}
+		if (txtGroupName.getText().length() > 30){
+			Notifications.create().text("Group name cannot be longer than 30 characters!").darkStyle().showError();
+			return;
+		}
+
 		data.get(index.get()).setName(txtGroupName.getText());
-		try
-		{
-			resolve(GroupRepository.class).save(data.get(index.get()));
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		lblConfirm.setText("Group saved.");
+
+		Group group = data.get(index.get());
+		this.users.stream().forEach(user -> {
+			if (this.lsvUsers.getTargetItems().contains(user.getUsername()))
+				user.setGroup(group);
+			else if (this.lsvUsers.getSourceItems().contains(user.getUsername()))
+				user.setGroup(null);
+
+			try
+			{
+				resolve(UserRepository.class).update(user);
+				resolve(GroupRepository.class).save(data.get(index.get()));
+			}
+			catch (SQLException e)
+			{
+				resolve(EventBus.class).fire(new ErrorEvent(e));
+			}
+		});
+		Notifications.create().text("Group saved!").darkStyle().showConfirm();
 	}
 
 	public void deleteSelected()
 	{
-		resetLbl();
 		try
 		{
 			resolve(GroupRepository.class).delete(data.get(index.get()));
@@ -114,15 +141,18 @@ public class AdminGroupsController implements Initializable
 		}
 		data.remove(index.get());
 		tvGroups.getSelectionModel().clearSelection();
-		lblConfirm.setText("Group removed.");
+		Notifications.create().text("Group removed").darkStyle().showConfirm();
 	}
 
 	public void addGroup()
 	{
-		resetLbl();
 		if (txtCreateGroup.getText().length() < 3)
 		{
-			lblError.setText("Groupname must be at least 3 characters long!");
+			Notifications.create().text("Group name must be at least 3 characters long!").darkStyle().showError();
+			return;
+		}
+		if (txtCreateGroup.getText().length() > 30){
+			Notifications.create().text("Group name cannot be longer than 30 characters!").darkStyle().showError();
 			return;
 		}
 
@@ -130,7 +160,7 @@ public class AdminGroupsController implements Initializable
 		{
 			if (txtCreateGroup.getText().equals(g.getName()))
 			{
-				lblError.setText("Groupname already in use!");
+				Notifications.create().text("Group name already in use!").darkStyle().showError();
 				return;
 			}
 		}
@@ -145,11 +175,39 @@ public class AdminGroupsController implements Initializable
 			e.printStackTrace();
 		}
 		data.add(temp);
-		lblConfirm.setText("Group added.");
+		Notifications.create().text("Group created").darkStyle().showConfirm();
 	}
 
-	public void resetLbl(){
-		lblConfirm.setText("");
-		lblError.setText("");
+	public void loadUsers(Group group)
+	{
+		this.lsvUsers.getTargetItems().clear();
+		this.lsvUsers.getSourceItems().clear();
+
+		try
+		{
+			if (group == null)
+			{
+				return;
+			}
+
+			this.users = resolve(UserRepository.class).getAll();
+			this.users.parallelStream().forEach(user ->
+			{
+				Platform.runLater(() ->
+				{
+					if (user.getGroup() != null && user.getGroup().getName().equals(group.getName()))
+					{
+						this.lsvUsers.getTargetItems().add(user.getUsername());
+					} else if (user.getGroup() == null)
+					{
+						this.lsvUsers.getSourceItems().add(user.getUsername());
+					}
+				});
+			});
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

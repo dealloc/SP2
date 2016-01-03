@@ -33,7 +33,7 @@ public class GMailer implements Mailer
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication()
 			{
-				return new PasswordAuthentication("email addres", "password");
+				return new PasswordAuthentication("gr3.pr.ready@gmail.com", "4MsJWg4=#DpwS!Pk");
 			}
 		};
 		Session session = Session.getInstance(properties, authenticator);
@@ -132,6 +132,14 @@ public class GMailer implements Mailer
 	@Override
 	public void send() throws MessagingException
 	{
-		Transport.send(this.message);
+		try
+		{
+			Transport.send(this.message);
+		}
+		catch (MessagingException e)
+		{
+			resolve(EventBus.class).fire(new ErrorEvent(e));
+		}
+
 	}
 }

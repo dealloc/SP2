@@ -16,9 +16,12 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
  */
 public final class Resources
 {
+	private static FXMLLoader loader;
+
+	// private constructor to prevent instantiation
 	private Resources()
 	{
-	} // private constructor to prevent instantiation
+	}
 
 	/**
 	 * Load a resource from a relative string, package formatted string.
@@ -42,16 +45,22 @@ public final class Resources
 	public static <T> T fxml(String url)
 	{
 		URL location = load(url);
+		loader = new FXMLLoader(location);
 
 		try
 		{
-			return FXMLLoader.load(location);
+			return loader.load();
 		}
 		catch (IOException e)
 		{
 			resolve(EventBus.class).fire(new ErrorEvent(e));
 			return null;
 		}
+	}
+
+	public static <T> T controller()
+	{
+		return (T) loader.getController();
 	}
 
 	private static String transform(String url)

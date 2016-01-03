@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css"
-            xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane prefHeight="614.0" prefWidth="684.0" style="-fx-background-color: #dedede;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.moderator.QuizToolEditQuizController">
    <children>
       <Label layoutX="23.0" layoutY="2.0" prefHeight="40.0" prefWidth="187.0" text="Quiztool - Edit Quiz">
          <font>
@@ -61,7 +63,7 @@
                   <Insets left="10.0" top="625.0" />
                </GridPane.margin>
             </Button>
-            <Label text="Naam van de quiz" GridPane.rowIndex="1">
+            <Label fx:id="lblQuizName" text="Naam van de quiz" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="250.0" top="-460.0" />
                </GridPane.margin>

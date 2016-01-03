@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="975.0" stylesheets="@../style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="be.ehb.spg3.controllers.moderator.UserResultsController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1000.0" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <TableView fx:id="tvResult" prefHeight="502.0" prefWidth="535.0" GridPane.rowIndex="1">
+         <columns>
+            <TableColumn fx:id="tcUsername" prefWidth="250.0" text="Username" />
+            <TableColumn fx:id="tcFName" prefWidth="250.0" text="First name" />
+            <TableColumn fx:id="tcLName" prefWidth="300.0" text="Last name" />
+            <TableColumn fx:id="tcScore" prefWidth="200.0" text="Score" />
+         </columns>
+      </TableView>
+      <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="lblQuizname" alignment="CENTER" prefHeight="40.0" prefWidth="217.0" text="QUIZNAME">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
+      <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <children>
+            <Button mnemonicParsing="false" onAction="#returnToQuizzes" text="Return to quizzes" />
+         </children>
+      </FlowPane>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</GridPane>

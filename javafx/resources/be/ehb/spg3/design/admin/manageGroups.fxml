@@ -4,12 +4,14 @@
   ~ Copyright (c) 2015 Jeroen Van den Broeck. All rights reserved.
   -->
 
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0"
-          prefWidth="1150.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.AdminGroupsController">
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="794.0" prefWidth="1150.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.admin.AdminGroupsController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -32,68 +34,66 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="200.0" prefWidth="200.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="59.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="300.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="100.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="100.0" minHeight="50.0" prefHeight="100.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
+            <TextField fx:id="txtGroupName" promptText="Group name" GridPane.columnIndex="1" />
+            <ListSelectionView fx:id="lsvUsers" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <FlowPane alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label text="Group name:">
-                     <FlowPane.margin>
-                        <Insets />
-                     </FlowPane.margin>
-                  </Label>
-               </children>
-            </FlowPane>
-            <FlowPane alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Button fx:id="btnSave" disable="true" mnemonicParsing="false" onAction="#save" text="Save">
+                  <Button fx:id="btnSave" disable="true" mnemonicParsing="false" onAction="#save" prefWidth="150.0" text="Save">
                      <FlowPane.margin>
                         <Insets left="10.0" />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="btnDelete" disable="true" mnemonicParsing="false" onAction="#deleteSelected" text="Delete selected">
+                  <Button fx:id="btnDelete" disable="true" mnemonicParsing="false" onAction="#deleteSelected" prefWidth="150.0" text="Delete selected">
                      <FlowPane.margin>
                         <Insets left="10.0" />
                      </FlowPane.margin>
                   </Button>
-               </children>
-            </FlowPane>
-            <TextField fx:id="txtGroupName" GridPane.columnIndex="1" />
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Label text="Group name:" />
-                  <TextField fx:id="txtCreateGroup">
-                     <FlowPane.margin>
-                        <Insets left="15.0" />
-                     </FlowPane.margin>
-                  </TextField>
-                  <Button mnemonicParsing="false" onAction="#addGroup" text="Add group">
-                     <FlowPane.margin>
-                        <Insets left="15.0" />
-                     </FlowPane.margin>
-                  </Button>
-               </children>
-            </FlowPane>
-            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-               <children>
-                  <Label text="Create group:" />
                </children>
             </FlowPane>
             <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Label fx:id="lblError" styleClass="lblError">
+                  <TextField fx:id="txtCreateGroup" prefWidth="340.0" promptText="Group name">
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#addGroup" prefWidth="150.0" text="Add group">
+                     <FlowPane.margin>
+                        <Insets left="10.0" />
+                     </FlowPane.margin>
+                  </Button>
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Label text="Edit group">
+                     <FlowPane.margin>
+                        <Insets />
+                     </FlowPane.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
                   </Label>
-               </children></FlowPane>
-            <Label fx:id="lblConfirm" styleClass="lblConfirm" GridPane.rowIndex="3" />
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+               <children>
+                  <Label text="Create group">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </FlowPane>
          </children>
          <padding>
-            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+            <Insets bottom="25.0" left="25.0" right="25.0" top="50.0" />
          </padding>
       </GridPane>
    </children>
