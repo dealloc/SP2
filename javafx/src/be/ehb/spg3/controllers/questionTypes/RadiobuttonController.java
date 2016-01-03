@@ -16,10 +16,12 @@ public class RadiobuttonController extends BaseAnswerController
 	@FXML
 	private Label lblQuestion;
 
+	private Answer answer = null;
+
 	@Override
 	public Answer getAnswer()
 	{
-		return null;
+		return this.answer;
 	}
 
 	@Override
@@ -36,6 +38,7 @@ public class RadiobuttonController extends BaseAnswerController
 			button.setLayoutX(20);
 			button.setLayoutY(index++ * 25);
 			button.setToggleGroup(group);
+			button.setOnAction(event -> this.answer = answer);
 			this.answerPane.getChildren().add(button);
 		}
 	}
