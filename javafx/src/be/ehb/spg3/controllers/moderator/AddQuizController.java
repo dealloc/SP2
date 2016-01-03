@@ -3,12 +3,12 @@ package be.ehb.spg3.controllers.moderator;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.questions.Question;
-import be.ehb.spg3.entities.questions.QuestionRepository;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
+import be.ehb.spg3.events.PopupEvent;
 import be.ehb.spg3.events.QuestionAddedEvent;
-import be.ehb.spg3.events.SwitchPaneEvent;
 import be.ehb.spg3.events.errors.ErrorEvent;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -17,10 +17,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import net.engio.mbassy.listener.Handler;
 import org.controlsfx.control.Notifications;
 
@@ -28,10 +32,12 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import static be.ehb.spg3.Resources.fxml;
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class AddQuizController implements Initializable
 {
+	private Stage stage = null;
 	private IntegerProperty index = new SimpleIntegerProperty();
 	static ObservableList<Question> questions =  FXCollections.observableArrayList();
 
@@ -66,28 +72,28 @@ public class AddQuizController implements Initializable
 	@Handler
 	public void addQuestion(QuestionAddedEvent event)
 	{
-		// some controller created a question, add it to the quiz
 		questions.add(event.getQuestion());
+		resolve(EventBus.class).fire(new PopupEvent.ClosePopupEvent());
 	}
 
 	public void addMultipleChoiceQuestion()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addMultipleChoice.fxml"));
+		resolve(EventBus.class).fire(new PopupEvent("moderator.addMultipleChoice.fxml"));
 	}
 
 	public void addImageQuestion()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addImageQuestion.fxml"));
+		resolve(EventBus.class).fire(new PopupEvent("moderator.addImageQuestion.fxml"));
 	}
 
 	public void addAudioQuestion()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addAudioQuestion.fxml"));
+		resolve(EventBus.class).fire(new PopupEvent("moderator.addAudioQuestion.fxml"));
 	}
 
 	public void addVideoQuestion()
 	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("moderator.addVideoQuestion.fxml"));
+		resolve(EventBus.class).fire(new PopupEvent("moderator.addVideoQuestion.fxml"));
 	}
 
 	public void removeQuestion()
@@ -118,6 +124,35 @@ public class AddQuizController implements Initializable
 		catch (SQLException e)
 		{
 			resolve(EventBus.class).fire(new ErrorEvent(e));
+		}
+	}
+
+	@Handler
+	public void createPopup(PopupEvent event)
+	{
+		Platform.runLater(() ->
+		{
+			if (stage != null && stage.isShowing())
+			{
+				this.stage.setAlwaysOnTop(true);
+				this.stage.setAlwaysOnTop(false);
+				return;
+			}
+			Parent parent = fxml(event.getUrl());
+			stage = new Stage(StageStyle.UNDECORATED);
+			stage.centerOnScreen();
+			stage.setScene(new Scene(parent));
+			stage.show();
+		});
+	}
+
+	@Handler
+	public void closePopUp(PopupEvent.ClosePopupEvent event)
+	{
+		if (this.stage != null && stage.isShowing())
+		{
+			Platform.runLater(this.stage::close);
+			this.stage = null;
 		}
 	}
 }
