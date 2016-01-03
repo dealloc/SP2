@@ -120,6 +120,8 @@ public class AddQuizController implements Initializable
 		newQuiz.setName(txtQuizName.getText());
 		newQuiz.setGroup(resolve(Authenticator.class).auth().getGroup());
 		newQuiz.setOwner(resolve(Authenticator.class).auth());
+		newQuiz.setQuestions(questions);
+
 		try
 		{
 			resolve(QuizRepository.class).save(newQuiz);
