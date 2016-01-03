@@ -124,8 +124,8 @@ public class AddQuizController implements Initializable
 
 		try
 		{
-//			for (Question question : newQuiz.getQuestions())
-//				resolve(QuestionRepository.class).save(question);
+			for (Question question : newQuiz.getQuestions())
+				question.setQuiz(newQuiz);
 
 			resolve(QuizRepository.class).save(newQuiz);
 			questions.clear();
