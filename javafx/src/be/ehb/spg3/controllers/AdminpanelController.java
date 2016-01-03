@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import net.engio.mbassy.listener.Handler;
+import org.controlsfx.control.ListSelectionView;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,11 +62,6 @@ public class AdminpanelController implements Initializable
 	public void manageUsers()
 	{
 		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageUsers.fxml"));
-	}
-
-	public void manageRoles()
-	{
-		resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("admin.manageRoles.fxml"));
 	}
 
 	public void manageGroups()

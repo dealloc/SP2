@@ -41,11 +41,6 @@
             <Font size="30.0" />
          </font>
       </Hyperlink>
-      <Hyperlink onAction="#manageRoles" text="Manage roles">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Hyperlink>
       <Hyperlink onAction="#manageGroups" text="Manage groups">
          <font>
             <Font size="30.0" />

@@ -74,7 +74,5 @@
          <FlowPane.margin>
             <Insets top="10.0" />
          </FlowPane.margin></Button>
-      <Label fx:id="lblError" styleClass="lblError" />
-      <Label fx:id="lblConfirm" styleClass="lblConfirm" wrapText="true" />
    </children>
 </FlowPane>

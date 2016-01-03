@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="832.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="be.ehb.spg3.controllers.moderator.ManageQuizzesController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1000.0" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="500.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label text="Your quizzes">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+         </children>
+      </FlowPane>
+      <TableView fx:id="tvQuizzes" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="tcQuizzes" prefWidth="599.0" text="Quizname" />
+        </columns>
+      </TableView>
+      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <children>
+            <Button mnemonicParsing="false" onAction="#viewResults" prefWidth="200.0" text="View results">
+               <FlowPane.margin>
+                  <Insets right="10.0" />
+               </FlowPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#deleteQuiz" prefWidth="200.0" text="Delete selected quiz" />
+         </children>
+      </FlowPane>
+      <FlowPane fx:id="flowSure" alignment="CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.rowIndex="3">
+         <children>
+            <Label alignment="CENTER" prefHeight="68.0" prefWidth="414.0" text="Are you sure you want to permanently remove this quiz? All results will be lost" textAlignment="CENTER" wrapText="true" />
+            <Button mnemonicParsing="false" onAction="#yes" prefWidth="100.0" text="Yes" />
+         </children>
+      </FlowPane>
+   </children>
+</GridPane>

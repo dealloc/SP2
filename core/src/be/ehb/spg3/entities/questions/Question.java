@@ -5,6 +5,7 @@ import be.ehb.spg3.entities.answer.Answer;
 import be.ehb.spg3.entities.quizzes.Quiz;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 // Created by Wannes Gennar. All rights reserved
@@ -64,6 +65,7 @@ public class Question extends BaseEntity
 
 	public void addAnswer(Answer answer)
 	{
+		this.answers = new ArrayList<>();
 		this.answers.add(answer);
 	}
 

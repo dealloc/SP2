@@ -12,7 +12,7 @@
           <TableColumn fx:id="tcQuiz" prefWidth="727.0" text="Quiz" />
         </columns>
       </TableView>
-      <Button mnemonicParsing="false" onAction="#takeQuiz" text="Take quiz">
+      <Button fx:id="btnTake" disable="true" mnemonicParsing="false" onAction="#takeQuiz" text="Take quiz">
          <FlowPane.margin>
             <Insets top="10.0" />
          </FlowPane.margin>

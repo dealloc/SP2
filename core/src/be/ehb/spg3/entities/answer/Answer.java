@@ -19,6 +19,13 @@ public class Answer extends BaseEntity
 	@Column
 	private boolean correct;
 
+	public Answer(){}
+
+	public Answer(String text, boolean selected)
+	{
+
+	}
+	
 	public String getText()
 	{
 		return text;

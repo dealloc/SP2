@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class quizToolEditQuizController implements Initializable
+public class QuizToolEditQuizController implements Initializable
 {
 	@FXML
 	private Label lblQuizName;
