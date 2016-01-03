@@ -98,7 +98,10 @@ public class AddQuizController implements Initializable
 
 	public void removeQuestion()
 	{
-		questions.remove(index.get());
+		if (questions.size() != 0)
+		{
+			questions.remove(index.get());
+		}
 	}
 
 	public void create()
