@@ -46,7 +46,11 @@ public class QuizzesController implements Initializable
 					.filter(q -> q.getGroup().getId() == resolve(Authenticator.class).auth().getGroup().getId())
 					.forEach(quiz ->
 					{
-						data.add(quiz);
+						System.out.println(quiz);
+						if (quiz != null)
+						{
+							data.add(quiz);
+						}
 					});
 		}
 		catch (SQLException e)

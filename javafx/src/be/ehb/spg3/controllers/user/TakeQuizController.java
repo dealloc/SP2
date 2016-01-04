@@ -76,10 +76,13 @@ public class TakeQuizController implements Initializable
 					page = "user.questionType.radioButtons.fxml";
 					break;
 				case Image:
+					page = "user.questionType.imageQuestion.fxml";
 					break;
 				case Video:
+					page = "user.questionType.videoQuestion.fxml";
 					break;
 				case Audio:
+					page = "user.questionType.audioQuestion.fxml";
 					break;
 			}
 
