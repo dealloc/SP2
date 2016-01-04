@@ -31,6 +31,9 @@ import static be.ehb.spg3.Resources.controller;
 import static be.ehb.spg3.Resources.fxml;
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
+//TODO make sure the question is always loaded (atm it doesn't load always)
+//TODO reset questions when you start a new quiz
+
 public class TakeQuizController implements Initializable
 {
 	private static TakeQuizController instance;
@@ -81,7 +84,6 @@ public class TakeQuizController implements Initializable
 
 	public void nextQuestion()
 	{
-		//TODO reset index on new question
 		if (++this.index < this.questions.size())
 		{
 			Question question = this.questions.get(this.index);
@@ -106,7 +108,7 @@ public class TakeQuizController implements Initializable
 
 	public void stopQuiz()
 	{
-
+		this.index = -1;
 		resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
 	}
 
