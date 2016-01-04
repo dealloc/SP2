@@ -38,15 +38,17 @@ public class QuizzesController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
+		index.set(-1);
 		resolve(EventBus.class).subscribe(this);
 		try
 		{
 			List<Quiz> quizzes = resolve(QuizRepository.class).findByUser(resolve(Authenticator.class).auth());
+			if (quizzes == null)
+				return;
 			quizzes.parallelStream()
 					.filter(q -> q.getGroup().getId() == resolve(Authenticator.class).auth().getGroup().getId())
 					.forEach(quiz ->
 					{
-						System.out.println(quiz);
 						if (quiz != null)
 						{
 							data.add(quiz);

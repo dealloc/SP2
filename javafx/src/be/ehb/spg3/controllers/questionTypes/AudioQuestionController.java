@@ -2,15 +2,18 @@ package be.ehb.spg3.controllers.questionTypes;
 
 import be.ehb.spg3.entities.answer.Answer;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.web.WebView;
 
+import java.net.URL;
 import java.util.Collection;
+import java.util.ResourceBundle;
 
-public class AudioQuestionController extends BaseAnswerController
+public class AudioQuestionController extends BaseAnswerController implements Initializable
 {
 	@FXML
 	private Label lblQuestion;
@@ -44,5 +47,19 @@ public class AudioQuestionController extends BaseAnswerController
 			button.setOnAction(event -> this.answer = answer);
 			this.answerPane.getChildren().add(button);
 		}
+		System.out.println("INIT");
+		getQuestiontext();
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources)
+	{
+		System.out.println("initialize");
+		getQuestiontext();
+	}
+
+	public void getQuestiontext()
+	{
+		System.out.println(lblQuestion.getText());
 	}
 }
