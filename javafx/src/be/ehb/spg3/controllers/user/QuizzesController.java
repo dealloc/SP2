@@ -1,14 +1,12 @@
 package be.ehb.spg3.controllers.user;
 
-import be.ehb.spg3.auth.AuthRepository;
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
-import be.ehb.spg3.entities.results.Result;
-import be.ehb.spg3.entities.results.ResultRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
 import be.ehb.spg3.events.TakeQuizControllerLoadedEvent;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
@@ -22,7 +20,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import net.engio.mbassy.listener.Handler;
+import org.omg.CORBA.SetOverrideType;
 
+import javax.swing.plaf.basic.BasicButtonUI;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -34,7 +34,7 @@ public class QuizzesController implements Initializable
 {
 	private IntegerProperty index = new SimpleIntegerProperty();
 	private ObservableList<Quiz> data = FXCollections.observableArrayList();
-	private ObservableList<String> dataFromAuthenticatedUser = FXCollections.observableArrayList();
+	List<Quiz> quizzes;
 	@FXML
 	private TableColumn tcQuiz;
 	@FXML
@@ -48,20 +48,17 @@ public class QuizzesController implements Initializable
 		resolve(EventBus.class).subscribe(this);
 		try
 		{
-			List<Quiz> quizzes = resolve(QuizRepository.class).findByUser(resolve(Authenticator.class).auth());
-			quizzes.parallelStream()
-					.filter(q -> q.getGroup().getId() == resolve(Authenticator.class).auth().getGroup().getId())
-					.forEach(quiz ->
+			this.quizzes = resolve(QuizRepository.class).getAll();
+			this.quizzes.parallelStream().forEach(quiz ->
+			{
+				Platform.runLater(() ->
+				{
+					if (quiz.getGroup() != null && quiz.getGroup().equals(resolve(Authenticator.class).auth().getGroup()))
 					{
-						Result result = resolve(ResultRepository.class).getResult(quiz, resolve(Authenticator.class).auth());
-						if (result != null)
-						{
-							dataFromAuthenticatedUser.add(quiz.getName() + ": afgelegd");
-						} else
-						{
-							dataFromAuthenticatedUser.add(quiz.getName() + ": nog niet afgelegd");
-						}
-					});
+						data.add(quiz);
+					}
+				});
+			});
 		}
 		catch (SQLException e)
 		{
@@ -84,9 +81,6 @@ public class QuizzesController implements Initializable
 
 	public void takeQuiz()
 	{
-		Result result = new Result();
-		result.setQuiz(data.get(index.get()));
-		result.setUser(resolve(AuthRepository.class).auth()); //TODO wordt opgeslagen maar altijd als null (enkel de user)
 		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/takeQuiz.fxml", true));
 	}
 

@@ -2,6 +2,7 @@ package be.ehb.spg3.controllers.moderator;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.entities.answer.AnswerRepository;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
