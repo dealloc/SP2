@@ -66,6 +66,8 @@ public class TakeQuizController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
+		if (questions != null)
+			questions.clear();
 		instance = this;
 		this.pbQuestions.setProgress(-1);
 		resolve(EventBus.class).subscribe(this);
@@ -74,27 +76,12 @@ public class TakeQuizController implements Initializable
 
 	public void previousQuestion()
 	{
-		if (--this.index > this.questions.size())
-		{
-			Question question = this.questions.get(this.index);
-			if (question.getType() == QuestionType.MultipleChoice)
-				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.radioButtons.fxml"));
-			if (question.getType() == QuestionType.Image)
-				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.imageQuestion.fxml"));
-			if (question.getType() == QuestionType.Video)
-				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.videoQuestion.fxml"));
-			if (question.getType() == QuestionType.Audio)
-				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.audioQuestion.fxml"));
 
-			((BaseAnswerController) controller()).setQuestion(question);
-		}
-
-		this.pbQuestions.setProgress(this.index);
-		this.pbQuestions.setProgress(this.index);
 	}
 
 	public void nextQuestion()
 	{
+		//TODO reset index on new question
 		if (++this.index < this.questions.size())
 		{
 			Question question = this.questions.get(this.index);
