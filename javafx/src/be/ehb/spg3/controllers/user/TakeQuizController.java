@@ -74,6 +74,22 @@ public class TakeQuizController implements Initializable
 
 	public void previousQuestion()
 	{
+		if (--this.index > this.questions.size())
+		{
+			Question question = this.questions.get(this.index);
+			if (question.getType() == QuestionType.MultipleChoice)
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.radioButtons.fxml"));
+			if (question.getType() == QuestionType.Image)
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.imageQuestion.fxml"));
+			if (question.getType() == QuestionType.Video)
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.videoQuestion.fxml"));
+			if (question.getType() == QuestionType.Audio)
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.audioQuestion.fxml"));
+
+			((BaseAnswerController) controller()).setQuestion(question);
+		}
+
+		this.pbQuestions.setProgress(this.index);
 		this.pbQuestions.setProgress(this.index);
 	}
 
@@ -103,6 +119,7 @@ public class TakeQuizController implements Initializable
 
 	public void stopQuiz()
 	{
+
 		resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
 	}
 

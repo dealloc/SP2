@@ -1,7 +1,6 @@
 package be.ehb.spg3.controllers.questionTypes;
 
 import be.ehb.spg3.entities.answer.Answer;
-import be.ehb.spg3.entities.questions.Question;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -15,7 +14,7 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.ResourceBundle;
 
-public class ImageQuestionController extends BaseAnswerController
+public class ImageQuestionController extends BaseAnswerController implements Initializable
 {
 	@FXML
 	private Label lblQuestion;
@@ -51,5 +50,11 @@ public class ImageQuestionController extends BaseAnswerController
 			button.setOnAction(event -> this.answer = answer);
 			this.answerPane.getChildren().add(button);
 		}
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources)
+	{
+		System.out.println("Dees zou eerst moeten");
 	}
 }

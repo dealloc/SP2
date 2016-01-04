@@ -2,21 +2,13 @@ package be.ehb.spg3.controllers.questionTypes;
 
 import be.ehb.spg3.entities.answer.Answer;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.scene.web.WebView;
 
-import java.net.URL;
 import java.util.Collection;
-import java.util.ResourceBundle;
 
 public class VideoQuestionController extends BaseAnswerController
 {
