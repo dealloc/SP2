@@ -76,10 +76,13 @@ public class TakeQuizController implements Initializable
 					page = "user.questionType.radioButtons.fxml";
 					break;
 				case Image:
+					page = "user.questionType.imageQuestion.fxml";
 					break;
 				case Video:
+					page = "user.questionType.videoQuestion.fxml";
 					break;
 				case Audio:
+					page = "user.questionType.audioQuestion.fxml";
 					break;
 			}
 
@@ -90,12 +93,13 @@ public class TakeQuizController implements Initializable
 		}
 		else
 		{
-			Notifications.create().text("That's all folks").showConfirm();
+			resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.quizOverview.fxml"));
 		}
 	}
 
 	public void stopQuiz()
 	{
+		//TODO save exit
 		resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
 	}
 

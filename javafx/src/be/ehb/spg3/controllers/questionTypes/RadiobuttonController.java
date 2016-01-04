@@ -6,8 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.AnchorPane;
-import org.controlsfx.control.Notifications;
+import javafx.scene.layout.FlowPane;
 
 import java.net.URL;
 import java.util.Collection;
@@ -16,7 +15,7 @@ import java.util.ResourceBundle;
 public class RadiobuttonController extends BaseAnswerController implements Initializable
 {
 	@FXML
-	private AnchorPane answerPane;
+	private FlowPane answerPane;
 	@FXML
 	private Label lblQuestion;
 
@@ -39,9 +38,9 @@ public class RadiobuttonController extends BaseAnswerController implements Initi
 		for (Answer answer : answers)
 		{
 			RadioButton button = new RadioButton(answer.getText());
-			button.setLayoutX(20);
-			button.setLayoutY(index++ * 25);
-			button.setToggleGroup(group);
+			//button.setLayoutX(20);
+			//button.setLayoutY(index++ * 25);
+			//button.setToggleGroup(group);
 			button.setOnAction(event -> this.answer = answer);
 			this.answerPane.getChildren().add(button);
 		}

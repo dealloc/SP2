@@ -4,7 +4,6 @@ import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
-import be.ehb.spg3.entities.users.UserRepository;
 import be.ehb.spg3.events.SwitchPaneEvent;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -71,6 +70,7 @@ public class ManageQuizzesController implements Initializable
 			public void changed(ObservableValue observable, Object oldvalue, Object newValue)
 			{
 				index.set(data.indexOf(newValue));
+				flowSure.setVisible(false);
 			}
 		});
 	}
@@ -98,6 +98,11 @@ public class ManageQuizzesController implements Initializable
 		data.remove(index.get());
 		tvQuizzes.getSelectionModel().clearSelection();
 		Notifications.create().text("Quiz removed").darkStyle().showConfirm();
+		flowSure.setVisible(false);
+	}
+
+	public void sortQuiz()
+	{
 		flowSure.setVisible(false);
 	}
 }

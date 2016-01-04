@@ -1,5 +1,6 @@
 package be.ehb.spg3.controllers.user;
 
+import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
@@ -36,10 +38,21 @@ public class QuizzesController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
+		//index.set(-1);
 		resolve(EventBus.class).subscribe(this);
 		try
 		{
-			data.addAll(resolve(QuizRepository.class).getAll()); //TODO only get quizzes from his group
+			List<Quiz> quizzes = resolve(QuizRepository.class).findByUser(resolve(Authenticator.class).auth());
+			if (quizzes == null)
+				return;
+
+			for (Quiz q : quizzes)
+			{
+				if (data != null && q != null && q.getGroup().equals(resolve(Authenticator.class).auth().getGroup()))
+				{
+					data.add(q);
+				}
+			}
 		}
 		catch (SQLException e)
 		{
