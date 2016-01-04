@@ -2,7 +2,6 @@ package be.ehb.spg3.controllers.moderator;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
-import be.ehb.spg3.entities.answer.AnswerRepository;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.questions.QuestionRepository;
 import be.ehb.spg3.entities.quizzes.Quiz;
@@ -129,9 +128,6 @@ public class AddQuizController implements Initializable
 
 		try
 		{
-//			for (Question question : newQuiz.getQuestions())
-//				resolve(QuestionRepository.class).save(question);
-
 			resolve(QuizRepository.class).save(newQuiz);
 
 			for (Question question : newQuiz.getQuestions()){
