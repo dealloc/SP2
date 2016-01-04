@@ -2,7 +2,9 @@ package be.ehb.spg3.controllers.moderator;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
+import be.ehb.spg3.entities.answer.AnswerRepository;
 import be.ehb.spg3.entities.questions.Question;
+import be.ehb.spg3.entities.questions.QuestionRepository;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
 import be.ehb.spg3.events.PopupEvent;
@@ -121,6 +123,9 @@ public class AddQuizController implements Initializable
 		newQuiz.setGroup(resolve(Authenticator.class).auth().getGroup());
 		newQuiz.setOwner(resolve(Authenticator.class).auth());
 		newQuiz.setQuestions(questions);
+		//TODO the question quiz_id is not saved?
+		//TODO link the answers to question
+		//TODO answers are not saved correctly, only 1 answer per question without text
 
 		try
 		{
@@ -128,7 +133,15 @@ public class AddQuizController implements Initializable
 				question.setQuiz(newQuiz);
 
 			resolve(QuizRepository.class).save(newQuiz);
+
+			for (Question question : newQuiz.getQuestions()){
+				System.out.println(question.getQuestion());
+				question.setQuiz(newQuiz);
+				resolve(QuestionRepository.class).save(question);
+			}
+
 			questions.clear();
+			Notifications.create().text("Quiz created").darkStyle().showConfirm();
 		}
 		catch (SQLException e)
 		{

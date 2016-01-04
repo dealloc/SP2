@@ -98,5 +98,6 @@ public class ManageQuizzesController implements Initializable
 		data.remove(index.get());
 		tvQuizzes.getSelectionModel().clearSelection();
 		Notifications.create().text("Quiz removed").darkStyle().showConfirm();
+		flowSure.setVisible(false);
 	}
 }
