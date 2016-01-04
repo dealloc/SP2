@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>be.ehb.spg3</OriginalElement>
+  <nodes>
+    <node x="0.0" y="963.0">be.ehb.spg3.contracts.events.Handler</node>
+    <node x="484.5" y="657.0">be.ehb.spg3.controllers.questionTypes.BaseAnswerController</node>
+    <node x="0.0" y="331.0">be.ehb.spg3.contracts.validation.EmailValidator</node>
+    <node x="119.0" y="963.0">be.ehb.spg3.Main</node>
+    <node x="0.0" y="657.0">be.ehb.spg3.contracts.auth.Authenticator</node>
+    <node x="875.0" y="178.0">be.ehb.spg3.entities.roles.RoleRepository</node>
+    <node x="575.0" y="810.0">be.ehb.spg3.Resources</node>
+    <node x="125.0" y="657.0">be.ehb.spg3.contracts.auth.Authorizator</node>
+    <node x="457.0" y="889.0">be.ehb.spg3.mailing.GMailer</node>
+    <node x="362.0" y="583.0">be.ehb.spg3.entities.users.User</node>
+    <node x="439.0" y="178.0">be.ehb.spg3.entities.answer.AnswerRepository</node>
+    <node x="161.0" y="583.0">be.ehb.spg3.entities.permissions.Permission</node>
+    <node x="586.0" y="178.0">be.ehb.spg3.entities.users.UserRepository</node>
+    <node x="132.0" y="178.0">be.ehb.spg3.entities.groups.GroupRepository</node>
+    <node x="1006.0" y="178.0">be.ehb.spg3.entities.questions.QuestionRepository</node>
+    <node x="175.5" y="810.0">be.ehb.spg3.contracts.events.EventBus</node>
+    <node x="0.0" y="583.0">be.ehb.spg3.entities.quizzes.Quiz</node>
+    <node x="271.0" y="583.0">be.ehb.spg3.entities.answer.Answer</node>
+    <node x="346.5" y="484.0">be.ehb.spg3.entities.BaseEntity</node>
+    <node x="437.0" y="583.0">be.ehb.spg3.entities.feedbacks.Feedback</node>
+    <node x="717.0" y="178.0">be.ehb.spg3.entities.feedbacks.FeedbackRepository</node>
+    <node x="283.5" y="657.0">be.ehb.spg3.contracts.persistence.IDatabaseRepository</node>
+    <node x="714.0" y="583.0">be.ehb.spg3.entities.results.Result</node>
+    <node x="579.0" y="0.0">be.ehb.spg3.contracts.entities.IModelRepository</node>
+    <node x="0.0" y="889.0">be.ehb.spg3.threading.ThreadManager</node>
+    <node x="329.0" y="810.0">be.ehb.spg3.contracts.encryption.Hasher</node>
+    <node x="461.0" y="810.0">be.ehb.spg3.contracts.mailing.Mailer</node>
+    <node x="315.0" y="889.0">be.ehb.spg3.encryption.Sha1Cryptor</node>
+    <node x="614.0" y="583.0">be.ehb.spg3.entities.questions.Question</node>
+    <node x="48.0" y="410.0">be.ehb.spg3.validation.ValidationRepository</node>
+    <node x="268.0" y="736.0">be.ehb.spg3.persistence.ModelDatabaseRepository</node>
+    <node x="79.0" y="252.0">be.ehb.spg3.contracts.validation.Validator</node>
+    <node x="539.0" y="583.0">be.ehb.spg3.entities.roles.Role</node>
+    <node x="11.5" y="810.0">be.ehb.spg3.contracts.threading.ThreadPool</node>
+    <node x="128.0" y="331.0">be.ehb.spg3.contracts.validation.StringValidator</node>
+    <node x="161.0" y="889.0">be.ehb.spg3.events.MBassadorBus</node>
+    <node x="273.0" y="178.0">be.ehb.spg3.entities.permissions.PermissionRepository</node>
+    <node x="1162.0" y="178.0">be.ehb.spg3.entities.results.ResultRepository</node>
+    <node x="561.5" y="79.0">be.ehb.spg3.entities.MySQLModelRepository</node>
+    <node x="483.0" y="736.0">be.ehb.spg3.controllers.questionTypes.RadiobuttonController</node>
+    <node x="223.0" y="963.0">be.ehb.spg3.controllers.admin.DatabaseViewController.User</node>
+    <node x="0.0" y="178.0">be.ehb.spg3.entities.quizzes.QuizRepository</node>
+    <node x="56.25" y="736.0">be.ehb.spg3.auth.AuthRepository</node>
+    <node x="76.0" y="583.0">be.ehb.spg3.entities.groups.Group</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="be.ehb.spg3.encryption.Sha1Cryptor" target="be.ehb.spg3.contracts.encryption.Hasher">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.users.UserRepository" target="be.ehb.spg3.entities.MySQLModelRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.feedbacks.FeedbackRepository" target="be.ehb.spg3.entities.MySQLModelRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="786.0" y="158.0" />
+      <point x="659.2777777777778" y="158.0" />
+      <point x="17.77777777777783" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.roles.RoleRepository" target="be.ehb.spg3.entities.MySQLModelRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="930.5" y="148.0" />
+      <point x="677.0555555555555" y="148.0" />
+      <point x="35.55555555555554" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.users.User" target="be.ehb.spg3.entities.BaseEntity">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.quizzes.QuizRepository" target="be.ehb.spg3.entities.MySQLModelRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="56.0" y="128.0" />
+      <point x="570.3888888888889" y="128.0" />
+      <point x="-71.11111111111109" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.answer.AnswerRepository" target="be.ehb.spg3.entities.MySQLModelRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="502.5" y="158.0" />
+      <point x="623.7222222222222" y="158.0" />
+      <point x="-17.77777777777783" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.results.ResultRepository" target="be.ehb.spg3.entities.MySQLModelRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="1222.0" y="128.0" />
+      <point x="712.6111111111111" y="128.0" />
+      <point x="71.11111111111109" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.auth.AuthRepository" target="be.ehb.spg3.contracts.auth.Authorizator">
+      <point x="28.5" y="-14.5" />
+      <point x="141.75" y="711.0" />
+      <point x="174.0" y="711.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.quizzes.Quiz" target="be.ehb.spg3.entities.BaseEntity">
+      <point x="0.0" y="-14.5" />
+      <point x="28.0" y="533.0" />
+      <point x="351.27777777777777" y="533.0" />
+      <point x="-38.22222222222223" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.results.Result" target="be.ehb.spg3.entities.BaseEntity">
+      <point x="0.0" y="-14.5" />
+      <point x="746.0" y="533.0" />
+      <point x="427.72222222222223" y="533.0" />
+      <point x="38.22222222222223" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.roles.Role" target="be.ehb.spg3.entities.BaseEntity">
+      <point x="0.0" y="-14.5" />
+      <point x="566.5" y="553.0" />
+      <point x="408.61111111111114" y="553.0" />
+      <point x="19.111111111111143" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.mailing.GMailer" target="be.ehb.spg3.contracts.mailing.Mailer">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.groups.GroupRepository" target="be.ehb.spg3.entities.MySQLModelRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="192.5" y="138.0" />
+      <point x="588.1666666666666" y="138.0" />
+      <point x="-53.33333333333337" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.auth.AuthRepository" target="be.ehb.spg3.contracts.auth.Authenticator">
+      <point x="-28.5" y="-14.5" />
+      <point x="84.75" y="711.0" />
+      <point x="52.5" y="711.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.validation.ValidationRepository" target="be.ehb.spg3.contracts.validation.EmailValidator">
+      <point x="-35.25" y="-14.5" />
+      <point x="83.25" y="385.0" />
+      <point x="54.0" y="385.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.contracts.validation.EmailValidator" target="be.ehb.spg3.contracts.validation.Validator">
+      <point x="0.0" y="-14.5" />
+      <point x="54.0" y="306.0" />
+      <point x="98.75" y="306.0" />
+      <point x="-19.75" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.threading.ThreadManager" target="be.ehb.spg3.contracts.threading.ThreadPool">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.questions.QuestionRepository" target="be.ehb.spg3.entities.MySQLModelRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="1074.0" y="138.0" />
+      <point x="694.8333333333333" y="138.0" />
+      <point x="53.33333333333326" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.questions.Question" target="be.ehb.spg3.entities.BaseEntity">
+      <point x="0.0" y="-14.5" />
+      <point x="654.0" y="543.0" />
+      <point x="418.1666666666667" y="543.0" />
+      <point x="28.666666666666686" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.MySQLModelRepository" target="be.ehb.spg3.contracts.entities.IModelRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.contracts.validation.StringValidator" target="be.ehb.spg3.contracts.validation.Validator">
+      <point x="0.0" y="-14.5" />
+      <point x="183.0" y="306.0" />
+      <point x="138.25" y="306.0" />
+      <point x="19.75" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.answer.Answer" target="be.ehb.spg3.entities.BaseEntity">
+      <point x="0.0" y="-14.5" />
+      <point x="306.5" y="563.0" />
+      <point x="379.94444444444446" y="563.0" />
+      <point x="-9.555555555555543" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.validation.ValidationRepository" target="be.ehb.spg3.contracts.validation.StringValidator">
+      <point x="35.25" y="-14.5" />
+      <point x="153.75" y="385.0" />
+      <point x="183.0" y="385.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.permissions.Permission" target="be.ehb.spg3.entities.BaseEntity">
+      <point x="0.0" y="-14.5" />
+      <point x="206.0" y="553.0" />
+      <point x="370.3888888888889" y="553.0" />
+      <point x="-19.111111111111086" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.controllers.questionTypes.RadiobuttonController" target="be.ehb.spg3.controllers.questionTypes.BaseAnswerController">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.groups.Group" target="be.ehb.spg3.entities.BaseEntity">
+      <point x="0.0" y="-14.5" />
+      <point x="108.5" y="543.0" />
+      <point x="360.8333333333333" y="543.0" />
+      <point x="-28.666666666666686" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.feedbacks.Feedback" target="be.ehb.spg3.entities.BaseEntity">
+      <point x="0.0" y="-14.5" />
+      <point x="478.0" y="563.0" />
+      <point x="399.05555555555554" y="563.0" />
+      <point x="9.555555555555543" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.events.MBassadorBus" target="be.ehb.spg3.contracts.events.EventBus">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.persistence.ModelDatabaseRepository" target="be.ehb.spg3.contracts.persistence.IDatabaseRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="be.ehb.spg3.entities.permissions.PermissionRepository" target="be.ehb.spg3.entities.MySQLModelRepository">
+      <point x="0.0" y="-14.5" />
+      <point x="346.0" y="148.0" />
+      <point x="605.9444444444445" y="148.0" />
+      <point x="-35.55555555555554" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="629.5" y="241.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

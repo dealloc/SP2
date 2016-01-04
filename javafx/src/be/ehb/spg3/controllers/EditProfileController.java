@@ -6,10 +6,12 @@ package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.encryption.Hasher;
-import be.ehb.spg3.contracts.validation.EmailValidator;
+import be.ehb.spg3.controllers.admin.DatabaseViewController;
+import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
@@ -39,6 +41,7 @@ public class EditProfileController implements Initializable
 	@FXML
 	private PasswordField txtCheck;
 
+
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
@@ -49,40 +52,10 @@ public class EditProfileController implements Initializable
 		txtTel.setText(resolve(Authenticator.class).auth().getPhoneNumber());
 	}
 
-	public void save()
-	{
-		if ((!txtPassword.getText().equals(txtRetypePassword.getText())))
-		{
-			Notifications.create().text("New password does not match!").darkStyle().showError();
-			return;
-		} else if (!txtPassword.getText().isEmpty())
-		{
-			resolve(Authenticator.class).auth().setPassword(resolve(Hasher.class).hash(txtPassword.getText()));
-		}
+	public void save(){
 
-		if (txtName.getText().isEmpty())
-		{
-			Notifications.create().text("First name is required!").darkStyle().showError();
-			return;
-		}
-		if (txtLName.getText().isEmpty())
-		{
-			Notifications.create().text("Last name is required!").darkStyle().showError();
-			return;
-		}
-		if (txtEmail.getText().isEmpty())
-		{
-			Notifications.create().text("Email is required!").darkStyle().showError();
-			return;
-		}
-		if (!resolve(EmailValidator.class).validateEmail(txtEmail.getText()))
-		{
-			Notifications.create().darkStyle().text("Email is invalid!").showError();
-			return;
-		}
 		String enc = resolve(Hasher.class).hash(txtCheck.getText());
-		if (!enc.equals(resolve(Authenticator.class).auth().getPassword()))
-		{
+		if (!enc.equals(resolve(Authenticator.class).auth().getPassword())){
 			Notifications.create().text("Incorrect password!").darkStyle().showError();
 			return;
 		}
@@ -93,6 +66,14 @@ public class EditProfileController implements Initializable
 		resolve(Authenticator.class).auth().setAddress(txtAddress.getText());
 		resolve(Authenticator.class).auth().setPhoneNumber(txtTel.getText());
 
+		if ((!txtPassword.getText().equals(txtRetypePassword.getText()))){
+			Notifications.create().text("New password does not match!").darkStyle().showError();
+		} else if (!txtPassword.getText().isEmpty()) {
+			resolve(Authenticator.class).auth().setPassword(resolve(Hasher.class).hash(txtPassword.getText()));
+		}
+
+		Notifications.create().text("Changes saved!").darkStyle().showConfirm();
+
 		try
 		{
 			resolve(UserRepository.class).save(resolve(Authenticator.class).auth());
@@ -101,8 +82,6 @@ public class EditProfileController implements Initializable
 		{
 			e.printStackTrace();
 		}
-
-		Notifications.create().text("Saved changes").darkStyle().showConfirm();
 		txtCheck.setText("");
 	}
 }
