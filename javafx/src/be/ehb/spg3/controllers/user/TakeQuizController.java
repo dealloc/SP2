@@ -93,12 +93,13 @@ public class TakeQuizController implements Initializable
 		}
 		else
 		{
-			Notifications.create().text("That's all folks").showConfirm();
+			resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.quizOverview.fxml"));
 		}
 	}
 
 	public void stopQuiz()
 	{
+		//TODO save exit
 		resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
 	}
 

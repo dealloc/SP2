@@ -38,22 +38,21 @@ public class QuizzesController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
-		index.set(-1);
+		//index.set(-1);
 		resolve(EventBus.class).subscribe(this);
 		try
 		{
 			List<Quiz> quizzes = resolve(QuizRepository.class).findByUser(resolve(Authenticator.class).auth());
 			if (quizzes == null)
 				return;
-			quizzes.parallelStream()
-					.filter(q -> q.getGroup().getId() == resolve(Authenticator.class).auth().getGroup().getId())
-					.forEach(quiz ->
-					{
-						if (quiz != null)
-						{
-							data.add(quiz);
-						}
-					});
+
+			for (Quiz q : quizzes)
+			{
+				if (data != null && q != null && q.getGroup().equals(resolve(Authenticator.class).auth().getGroup()))
+				{
+					data.add(q);
+				}
+			}
 		}
 		catch (SQLException e)
 		{
@@ -71,6 +70,8 @@ public class QuizzesController implements Initializable
 
 	public void takeQuiz()
 	{
+		CurrentQuiz quiz = new CurrentQuiz();
+		quiz.setQuiz(data.get(index.get()));
 		QuizzesController.SELECTED_QUIZ = data.get(index.get());
 		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/takeQuiz.fxml", true));
 	}
