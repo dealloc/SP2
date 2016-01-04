@@ -70,8 +70,6 @@ public class QuizzesController implements Initializable
 
 	public void takeQuiz()
 	{
-		CurrentQuiz quiz = new CurrentQuiz();
-		quiz.setQuiz(data.get(index.get()));
 		QuizzesController.SELECTED_QUIZ = data.get(index.get());
 		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/takeQuiz.fxml", true));
 	}
