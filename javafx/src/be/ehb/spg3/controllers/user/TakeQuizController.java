@@ -66,6 +66,7 @@ public class TakeQuizController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
+		index = 0;
 		instance = this;
 		this.pbQuestions.setProgress(-1);
 		resolve(EventBus.class).subscribe(this);
