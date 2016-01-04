@@ -85,8 +85,14 @@ public class TakeQuizController implements Initializable
 
 			if (question.getType() == QuestionType.MultipleChoice)
 				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.radioButtons.fxml"));
+			if (question.getType() == QuestionType.Image)
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.mediaAnswer.fxml"));
+			if (question.getType() == QuestionType.Audio)
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.mediaAnswer.fxml"));
+			if (question.getType() == QuestionType.Video)
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.mediaAnswer.fxml"));
 
-			((BaseAnswerController) controller()).setQuestion(question);
+			//((BaseAnswerController) controller()).setQuestion(question);
 		} else
 		{
 			// that was the last question

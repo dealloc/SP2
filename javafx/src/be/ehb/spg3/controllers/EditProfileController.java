@@ -6,12 +6,9 @@ package be.ehb.spg3.controllers;
 
 import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.encryption.Hasher;
-import be.ehb.spg3.controllers.admin.DatabaseViewController;
-import be.ehb.spg3.entities.users.User;
 import be.ehb.spg3.entities.users.UserRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
