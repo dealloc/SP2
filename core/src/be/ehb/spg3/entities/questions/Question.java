@@ -30,10 +30,10 @@ public class Question extends BaseEntity
 	private String mediaUrl;
 	@Column
 	@Enumerated(EnumType.STRING)
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Cascade({org.hibernate.annotations.CascadeType.ALL})
 	private QuestionType type = QuestionType.MultipleChoice;
 	@ManyToMany
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Cascade({org.hibernate.annotations.CascadeType.ALL})
 	private Collection<Answer> answers;
 
 	public String getQuestion()

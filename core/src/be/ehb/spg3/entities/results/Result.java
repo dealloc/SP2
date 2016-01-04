@@ -23,13 +23,13 @@ public class Result extends BaseEntity
 	@GeneratedValue
 	private long id;
 	@OneToOne
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Cascade({org.hibernate.annotations.CascadeType.ALL})
 	private Quiz quiz;
 	@OneToOne
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Cascade({org.hibernate.annotations.CascadeType.ALL})
 	private User user;
 	@ManyToMany
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Cascade({org.hibernate.annotations.CascadeType.ALL})
 	private Collection<Answer> answers;
 
 	public Result()

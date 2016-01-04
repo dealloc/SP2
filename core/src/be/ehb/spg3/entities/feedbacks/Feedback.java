@@ -22,7 +22,7 @@ public class Feedback extends BaseEntity
 	@Column
 	private String feedback;
 	@OneToOne
-	@Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Cascade({org.hibernate.annotations.CascadeType.ALL})
 	private User user;
 
 	public Feedback()

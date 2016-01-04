@@ -122,10 +122,17 @@ public class AddQuizController implements Initializable
 		newQuiz.setGroup(resolve(Authenticator.class).auth().getGroup());
 		newQuiz.setOwner(resolve(Authenticator.class).auth());
 		newQuiz.setQuestions(questions);
+		//TODO the question quiz_id is not saved?
+		//TODO answers are not saved correctly, only 1 answer per question without text
 
 		try
 		{
+//			for (Question question : newQuiz.getQuestions())
+//				resolve(QuestionRepository.class).save(question);
+
 			resolve(QuizRepository.class).save(newQuiz);
+			questions.clear();
+			Notifications.create().text("Quiz created").darkStyle().showConfirm();
 		}
 		catch (SQLException e)
 		{
@@ -145,9 +152,11 @@ public class AddQuizController implements Initializable
 				return;
 			}
 			Parent parent = fxml(event.getUrl());
-			stage = new Stage(StageStyle.UNDECORATED);
+			stage = new Stage(StageStyle.TRANSPARENT);
+			stage.setAlwaysOnTop(true);
 			stage.centerOnScreen();
 			stage.setScene(new Scene(parent));
+			stage.setOnCloseRequest(event1 -> this.stage = null);
 			stage.show();
 		});
 	}
