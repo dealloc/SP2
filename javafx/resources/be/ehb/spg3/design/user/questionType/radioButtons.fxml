@@ -6,7 +6,7 @@
 <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
           minWidth="-Infinity" orientation="VERTICAL" prefHeight="611.0" prefWidth="840.0"
           stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="be.ehb.spg3.controllers.questionTypess.RadiobuttonController">
+          fx:controller="be.ehb.spg3.controllers.questionTypes.RadiobuttonController">
    <children>
       <Label fx:id="lblQuestion" text="QUESTION"/>
       <FlowPane fx:id="answerPane" alignment="TOP_CENTER" columnHalignment="CENTER" orientation="VERTICAL"
