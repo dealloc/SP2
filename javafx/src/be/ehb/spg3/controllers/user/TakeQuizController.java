@@ -85,13 +85,13 @@ public class TakeQuizController implements Initializable
 
 			resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent(page));
 			((BaseAnswerController) controller()).setQuestion(question);
+
+			this.pbQuestions.setProgress((1 / this.questions.size()) * this.progress);
 		}
 		else
 		{
 			Notifications.create().text("That's all folks").showConfirm();
 		}
-
-		this.pbQuestions.setProgress((1 / this.questions.size()) * this.progress);
 	}
 
 	public void stopQuiz()
@@ -121,16 +121,23 @@ public class TakeQuizController implements Initializable
 
 	public void setQuiz(Quiz quiz)
 	{
-		this.quiz = quiz;
-		try
+		if (!quiz.getQuestions().isEmpty())
 		{
-			this.questions = resolve(QuestionRepository.class).findByQuiz(quiz);
-			this.iterator = this.questions.iterator();
-			Platform.runLater(this::nextQuestion);
+			this.quiz = quiz;
+			try
+			{
+				this.questions = resolve(QuestionRepository.class).findByQuiz(quiz);
+				this.iterator = this.questions.iterator();
+				Platform.runLater(this::nextQuestion);
+			}
+			catch (Exception e)
+			{
+				resolve(EventBus.class).fire(new ErrorEvent(e));
+			}
 		}
-		catch (Exception e)
+		else
 		{
-			resolve(EventBus.class).fire(new ErrorEvent(e));
+			Notifications.create().text("Hmm, strange. There don't seem to be questions here!").showError();
 		}
 	}
 }
