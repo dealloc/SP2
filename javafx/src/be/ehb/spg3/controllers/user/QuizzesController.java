@@ -1,16 +1,11 @@
 package be.ehb.spg3.controllers.user;
 
-import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
 import be.ehb.spg3.events.SwitchScreenEvent;
-import be.ehb.spg3.events.TakeQuizControllerLoadedEvent;
-import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,22 +14,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import net.engio.mbassy.listener.Handler;
-import org.omg.CORBA.SetOverrideType;
 
-import javax.swing.plaf.basic.BasicButtonUI;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class QuizzesController implements Initializable
 {
+	public static Quiz SELECTED_QUIZ = null;
 	private IntegerProperty index = new SimpleIntegerProperty();
 	private ObservableList<Quiz> data = FXCollections.observableArrayList();
-	List<Quiz> quizzes;
 	@FXML
 	private TableColumn tcQuiz;
 	@FXML
@@ -48,17 +39,7 @@ public class QuizzesController implements Initializable
 		resolve(EventBus.class).subscribe(this);
 		try
 		{
-			this.quizzes = resolve(QuizRepository.class).getAll();
-			this.quizzes.parallelStream().forEach(quiz ->
-			{
-				Platform.runLater(() ->
-				{
-					if (quiz.getGroup() != null && quiz.getGroup().equals(resolve(Authenticator.class).auth().getGroup()))
-					{
-						data.add(quiz);
-					}
-				});
-			});
+			data.addAll(resolve(QuizRepository.class).getAll()); //TODO only get quizzes from his group
 		}
 		catch (SQLException e)
 		{
@@ -68,25 +49,15 @@ public class QuizzesController implements Initializable
 		tcQuiz.setCellValueFactory(new PropertyValueFactory<Quiz, String>("name"));
 		tvQuiz.setItems(data);
 
-		tvQuiz.getSelectionModel().selectedItemProperty().addListener(new ChangeListener()
-		{
-			@Override
-			public void changed(ObservableValue observable, Object oldvalue, Object newValue)
-			{
-				index.set(data.indexOf(newValue));
-				btnTake.setDisable(false);
-			}
+		tvQuiz.getSelectionModel().selectedItemProperty().addListener((observable, oldvalue, newValue) -> {
+			index.set(data.indexOf(newValue));
+			btnTake.setDisable(false);
 		});
 	}
 
 	public void takeQuiz()
 	{
+		QuizzesController.SELECTED_QUIZ = data.get(index.get());
 		resolve(EventBus.class).fireSynchronous(new SwitchScreenEvent("design/user/takeQuiz.fxml", true));
-	}
-
-	@Handler
-	public void takeQuizLoaded(TakeQuizControllerLoadedEvent event)
-	{
-		TakeQuizController.getInstance().setQuiz(data.get(index.get()));
 	}
 }

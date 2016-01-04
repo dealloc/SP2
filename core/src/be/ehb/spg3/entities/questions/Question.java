@@ -34,7 +34,7 @@ public class Question extends BaseEntity
 	private QuestionType type = QuestionType.MultipleChoice;
 	@ManyToMany
 	@Cascade({org.hibernate.annotations.CascadeType.ALL})
-	private Collection<Answer> answers;
+	private Collection<Answer> answers = new ArrayList<>();
 
 	public String getQuestion()
 	{
@@ -68,7 +68,6 @@ public class Question extends BaseEntity
 
 	public void addAnswer(Answer answer)
 	{
-		this.answers = new ArrayList<>();
 		this.answers.add(answer);
 	}
 
