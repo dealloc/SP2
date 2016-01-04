@@ -54,8 +54,9 @@ public class AuthRepository implements Authenticator, Authorizator
 		try
 		{
 			password = resolve(Hasher.class).hash(password);
-			List<User> users = this.getRepository().findByFields(new String[]{"username", username}, new String[]{"password", password});
-			if (!users.isEmpty())
+
+			List<User> users = this.getRepository().findByField("username", username);
+			if (!users.isEmpty() && users.get(0).getPassword().equals(password))
 			{
 				this.user = users.get(0);
 				return true;
