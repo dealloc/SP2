@@ -123,7 +123,7 @@ public class AddQuizController implements Initializable
 		newQuiz.setOwner(resolve(Authenticator.class).auth());
 		newQuiz.setQuestions(questions);
 		//TODO the question quiz_id is not saved?
-		//TODO answers are not saved correctly, only 1 answer per question without text
+		//TODO link the answers to question
 
 		try
 		{
