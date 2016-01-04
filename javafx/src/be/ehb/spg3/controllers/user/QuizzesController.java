@@ -1,5 +1,6 @@
 package be.ehb.spg3.controllers.user;
 
+import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.entities.quizzes.Quiz;
 import be.ehb.spg3.entities.quizzes.QuizRepository;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
@@ -39,7 +41,13 @@ public class QuizzesController implements Initializable
 		resolve(EventBus.class).subscribe(this);
 		try
 		{
-			data.addAll(resolve(QuizRepository.class).getAll()); //TODO only get quizzes from his group
+			List<Quiz> quizzes = resolve(QuizRepository.class).findByUser(resolve(Authenticator.class).auth());
+			quizzes.parallelStream()
+					.filter(q -> q.getGroup().getId() == resolve(Authenticator.class).auth().getGroup().getId())
+					.forEach(quiz ->
+					{
+						data.add(quiz);
+					});
 		}
 		catch (SQLException e)
 		{
