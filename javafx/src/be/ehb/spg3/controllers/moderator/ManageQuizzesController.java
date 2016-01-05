@@ -82,7 +82,13 @@ public class ManageQuizzesController implements Initializable
 
 	public void deleteQuiz()
 	{
-		flowSure.setVisible(true);
+		if (!tvQuizzes.getItems().isEmpty())
+		{
+			flowSure.setVisible(true);
+		} else
+		{
+			flowSure.setVisible(false);
+		}
 	}
 
 	public void yes()
