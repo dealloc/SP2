@@ -32,6 +32,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class TakeQuizController implements Initializable
 {
+	private static TakeQuizController listener = null;
 	private Quiz quiz;
 
 	@FXML
@@ -46,6 +47,11 @@ public class TakeQuizController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
+		if (TakeQuizController.listener != null)
+		{
+			resolve(EventBus.class).unsubscribe(TakeQuizController.listener); // unsubscribe previous event handler to prevent it from handling events it doesn't need.
+		}
+		TakeQuizController.listener = this;
 		this.pbQuestions.setProgress(-1);
 		resolve(EventBus.class).subscribe(this);
 		this.setQuiz(QuizzesController.SELECTED_QUIZ);
@@ -88,13 +94,13 @@ public class TakeQuizController implements Initializable
 
 			resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent(page));
 			((BaseAnswerController) controller()).setQuestion(question);
-
-			this.pbQuestions.setProgress((1 / this.questions.size()) * this.progress);
 		}
 		else
 		{
 			resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.quizOverview.fxml"));
 		}
+
+		this.pbQuestions.setProgress((1 / this.questions.size()) * this.progress);
 	}
 
 	public void stopQuiz()
@@ -125,7 +131,7 @@ public class TakeQuizController implements Initializable
 
 	public void setQuiz(Quiz quiz)
 	{
-		if (!quiz.getQuestions().isEmpty())
+		if (!quiz.getQuestions().isEmpty()) // Without this check we might divide by zero, brrr!
 		{
 			this.quiz = quiz;
 			try
@@ -141,6 +147,7 @@ public class TakeQuizController implements Initializable
 		}
 		else
 		{
+			// TODO this notification is lame
 			Notifications.create().text("Hmm, strange. There don't seem to be questions here!").showError();
 		}
 	}
