@@ -1,10 +1,14 @@
 package be.ehb.spg3.controllers.user;
 
+import be.ehb.spg3.contracts.auth.Authenticator;
 import be.ehb.spg3.contracts.events.EventBus;
 import be.ehb.spg3.controllers.questionTypes.BaseAnswerController;
+import be.ehb.spg3.controllers.questionTypes.QuizOverviewController;
 import be.ehb.spg3.entities.questions.Question;
 import be.ehb.spg3.entities.questions.QuestionRepository;
 import be.ehb.spg3.entities.quizzes.Quiz;
+import be.ehb.spg3.entities.results.Result;
+import be.ehb.spg3.entities.results.ResultRepository;
 import be.ehb.spg3.events.SwitchPaneEvent;
 import be.ehb.spg3.events.SwitchScreenEvent;
 import be.ehb.spg3.events.errors.ErrorEvent;
@@ -22,6 +26,7 @@ import net.engio.mbassy.listener.Handler;
 import org.controlsfx.control.Notifications;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -32,6 +37,7 @@ import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
 public class TakeQuizController implements Initializable
 {
+	private static TakeQuizController listener = null;
 	private Quiz quiz;
 
 	@FXML
@@ -39,6 +45,7 @@ public class TakeQuizController implements Initializable
 	@FXML
 	private AnchorPane contentRoot;
 
+	private Result result;
 	private List<Question> questions;
 	Iterator<Question> iterator;
 	int progress = 0;
@@ -46,6 +53,11 @@ public class TakeQuizController implements Initializable
 	@Override // This method is called by the FXMLLoader when initialization is complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources)
 	{
+		if (TakeQuizController.listener != null)
+		{
+			resolve(EventBus.class).unsubscribe(TakeQuizController.listener); // unsubscribe previous event handler to prevent it from handling events it doesn't need.
+		}
+		TakeQuizController.listener = this;
 		this.pbQuestions.setProgress(-1);
 		resolve(EventBus.class).subscribe(this);
 		this.setQuiz(QuizzesController.SELECTED_QUIZ);
@@ -55,10 +67,12 @@ public class TakeQuizController implements Initializable
 	{
 		if (progress != 0)
 		{
-			this.progress--;
+			this.progress -= 2;
 			this.iterator = this.questions.iterator();
 			for (int i = 0; i <= this.progress && this.iterator.hasNext(); i++)
 				this.iterator.next();
+
+			this.nextQuestion();
 		}
 	}
 
@@ -69,7 +83,7 @@ public class TakeQuizController implements Initializable
 			this.progress++;
 			Question question = this.iterator.next();
 
-			String page = "user.questionType.radioButtons.fxml";
+			String page = "user.questionType.radioButtons.fxml"; // so we never have an empty page
 			switch (question.getType())
 			{
 				case MultipleChoice:
@@ -88,13 +102,31 @@ public class TakeQuizController implements Initializable
 
 			resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent(page));
 			((BaseAnswerController) controller()).setQuestion(question);
-
-			this.pbQuestions.setProgress((1 / this.questions.size()) * this.progress);
 		}
 		else
 		{
-			resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.quizOverview.fxml"));
+			if (controller() instanceof QuizOverviewController)
+			{
+				// finish quiz!
+				try
+				{
+					resolve(ResultRepository.class).save(this.result);
+					Notifications.create().text("Results saved!").showInformation();
+					this.stopQuiz();
+				}
+				catch (SQLException e)
+				{
+					resolve(EventBus.class).fire(new ErrorEvent(e));
+				}
+			}
+			else
+			{
+				resolve(EventBus.class).fireSynchronous(new SwitchPaneEvent("user.questionType.quizOverview.fxml"));
+				((QuizOverviewController) controller()).setQuiz(this.quiz);
+			}
 		}
+
+		this.pbQuestions.setProgress((1 / this.questions.size()) * this.progress);
 	}
 
 	public void stopQuiz()
@@ -125,9 +157,10 @@ public class TakeQuizController implements Initializable
 
 	public void setQuiz(Quiz quiz)
 	{
-		if (!quiz.getQuestions().isEmpty())
+		if (!quiz.getQuestions().isEmpty()) // Without this check we might divide by zero, brrr!
 		{
 			this.quiz = quiz;
+			this.result = new Result(this.quiz, resolve(Authenticator.class).auth());
 			try
 			{
 				this.questions = resolve(QuestionRepository.class).findByQuiz(quiz);
@@ -141,6 +174,7 @@ public class TakeQuizController implements Initializable
 		}
 		else
 		{
+			// TODO this notification is lame
 			Notifications.create().text("Hmm, strange. There don't seem to be questions here!").showError();
 		}
 	}
