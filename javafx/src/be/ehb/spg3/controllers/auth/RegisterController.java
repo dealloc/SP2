@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import org.controlsfx.control.Notifications;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import static be.ehb.spg3.providers.InjectionProvider.resolve;
 
@@ -60,27 +61,38 @@ public class RegisterController
 				if (!resolve(EmailValidator.class).validateEmail(email))
 				{
 					Notifications.create().darkStyle().text("OOPS ! Bad email address...").showError();
+					tfEmail.clear();
 				}
 				else
 				{
-					User user = new User(fname, lname, email, username, resolve(Hasher.class).hash(password));
-					try
+					List<User> users = resolve(UserRepository.class).findByField("username", username);
+					if (!users.isEmpty() && users.get(0).getUsername().equals(username))
 					{
-						resolve(UserRepository.class).save(user);
-						resolve(Authenticator.class).sudo(user); // set authenticated user
-					}
-					catch (SQLException e)
+						Notifications.create().darkStyle().text("OOPS ! Username already exists...").showError();
+						tfUsername.clear();
+					} else
 					{
-						resolve(EventBus.class).fire(new ErrorEvent(e));
-					}
+						User user = new User(fname, lname, email, username, resolve(Hasher.class).hash(password));
+						try
+						{
+							resolve(UserRepository.class).save(user);
+							resolve(Authenticator.class).sudo(user); // set authenticated user
+						}
+						catch (SQLException e)
+						{
+							resolve(EventBus.class).fire(new ErrorEvent(e));
+						}
 
-					Notifications.create().darkStyle().text("You have successfully registered!").showConfirm();
-					resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
+						Notifications.create().darkStyle().text("You have successfully registered!").showConfirm();
+						resolve(EventBus.class).fire(new SwitchScreenEvent("design/userpanel.fxml", true));
+					}
 				}
 			}
 			else
 			{
 				Notifications.create().darkStyle().text("OOPS ! Password doesn't match confirmation..").showError();
+				tfPassword.clear();
+				tfPasswordRepeat.clear();
 			}
 		}
 
